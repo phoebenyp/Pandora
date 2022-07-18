@@ -1,23 +1,25 @@
 package web.port.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class PortVO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Integer portOfCallNo;
 	private String portName;
-	private Double portLatitude;
-	private Double portLongitude;
+	private java.math.BigDecimal portLatitude;
+	private java.math.BigDecimal portLongitude;
 	private String sightseeing;
-	private Double sightseeingLatitude;
-	private Double sightseeingLongitude;
+	private java.math.BigDecimal sightseeingLatitude;
+	private java.math.BigDecimal sightseeingLongitude;
 	public PortVO() {
 		
 	}
 	
-	public PortVO(Integer portOfCallNo, String portName, Double portLatitude, Double portLongitude, String sightseeing,
-			Double sightseeingLatitude, Double sightseeingLongitude) {
+	
+	public PortVO(Integer portOfCallNo, String portName, BigDecimal portLatitude, BigDecimal portLongitude,
+			String sightseeing, BigDecimal sightseeingLatitude, BigDecimal sightseeingLongitude) {
 		super();
 		this.portOfCallNo = portOfCallNo;
 		this.portName = portName;
@@ -27,6 +29,8 @@ public class PortVO implements Serializable{
 		this.sightseeingLatitude = sightseeingLatitude;
 		this.sightseeingLongitude = sightseeingLongitude;
 	}
+
+
 	public Integer getPortOfCallNo() {
 		return portOfCallNo;
 	}
@@ -39,16 +43,16 @@ public class PortVO implements Serializable{
 	public void setPortName(String portName) {
 		this.portName = portName;
 	}
-	public Double getPortLatitude() {
+	public java.math.BigDecimal getPortLatitude() {
 		return portLatitude;
 	}
-	public void setPortLatitude(Double portLatitude) {
+	public void setPortLatitude(java.math.BigDecimal portLatitude) {
 		this.portLatitude = portLatitude;
 	}
-	public Double getPortLongitude() {
+	public java.math.BigDecimal getPortLongitude() {
 		return portLongitude;
 	}
-	public void setPortLongitude(Double portLongitude) {
+	public void setPortLongitude(java.math.BigDecimal portLongitude) {
 		this.portLongitude = portLongitude;
 	}
 	public String getSightseeing() {
@@ -57,18 +61,17 @@ public class PortVO implements Serializable{
 	public void setSightseeing(String sightseeing) {
 		this.sightseeing = sightseeing;
 	}
-	public Double getSightseeingLatitude() {
+	public java.math.BigDecimal getSightseeingLatitude() {
 		return sightseeingLatitude;
 	}
-	public void setSightseeingLatitude(Double sightseeingLatitude) {
+	public void setSightseeingLatitude(java.math.BigDecimal sightseeingLatitude) {
 		this.sightseeingLatitude = sightseeingLatitude;
 	}
-	public Double getSightseeingLongitude() {
+	public java.math.BigDecimal getSightseeingLongitude() {
 		return sightseeingLongitude;
 	}
-	public void setSightseeingLongitude(Double sightseeingLongitude) {
+	public void setSightseeingLongitude(java.math.BigDecimal sightseeingLongitude) {
 		this.sightseeingLongitude = sightseeingLongitude;
 	}
-	
 	
 }
