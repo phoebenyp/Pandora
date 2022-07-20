@@ -1,7 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="web.emp.bean.*"%>
+<% EmpVO empVO = (EmpVO) request.getAttribute("empVO");%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+----${empVO.empBirthday} ${EmpVO}
+<%= empVO==null %> <%= empVO==null %>--${empVO.englishFirstName}--
 
+	
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -62,10 +68,10 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="./images/girlimg.jpg" class="img-circle elevation-2" alt="User Image" />
+                        <img src="<%=request.getContextPath()%>/EMPImageServlet" class="img-circle elevation-2" alt="User Image" />
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Lucifer Morningstar</a>
+                        <a href="#" class="d-block">${empVO.englishFirstName}&nbsp${empVO.englishLastName}</a>
                     </div>
                 </div>
 
@@ -294,10 +300,10 @@
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item">
-                                    <a href="#">Home</a>
+                                    <a href="#">EMP_Register</a>
                                 </li>
                                 <li class="breadcrumb-item active">
-                                    Starter Page
+                                    EMP_Information
                                 </li>
                             </ol>
                         </div>
@@ -323,55 +329,58 @@
                                         <hr />
                                     </div>
                                     </br>
-                                    <center>
+                                   
+                                    <form action="<%=request.getContextPath()%>/EmpLoginServlet" method="Post" enctype="multipart/form-data" >
+    								  <center>
+    										<input type="file" name="empPictureId" />
+    									
+                                    
                                         <div class="col-sm-6" style="text-align:center">
                                             <img src="images/ElonMask.jpg" alt="Image" width=100% />
                                         </div>
-                                    </center>
+                                      </center>
                                     <hr />
-                                    <form>
+                                  
                                         <div class="row">
-
-
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>護照英文名字*</label>
-                                                    <input type="text" class="form-control" id="Englis_First_Name"
-                                                        name="Englis_First_Name" />
+                                                    <input type="text" class="form-control" name="englishFirstName"
+                                                        />${errorMsgs}
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label>護照英文姓氏*</label>
-                                                    <input type="text" class="form-control" id="Englis_Last_Name"
+                                                    <label>護照英文姓氏*</label>${errorMsg}
+                                                    <input type="text" class="form-control" name="englishLastName"
                                                         name="Englis_Last_Name" />
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label>護照號碼*</label>
-                                                    <input type="text" class="form-control" id="Passport_No"
+                                                    <label>護照號碼*</label>${errorMsg}
+                                                    <input type="text" class="form-control" name="passportNo"
                                                         name="Passport_No" />
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label>出生日期＊</label>
-                                                    <input class="date-pick form-control" type="date" />
+                                                    <label>出生日期＊</label>${errorMsg}
+                                                    <input class="date-pick form-control" type="date" name="empBirthday">
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label>電子信箱＊</label>
-                                                    <input type="email" id="Email" name="Email" class="form-control" />
+                                                    <label>電子信箱＊</label>${errorMsg}
+                                                    <input type="email" id="Email" class="form-control" name="email" />
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label>聯絡電話</label>
-                                                    <input type="text" id="telephone_booking" name="telephone_booking"
+                                                    <label>聯絡電話</label>${errorMsg}
+                                                    <input type="text"  name="empCellphoneNo"
                                                         class="form-control" />
                                                 </div>
                                             </div>
@@ -382,11 +391,12 @@
                                                     <label>職等</label>
                                                     </br>
                                                     <div class="form-group">
-                                                        <select style="width:100%" name="Job_Levels">
-                                                            <option>Manger</option>
-                                                            <option>Supervisor</option>
-                                                            <option>Staff</option>
+                                                        <select style="width:100%" name="jobLevels">
+                                                            <option value="Manger">Manger</option>
+                                                            <option value="Supervisor">Supervisor</option>
+                                                            <option value="Staff">Staff</option>
                                                         </select>
+                                                        ${errorMsg}                                                    
                                                     </div>
                                                 </div>
                                             </div>
@@ -394,19 +404,19 @@
                                                 <div class="form-group">
                                                     <label>性別</label>
                                                     <br />
-                                                    <input type="radio" name="sex" value="male" id="sexOption"
+                                                    <input type="radio" name="gender" value="male" id="sexOption"
                                                         checked />男
-                                                    <input type="radio" name="sex" value="female" id="sexOption" />女
+                                                    <input type="radio" name="gender" value="female" id="sexOption" />女
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label>狀態</label>
                                                     <br />
-                                                    <input type="radio" name="Status" value="stay"
-                                                        onclick="return false" id="Status" checked />在職
-                                                    <input type="radio" name="Status" value="leave"
-                                                        onclick="return false" id="Status" />離職
+                                                    <input type="radio" name="status" value="stay"
+                                                        onclick="return false"  checked />在職
+                                                    <input type="radio" name="status" value="leave"
+                                                        onclick="return false"  />離職
                                                 </div>
                                             </div>
                                         </div>
@@ -414,20 +424,20 @@
 
                                         <div class="form-group">
                                             <label>地址</label>
-                                            <input type="text" class="form-control" id="inputAddress2"
-                                                placeholder="居住地址" />
+                                            <input type="text" class="form-control" name="empAddress"
+                                                placeholder="居住地址" />${errorMsg}
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label>註冊日期</label>
-                                                    <input class="date-pick form-control" type="date" />
+                                                    <label>雇用日期</label>
+                                                    <input class="date-pick form-control" type="date" name="startDate" />${errorMsg}
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>離職日期</label>
-                                                    <input readonly class="date-pick form-control" type="date" />
+                                                    <input readonly class="date-pick form-control" type="date" name="resignationDate"/>${errorMsg}
                                                 </div>
                                             </div>
                                         </div>
@@ -436,7 +446,7 @@
                                         <div class="row d-flex justify-content-center">
                                             <div class="col-sm-12" style="text-align:right">
                                                 <div class="form-group">
-                                                    <button class="btn btn-primary">確認註冊</button>
+                                                    <button class="btn btn-primary" name="action" value="EMPAdd" type="submit" >確認註冊</button>
                                                 </div>
                                             </div>
                                         </div>

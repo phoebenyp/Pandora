@@ -33,8 +33,8 @@ public class EmpDAOImpl implements EmpDAO {
 		}
 	}
 
-	private static final String INSERT_STMT = "INSERT INTO Employee(empPictureId,englishLastName,englishFirstName,jobLevels,gender,empBirthday,passportNo,"
-			+ "email,startDate,resignationDate,password,empCellphoneNo,empAddress,status,lastModificationDate,loginTime)  "
+	private static final String INSERT_STMT = "INSERT INTO Employee(EMP_Picture_Id,English_Last_Name,English_First_Name,Job_Levels,Gender,EMP_Birthday,Passport_No,"
+			+ "Email,Start_Date,Resignation_Date,Password,EMP_Cellphone_No,EMP_Address,Status,Last_Modification_Date,Login_Time)  "
 			+ "VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?,?, ?, ?,?)";
 	private static final String GET_ALL_STMT = "SELECT (employeeId,empPictureId,englishLastName,englishFirstName,jobLevels,gender,empBirthday,passportNo,"
 			+ "email,startDate,resignationDate,password,empCellphoneNo,empAddress,status,lastModificationDate,loginTime) "
@@ -64,14 +64,15 @@ public class EmpDAOImpl implements EmpDAO {
 			pstmt.setDate(6, Date.valueOf(empVO.getEmpBirthday()));
 			pstmt.setString(7, empVO.getPassportNo());
 			pstmt.setString(8, empVO.getEmail());
-			pstmt.setTimestamp(9, Timestamp.valueOf(empVO.getStartDate()));
-			pstmt.setTimestamp(10, Timestamp.valueOf(empVO.getResignationDate()));
+			pstmt.setDate(9, Date.valueOf(empVO.getStartDate()));
+			pstmt.setDate(10, empVO.getResignationDate() != null ? Date.valueOf(empVO.getResignationDate()) : null);
+
 			pstmt.setString(11, empVO.getPassword());
-			pstmt.setInt(12, empVO.getEmpCellphoneNo());
+			pstmt.setString(12, empVO.getEmpCellphoneNo());
 			pstmt.setString(13, empVO.getEmpAddress());
 			pstmt.setString(14, empVO.getStatus());
 			pstmt.setTimestamp(15, Timestamp.valueOf(empVO.getLastModificationDate()));
-			pstmt.setTimestamp(16, Timestamp.valueOf(empVO.getLoginTime()));
+			pstmt.setTimestamp(16, empVO.getLoginTime() != null ? Timestamp.valueOf(empVO.getLoginTime()) : null);
 			pstmt.executeUpdate();
 
 			// Handle any SQL errors
@@ -116,10 +117,10 @@ public class EmpDAOImpl implements EmpDAO {
 			pstmt.setDate(6, Date.valueOf(empVO.getEmpBirthday()));
 			pstmt.setString(7, empVO.getPassportNo());
 			pstmt.setString(8, empVO.getEmail());
-			pstmt.setTimestamp(9, Timestamp.valueOf(empVO.getStartDate()));
-			pstmt.setTimestamp(9, Timestamp.valueOf(empVO.getResignationDate()));
+			pstmt.setDate(9, Date.valueOf(empVO.getStartDate()));
+			pstmt.setDate(9, Date.valueOf(empVO.getResignationDate()));
 			pstmt.setString(10, empVO.getPassword());
-			pstmt.setInt(11, empVO.getEmpCellphoneNo());
+			pstmt.setString(11, empVO.getEmpCellphoneNo());
 			pstmt.setString(12, empVO.getEmpAddress());
 			pstmt.setString(13, empVO.getStatus());
 			pstmt.setTimestamp(14, Timestamp.valueOf(empVO.getLastModificationDate()));
@@ -218,10 +219,10 @@ public class EmpDAOImpl implements EmpDAO {
 				empVO.setEmpBirthday(rs.getDate("empBirthday").toLocalDate());
 				empVO.setPassportNo(rs.getString("passportNo"));
 				empVO.setEmail(rs.getString("email"));
-				empVO.setStartDate(rs.getTimestamp("startDate").toLocalDateTime());
-				empVO.setResignationDate(rs.getTimestamp("resignationDate").toLocalDateTime());
+				empVO.setStartDate(rs.getDate("startDate").toLocalDate());
+				empVO.setResignationDate(rs.getDate("resignationDate").toLocalDate());
 				empVO.setPassword(rs.getString("password"));
-				empVO.setEmpCellphoneNo(rs.getInt("empCellphoneNo"));
+				empVO.setEmpCellphoneNo(rs.getString("empCellphoneNo"));
 				empVO.setEmpAddress(rs.getString("empAddress"));
 				empVO.setStatus(rs.getString("status"));
 				empVO.setLastModificationDate(rs.getTimestamp("lastModificationDate").toLocalDateTime());
@@ -286,10 +287,10 @@ public class EmpDAOImpl implements EmpDAO {
 				empVO.setEmpBirthday(rs.getDate("empBirthday").toLocalDate());
 				empVO.setPassportNo(rs.getString("passportNo"));
 				empVO.setEmail(rs.getString("email"));
-				empVO.setStartDate(rs.getTimestamp("startDate").toLocalDateTime());
-				empVO.setResignationDate(rs.getTimestamp("resignationDate").toLocalDateTime());
+				empVO.setStartDate(rs.getDate("startDate").toLocalDate());
+				empVO.setResignationDate(rs.getDate("resignationDate").toLocalDate());
 				empVO.setPassword(rs.getString("password"));
-				empVO.setEmpCellphoneNo(rs.getInt("empCellphoneNo"));
+				empVO.setEmpCellphoneNo(rs.getString("empCellphoneNo"));
 				empVO.setEmpAddress(rs.getString("empAddress"));
 				empVO.setStatus(rs.getString("status"));
 				empVO.setLastModificationDate(rs.getTimestamp("lastModificationDate").toLocalDateTime());
@@ -350,18 +351,20 @@ public class EmpDAOImpl implements EmpDAO {
 					resultEmpVO.setEmpBirthday(rs.getDate("EMP_Birthday").toLocalDate());
 					resultEmpVO.setPassportNo(rs.getString("Passport_No"));
 					resultEmpVO.setEmail(rs.getString("Email"));
-					resultEmpVO.setStartDate(rs.getTimestamp("Start_Date").toLocalDateTime());
+					resultEmpVO.setStartDate(rs.getDate("Start_Date").toLocalDate());
 					if (rs.getTimestamp("Resignation_Date") != null) {
-						resultEmpVO.setResignationDate(rs.getTimestamp("Resignation_Date").toLocalDateTime());
+						resultEmpVO.setResignationDate(rs.getDate("Resignation_Date").toLocalDate());
 					}
 
 					resultEmpVO.setPassword(rs.getNString("Password"));
-					resultEmpVO.setEmpCellphoneNo(rs.getInt("EMP_Cellphone_No"));
+					resultEmpVO.setEmpCellphoneNo(rs.getString("EMP_Cellphone_No"));
 					resultEmpVO.setEmpAddress(rs.getString("EMP_Address"));
 					resultEmpVO.setStatus(rs.getString("Status"));
 					resultEmpVO.setLastModificationDate(rs.getTimestamp("Last_Modification_Date").toLocalDateTime());
-					resultEmpVO.setLoginTime(rs.getTimestamp("Login_Time").toLocalDateTime());
-
+					if (rs.getTimestamp("Login_Time") != null) {
+						resultEmpVO.setLoginTime(rs.getTimestamp("Login_Time").toLocalDateTime());
+					
+					}
 					return resultEmpVO;
 				}
 

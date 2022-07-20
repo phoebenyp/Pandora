@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
+
+
 <html lang="en">
 
 <head>
@@ -88,6 +90,12 @@
                                     <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>員工資料表</p>
+                                    </a>
+                                </li>
+                                 <li class="nav-item">
+                                    <a href="<%=request.getContextPath()%>/EMP_Register.jsp" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>新增員工</p>
                                     </a>
                                 </li>
                             </ul>
