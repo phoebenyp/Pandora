@@ -27,7 +27,9 @@ public class ShipService {
 		this.daoShip = daoShip;
 		this.daoRTTC = daoRTTC;
 	}
-
+	public ShipsVO selectLast() {
+		return daoShip.selectLast();
+	}
 	public ShipsVO getOneShip(Integer shipNo) {
 		return daoShip.findSpipNo(shipNo);
 	}
@@ -81,13 +83,18 @@ public class ShipService {
 		
 		return roomTypeTotalCountVO;
 	}
-	public RoomTypeTotalCountVO updateRTTC(Integer rTTCNo,Integer shipNo,Integer roomTypeNo,Integer maxCountOfRoomType) {
+	public void addRTTCLast(Integer shipNo) {
+		
+		daoRTTC.insertLast(shipNo);
+		
+	}
+	public RoomTypeTotalCountVO updateRTTC(Integer shipNo,Integer roomTypeNo,Integer maxCountOfRoomType,Integer rTTCNo) {
 		RoomTypeTotalCountVO roomTypeTotalCountVO = new RoomTypeTotalCountVO();
 		
-		roomTypeTotalCountVO.setrTTCNo(rTTCNo);
 		roomTypeTotalCountVO.setShipNo(shipNo);
 		roomTypeTotalCountVO.setRoomTypeNo(roomTypeNo);
 		roomTypeTotalCountVO.setMaxCountOfRoomType(maxCountOfRoomType);
+		roomTypeTotalCountVO.setrTTCNo(rTTCNo);
 		daoRTTC.update(roomTypeTotalCountVO);
 		
 		return roomTypeTotalCountVO;

@@ -5,12 +5,12 @@
 <%@page import="web.ship.bean.ShipsVO"%>
 <%@ page import="web.ship.dao.impl.ShipStatusDAOImpl"%>
 <%@ page import="web.ship.bean.ShipStatusVO"%>
+<%@ page import="web.ship.service.impl.ShipService"%>
+<%@ page import="web.ship.bean.ShipTotalVO" %>
 <%
-	ShipsVO shipsVO = (ShipsVO) request.getAttribute("shipsVO");
-	ShipStatusDAOImpl stSVC =new ShipStatusDAOImpl();
-	List<ShipStatusVO> list = stSVC.getAll();
-	pageContext.setAttribute("list",list);
-
+	ShipService stSVC =new ShipService();
+	ShipsVO shipsVO = stSVC.selectLast();
+	pageContext.setAttribute("list",shipsVO);
 %>
 <!DOCTYPE html>
 <!--
@@ -44,14 +44,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             font-weight: bold;
             color: #0277BD;
         }
-        #preview {
+        .preview {
             border: 1px solid lightgray;
             /* display: inline-block; */
             /* width: 100px; */
             /* min-height: 150px; */
             /* position: relative; */
         }
-        #preview span.text {
+        .preview span.text {
             /* position: absolute; */
             /* display: inline-block; */
             /* left: 50%; */
@@ -361,92 +361,54 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         郵輪新增
                                     </h3>
                                 </div>
-                                <c:if test="${not empty errorMsgs}">
-									<font style="color:red">請修正以下錯誤:</font>
-									<ul>
-										<c:forEach var="message" items="${errorMsgs}">
-											<li style="color:red">${message}</li>
-										</c:forEach>
-									</ul>
-								</c:if>
-                                <div class="container">
-                                <FORM METHOD="post" action="<%=request.getContextPath()%>/ShipServlet" ">
-                                    <div class="col-md-12">
-                                    
-                                        <table id="table" data-toggle="table" data-search="false" data-filter-control="true"
-                                            data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                                            <thead>
-                                                <tr>
-
-                                                    <th data-field="shipNo" data-filter-control="input"
-                                                    >郵輪編號</th>
-                                                <th data-field="shipName" data-filter-control="select"
-                                                    >郵輪名稱</th>
-                                                <th data-field="starStatus" data-filter-control="select"
-                                                    >啟用日期
-                                                </th>
-                                                <th data-field="lastMaintenanceTime" data-filter-control="select"
-                                                    >
-                                                    最後維護時間</th>
-                                                <th data-field="floorOfShip" data-filter-control="select"
-                                                    >樓層</th>
-                                                <th data-field="shipStatus" data-filter-control="select"
-                                                    >郵輪狀態</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-
-                                                    <td > <input name="shipNo" value="<%=shipsVO.getShipNo() %>"> </td>
-                                                    <td><input name="shipname" type="text" value="<%=shipsVO.getShipName()%>"></td>
-                                                    <td > <input name="shipstart" type="date" value="<%=shipsVO.getStarStatus() %>"></td>
-                                                    <td><input name="shipmain" type="date" value="<%=shipsVO.getLastmaintenanceTime()%>"></td>
-                                                    <td><input name="shipfloor" type="text" value="<%=shipsVO.getFloorOfShip()%>"></td>
-                                                    <td>
-                                                        <select name="shipstatusNo">
-	                                                        <c:forEach var="shipStatusVO" items="${list}">
-																<option value="${shipStatusVO.shipStatusNo}" ${(shipStatusVO.shipStatusNo==shipsVO.shipStatusNo)?'selected':'' } >${shipStatusVO.shipStatus}
-															</c:forEach>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <input type="hidden" name="action" value="update">
-                                    </div>
-	                                    <div class="row justify-content-center">
-	                                    <a>新增房間數量</a>
-	                                    <label class="col-md-2" >
-	                                        Standard Room
-	                                    </label>
-	                                    <div class="col-md-2">
-	                                        <label>房型數量</label>
-	                                    </div>
-	                                    <div class="col-md-2 mr-4">
-	                                        <label>34</label>
-	                                    </div>
-	                                    <div class="col-md-2">
-<!-- 	                                        <form method="post"  action=""> -->
-	                                            <input name="update" type="hidden" value="更新">
-	                                            <button class="btn btn-primary btn-sm update" type="button"
-	                                                style="width:100%;height:100%;">更新</button>
-<!-- 	                                        </form> -->
-	                                    </div>
-	                                        
-	                                    <div class="col-md-2">
-<!-- 	                                            <form method="post"  action=""> -->
-	                                            <input name="delete" type="hidden" value="">
-	                                            <button class="btn btn-primary btn-sm update" type="button"
-	                                                style="width:100%;height:100%;" value="">刪除</button>
-<!-- 	                                        </form> -->
-	                                    </div>
-	                                       
-	                                </div>
                                 
-                                <input  class="offset-8" type="submit" name="updateS" value="確定編輯" text-align=center
-                                        style="margin-right: 0%;width:250px;">
-                                </FORM>
+                                    <div class="container">
+                                        <div class="col-md-12">
+                                            <table id="table" data-toggle="table" data-search="false" data-filter-control="true"
+                                                data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                                <thead>
+                                                    <tr>
+
+                                                    
+                                                        <th data-field="1" data-filter-control="select"
+                                                            >郵輪名稱</th>
+                                                        <th data-field="2" data-filter-control="select"
+                                                            >啟用日期
+                                                        </th>
+                                                        <th data-field="3" data-filter-control="select"
+                                                            >
+                                                            最後維護時間</th>
+                                                        
+                                                        <th data-field="4" data-filter-control="select"
+                                                            >樓層</th>
+                                                        <th data-field="5" data-filter-control="select"
+                                                            >郵輪狀態</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+
+                                                        
+                                                        <td><%=shipsVO.getShipName()%></td>
+                                                        <td><%=shipsVO.getStarStatus() %></td>
+                                                        <td><%=shipsVO.getLastmaintenanceTime()%></td>
+                                                        
+                                                        <td><%=shipsVO.getFloorOfShip()%></td>
+                                                        <td><%=shipsVO.getShipStatusNo()%></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <form method="post"  action="<%=request.getContextPath()%>/ShipServlet">
+                                        <input type="hidden" name="shipNo" value="<%=shipsVO.getShipNo()%>">
+                                        <input type="hidden" name="action" value="insertLast">
+                                        <input  class="offset-8" type="submit" value="新增完成" text-align=center
+                                            style="margin-right: 0%;width:250px;"/>
+                                        </form>
+                                    </div>
+                               
                             </div>
+                                    
                         </div>
                     </div>
                 </div>
@@ -508,7 +470,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
-        
 </body>
 
 </html>

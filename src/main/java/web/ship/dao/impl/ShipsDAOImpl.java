@@ -29,7 +29,63 @@ public class ShipsDAOImpl implements ShipsDAO {
 			+ " VALUES (?, ?, ?, ?, ?)";
 	private static final String DELETE = "DELETE FROM Ships where Ship_No = ?";
 	private static final String UPDATE = "UPDATE Ships set Ship_Name=?,Star_Status=?,Last_maintenance_Time=?,Floor_of_Ship=?,Ship_Status_No=? where Ship_No = ?";
+	private static final String SELECT_LAST ="SELECT Ship_No,Ship_Name,Star_Status,Last_maintenance_Time,Floor_of_Ship,Ship_Status_No FROM Pandora.Ships ORDER BY Ship_No DESC LIMIT 1";
 	
+	@Override
+	public ShipsVO selectLast() {
+
+		ShipsVO shipsVO = new ShipsVO();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(SELECT_LAST);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				shipsVO = new ShipsVO();
+				shipsVO.setShipNo(rs.getInt("Ship_No"));
+				shipsVO.setShipName(rs.getString("Ship_Name"));
+				shipsVO.setStarStatus(rs.getDate("Star_Status"));
+				shipsVO.setLastmaintenanceTime(rs.getDate("Last_maintenance_Time"));
+				shipsVO.setFloorOfShip(rs.getInt("Floor_of_Ship"));
+				shipsVO.setShipStatusNo(rs.getInt("Ship_Status_No"));
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return shipsVO;
+	}
 	@Override
 	public ShipsVO findSpipNo(Integer shipNo) {
 

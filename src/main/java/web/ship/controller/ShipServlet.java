@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import web.ship.bean.RoomTypeTotalCountVO;
 import web.ship.bean.ShipsVO;
 import web.ship.service.impl.ShipService;
 
@@ -121,10 +122,43 @@ request.setAttribute("shipname", shipname); // 含有輸入格式錯誤的empVO�
 				shipsVO = shipSvc.addShip(shipname,shipstart,shipmain,shipfloor,shipstatusNo);
 //				System.out.println("success");
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/ships.jsp";
+				
+				String url = "/shipLast.jsp";
 				RequestDispatcher successView = request.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(request, response);				
 		}
+			if ("insertLast".equals(action)) { // 來自addEmp.jsp的請求  
+				
+				List<String> errorMsgs = new LinkedList<String>();
+				// Store this set in the request scope, in case we need to
+				// send the ErrorPage view.
+				request.setAttribute("errorMsgs", errorMsgs);
+
+					/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
+//					System.out.println("shipname="+shipname+"shipstart="+shipstart+"shipmain="+shipmain+"shipfloor="+shipfloor+"shipstatusNo="+shipstatusNo);
+					
+					Integer shipNo = Integer.valueOf(request.getParameter("shipNo"));
+					System.out.println(shipNo);
+					RoomTypeTotalCountVO roomTypeTotalCountVO = new RoomTypeTotalCountVO();
+					roomTypeTotalCountVO.setShipNo(shipNo);
+					// Send the use back to the form, if there were errors
+					if (!errorMsgs.isEmpty()) {
+	request.setAttribute("shipNo", shipNo); // 含有輸入格式錯誤的empVO物件,也存入req
+						RequestDispatcher failureView = request
+								.getRequestDispatcher("/shipInsert");
+						failureView.forward(request, response);
+						return;
+					}
+					
+					/***************************2.開始新增資料***************************************/
+					ShipService shipSvc = new ShipService();
+					shipSvc.addRTTCLast(shipNo);;
+//					System.out.println("success");
+					/***************************3.新增完成,準備轉交(Send the Success view)***********/
+					String url = "/ships.jsp";
+					RequestDispatcher successView = request.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+					successView.forward(request, response);				
+			}
 			if ("update".equals(action)) { // 來自update_emp_input.jsp的請求
 				
 				List<String> errorMsgs = new LinkedList<String>();

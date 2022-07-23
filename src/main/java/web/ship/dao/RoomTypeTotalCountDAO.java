@@ -4,7 +4,8 @@ import java.util.List;
 import web.ship.bean.RoomTypeTotalCountVO;
 
 public interface RoomTypeTotalCountDAO {
-
+	
+	void insertLast(Integer ShipNo);
 	void insert(RoomTypeTotalCountVO roomTypeTotalCountVO);
 
 	void update(RoomTypeTotalCountVO roomTypeTotalCountVO);

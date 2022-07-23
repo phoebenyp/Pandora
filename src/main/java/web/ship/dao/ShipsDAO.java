@@ -3,6 +3,7 @@ package web.ship.dao;
 import web.ship.bean.ShipsVO;
 
 public interface ShipsDAO {
+	ShipsVO selectLast();
 	
 	ShipsVO findSpipNo(Integer shipNo);
 	
