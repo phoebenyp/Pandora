@@ -2,20 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.util.*"%>
-<%@page import="web.ship.bean.ShipsVO"%>
-<%@ page import="web.ship.dao.impl.ShipStatusDAOImpl"%>
-<%@ page import="web.ship.bean.ShipStatusVO"%>
-<%@ page import="web.ship.dao.impl.RoomTotalDAOImpl" %>
+<%@ page import="web.ship.bean.RoomTypeTotalCountVO" %>
 <%@ page import="web.ship.bean.RoomTotalVO" %>
+<%@ page import="web.room.bean.RoomTypeVO" %>
+<%@ page import="web.ship.dao.impl.RoomTotalDAOImpl" %>
 <%
-	ShipsVO shipsVO = (ShipsVO) request.getAttribute("shipsVO");
-	ShipStatusDAOImpl stSVC =new ShipStatusDAOImpl();
-	List<ShipStatusVO> list = stSVC.getAll();
-	pageContext.setAttribute("list",list);
-	RoomTotalDAOImpl rtSVC =new RoomTotalDAOImpl();
-	List<RoomTotalVO> listRT = rtSVC.getShipAll(shipsVO.getShipNo());
-	pageContext.setAttribute("listRT",listRT);
+	Integer rTTCNo =(Integer)request.getAttribute("rTTCNo");
 
+	RoomTypeTotalCountVO roomTypeTotalCountVO = (RoomTypeTotalCountVO) request.getAttribute("roomTypeTotalCountVO");
+	RoomTotalDAOImpl rtdSVC = new RoomTotalDAOImpl();
+	RoomTotalVO roomTotalVO =rtdSVC.getRTTC(rTTCNo);
+	pageContext.setAttribute("list",roomTotalVO);
 %>
 <!DOCTYPE html>
 <!--
@@ -49,14 +46,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             font-weight: bold;
             color: #0277BD;
         }
-        #preview {
+        .preview {
             border: 1px solid lightgray;
             /* display: inline-block; */
             /* width: 100px; */
             /* min-height: 150px; */
             /* position: relative; */
         }
-        #preview span.text {
+        .preview span.text {
             /* position: absolute; */
             /* display: inline-block; */
             /* left: 50%; */
@@ -65,7 +62,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             /* z-index: -1; */
             color: lightgray;
         }
-        
+        .insertRTTC{
+            text-decoration: none;
+            color: black;
+            
+        }
+        .insertRTTCTitle{
+            margin-right: 150px;
+        }
     </style>
 </head>
 
@@ -367,135 +371,53 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         郵輪新增
                                     </h3>
                                 </div>
-                                <c:if test="${not empty errorMsgs}">
-									<font style="color:red">請修正以下錯誤:</font>
-									<ul>
-										<c:forEach var="message" items="${errorMsgs}">
-											<li style="color:red">${message}</li>
-										</c:forEach>
-									</ul>
-								</c:if>
-                                <div class="container">
-                                <FORM METHOD="post" action="<%=request.getContextPath()%>/ShipServlet" >
-                                	<div class="row">
-                                    	<div class="col-md-12">
-                                    
-	                                        <table id="table" data-toggle="table" data-search="false" data-filter-control="true"
-	                                            data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-	                                            <thead>
-	                                                <tr>
-	
-	                                                    <th data-field="shipNo" data-filter-control="input"
-	                                                    >郵輪編號</th>
-	                                                <th data-field="shipName" data-filter-control="select"
-	                                                    >郵輪名稱</th>
-	                                                <th data-field="starStatus" data-filter-control="select"
-	                                                    >啟用日期
-	                                                </th>
-	                                                <th data-field="lastMaintenanceTime" data-filter-control="select"
-	                                                    >
-	                                                    最後維護時間</th>
-	                                                <th data-field="floorOfShip" data-filter-control="select"
-	                                                    >樓層</th>
-	                                                <th data-field="shipStatus" data-filter-control="select"
-	                                                    >郵輪狀態</th>
-	                                                </tr>
-	                                            </thead>
-	                                            <tbody>
-	                                                <tr>
-	
-	                                                    <td > <input type="hidden" name="shipNo" value="<%=shipsVO.getShipNo() %>"><%=shipsVO.getShipNo() %> </td>
-	                                                    <td><input name="shipname" type="text" value="<%=shipsVO.getShipName()%>"></td>
-	                                                    <td > <input name="shipstart" type="date" value="<%=shipsVO.getStarStatus() %>"></td>
-	                                                    <td><input name="shipmain" type="date" value="<%=shipsVO.getLastmaintenanceTime()%>"></td>
-	                                                    <td><input name="shipfloor" type="text" value="<%=shipsVO.getFloorOfShip()%>"></td>
-	                                                    <td>
-	                                                        <select name="shipstatusNo">
-		                                                        <c:forEach var="shipStatusVO" items="${list}">
-																	<option value="${shipStatusVO.shipStatusNo}" ${(shipStatusVO.shipStatusNo==shipsVO.shipStatusNo)?'selected':'' } >${shipStatusVO.shipStatus}
-																</c:forEach>
-	                                                        </select>
-	                                                    </td>
-	                                                </tr>
-	                                            </tbody>
-	                                        </table>
-	                                        </div>
-	                                        	<div class="col-6">
-	                                                <input type="hidden" name="action" value="update">
-	                                                <input  class="col-6" class="offset-8" type="submit" name="updateS" value="確定編輯" text-align=center
-	                                                style="margin-right: 0%;width:250px; display:inline-block ;">
-	                                          		</FORM>
-                                          		</div>
-                                          		<div class="col-6" style="display: flex; justify-content: flex-end;">
-    
-	                                                <FORM METHOD="post" action="<%=request.getContextPath()%>/ShipServlet" >
-	                                                    <input name="shipNo" type="hidden" value="${shipsVO.shipNo }">
-	                                                    <input type="hidden" name="action" value="insertRTTCBefore">
-	                                                    <button class="btn btn-primary btn-sm" type="submit"
-	                                                        style="width: 150px;">新增房型數量</button>
-	                                                </form>
-                                        		</div>
-                                        	</div>
+                                <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ShipServlet" >
+                                    <div class="container">
+                                        <div class="col-md-12">
+                                            <table id="table" data-toggle="table" data-search="false" data-filter-control="true"
+                                                data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                                <thead>
+                                                    <tr>
+
+                                                    
+                                                        <th data-field="shipNo" data-filter-control="select"
+                                                            >郵輪編號</th>
+                                                        <th data-field="roomTypeNo" data-filter-control="select"
+                                                            >房型型號
+                                                        </th>
+                                                        <th data-field="maxCountOfRoomType" data-filter-control="select"
+                                                            >
+                                                            房間數量</th>
+                                                        
+                                                        
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+
+                                                        
+                                                        <td><%=roomTotalVO.getShipNo() %><input type="hidden" name="shipNo" value="<%=roomTotalVO.getShipNo() %>"></td>
+                                                        
+                                                        
+                                                        <td><%=roomTotalVO.getRoomType() %>
+                                                        </td>
+                                                        <td><%=roomTotalVO.getMaxCountOfRoomType() %><input type="hidden" name="maxCountOfRoomType" value="<%=roomTotalVO.getMaxCountOfRoomType() %>"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                               
+                                                
+                                                <input type="hidden" name="action" value="getOne_For_Update_Ship">
+                                                <input type="hidden" name="shipNo" value="<%=roomTotalVO.getShipNo() %>">
+                                                <input  class="col-12" class="offset-8" type="submit" name="updateS" value="確定編輯" text-align=center
+                                                style="margin-right:0%;width:250px; display:inline-block ;">
+                                                </FORM>
+                                        </div>
+                                        
                                     </div>
-	                                    <div class="row justify-content-center" style="margin-top: 10px;">
-<!-- 	                                    <a>新增房間數量</a> -->
-										<c:forEach var="rTVO" items="${listRT }">
-											<label class="col-md-2" >
-		                                        ${rTVO.roomType }
-		                                    </label>
-											<div class="col-md-2">
-		                                        <label>房型數量</label>
-		                                    </div>
-		                                    <div class="col-md-2 mr-4">
-		                                        <label>${rTVO.maxCountOfRoomType }</label>
-		                                    </div>
-											<div class="col-md-2">
-		                                        <FORM METHOD="post" action="<%=request.getContextPath()%>/ShipServlet" >
-		                                        	<input name="rTTCNo" type="hidden" value="${rTVO.rTTCNo }">
-		                                            <input type="hidden" name="action" value="updateRTTCBefore">
-		                                            <button class="btn btn-primary btn-sm update" type="submit"
-		                                                style="width:100%;height:100%;">更新</button>
-		                                        </form>
-		                                    </div>
-		                                        
-		                                    <div class="col-md-2">
-		                                            <FORM METHOD="post" action="<%=request.getContextPath()%>/ShipServlet" >
-			                                            <input name="rTTCNo" type="hidden" value="${rTVO.rTTCNo }">
-			                                            <input type="hidden" name="action"  value="deleteRTTC">
-			                                            <button class="btn btn-primary btn-sm update" type="submit"
-			                                                style="width:100%;height:100%;" value="">刪除</button>
-		                                        	</form>
-		                                    </div>
-										
-										</c:forEach>
-<!-- 	                                    <label class="col-md-2" > -->
-<!-- 	                                        Standard Room -->
-<!-- 	                                    </label> -->
-<!-- 	                                    <div class="col-md-2"> -->
-<!-- 	                                        <label>房型數量</label> -->
-<!-- 	                                    </div> -->
-<!-- 	                                    <div class="col-md-2 mr-4"> -->
-<!-- 	                                        <label>34</label> -->
-<!-- 	                                    </div> -->
-<!-- 	                                    <div class="col-md-2"> -->
-<!-- 	                                        <form method="post"  action=""> -->
-<!-- 	                                            <input name="update" type="hidden" value="更新"> -->
-<!-- 	                                            <button class="btn btn-primary btn-sm update" type="button" -->
-<!-- 	                                                style="width:100%;height:100%;">更新</button> -->
-<!-- 	                                        </form> -->
-<!-- 	                                    </div> -->
-	                                        
-<!-- 	                                    <div class="col-md-2"> -->
-<!-- 	                                            <form method="post"  action=""> -->
-<!-- 	                                            <input name="delete" type="hidden" value=""> -->
-<!-- 	                                            <button class="btn btn-primary btn-sm update" type="button" -->
-<!-- 	                                                style="width:100%;height:100%;" value="">刪除</button> -->
-<!-- 	                                        </form> -->
-<!-- 	                                    </div> -->
-	                                       
-	                                </div>
-                                
+                                </FORM>
                             </div>
+                                    
                         </div>
                     </div>
                 </div>
@@ -557,7 +479,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
-        
 </body>
 
 </html>

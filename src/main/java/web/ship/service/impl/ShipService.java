@@ -40,6 +40,9 @@ public class ShipService {
 	public ShipsVO getOneShip(Integer shipNo) {
 		return daoShip.findSpipNo(shipNo);
 	}
+	public RoomTotalVO getRTTC(Integer rTTCNo) {
+		return daoRT.getRTTC(rTTCNo);
+	}
 	public List<RoomTypeTotalCountVO> selectNo(Integer shipNo){
 		RoomTypeTotalCountDAO dao = new RoomTypeTotalCountDAOImpl();
 		List<RoomTypeTotalCountVO> result =dao.selectNo(shipNo);

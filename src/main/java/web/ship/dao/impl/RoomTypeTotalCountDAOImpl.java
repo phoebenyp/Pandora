@@ -33,7 +33,7 @@ public class RoomTypeTotalCountDAOImpl implements RoomTypeTotalCountDAO {
 	private static final String INSERT_LAST = "INSERT INTO Room_Type_Total_Count(Ship_No)"
 			+ "VALUES ( ?)";
 	private static final String DELETE = "DELETE FROM Room_Type_Total_Count where RTTC_No = ?";
-	private static final String UPDATE = "UPDATE Room_Type_Total_Count set (Ship_No=?,Room_Type_No=?,Max_Count_of_Room_Type=?) where RTTC_No = ?";
+	private static final String UPDATE = "UPDATE Room_Type_Total_Count set Ship_No=?,Room_Type_No=?,Max_Count_of_Room_Type=? where RTTC_No = ?";
 	
 	@Override
 	public List<RoomTypeTotalCountVO> selectNo(Integer shipNo) {
