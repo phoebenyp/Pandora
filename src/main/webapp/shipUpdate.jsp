@@ -181,7 +181,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="ships.jsp" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>郵輪管理</p>
                                     </a>
@@ -461,6 +461,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		                                    <div class="col-md-2">
 		                                            <FORM METHOD="post" action="<%=request.getContextPath()%>/ShipServlet" >
 			                                            <input name="rTTCNo" type="hidden" value="${rTVO.rTTCNo }">
+			                                            <input name="shipNo" type="hidden" value="${rTVO.shipNo }">
 			                                            <input type="hidden" name="action"  value="deleteRTTC">
 			                                            <button class="btn btn-primary btn-sm update" type="submit"
 			                                                style="width:100%;height:100%;" value="">刪除</button>

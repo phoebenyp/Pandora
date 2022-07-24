@@ -176,7 +176,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="ships.jsp" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>郵輪管理</p>
                                     </a>
@@ -362,6 +362,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         郵輪新增
                                     </h3>
                                 </div>
+                                
                                 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ShipServlet" >
                                     <div class="container">
                                         <div class="col-md-12">

@@ -376,6 +376,27 @@ request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的empVO物
 					successView.forward(request, response);
 			}
 			
+			if ("deleteRTTC".equals(action)) { // 來自listAllEmp.jsp
+
+				List<String> errorMsgs = new LinkedList<String>();
+				// Store this set in the request scope, in case we need to
+				// send the ErrorPage view.
+				request.setAttribute("errorMsgs", errorMsgs);
+		
+					/***************************1.接收請求參數***************************************/
+					Integer rTTCNo = Integer.valueOf(request.getParameter("rTTCNo"));
+					Integer shipNo = Integer.valueOf(request.getParameter("shipNo"));
+					/***************************2.開始刪除資料***************************************/
+					ShipService shipSvc = new ShipService();
+					shipSvc.deleteRTTC(rTTCNo);
+					
+					/***************************3.刪除完成,準備轉交(Send the Success view)***********/
+					request.setAttribute("shipNo", shipNo);
+					String url = "/shipDeleteRTTCSucccess.jsp";
+					RequestDispatcher successView = request.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
+					successView.forward(request, response);
+			}
+			
 			if ("insertRTTCBefore".equals(action)) { // 來自listAllEmp.jsp的請求
 
 				List<String> errorMsgs = new LinkedList<String>();
