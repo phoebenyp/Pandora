@@ -64,10 +64,10 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="<%=request.getContextPath()%>/EMPImageServlet" class="img-circle elevation-2" alt="User Image" />
+                       <img src="<%=request.getContextPath()%>/EMPImageServlet?action=usesrImage"  name="action" value="empVO" class="img-circle elevation-2" alt="User Image" />
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">${empVO.englishFirstName}&nbsp${empVO.englishLastName}</a>
+                        <a href="#" class="d-block">${loginUser.englishFirstName}&nbsp${loginUser.englishLastName}</a>
                     </div>
                 </div>
 
@@ -86,8 +86,8 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                <li class="nav-item">    
+                                    <a href="<%=request.getContextPath()%>/EmpLoginServlet?action=EMPAllList" class="nav-link" >
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>員工資料表</p>
                                     </a>
@@ -100,7 +100,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item menu-open">
+                        <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="fa-solid fa-address-card"></i>
                                 <p>
@@ -228,7 +228,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item menu-open">
+                        <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="fa-solid fa-chart-pie"></i>
                                 <p>
