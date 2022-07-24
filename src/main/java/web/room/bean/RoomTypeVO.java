@@ -1,59 +1,65 @@
 package web.room.bean;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class RoomTypeVO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	private Integer Room_Type_No;
-	private String Room_Type;
-	private Integer Room_Price;
-	private Integer Max_Capacity;
-	private byte[] Room_Picture;
+	private Integer roomTypeNo;
+	private String roomType;
+	private Integer roomPrice;
+	private Integer maxCapacity;
+	private byte[] roomPicture;
 	
-	
+	@Override
+	public String toString() {
+		return "RoomTypeVO [roomTypeNo=" + roomTypeNo + ", roomType=" + roomType + ", roomPrice=" + roomPrice
+				+ ", maxCapacity=" + maxCapacity + ", roomPicture=" + Arrays.toString(roomPicture) + "]";
+	}
 	public RoomTypeVO() {
 		super();
 	}
-	public RoomTypeVO(Integer room_Type_No, String room_Type, Integer room_Price, Integer max_Capacity,
-			byte[] room_Picture) {
+	public RoomTypeVO(Integer roomTypeNo, String roomType, Integer roomPrice, Integer maxCapacity, byte[] roomPicture) {
 		super();
-		Room_Type_No = room_Type_No;
-		Room_Type = room_Type;
-		Room_Price = room_Price;
-		Max_Capacity = max_Capacity;
-		Room_Picture = room_Picture;
+		this.roomTypeNo = roomTypeNo;
+		this.roomType = roomType;
+		this.roomPrice = roomPrice;
+		this.maxCapacity = maxCapacity;
+		this.roomPicture = roomPicture;
 	}
-	public Integer getRoom_Type_No() {
-		return Room_Type_No;
+	public Integer getRoomTypeNo() {
+		return roomTypeNo;
 	}
-	public void setRoom_Type_No(Integer room_Type_No) {
-		Room_Type_No = room_Type_No;
+	public void setRoomTypeNo(Integer roomTypeNo) {
+		this.roomTypeNo = roomTypeNo;
 	}
-	public String getRoom_Type() {
-		return Room_Type;
+	public String getRoomType() {
+		return roomType;
 	}
-	public void setRoom_Type(String room_Type) {
-		Room_Type = room_Type;
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
 	}
-	public Integer getRoom_Price() {
-		return Room_Price;
+	public Integer getRoomPrice() {
+		return roomPrice;
 	}
-	public void setRoom_Price(Integer room_Price) {
-		Room_Price = room_Price;
+	public void setRoomPrice(Integer roomPrice) {
+		this.roomPrice = roomPrice;
 	}
-	public Integer getMax_Capacity() {
-		return Max_Capacity;
+	public Integer getMaxCapacity() {
+		return maxCapacity;
 	}
-	public void setMax_Capacity(Integer max_Capacity) {
-		Max_Capacity = max_Capacity;
+	public void setMaxCapacity(Integer maxCapacity) {
+		this.maxCapacity = maxCapacity;
 	}
-	public byte[] getRoom_Picture() {
-		return Room_Picture;
+	public byte[] getRoomPicture() {
+		return roomPicture;
 	}
-	public void setRoom_Picture(byte[] room_Picture) {
-		Room_Picture = room_Picture;
+	public void setRoomPicture(byte[] roomPicture) {
+		this.roomPicture = roomPicture;
 	}
+	
+	
 	
 	
 }

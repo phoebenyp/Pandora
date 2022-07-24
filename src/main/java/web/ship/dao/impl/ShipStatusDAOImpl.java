@@ -13,8 +13,9 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import web.ship.bean.ShipStatusVO;
+import web.ship.dao.ShipStatusDAO;
 
-public class ShipStatusDAOImpl {
+public class ShipStatusDAOImpl implements ShipStatusDAO {
 	private static DataSource ds = null;
 	static {
 		try {
@@ -25,6 +26,7 @@ public class ShipStatusDAOImpl {
 		}
 	}
 	private static final String SELECT_ALL ="SELECT Ship_Status_No,Ship_Status FROM Ship_Status";
+	@Override
 	public List<ShipStatusVO> getAll() {
 		List<ShipStatusVO> list = new ArrayList<ShipStatusVO>();
 		ShipStatusVO shipStatusVO = null;

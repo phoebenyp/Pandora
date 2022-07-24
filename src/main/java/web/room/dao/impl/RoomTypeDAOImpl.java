@@ -42,11 +42,11 @@ public class RoomTypeDAOImpl {
 
 			while (rs.next()) {
 				roomTypeVO = new RoomTypeVO();
-				roomTypeVO.setRoom_Type_No(rs.getInt("Room_Type_No"));
-				roomTypeVO.setRoom_Type(rs.getString("Room_Type"));
-				roomTypeVO.setRoom_Price(rs.getInt("Room_Price"));
-				roomTypeVO.setMax_Capacity(rs.getInt("Max_Capacity"));
-				roomTypeVO.setRoom_Picture(rs.getBytes("Room_Picture"));
+				roomTypeVO.setRoomTypeNo(rs.getInt("Room_Type_No"));
+				roomTypeVO.setRoomType(rs.getString("Room_Type"));
+				roomTypeVO.setRoomPrice(rs.getInt("Room_Price"));
+				roomTypeVO.setMaxCapacity(rs.getInt("Max_Capacity"));
+				roomTypeVO.setRoomPicture(rs.getBytes("Room_Picture"));
 				list.add(roomTypeVO); // Store the row in the list
 			}
 

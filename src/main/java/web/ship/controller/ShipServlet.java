@@ -138,7 +138,7 @@ request.setAttribute("shipname", shipname); // 含有輸入格式錯誤的empVO�
 //					System.out.println("shipname="+shipname+"shipstart="+shipstart+"shipmain="+shipmain+"shipfloor="+shipfloor+"shipstatusNo="+shipstatusNo);
 					
 					Integer shipNo = Integer.valueOf(request.getParameter("shipNo"));
-					System.out.println(shipNo);
+//					System.out.println(shipNo);
 					RoomTypeTotalCountVO roomTypeTotalCountVO = new RoomTypeTotalCountVO();
 					roomTypeTotalCountVO.setShipNo(shipNo);
 					// Send the use back to the form, if there were errors
@@ -156,6 +156,68 @@ request.setAttribute("shipname", shipname); // 含有輸入格式錯誤的empVO�
 //					System.out.println("success");
 					/***************************3.新增完成,準備轉交(Send the Success view)***********/
 					String url = "/ships.jsp";
+					RequestDispatcher successView = request.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+					successView.forward(request, response);				
+			}
+			
+			
+			if ("insertRTTC".equals(action)) { // 來自addEmp.jsp的請求  
+				
+				List<String> errorMsgs = new LinkedList<String>();
+				// Store this set in the request scope, in case we need to
+				// send the ErrorPage view.
+				request.setAttribute("errorMsgs", errorMsgs);
+
+					/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
+					
+					Integer shipNo = null;
+					try {
+	shipNo = Integer.parseInt(request.getParameter("shipNo").trim());
+					} catch (NumberFormatException e) {
+						errorMsgs.add("郵輪編號請填數字");
+					}
+					
+					Integer roomTypeNo =null;
+					try {	
+	roomTypeNo = Integer.parseInt(request.getParameter("roomTypeNo").trim());
+					} catch (NumberFormatException e) {
+						errorMsgs.add("請選擇房型");
+					}
+					Integer maxCountOfRoomType = null;
+					try {
+	maxCountOfRoomType = Integer.parseInt(request.getParameter("maxCountOfRoomType").trim());
+					} catch (NumberFormatException e) {
+						errorMsgs.add("請填寫房型數量");
+					}
+					
+					
+//					System.out.println("shipNo="+shipNo+"roomTypeNo="+roomTypeNo+"maxCountOfRoomType="+maxCountOfRoomType);
+					
+					
+					
+					
+					
+					
+					RoomTypeTotalCountVO roomTypeTotalCountVO = new RoomTypeTotalCountVO();
+					roomTypeTotalCountVO.setShipNo(shipNo);
+					roomTypeTotalCountVO.setRoomTypeNo(roomTypeNo);
+					roomTypeTotalCountVO.setMaxCountOfRoomType(maxCountOfRoomType);
+					// Send the use back to the form, if there were errors
+					if (!errorMsgs.isEmpty()) {
+	request.setAttribute("shipNo", shipNo); // 含有輸入格式錯誤的empVO物件,也存入req
+						RequestDispatcher failureView = request
+								.getRequestDispatcher("/shipInsert");
+						failureView.forward(request, response);
+						return;
+					}
+					
+					/***************************2.開始新增資料***************************************/
+					ShipService shipSvc = new ShipService();
+					roomTypeTotalCountVO = shipSvc.addRTTC(shipNo, roomTypeNo, maxCountOfRoomType);
+//					System.out.println("success");
+					/***************************3.新增完成,準備轉交(Send the Success view)***********/
+					
+					String url = "/shipLastRTTC.jsp";
 					RequestDispatcher successView = request.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 					successView.forward(request, response);				
 			}
@@ -254,6 +316,30 @@ request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的empVO物
 					RequestDispatcher successView = request.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 					successView.forward(request, response);
 			}
+			
+			if ("insertRTTCbefore".equals(action)) { // 來自listAllEmp.jsp的請求
+
+				List<String> errorMsgs = new LinkedList<String>();
+				// Store this set in the request scope, in case we need to
+				// send the ErrorPage view.
+				request.setAttribute("errorMsgs", errorMsgs);
+				
+					/***************************1.接收請求參數****************************************/
+					Integer shipNo = Integer.valueOf(request.getParameter("shipNo"));
+//					System.out.println(request.getParameter("shipNo"));
+					
+					/***************************2.開始查詢資料****************************************/
+//					ShipService shipSvc = new ShipService();
+//					ShipsVO shipsVO = shipSvc.getOneShip(shipNo);
+//					System.out.println(shipsVO);
+									
+					/***************************3.查詢完成,準備轉交(Send the Success view)************/
+					request.setAttribute("shipNo", shipNo);         // 資料庫取出的empVO物件,存入req
+					String url = "/shipInsertRTTC.jsp";
+					RequestDispatcher successView = request.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
+					successView.forward(request, response);
+			}
+		
 	}
 
 	
