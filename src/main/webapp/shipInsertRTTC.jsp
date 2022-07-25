@@ -358,7 +358,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
-
+				<c:if test="${not empty errorMsgs}">
+					<font style="color:red">請修正以下錯誤:</font>
+						<ul>
+							<c:forEach var="message" items="${errorMsgs}">
+								<li style="color:red">${message}</li>
+							</c:forEach>
+						</ul>
+				</c:if>
             <!-- Main content -->
             <div class="content">
                 <div class="container">

@@ -111,9 +111,9 @@ shipstatusNo = Integer.parseInt(request.getParameter("shipstatusNo").trim());
 				shipsVO.setShipStatusNo(shipstatusNo);
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-request.setAttribute("shipname", shipname); // 含有輸入格式錯誤的empVO物件,也存入req
+request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = request
-							.getRequestDispatcher("/shipInsert");
+							.getRequestDispatcher("shipInsert.jsp");
 					failureView.forward(request, response);
 					return;
 				}
@@ -153,7 +153,7 @@ request.setAttribute("shipname", shipname); // 含有輸入格式錯誤的empVO�
 					
 					/***************************2.開始新增資料***************************************/
 					ShipService shipSvc = new ShipService();
-					shipSvc.addRTTCLast(shipNo);;
+					shipSvc.addRTTCLast(shipNo);
 //					System.out.println("success");
 					/***************************3.新增完成,準備轉交(Send the Success view)***********/
 					String url = "/ships.jsp";
@@ -207,17 +207,31 @@ request.setAttribute("shipname", shipname); // 含有輸入格式錯誤的empVO�
 					if (!errorMsgs.isEmpty()) {
 	request.setAttribute("shipNo", shipNo); // 含有輸入格式錯誤的empVO物件,也存入req
 						RequestDispatcher failureView = request
-								.getRequestDispatcher("/shipInsert");
+								.getRequestDispatcher("/shipInsertRTTC.jsp");
 						failureView.forward(request, response);
 						return;
 					}
 					
 					/***************************2.開始新增資料***************************************/
 					ShipService shipSvc = new ShipService();
+					RoomTypeTotalCountVO check=shipSvc.selectOnly(shipNo, roomTypeNo);
+//					System.out.println(check);
+//					System.out.println(check.getShipNo());
+					Integer abcInteger =check.getrTTCNo();
+					if (check.getShipNo()==shipNo && check.getRoomTypeNo()==roomTypeNo) {
+						maxCountOfRoomType += check.getMaxCountOfRoomType();
+						roomTypeTotalCountVO = shipSvc.updateRTTC(shipNo, roomTypeNo, maxCountOfRoomType,abcInteger);
+
+						request.setAttribute("shipNo", roomTypeTotalCountVO.getShipNo());
+						request.setAttribute("roomTypeNo", roomTypeTotalCountVO.getRoomTypeNo());
+						String url = "/shipUpdateRe.jsp";
+						RequestDispatcher successView = request.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+						successView.forward(request, response);	
+						return;
+					}
 					roomTypeTotalCountVO = shipSvc.addRTTC(shipNo, roomTypeNo, maxCountOfRoomType);
 //					System.out.println("success");
 					/***************************3.新增完成,準備轉交(Send the Success view)***********/
-					
 					String url = "/shipLastRTTC.jsp";
 					RequestDispatcher successView = request.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 					successView.forward(request, response);				
@@ -235,7 +249,6 @@ request.setAttribute("shipname", shipname); // 含有輸入格式錯誤的empVO�
 					String shipname = request.getParameter("shipname");
 					if (shipname == null || shipname.trim().length() == 0) {
 						errorMsgs.add("郵輪名稱: 請勿空白");
-						System.out.println(1);
 					} 
 		
 					java.sql.Date shipstart = null;
@@ -244,7 +257,6 @@ shipstart = java.sql.Date.valueOf(request.getParameter("shipstart"));
 					} catch (IllegalArgumentException e) {
 						shipstart=new java.sql.Date(System.currentTimeMillis());
 						errorMsgs.add("請輸入日期!");
-						System.out.println(2);
 					}
 		
 					java.sql.Date shipmain = null;
@@ -253,26 +265,24 @@ shipmain = java.sql.Date.valueOf(request.getParameter("shipmain"));
 					} catch (IllegalArgumentException e) {
 						shipmain=new java.sql.Date(System.currentTimeMillis());
 						errorMsgs.add("請輸入日期!");
-						System.out.println(3);
 					}
 					
 					Integer shipfloor = null;
 					try {
 shipfloor = Integer.parseInt(request.getParameter("shipfloor").trim());
 					} catch (NumberFormatException e) {
-						errorMsgs.add("郵輪樓層請填數字.");
-						System.out.println(4);
+						errorMsgs.add("郵輪樓層請填數字");
 					}
 					
 					Integer shipstatusNo =null;
 					try {	
 shipstatusNo = Integer.parseInt(request.getParameter("shipstatusNo"));
 					} catch (NumberFormatException e) {
-						errorMsgs.add("郵輪樓層請填數字.");
-						System.out.println(5);
+						errorMsgs.add("郵輪狀態錯誤");
 					}
 					
 					ShipsVO shipsVO = new ShipsVO();
+					shipsVO.setShipNo(shipNo);
 					shipsVO.setShipName(shipname);
 					shipsVO.setStarStatus(shipstart);
 					shipsVO.setLastmaintenanceTime(shipmain);
@@ -281,8 +291,9 @@ shipstatusNo = Integer.parseInt(request.getParameter("shipstatusNo"));
 					// Send the use back to the form, if there were errors
 					if (!errorMsgs.isEmpty()) {
 request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的empVO物件,也存入req
+					System.out.println(shipsVO.getShipNo());
 						RequestDispatcher failureView = request
-								.getRequestDispatcher("/shipUpdate.jsp");
+								.getRequestDispatcher("shipUpdate.jsp");
 						failureView.forward(request, response);
 						System.out.println("失敗");
 						return; //程式中斷
@@ -337,9 +348,15 @@ request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的empVO物
 					roomTypeTotalCountVO.setRoomTypeNo(roomTypeNo);
 					roomTypeTotalCountVO.setMaxCountOfRoomType(maxCountOfRoomType);
 					roomTypeTotalCountVO.setrTTCNo(rTTCNo);
+					RoomTotalVO roomTotalVO = new RoomTotalVO();
+					roomTotalVO.setrTTCNo(rTTCNo);
+					roomTotalVO.setShipNo(shipNo);
+					roomTotalVO.setRoomTypeNo(roomTypeNo);
+					roomTotalVO.setMaxCountOfRoomType(maxCountOfRoomType);
 					// Send the use back to the form, if there were errors
 					if (!errorMsgs.isEmpty()) {
-	request.setAttribute("rTTCNo", rTTCNo); // 含有輸入格式錯誤的empVO物件,也存入req
+						request.setAttribute("rTTCNo", rTTCNo); 
+	request.setAttribute("roomTotalVO", roomTotalVO); // 含有輸入格式錯誤的empVO物件,也存入req
 						RequestDispatcher failureView = request
 								.getRequestDispatcher("/shipUpdateRTTC.jsp");
 						failureView.forward(request, response);

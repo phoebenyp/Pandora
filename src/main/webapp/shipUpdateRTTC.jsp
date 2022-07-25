@@ -359,7 +359,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
-
+				<c:if test="${not empty errorMsgs}">
+					<font style="color:red">請修正以下錯誤:</font>
+						<ul>
+							<c:forEach var="message" items="${errorMsgs}">
+								<li style="color:red">${message}</li>
+							</c:forEach>
+						</ul>
+				</c:if>
             <!-- Main content -->
             <div class="content">
                 <div class="container">
@@ -485,6 +492,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
+        
 </body>
 
 </html>

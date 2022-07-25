@@ -18,7 +18,7 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html lang="en">
+<html lang="zh">
 
 <head>
     <meta charset="utf-8" />
@@ -350,7 +350,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
-
+				<c:if test="${not empty errorMsgs}">
+					<font style="color:red">請修正以下錯誤:</font>
+						<ul>
+							<c:forEach var="message" items="${errorMsgs}">
+								<li style="color:red">${message}</li>
+							</c:forEach>
+						</ul>
+				</c:if>
             <!-- Main content -->
             <div class="content">
                 <div class="container">
@@ -362,7 +369,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         郵輪新增
                                     </h3>
                                 </div>
-                                
                                 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ShipServlet" >
                                     <div class="container">
                                         <div class="col-md-12">
@@ -392,8 +398,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                                         
                                                         <td><input type="text" name="shipname" value="<%=(shipsVO==null)? "Pandora" : shipsVO.getShipName()%>"></td>
-                                                        <td><input type="date" name="shipstart" value="<%=(shipsVO==null)? "2020-07-18" : shipsVO.getStarStatus() %>"></td>
-                                                        <td><input type="date" name="shipmain" value="<%=(shipsVO==null)? "2020-07-18" : shipsVO.getLastmaintenanceTime() %>"></td>
+                                                        <td><input id="start_date" type="text" name="shipstart" value="<%=(shipsVO==null)? "2020-07-18" : shipsVO.getStarStatus() %>"></td>
+                                                        <td><input id="end_date" type="text" name="shipmain" value="<%=(shipsVO==null)? "2020-07-18" : shipsVO.getLastmaintenanceTime() %>"></td>
                                                         
                                                         <td><input type="text" name="shipfloor" value="<%=(shipsVO==null)? "15" : shipsVO.getFloorOfShip()%>"></td>
                                                         <td>
@@ -475,6 +481,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
+        <link   rel="stylesheet" type="text/css" href="datetimepicker/jquery.datetimepicker.css" />
+        <script src="datetimepicker/jquery.datetimepicker.full.js"></script>
+                <script>
+$.datetimepicker.setLocale('zh'); // kr ko ja en
+$(function(){
+	 $('#start_date').datetimepicker({
+	  format:'Y-m-d',
+	  onShow:function(){
+	   this.setOptions({
+	    maxDate:$('#end_date').val()?$('#end_date').val():false
+	   })
+	  },
+	  timepicker:false
+	 });
+	 
+	 $('#end_date').datetimepicker({
+	  format:'Y-m-d',
+	  onShow:function(){
+	   this.setOptions({
+	    minDate:$('#start_date').val()?$('#start_date').val():false
+	   })
+	  },
+	  timepicker:false
+	 });
+});
+</script>
 </body>
 
 </html>

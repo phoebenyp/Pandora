@@ -31,6 +31,8 @@ public class ShipService {
 		this.daoRTTC = daoRTTC;
 		this.daoRT = daoRT;
 	}
+	
+	
 	public ShipsVO selectLast() {
 		return daoShip.selectLast();
 	}
@@ -43,6 +45,13 @@ public class ShipService {
 	public RoomTotalVO getRTTC(Integer rTTCNo) {
 		return daoRT.getRTTC(rTTCNo);
 	}
+	
+	public RoomTypeTotalCountVO selectOnly(Integer shipNo,Integer roomTypeNo){
+		RoomTypeTotalCountDAO dao = new RoomTypeTotalCountDAOImpl();
+		RoomTypeTotalCountVO result =dao.selectOnly(shipNo, roomTypeNo);
+		return result;
+	}
+	
 	public List<RoomTypeTotalCountVO> selectNo(Integer shipNo){
 		RoomTypeTotalCountDAO dao = new RoomTypeTotalCountDAOImpl();
 		List<RoomTypeTotalCountVO> result =dao.selectNo(shipNo);
