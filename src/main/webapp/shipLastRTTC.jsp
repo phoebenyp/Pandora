@@ -345,7 +345,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <a href="#">行程管理</a>
                                 </li>
                                 <li class="breadcrumb-item active">
-                                    郵輪新增
+                                    房型數量新增
                                 </li>
                             </ol>
                         </div>
@@ -365,7 +365,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="card card-primary">
                                 <div class="card-header">
                                     <h3 class="card-title">
-                                        郵輪新增
+                                        房型數量新增
                                     </h3>
                                 </div>
                                 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ShipServlet" >
@@ -407,7 +407,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 
                                                 <input type="hidden" name="action" value="getOne_For_Update_Ship">
                                                 <input type="hidden" name="shipNo" value="<%=roomTotalVO.getShipNo() %>">
-                                                <input  class="col-12" class="offset-8" type="submit" name="updateS" value="確定編輯" text-align=center
+                                                <input  class="col-12" class="offset-8" type="submit" name="updateS" value="新增完成" text-align=center
                                                 style="margin-right:0%;width:250px; display:inline-block ;">
                                                 </FORM>
                                         </div>

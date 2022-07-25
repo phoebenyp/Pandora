@@ -399,7 +399,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <input name="shipNo" type="hidden" value="${shipTotalVO.shipNo}">
                                                         <input name="action" type="hidden" value="getOne_For_Update_Ship">
                                                         <button class="btn btn-primary btn-sm update" type="submit"
-                                                            style="width:100%;height:100%;">修改</button>
+                                                            style="width:100%;height:100%;">更新</button>
                                                     </form>
                                                 </td>
                                                 <td class="data10">

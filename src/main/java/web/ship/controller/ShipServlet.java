@@ -258,7 +258,7 @@ shipmain = java.sql.Date.valueOf(request.getParameter("shipmain"));
 					
 					Integer shipfloor = null;
 					try {
-shipfloor = Integer.parseInt(request.getParameter("shipfloor"));
+shipfloor = Integer.parseInt(request.getParameter("shipfloor").trim());
 					} catch (NumberFormatException e) {
 						errorMsgs.add("郵輪樓層請填數字.");
 						System.out.println(4);
@@ -293,7 +293,7 @@ request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的empVO物
 					shipsVO = shipSvc.updateShip( shipname, shipstart, shipmain,shipfloor, shipstatusNo,shipNo);
 					System.out.println(shipsVO);
 					/***************************3.修改完成,準備轉交(Send the Success view)*************/
-					request.setAttribute("shipNo", shipNo); // 資料庫update成功後,正確的的empVO物件,存入req
+					request.setAttribute("shipsVO", shipsVO); // 資料庫update成功後,正確的的empVO物件,存入req
 					String url = "/ships.jsp";
 					RequestDispatcher successView = request.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 					successView.forward(request, response);

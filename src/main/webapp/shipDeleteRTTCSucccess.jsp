@@ -273,7 +273,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
 								<li class="breadcrumb-item"><a href="#">行程管理</a></li>
-								<li class="breadcrumb-item active">郵輪新增</li>
+								<li class="breadcrumb-item active">房型數量刪除</li>
 							</ol>
 						</div>
 						<!-- /.col -->

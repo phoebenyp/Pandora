@@ -344,7 +344,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <a href="#">行程管理</a>
                                 </li>
                                 <li class="breadcrumb-item active">
-                                    郵輪新增
+                                    郵輪更新
                                 </li>
                             </ol>
                         </div>
@@ -355,7 +355,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
-
+			<%-- 錯誤表列 --%>
+				<c:if test="${not empty errorMsgs}">
+					<font style="color:red">請修正以下錯誤:</font>
+					<ul>
+					    <c:forEach var="message" items="${errorMsgs}">
+							<li style="color:red">${message}</li>
+						</c:forEach>
+					</ul>
+				</c:if>
             <!-- Main content -->
             <div class="content">
                 <div class="container">
@@ -364,7 +372,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="card card-primary">
                                 <div class="card-header">
                                     <h3 class="card-title">
-                                        郵輪新增
+                                        郵輪更新
                                     </h3>
                                 </div>
                                 <c:if test="${not empty errorMsgs}">
@@ -422,7 +430,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                                        </div>
 	                                        	<div class="col-6">
 	                                                <input type="hidden" name="action" value="update">
-	                                                <input  class="col-6" class="offset-8" type="submit" name="updateS" value="確定編輯" text-align=center
+	                                                <input  class="col-6" class="offset-8" type="submit" name="updateS" value="確定更新" text-align=center
 	                                                style="margin-right: 0%;width:250px; display:inline-block ;">
 	                                          		</FORM>
                                           		</div>
