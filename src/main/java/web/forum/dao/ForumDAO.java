@@ -7,13 +7,13 @@ import web.forum.bean.ForumVO;
 public interface ForumDAO {
     
 	void insert(ForumVO forumVO);
-	
+
 	void update(ForumVO forumVO);
-	
-	void delete(Integer postIdId);
-	
-	ForumVO findByPrimaryKey(Integer postIdId);
-	
+
+	void delete(Integer postId);
+
+	ForumVO findByPrimaryKey(Integer postId);
+
 	List<ForumVO> getAll();
 	//萬用複合查詢(傳入參數型態Map)(回傳 List)
 //  public List<EmpVO> getAll(Map<String, String[]> map);
