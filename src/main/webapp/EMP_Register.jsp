@@ -297,10 +297,10 @@
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item">
-                                    <a href="#">EMP_Register</a>
+                                    <a href="<%=request.getContextPath()%>/EmpLoginServlet?action=EMPAllList">員工資料</a>
                                 </li>
                                 <li class="breadcrumb-item active">
-                                    EMP_Information
+                                    新增員工
                                 </li>
                             </ol>
                         </div>
@@ -333,7 +333,7 @@
     									
                                     
                                         <div class="col-sm-6" style="text-align:center">
-                                            <img src="images/ElonMask.jpg" alt="Image" width=100% />
+                                            <img src="images/meatball.jpg" alt="Image" width=100% />
                                         </div>
                                       </center>
                                     <hr />
@@ -349,15 +349,15 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>護照英文姓氏*</label>
-                                                    <input type="text" class="form-control" name="englishLastName"
-                                                        name="Englis_Last_Name" /><font class="text-danger">${errorMsgsMap["englishLastName"]}</font>
+                                                    <input type="text" class="form-control" name="englishLastName" name="Englis_Last_Name" />
+                                                    <font class="text-danger">${errorMsgsMap["englishLastName"]}</font>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>護照號碼*</label>
-                                                    <input type="text" class="form-control" name="passportNo"
-                                                        name="Passport_No" /><font class="text-danger">${errorMsgsMap["passportNo"]}</font>
+                                                    <input type="text" class="form-control" name="passportNo" name="Passport_No" />
+                                                    <font class="text-danger">${errorMsgsMap["passportNo"]}</font>
                                                 </div>
                                             </div>
 
@@ -379,8 +379,8 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>聯絡電話</label>
-                                                    <input type="text"  name="empCellphoneNo"
-                                                        class="form-control" /><font class="text-danger">${errorMsgsMap["empCellphoneNo"]}</font>
+                                                    <input type="text"  name="empCellphoneNo" class="form-control" />
+                                                    <font class="text-danger">${errorMsgsMap["empCellphoneNo"]}</font>
                                                 </div>
                                             </div>
                                         </div>
@@ -435,7 +435,8 @@
                                                 <div class="form-group">
                                                     <label>雇用日期</label>
                                                     <input class="date-pick form-control" type="date" name="startDate" />
-                                                </div><font class="text-danger">${errorMsgsMap["startDate"]}</font>
+                                                </div>
+                                                <font class="text-danger">${errorMsgsMap["startDate"]}</font>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">

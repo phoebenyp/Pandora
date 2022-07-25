@@ -60,7 +60,7 @@
                 <!-- /.login-logo -->
                 <div class="card card-outline card-primary">
                   <div class="card-header text-center">
-                    <a href="../../index2.html" class="h2">PANDORA員工登入</a>
+                    <a href="<%=request.getContextPath()%>/EMP_login.jsp" class="h2">PANDORA員工登入</a>
                   </div>
                   <div class="card-body">
                     <p class="login-box-msg">Sign in to start your session</p>

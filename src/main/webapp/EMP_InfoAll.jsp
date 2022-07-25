@@ -71,12 +71,9 @@
                         <img src="<%=request.getContextPath()%>/EMPImageServlet?action=usesrImage"  name="action"  class="img-circle elevation-2" alt="User Image" />
                     </div>
                     <div class="info">
-                        <form method="Post" id="emp1" action="https://www.google.com/">
-                            <input name="Employee" type="hidden" value="1">
-                           <a href="#" class="d-block">${loginUser.englishFirstName}&nbsp${loginUser.englishLastName}</a>
-
-                        </form>
-
+                          <input name="Userlogin" type="hidden">
+                         <a href="#" class="d-block">${loginUser.englishFirstName}&nbsp${loginUser.englishLastName}</a>
+                      
                     </div>
                 </div>
 

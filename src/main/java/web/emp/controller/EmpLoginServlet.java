@@ -87,6 +87,20 @@ public class EmpLoginServlet extends HttpServlet {
 			successView.forward(req, resp);
 			return;
 		}
+		if ("LoginUserForUpdate".equals(action)) {
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			System.out.println(req.getParameter("loginUser"));
+			Integer employeeId = Integer.valueOf(req.getParameter("loginUser"));
+			EmpServiceImpl empService = new EmpServiceImpl();
+			EmpVO empVOupdate = empService.getOneEmp(employeeId);
+			req.setAttribute("empVOupdate", empVOupdate);
+
+			String url = "/EMP_GetOneEdiotrByManger.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
+			successView.forward(req, resp);
+		}
+
 
 		if ("EMPGetOneForUpdate".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
@@ -180,13 +194,13 @@ public class EmpLoginServlet extends HttpServlet {
 				errorMsgs.add("Email: 格式輸入錯誤");
 				errorMsgsMap.put("email", "Email: 格式輸入錯誤");
 			}
-			try {
-				if (empSvc.isExistEmail(email)) {
-					errorMsgsMap.put("email", "帳號已存在");
-				}
-			} catch (Exception e) {
-				errorMsgsMap.put("email", "帳號已存在");
-			}
+//			try {
+//				if (empSvc.isExistEmail(email)) {
+//					errorMsgsMap.put("email", "帳號已存在");
+//				}
+//			} catch (Exception e) {
+//				errorMsgsMap.put("email", "帳號已存在");
+//			}
 
 			LocalDate startDate = null;
 			String startDateString = req.getParameter("startDate");
@@ -199,10 +213,11 @@ public class EmpLoginServlet extends HttpServlet {
 
 			String status;
 			LocalDate resignationDate=null;
-			if (req.getParameter("resignationDate") != null && req.getParameter("resignationDate").trim().length()!= 0) {
-				 resignationDate = LocalDate.parse(req.getParameter("resignationDate"));
+			if (req.getParameter("resignationDate") == null || req.getParameter("resignationDate").trim().length() == 0) {
+				resignationDate = null;
 				status = "1";
 			} else {
+				resignationDate = LocalDate.parse(req.getParameter("resignationDate"));
 				status = "0";
 			}
 			
@@ -243,7 +258,7 @@ public class EmpLoginServlet extends HttpServlet {
 			empVO.setLastModificationDate(lastModificationDate);
 			empVO.setLoginTime(loginTime);
 //			// Send the use back to the form, if there were errors
-			if (!errorMsgs.isEmpty()) {
+			if (!errorMsgs.isEmpty()|| !errorMsgsMap.isEmpty()) {
 				req.setAttribute("empVOupdate", empVO); // 含有輸入格式錯誤的empVO物件,也存入req
 				RequestDispatcher failureView = req.getRequestDispatcher("EMP_GetOneEdiotrByManger.jsp");
 				failureView.forward(req, resp);

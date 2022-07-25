@@ -62,14 +62,21 @@
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
+               
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                       <img src="<%=request.getContextPath()%>/EMPImageServlet?action=usesrImage"  name="action" value="empVO" class="img-circle elevation-2" alt="User Image" />
+                       <img src="<%=request.getContextPath()%>/EMPImageServlet?action=usesrImage"  name="action" class="img-circle elevation-2" alt="User Image" />
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">${loginUser.englishFirstName}&nbsp${loginUser.englishLastName}</a>
+                    
+                 <form method="Post" action="<%=request.getContextPath()%>/EmpLoginServlet?action=LoginUserForUpdate" name="loginUser">
+                   <a href="<%=request.getContextPath()%>/EmpLoginServlet?action=LoginUserForUpdate"  class="d-block" type="submit">${loginUser.englishFirstName}&nbsp${loginUser.englishLastName}</a>
+							                
+                </form>
+                        
                     </div>
                 </div>
+                
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
@@ -291,7 +298,7 @@
                         <div class="col-sm-6" style="width:100%">
                             <marquee style="width:1000px;height:40px" direction="left" height="40" scrollamount="10"
                                 behavior="alternate">
-                                <font size="5" face="Mogra">${empVO.englishFirstName}&nbsp${empVO.englishLastName} 歡迎回到PANDORA後台系統 </font>
+                                <font size="5" face="Mogra">${loginUser.englishFirstName}&nbsp${loginUser.englishLastName} 歡迎回到PANDORA後台系統 </font>
 
                             </marquee>
 
