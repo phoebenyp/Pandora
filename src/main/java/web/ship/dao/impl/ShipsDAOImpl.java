@@ -32,7 +32,7 @@ public class ShipsDAOImpl implements ShipsDAO {
 	private static final String SELECT_LAST ="SELECT Ship_No,Ship_Name,Star_Status,Last_maintenance_Time,Floor_of_Ship,Ship_Status_No FROM Pandora.Ships ORDER BY Ship_No DESC LIMIT 1";
 	
 	@Override
-	public ShipsVO selectLast() {
+	public ShipsVO selectLast() {//選擇最新新增的郵輪資料
 
 		ShipsVO shipsVO = new ShipsVO();
 		Connection con = null;
@@ -87,7 +87,7 @@ public class ShipsDAOImpl implements ShipsDAO {
 		return shipsVO;
 	}
 	@Override
-	public ShipsVO findSpipNo(Integer shipNo) {
+	public ShipsVO findSpipNo(Integer shipNo) {//指定其中一艘郵輪
 
 		ShipsVO shipsVO = new ShipsVO();
 		Connection con = null;
@@ -144,7 +144,7 @@ public class ShipsDAOImpl implements ShipsDAO {
 		return shipsVO;
 	}
 	@Override
-	public void insert(ShipsVO shipsVO) {
+	public void insert(ShipsVO shipsVO) {//新增郵輪
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -185,7 +185,7 @@ public class ShipsDAOImpl implements ShipsDAO {
 	}
 	
 	@Override
-	public void update(ShipsVO shipsVO) {
+	public void update(ShipsVO shipsVO) {//更新郵輪
 
 		Connection con = null;
 		PreparedStatement pstmt = null;

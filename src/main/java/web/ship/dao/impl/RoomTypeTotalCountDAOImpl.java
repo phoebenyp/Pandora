@@ -37,7 +37,7 @@ public class RoomTypeTotalCountDAOImpl implements RoomTypeTotalCountDAO {
 	private static final String DELETE = "DELETE FROM Room_Type_Total_Count where RTTC_No = ?";
 	private static final String UPDATE = "UPDATE Room_Type_Total_Count set Ship_No=?,Room_Type_No=?,Max_Count_of_Room_Type=? where RTTC_No = ?";
 		
-	
+	//指定其中一艘郵輪的房型
 	@Override
 	public RoomTypeTotalCountVO selectOnly(Integer shipNo,Integer roomTypeNo) {
 		RoomTypeTotalCountVO roomTypeTotalCountVO = null;
@@ -93,6 +93,7 @@ public class RoomTypeTotalCountDAOImpl implements RoomTypeTotalCountDAO {
 		}
 		return roomTypeTotalCountVO;
 	}
+	//搜尋在同一艘遊輪下的房型
 	@Override
 	public List<RoomTypeTotalCountVO> selectNo(Integer shipNo) {
 		List<RoomTypeTotalCountVO> list =new ArrayList<RoomTypeTotalCountVO>();
@@ -148,6 +149,7 @@ public class RoomTypeTotalCountDAOImpl implements RoomTypeTotalCountDAO {
 		}
 		return list;
 	}
+	//郵輪新增時，增設基本的房型數量
 	@Override
 	public void insertLast(Integer ShipNo) {
 
@@ -184,6 +186,8 @@ public class RoomTypeTotalCountDAOImpl implements RoomTypeTotalCountDAO {
 		}
 
 	}
+	
+	//新增房型數量資料
 	@Override
 	public void insert(RoomTypeTotalCountVO roomTypeTotalCountVO) {
 
@@ -222,7 +226,7 @@ public class RoomTypeTotalCountDAOImpl implements RoomTypeTotalCountDAO {
 		}
 
 	}
-	
+	//更新房型數量資料
 	@Override
 	public void update(RoomTypeTotalCountVO roomTypeTotalCountVO) {
 
@@ -262,6 +266,7 @@ public class RoomTypeTotalCountDAOImpl implements RoomTypeTotalCountDAO {
 		}
 
 	}
+	//刪除房型數量資料
 	@Override
 	public void delete(Integer shipNo) {
 

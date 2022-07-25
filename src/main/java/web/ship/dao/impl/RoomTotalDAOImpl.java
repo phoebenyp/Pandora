@@ -13,7 +13,6 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import web.ship.bean.RoomTotalVO;
-import web.ship.bean.ShipsVO;
 import web.ship.dao.RoomTotalDAO;
 
 public class RoomTotalDAOImpl implements RoomTotalDAO {
@@ -35,7 +34,8 @@ public class RoomTotalDAOImpl implements RoomTotalDAO {
 	private static final String SELECT_SHIP_ALL ="SELECT  RTTC_No,Ship_No,Room_Type_No,Room_Type,Max_Count_of_Room_Type"
 			+ " FROM Room_Total WHERE Ship_No = ? ORDER BY RTTC_No ,Ship_No ASC";
 	
-	
+	//指定其中的遊輪下的房型
+	@Override
 	public RoomTotalVO selectOnly(Integer shipNo,Integer roomTypeNo) {
 
 		RoomTotalVO roomTotalVO = new RoomTotalVO();
@@ -93,6 +93,8 @@ public class RoomTotalDAOImpl implements RoomTotalDAO {
 		}
 		return roomTotalVO;
 	}
+	
+	//選擇最新新增房型數量資料
 	@Override
 	public RoomTotalVO selectLast() {
 
@@ -148,6 +150,8 @@ public class RoomTotalDAOImpl implements RoomTotalDAO {
 		}
 		return roomTotalVO;
 	}
+	
+	//列出所有房型數量資料
 	@Override
 	public List<RoomTotalVO> getShipAll(Integer shipNo) {
 		List<RoomTotalVO> list = new ArrayList<RoomTotalVO>();
@@ -207,6 +211,7 @@ public class RoomTotalDAOImpl implements RoomTotalDAO {
 		return list;
 	}
 	
+	//搜尋指定郵輪房型資料
 	@Override
 	public RoomTotalVO getRTTC(Integer rTTCNo) {
 		RoomTotalVO roomTotalVO = null;

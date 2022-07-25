@@ -26,8 +26,10 @@ public class ShipStatusDAOImpl implements ShipStatusDAO {
 		}
 	}
 	private static final String SELECT_ALL ="SELECT Ship_Status_No,Ship_Status FROM Ship_Status";
+	
+	
 	@Override
-	public List<ShipStatusVO> getAll() {
+	public List<ShipStatusVO> getAll() {//列出所有郵輪狀態資料
 		List<ShipStatusVO> list = new ArrayList<ShipStatusVO>();
 		ShipStatusVO shipStatusVO = null;
 

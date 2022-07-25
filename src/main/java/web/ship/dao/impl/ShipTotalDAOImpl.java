@@ -29,7 +29,7 @@ public class ShipTotalDAOImpl implements ShipTotalDAO {
 	private static final String GET_ALL_STMT = "SELECT Ship_No,Ship_Name,Star_Status,Last_maintenance_Time,Room_Total,Total,Floor_of_Ship,Ship_Status"
 			+ " FROM Ship_Total";
 	@Override
-	public List<ShipTotalVO> getAll() {
+	public List<ShipTotalVO> getAll() {//列出所有房型數量資料
 		List<ShipTotalVO> list = new ArrayList<ShipTotalVO>();
 		ShipTotalVO shipTotalVO = null;
 
