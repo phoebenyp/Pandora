@@ -342,21 +342,22 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>護照英文名字*</label>
-                                                    <input type="text" class="form-control" name="englishFirstName"
-                                                        /><font class="text-danger">${errorMsgsMap["englishFirstName"]}</font>
+                                                    <input type="text" class="form-control" name="englishFirstName" 
+                                                    value="${empVO.englishFirstName}" />
+                                                    <font class="text-danger">${errorMsgsMap["englishFirstName"]}</font>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>護照英文姓氏*</label>
-                                                    <input type="text" class="form-control" name="englishLastName" name="Englis_Last_Name" />
+                                                    <input type="text" class="form-control" name="englishLastName" value="${empVO.englishLastName}" />
                                                     <font class="text-danger">${errorMsgsMap["englishLastName"]}</font>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>護照號碼*</label>
-                                                    <input type="text" class="form-control" name="passportNo" name="Passport_No" />
+                                                    <input type="text" class="form-control" name="passportNo" value="${empVO.passportNo}" />
                                                     <font class="text-danger">${errorMsgsMap["passportNo"]}</font>
                                                 </div>
                                             </div>
@@ -364,7 +365,7 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>出生日期＊</label>
-                                                    <input class="date-pick form-control" type="date" name="empBirthday">
+                                                    <input class="date-pick form-control" type="date" name="empBirthday" value="${empVO.empBirthday}">
                                                     <font class="text-danger">${errorMsgsMap["empBirthday"]}</font>
                                                 </div>
                                             </div>
@@ -372,14 +373,14 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>電子信箱＊</label>
-                                                    <input type="email" id="Email" class="form-control" name="email" />
+                                                    <input type="email" id="Email" class="form-control" name="email" value="${empVO.email}" />
                                                     <font class="text-danger">${errorMsgsMap["email"]}</font>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>聯絡電話</label>
-                                                    <input type="text"  name="empCellphoneNo" class="form-control" />
+                                                    <input type="text"  name="empCellphoneNo" class="form-control" value="${empVO.empCellphoneNo}"/>
                                                     <font class="text-danger">${errorMsgsMap["empCellphoneNo"]}</font>
                                                 </div>
                                             </div>
@@ -391,7 +392,7 @@
                                                     </br>
                                                     <div class="form-group">
                                                         <select style="width:100%" name="jobLevels">
-                                                         <option value="none" selected disabled hidden>請選擇職等</option> 
+                                                         <option value="none" selected disabled hidden >請選擇職等</option> 
                                                             <option value="Manger">Manger</option>
                                                             <option value="Supervisor">Supervisor</option>
                                                             <option value="Staff">Staff</option>
@@ -426,15 +427,16 @@
 
                                         <div class="form-group">
                                             <label>地址</label>
-                                            <input type="text" class="form-control" name="empAddress"
+                                            <input type="text" class="form-control" name="empAddress" value="${empVO.empAddress}"
                                                 placeholder="居住地址" />
-                                        </div><font class="text-danger">${errorMsgsMap["empAddress"]}</font>
+                                                <font class="text-danger">${errorMsgsMap["empAddress"]}</font>
+                                        </div>
                                         
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>雇用日期</label>
-                                                    <input class="date-pick form-control" type="date" name="startDate" />
+                                                    <input class="date-pick form-control" type="date" name="startDate" value="${empVO.startDate}" />
                                                 </div>
                                                 <font class="text-danger">${errorMsgsMap["startDate"]}</font>
                                             </div>

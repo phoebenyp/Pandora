@@ -39,8 +39,8 @@ public class EmpDAOImpl implements EmpDAO {
 	private static final String GET_ALL_STMT = "SELECT * FROM Employee order by Employee_ID";
 	private static final String GET_ONE_STMT = "SELECT * FROM Employee where Employee_ID = ?";
 	private static final String DELETE = "DELETE FROM Pandora where Employee_ID = ?";
-	private static final String UPDATE = "UPDATE Employee set Employee_ID=?,EMP_Picture_ID=?,English_Last_Name=?,English_First_Name=?,Job_Levels=?,Gender=?,EMP_Birthday=?,Passport_No=?,Email=?,Start_Date=?,Resignation_Date=?,Password=?,EMP_Cellphone_No=?,EMP_Address=?,Status=?,Last_Modification_Date=?,Login_Time=? where Employee_ID = ?";
-	private static final String UPDATE_WithOutPicture = "UPDATE Employee set Employee_ID=?,English_Last_Name=?,English_First_Name=?,Job_Levels=?,Gender=?,EMP_Birthday=?,Passport_No=?,Email=?,Start_Date=?,Resignation_Date=?,Password=?,EMP_Cellphone_No=?,EMP_Address=?,Status=?,Last_Modification_Date=?,Login_Time=? where Employee_ID = ?";
+	private static final String UPDATE                = "UPDATE Employee set Employee_ID=?,EMP_Picture_ID=?,English_Last_Name=?,English_First_Name=?,Job_Levels=?,Gender=?,EMP_Birthday=?,Passport_No=?,Email=?,Start_Date=?,Resignation_Date=?,Password=?,EMP_Cellphone_No=?,EMP_Address=?,Status=?,Last_Modification_Date=?,Login_Time=? where Employee_ID = ?";
+	private static final String UPDATE_WithOutPicture = "UPDATE Employee set Employee_ID=?                 ,English_Last_Name=?,English_First_Name=?,Job_Levels=?,Gender=?,EMP_Birthday=?,Passport_No=?,Email=?,Start_Date=?,Resignation_Date=?,Password=?,EMP_Cellphone_No=?,EMP_Address=?,Status=?,Last_Modification_Date=?,Login_Time=? where Employee_ID = ?";
 	private static final String EMAIL_CHECK = "SELECT Email FROM Employee WHERE Email=?";
 
 	@Override

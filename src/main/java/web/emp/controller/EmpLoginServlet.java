@@ -280,7 +280,7 @@ public class EmpLoginServlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 			req.setAttribute("errorMsgsMap", errorMsgsMap);
 			EmpServiceImpl empSvc = new EmpServiceImpl();
-
+			
 			Part fileEmpPictureId = req.getPart("empPictureId"); // Retrieves <input type="file" name="empPictureId">
 			byte[] empPictureId = fileEmpPictureId.getInputStream().readAllBytes();
 
