@@ -39,6 +39,8 @@
 		#Package {
 			margin: 0 60px;
 		}
+		
+		
 	</style>
 	<link rel="stylesheet" href="Cart/html/css/roompick.css">
 </head>
@@ -65,8 +67,8 @@
 					<div class="col-6"><i class="icon-phone"></i><strong>0045 043204434</strong></div>
 					<div class="col-6">
 						<ul id="top_links">
-							<li><a href="Cart/html/#sign-in-dialog" id="access_link">登入</a></li>
-							<li><a href="Cart/html/wishlist.html" id="wishlist_link">聯絡我們</a></li>
+							<li><a href="#sign-in-dialog" id="access_link">登入</a></li>
+							<li><a href="wishlist.html" id="wishlist_link">聯絡我們</a></li>
 						</ul>
 					</div>
 				</div><!-- End row -->
@@ -77,45 +79,45 @@
 			<div class="row">
 				<div class="col-3">
 					<div id="logo">
-						<a href="Cart/html/index_7.html"><img src="Cart/html/img/logo.png" width="160" height="34" alt="City tours"
+						<a href="index_7.html"><img src="Cart/html/img/logo.png" width="160" height="34" alt="City tours"
 								class="logo_normal"></a>
-						<a href="Cart/html/index_7.html"><img src="Cart/html/img/logo_sticky.png" width="160" height="34" alt="City tours"
+						<a href="index_7.html"><img src="Cart/html/img/logo_sticky.png" width="160" height="34" alt="City tours"
 								class="logo_sticky"></a>
 					</div>
 				</div>
 				<nav class="col-9">
-					<a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="Cart/html/javascript:void(0);"><span>Menu
+					<a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu
 							mobile</span></a>
 					<div class="main-menu">
 						<div id="header_menu">
-							<img src="Cart/html/img/logo_sticky.png" width="160" height="34" alt="City tours">
+							<img src="img/logo_sticky.png" width="160" height="34" alt="City tours">
 						</div>
-						<a href="Cart/html/#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
+						<a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
 						<ul>
 							<li class="submenu" style="margin: 0 0 0 75px;">
-								<a href="Cart/html/javascript:void(0);" class="show-submenu" style="width: 100px;">預定行程 </a>
+								<a href="javascript:void(0);" class="show-submenu" style="width: 100px;">預定行程 </a>
 
 							</li>
 							<li class="submenu">
-								<a href="Cart/html/javascript:void(0);" class="show-submenu" style="width: 100px;">郵輪介紹 </a>
+								<a href="javascript:void(0);" class="show-submenu" style="width: 100px;">郵輪介紹 </a>
 
 							</li>
 							<li class="submenu">
-								<a href="Cart/html/javascript:void(0);" class="show-submenu" style="width: 100px;">活動新訊 </a>
+								<a href="javascript:void(0);" class="show-submenu" style="width: 100px;">活動新訊 </a>
 							</li>
 							<li class="submenu">
-								<a href="Cart/html/javascript:void(0);" class="show-submenu" style="width: 100px;">旅遊資訊 </a>
+								<a href="javascript:void(0);" class="show-submenu" style="width: 100px;">旅遊資訊 </a>
 							</li>
 							<li class="submenu">
-								<a href="Cart/html/javascript:void(0);" class="show-submenu" style="width: 100px;">會員中心 <i
+								<a href="javascript:void(0);" class="show-submenu" style="width: 100px;">會員中心 <i
 										class="icon-down-open-mini"></i></a>
 								<ul>
-									<li><a href="Cart/html/all_restaurants_list.html">會員資訊 </a></li>
-									<li><a href="Cart/html/all_restaurants_grid.html">會員資料修改</a></li>
-									<li><a href="Cart/html/all_restaurants_grid_masonry.html">密碼更改</a></li>
-									<li><a href="Cart/html/all_restaurants_map_listing.html">訂單查詢修改</a></li>
-									<li><a href="Cart/html/single_restaurant.html">聊天室</a></li>
-									<li><a href="Cart/html/payment_restaurant.html">討論區</a></li>
+									<li><a href="all_restaurants_list.html">會員資訊 </a></li>
+									<li><a href="all_restaurants_grid.html">會員資料修改</a></li>
+									<li><a href="all_restaurants_grid_masonry.html">密碼更改</a></li>
+									<li><a href="all_restaurants_map_listing.html">訂單查詢修改</a></li>
+									<li><a href="single_restaurant.html">聊天室</a></li>
+									<li><a href="payment_restaurant.html">討論區</a></li>
 								</ul>
 							</li>
 
@@ -124,33 +126,33 @@
 					</div><!-- End main-menu -->
 					<ul id="top_tools">
 						<li>
-							<a href="Cart/html/javascript:void(0);" class="search-overlay-menu-btn"><i
+							<a href="javascript:void(0);" class="search-overlay-menu-btn"><i
 									class="icon_search"></i></a>
 						</li>
 						<li>
 							<div class="dropdown dropdown-cart">
-								<a href="Cart/html/#" data-bs-toggle="dropdown" class="cart_bt"><i
+								<a href="#" data-bs-toggle="dropdown" class="cart_bt"><i
 										class="icon_bag_alt"></i><strong>3</strong></a>
 								<ul class="dropdown-menu" id="cart_items">
 									<li>
-										<div class="image"><img src="Cart/html/img/thumb_cart_1.jpg" alt="image"></div>
-										<strong><a href="Cart/html/#">Louvre museum</a>1x $36.00 </strong>
-										<a href="Cart/html/#" class="action"><i class="icon-trash"></i></a>
+										<div class="image"><img src="img/thumb_cart_1.jpg" alt="image"></div>
+										<strong><a href="#">Louvre museum</a>1x $36.00 </strong>
+										<a href="#" class="action"><i class="icon-trash"></i></a>
 									</li>
 									<li>
-										<div class="image"><img src="Cart/html/img/thumb_cart_2.jpg" alt="image"></div>
-										<strong><a href="Cart/html/#">Versailles tour</a>2x $36.00 </strong>
-										<a href="Cart/html/#" class="action"><i class="icon-trash"></i></a>
+										<div class="image"><img src="img/thumb_cart_2.jpg" alt="image"></div>
+										<strong><a href="#">Versailles tour</a>2x $36.00 </strong>
+										<a href="#" class="action"><i class="icon-trash"></i></a>
 									</li>
 									<li>
-										<div class="image"><img src="Cart/html/img/thumb_cart_3.jpg" alt="image"></div>
-										<strong><a href="Cart/html/#">Versailles tour</a>1x $36.00 </strong>
-										<a href="Cart/html/#" class="action"><i class="icon-trash"></i></a>
+										<div class="image"><img src="img/thumb_cart_3.jpg" alt="image"></div>
+										<strong><a href="#">Versailles tour</a>1x $36.00 </strong>
+										<a href="#" class="action"><i class="icon-trash"></i></a>
 									</li>
 									<li>
 										<div>Total: <span>$120.00</span></div>
-										<a href="Cart/html/cart.html" class="button_drop">Go to cart</a>
-										<a href="Cart/html/payment.html" class="button_drop outline">Check out</a>
+										<a href="cart.html" class="button_drop">Go to cart</a>
+										<a href="payment.html" class="button_drop outline">Check out</a>
 									</li>
 								</ul>
 							</div><!-- End dropdown-cart-->
@@ -173,7 +175,7 @@
 						<div class="progress">
 							<div class="progress-bar"></div>
 						</div>
-						<a href="Cart/html/#" class="bs-wizard-dot"></a>
+						<a href="#" class="bs-wizard-dot"></a>
 					</div>
 
 					<div class="col-4 bs-wizard-step disabled">
@@ -181,7 +183,7 @@
 						<div class="progress">
 							<div class="progress-bar"></div>
 						</div>
-						<a href="Cart/html/payment_hotel.html" class="bs-wizard-dot"></a>
+						<a href="payment_hotel.html" class="bs-wizard-dot"></a>
 					</div>
 
 					<div class="col-4 bs-wizard-step disabled">
@@ -189,7 +191,7 @@
 						<div class="progress">
 							<div class="progress-bar"></div>
 						</div>
-						<a href="Cart/html/confirmation_hotel.html" class="bs-wizard-dot"></a>
+						<a href="confirmation_hotel.html" class="bs-wizard-dot"></a>
 					</div>
 				</div>
 				<!-- End bs-wizard -->
@@ -203,9 +205,9 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="Cart/html/#">首頁</a>
+					<li><a href="#">首頁</a>
 					</li>
-					<li><a href="Cart/html/#">Category</a>
+					<li><a href="#">Category</a>
 					</li>
 					<li>Page active</li>
 				</ul>
@@ -229,7 +231,7 @@
 													房型
 												</th>
 												<th>
-													人數
+													數量
 												</th>
 												<th>
 													價格
@@ -240,13 +242,13 @@
 											<tr>
 												<td>
 													<div class="thumb_cart">
-														<a href="Cart/html/#" data-bs-toggle="modal"
+														<a href="#" data-bs-toggle="modal"
 															data-bs-target="#modal_single_room"><img
 																src="Cart/html/img/thumb_cart_1.jpg" alt="Image">
 														</a>
 													</div>
-													<span class="item_cart"><a href="Cart/html/#" data-bs-toggle="modal"
-															data-bs-target="#modal_single_room">精緻客房</a></span>
+													<span class="item_cart"><a href="#" data-bs-toggle="modal"
+															data-bs-target="#modal_single_room" data-roomName="精緻客房" data-roomPrice="TWD10000">精緻客房</a></span>
 												</td>
 												<td>
 													<div class="numbers-row">
@@ -255,19 +257,19 @@
 													</div>
 												</td>
 												<td>
-													<strong>TWD80</strong>
+													<strong>TWD10000</strong>
 												</td>
 											</tr>
 											<tr>
 												<td>
 													<div class="thumb_cart">
-														<a href="Cart/html/#" data-bs-toggle="modal"
+														<a href="#" data-bs-toggle="modal"
 															data-bs-target="#modal_luxury_room"><img
 																src="Cart/html/img/thumb_cart_1.jpg" alt="Image">
 														</a>
 													</div>
-													<span class="item_cart"><a href="Cart/html/#" data-bs-toggle="modal"
-															data-bs-target="#modal_luxury_room">豪華客房</a></span>
+													<span class="item_cart"><a href="#" data-bs-toggle="modal"
+															data-bs-target="#modal_luxury_room" data-roomName="豪華客房" data-roomPrice="TWD15000">豪華客房</a></span>
 												</td>
 												<td>
 													<div class="numbers-row">
@@ -276,119 +278,64 @@
 													</div>
 												</td>
 												<td>
-													<strong>TWD130</strong>
+													<strong>TWD15000</strong>
 												</td>
 											</tr>
 											<tr>
 												<td>
 													<div class="thumb_cart">
-														<a href="Cart/html/#" data-bs-toggle="modal"
+														<a href="#" data-bs-toggle="modal"
 															data-bs-target="#modal_family_room"><img
 																src="Cart/html/img/thumb_cart_1.jpg" alt="Image">
 														</a>
 													</div>
-													<span class="item_cart"><a href="Cart/html/#" data-bs-toggle="modal"
-															data-bs-target="#modal_family_room">家庭客房</a></span>
+													<span class="item_cart"><a href="#" data-bs-toggle="modal"
+															data-bs-target="#modal_family_room" data-roomName="家庭客房" data-roomPrice="TWD20000">家庭客房</a></span>
 												</td>
 												<td>
 													<div class="numbers-row">
-														<input type="text" value="0" id="quantity_1"
-															class="qty2 form-control" name="quantity_1">
+														<input type="text" value="0" id="quantity_3"
+															class="qty2 form-control" name="quantity_3">
 													</div>
 												</td>
 												<td>
-													<strong>TWD80</strong>
+													<strong>TWD20000</strong>
 												</td>
 											</tr>
 											<tr>
 												<td>
 													<div class="thumb_cart">
-														<a href="Cart/html/#" data-bs-toggle="modal"
+														<a href="#" data-bs-toggle="modal"
 															data-bs-target="#modal_royal_pandora_suite"><img
 																src="Cart/html/img/thumb_cart_1.jpg" alt="Image">
 														</a>
 													</div>
-													<span class="item_cart"><a href="Cart/html/#" data-bs-toggle="modal"
-															data-bs-target="#modal_royal_pandora_suite">潘多拉套房</a></span>
+													<span class="item_cart"><a href="#" data-bs-toggle="modal"
+															data-bs-target="#modal_royal_pandora_suite" data-roomName="潘多拉套房" data-roomPrice="TWD25000">潘多拉套房</a></span>
 												</td>
 												<td>
 													<div class="numbers-row">
-														<input type="text" value="0" id="quantity_1"
-															class="qty2 form-control" name="quantity_1">
+														<input type="text" value="0" id="quantity_4"
+															class="qty2 form-control" name="quantity_4">
 													</div>
 												</td>
 												<td>
-													<strong>TWD80</strong>
+													<strong>TWD25000</strong>
 												</td>
 											</tr>
 										</tbody>
 									</table>
-
-									<div class="add_bottom_15"><small>*每位旅客價格</small>
+                   <div class="add_bottom_15">
+                    <small>* 精緻/豪華客房及潘朵拉套房每間可容納2人，家庭客房可容納4人</small>
 									</div>
+									<div class="add_bottom_15">
+                    <small>* 總價 = 行程天數 * 房型價格</small>
+									</div>
+                 
 								</div>
 								<!-- End col-lg-8 -->
 
-								<aside class="col-lg-4">
-									<div class="box_style_1">
-										<h3 class="inner">-行程概要-</h3>
-										<table class="table table_summary">
-											<tbody>
-												<tr>
-													<td>
-														行程名稱
-													</td>
-													<td id="PackageB" class="text-end">
-													</td>
-												</tr>
-												<tr>
-													<td>
-														出發日期
-													</td>
-													<td id="Start_Date" class="text-end">
-														2022年07月20日
-													</td>
-												</tr>
-												<tr>
-													<td>
-														結束日期
-													</td>
-													<td id="End_Date" class="text-end">
-														2022年07月28日
-													</td>
-												</tr>
-												<tr>
-													<td>
-														預定房型
-													</td>
-													<td id="Room_Type1" class="text-end">
-														豪華客房 x 1
-													</td>
-												</tr>
-												<tr>
-													<td>
-														旅客人數
-													</td>
-													<td id="Passenger_Number" class="text-end">
-
-													</td>
-												</tr>
-												<tr class="total">
-													<td>
-														-總計-
-													</td>
-													<td id="Total_Cost" class="text-end">
-														$154000
-													</td>
-												</tr>
-											</tbody>
-										</table>
-										<a class="btn_full" href="Cart/html/payment_hotel.html">立即預訂</a>
-										<a class="btn_full_outline" href="Cart/html/index_7.html"><i
-												class="icon-right"></i>變更搜尋條件</a>
-									</div>
-
-								</aside>
+								<jsp:include page="/Cart.jsp" flush="true" />
 								<!-- End aside -->
 							</div>
 							<!--End row -->
@@ -402,7 +349,7 @@
 											style="padding-bottom: 100px; padding-top: 60px;">
 											<div class="">
 												<ul class="bus bus2"
-													style="padding: 20px; border-radius: 170px 170px 10px 10px;">
+													style="padding: 20px; border-radius: 100px 100px 10px 10px;">
 													<li style="margin: 60px 0 0 0 ;">
 														<!--seat1 = 潘多拉套房-->
 														<a class="seat1"
@@ -544,14 +491,13 @@
 												</tr>
 											</tbody>
 										</table>
-										<a class="btn_full" href="Cart/html/payment_hotel.html">預定此房間</a>
+										<a class="btn_full" href="payment_hotel.html">預定此房間</a>
 									</div>
 
 								</aside>
 
 							</div>
 						</div>
-
 	</main>
 	<!-- End main -->
 
@@ -589,8 +535,8 @@
 		</div>
 		<form>
 			<div class="sign-in-wrapper">
-				<a href="Cart/html/#0" class="social_bt facebook">Login with Facebook</a>
-				<a href="Cart/html/#0" class="social_bt google">Login with Google</a>
+				<a href="#0" class="social_bt facebook">Login with Facebook</a>
+				<a href="#0" class="social_bt google">Login with Google</a>
 				<div class="divider"><span>Or</span></div>
 				<div class="form-group">
 					<label>Email</label>
@@ -609,11 +555,11 @@
 							<span class="checkmark"></span>
 						</label>
 					</div>
-					<div class="float-end"><a id="forgot" href="Cart/html/javascript:void(0);">忘記密碼</a></div>
+					<div class="float-end"><a id="forgot" href="javascript:void(0);">忘記密碼</a></div>
 				</div>
 				<div class="text-center"><input type="submit" value="Log In" class="btn_login"></div>
 				<div class="text-center">
-					Don’t have an account? <a href="Cart/html/javascript:void(0);">註冊</a>
+					Don’t have an account? <a href="javascript:void(0);">註冊</a>
 				</div>
 				<div id="forgot_pw">
 					<div class="form-group">
@@ -664,32 +610,32 @@
 					<!-- End row  -->
 					<div class="owl-carousel owl-theme carousel-thumbs magnific-gallery">
 						<div class="item">
-							<a href="Cart/html/img/carousel/1.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/1.jpg"
+							<a href="img/carousel/1.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/1.jpg"
 									alt="Image">
 							</a>
 						</div>
 						<div class="item">
-							<a href="Cart/html/img/carousel/2.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/2.jpg"
+							<a href="img/carousel/2.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/2.jpg"
 									alt="Image">
 							</a>
 						</div>
 						<div class="item">
-							<a href="Cart/html/img/carousel/3.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/3.jpg"
+							<a href="img/carousel/3.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/3.jpg"
 									alt="Image">
 							</a>
 						</div>
 						<div class="item">
-							<a href="Cart/html/img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
+							<a href="img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
 									alt="Image">
 							</a>
 						</div>
 						<div class="item">
-							<a href="Cart/html/img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
+							<a href="img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
 									alt="Image">
 							</a>
 						</div>
 						<div class="item">
-							<a href="Cart/html/img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
+							<a href="img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
 									alt="Image">
 							</a>
 						</div>
@@ -733,32 +679,32 @@
 					<!-- End row  -->
 					<div class="owl-carousel owl-theme carousel-thumbs magnific-gallery">
 						<div class="item">
-							<a href="Cart/html/img/carousel/1.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/1.jpg"
+							<a href="img/carousel/1.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/1.jpg"
 									alt="Image">
 							</a>
 						</div>
 						<div class="item">
-							<a href="Cart/html/img/carousel/2.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/2.jpg"
+							<a href="img/carousel/2.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/2.jpg"
 									alt="Image">
 							</a>
 						</div>
 						<div class="item">
-							<a href="Cart/html/img/carousel/3.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/3.jpg"
+							<a href="img/carousel/3.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/3.jpg"
 									alt="Image">
 							</a>
 						</div>
 						<div class="item">
-							<a href="Cart/html/img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
+							<a href="img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
 									alt="Image">
 							</a>
 						</div>
 						<div class="item">
-							<a href="Cart/html/img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
+							<a href="img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
 									alt="Image">
 							</a>
 						</div>
 						<div class="item">
-							<a href="Cart/html/img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
+							<a href="img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
 									alt="Image">
 							</a>
 						</div>
@@ -802,32 +748,32 @@
 					<!-- End row  -->
 					<div class="owl-carousel owl-theme carousel-thumbs magnific-gallery">
 						<div class="item">
-							<a href="Cart/html/img/carousel/1.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/1.jpg"
+							<a href="img/carousel/1.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/1.jpg"
 									alt="Image">
 							</a>
 						</div>
 						<div class="item">
-							<a href="Cart/html/img/carousel/2.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/2.jpg"
+							<a href="img/carousel/2.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/2.jpg"
 									alt="Image">
 							</a>
 						</div>
 						<div class="item">
-							<a href="Cart/html/img/carousel/3.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/3.jpg"
+							<a href="img/carousel/3.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/3.jpg"
 									alt="Image">
 							</a>
 						</div>
 						<div class="item">
-							<a href="Cart/html/img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
+							<a href="img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
 									alt="Image">
 							</a>
 						</div>
 						<div class="item">
-							<a href="Cart/html/img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
+							<a href="img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
 									alt="Image">
 							</a>
 						</div>
 						<div class="item">
-							<a href="Cart/html/img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
+							<a href="img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
 									alt="Image">
 							</a>
 						</div>
@@ -871,32 +817,32 @@
 					<!-- End row  -->
 					<div class="owl-carousel owl-theme carousel-thumbs magnific-gallery">
 						<div class="item">
-							<a href="Cart/html/img/carousel/1.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/1.jpg"
+							<a href="img/carousel/1.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/1.jpg"
 									alt="Image">
 							</a>
 						</div>
 						<div class="item">
-							<a href="Cart/html/img/carousel/2.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/2.jpg"
+							<a href="img/carousel/2.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/2.jpg"
 									alt="Image">
 							</a>
 						</div>
 						<div class="item">
-							<a href="Cart/html/img/carousel/3.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/3.jpg"
+							<a href="img/carousel/3.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/3.jpg"
 									alt="Image">
 							</a>
 						</div>
 						<div class="item">
-							<a href="Cart/html/img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
+							<a href="img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
 									alt="Image">
 							</a>
 						</div>
 						<div class="item">
-							<a href="Cart/html/img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
+							<a href="img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
 									alt="Image">
 							</a>
 						</div>
 						<div class="item">
-							<a href="Cart/html/img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
+							<a href="img/carousel/4.jpg" data-effect="mfp-zoom-in"><img src="Cart/html/img/carousel/4.jpg"
 									alt="Image">
 							</a>
 						</div>
@@ -907,6 +853,7 @@
 		</div>
 	</div>
 
+</body>
 	<!-- Jquery -->
 	<script src="Cart/html/js/jquery-3.6.0.min.js"></script>
 	<script src="Cart/html/js/common_scripts_min.js"></script>
@@ -974,26 +921,29 @@
 			});
 		});
 	</script>
-	<!-- <script>
-		$(document).ready(function () {
-			/*print seat number--------------*/
-			var b2 = 0;
-			$(".bus2 .seat").each(function () {
-				b2++;
-				$(this).append("<em class='seat_num'>" + b2 + "</em>");
-			});
-		});
-	</script>
 	<script>
-		$(document).ready(function () {
-			/*print seat number--------------*/
-			var b2 = 0;
-			$(".bus2 .seat").each(function () {
-				b2++;
-				$(this).append("<em class='seat_num'>" + b2 + "</em>");
-			});
-		});
-	</script> -->
+	  <!-- 加號按鈕 -->
+	  $('.table.table-striped.cart-list.add_bottom_30').find('div').on('click', '.inc.button_inc', function(e){
+        let roomName = e.target.parentNode.parentNode.parentNode.firstElementChild.lastElementChild.firstElementChild.getAttribute('data-roomname');
+        let roomPrice = e.target.parentNode.parentNode.parentNode.firstElementChild.lastElementChild.firstElementChild.getAttribute('data-roomprice');
+        let roomCount = e.target.parentNode.parentNode.firstElementChild.firstElementChild.value;
 
-</body>
+        console.log(roomName);
+        console.log(roomPrice);
+        console.log(roomCount);
+      });
+	  
+	  <!-- 減號按鈕 -->
+	  $('.table.table-striped.cart-list.add_bottom_30').find('div').on('click', '.dec.button_inc', function(e){
+	        let roomName = e.target.parentNode.parentNode.parentNode.firstElementChild.lastElementChild.firstElementChild.getAttribute('data-roomname');
+	        let roomPrice = e.target.parentNode.parentNode.parentNode.firstElementChild.lastElementChild.firstElementChild.getAttribute('data-roomprice');
+	        let roomCount = e.target.parentNode.parentNode.firstElementChild.firstElementChild.value;
+
+	        console.log(roomName);
+	        console.log(roomPrice);
+	        console.log(roomCount);
+	      });
+	</script>
+
+
 </html>

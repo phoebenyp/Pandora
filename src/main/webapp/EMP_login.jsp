@@ -55,7 +55,7 @@
             <img src="./images/shipwheel.gif">
 
 
-            <body class="hold-transition login-page">
+            <body class="hold-transition login-page">Ï
               <div class="login-box">
                 <!-- /.login-logo -->
                 <div class="card card-outline card-primary">
