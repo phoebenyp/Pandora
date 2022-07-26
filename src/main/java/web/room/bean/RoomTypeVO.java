@@ -1,7 +1,9 @@
 package web.room.bean;
 
-public class RoomTypeVO implements java.io.Serializable{
-	
+import java.io.Serializable;
+import java.util.Arrays;
+
+public class RoomTypeVO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Integer roomTypeNo;
@@ -10,78 +12,54 @@ public class RoomTypeVO implements java.io.Serializable{
 	private Integer maxCapacity;
 	private byte[] roomPicture;
 	
-	public RoomTypeVO() {
-		
+	@Override
+	public String toString() {
+		return "RoomTypeVO [roomTypeNo=" + roomTypeNo + ", roomType=" + roomType + ", roomPrice=" + roomPrice
+				+ ", maxCapacity=" + maxCapacity + ", roomPicture=" + Arrays.toString(roomPicture) + "]";
 	}
-
-	/**
-	 * @return the roomTypeNo
-	 */
+	public RoomTypeVO() {
+		super();
+	}
+	public RoomTypeVO(Integer roomTypeNo, String roomType, Integer roomPrice, Integer maxCapacity, byte[] roomPicture) {
+		super();
+		this.roomTypeNo = roomTypeNo;
+		this.roomType = roomType;
+		this.roomPrice = roomPrice;
+		this.maxCapacity = maxCapacity;
+		this.roomPicture = roomPicture;
+	}
 	public Integer getRoomTypeNo() {
 		return roomTypeNo;
 	}
-
-	/**
-	 * @param roomTypeNo the roomTypeNo to set
-	 */
 	public void setRoomTypeNo(Integer roomTypeNo) {
 		this.roomTypeNo = roomTypeNo;
 	}
-
-	/**
-	 * @return the roomType
-	 */
 	public String getRoomType() {
 		return roomType;
 	}
-
-	/**
-	 * @param roomType the roomType to set
-	 */
 	public void setRoomType(String roomType) {
 		this.roomType = roomType;
 	}
-
-	/**
-	 * @return the roomPrice
-	 */
 	public Integer getRoomPrice() {
 		return roomPrice;
 	}
-
-	/**
-	 * @param roomPrice the roomPrice to set
-	 */
 	public void setRoomPrice(Integer roomPrice) {
 		this.roomPrice = roomPrice;
 	}
-
-	/**
-	 * @return the maxCapacity
-	 */
 	public Integer getMaxCapacity() {
 		return maxCapacity;
 	}
-
-	/**
-	 * @param maxCapacity the maxCapacity to set
-	 */
 	public void setMaxCapacity(Integer maxCapacity) {
 		this.maxCapacity = maxCapacity;
 	}
-
-	/**
-	 * @return the roomPicture
-	 */
 	public byte[] getRoomPicture() {
 		return roomPicture;
 	}
-
-	/**
-	 * @param roomPicture the roomPicture to set
-	 */
 	public void setRoomPicture(byte[] roomPicture) {
 		this.roomPicture = roomPicture;
 	}
+	
+	
+	
 	
 }
