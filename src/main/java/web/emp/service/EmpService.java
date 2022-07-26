@@ -2,21 +2,24 @@ package web.emp.service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import web.emp.bean.EmpVO;
+import web.emp.dao.EmpDAO;
+import web.emp.dao.impl.EmpDAOImpl;
 
 public interface EmpService {
 
-	
 	EmpVO selectByEmailAndPassword(EmpVO empVO);
 
-//    EmpVO addEmp(byte[] empPictureId, String englishLastName, String englishFirstName, String jobLevels,
-//			String gender, LocalDate empBirthday, String passportNo, String email, LocalDate startDate,
-//			LocalDate resignationDate, String password, String empCellphoneNo, String empAddress, String status,
-//			LocalDateTime lastModificationDate, LocalDateTime loginTime);
+	List<EmpVO> getAll();
 	
-	
-	EmpVO addEmp(EmpVO empVO);
-}
+	EmpVO getOneEmp(Integer employeeId) ;
 
+	EmpVO addEmp(EmpVO empVO);
+
+	EmpVO updateEmp(EmpVO empVO);
+
+  boolean isExistEmail(String email);
 	
+}

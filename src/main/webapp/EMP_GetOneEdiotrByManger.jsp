@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="web.emp.bean.*"%>
 
-
 	
 <!DOCTYPE html>
 <html lang="en">
@@ -64,8 +63,9 @@
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                                 
                     <div class="image">
-                     	<img src="<%=request.getContextPath()%>/EMPImageServlet?action=usesrImage"  name="action" value="empVO" class="img-circle elevation-2" alt="User Image" />
+                       <img src="<%=request.getContextPath()%>/EMPImageServlet?action=usesrImage"  name="action" class="img-circle elevation-2" alt="User Image" />
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">${loginUser.englishFirstName}&nbsp${loginUser.englishLastName}</a>
@@ -297,10 +297,10 @@
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item">
-                                    <a href="<%=request.getContextPath()%>/EmpLoginServlet?action=EMPAllList">員工資料</a>
+                                    <a href="<%=request.getContextPath()%>/EmpLoginServlet?action=EMPAllList" > 員工資料</a>
                                 </li>
                                 <li class="breadcrumb-item active">
-                                    新增員工
+                                    修改員工資料
                                 </li>
                             </ol>
                         </div>
@@ -319,22 +319,22 @@
                         <div class="row justify-content-center">
                             <div class="col-xl-6 col-lg-5 col-md-6 col-sm-8">
                                 <div id="login">
+                                <form action="<%=request.getContextPath()%>/EmpLoginServlet" method="Post" enctype="multipart/form-data" >
                                     <div class="form-group">
                                         <h1>
-                                            新增員工
+                                           <input type="hidden" name="employeeId" value="${empVOupdate.employeeId}"> 員工編號:${empVOupdate.employeeId}
                                         </h1>
                                         <hr />
                                     </div>
                                     </br>
-                                   
-                                    <form action="<%=request.getContextPath()%>/EmpLoginServlet" method="Post" enctype="multipart/form-data" >
     								  <center>
     										<input type="file" name="empPictureId" />
-    									
+    										
+    											<div class="col-xl-6">
+                       								 <img src="<%=request.getContextPath()%>/EMPImageServlet?action=empVOUpdate&employeeId=${empVOupdate.employeeId}"  name="action" class="img-circle elevation-2" alt="User Image" style=width:100% />
+                 							   </div>
                                     
-                                        <div class="col-sm-6" style="text-align:center">
-                                            <img src="images/meatball.jpg" alt="Image" width=100% />
-                                        </div>
+                                    
                                       </center>
                                     <hr />
                                   
@@ -342,46 +342,45 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>護照英文名字*</label>
-                                                    <input type="text" class="form-control" name="englishFirstName" 
-                                                    value="${empVO.englishFirstName}" />
-                                                    <font class="text-danger">${errorMsgsMap["englishFirstName"]}</font>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>護照英文姓氏*</label>
-                                                    <input type="text" class="form-control" name="englishLastName" value="${empVO.englishLastName}" />
+                                                    <input type="text" class="form-control" name="englishFirstName" value="${empVOupdate.englishFirstName}"/>
                                                     <font class="text-danger">${errorMsgsMap["englishLastName"]}</font>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label>護照號碼*</label>
-                                                    <input type="text" class="form-control" name="passportNo" value="${empVO.passportNo}" />
+                                                    <label>護照英文姓氏*</label>
+                                                    <input type="text" class="form-control" name="englishLastName" value="${empVOupdate.englishLastName}"/>
                                                     <font class="text-danger">${errorMsgsMap["passportNo"]}</font>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>護照號碼*</label>
+                                                    <input type="text" class="form-control" name="passportNo" value="${empVOupdate.passportNo}"/>
+                                                	<font class="text-danger">${errorMsgsMap["passportNo"]}</font>
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>出生日期＊</label>
-                                                    <input class="date-pick form-control" type="date" name="empBirthday" value="${empVO.empBirthday}">
-                                                    <font class="text-danger">${errorMsgsMap["empBirthday"]}</font>
+                                                    <input readonly class="date-pick form-control" type="date" name="empBirthday" value="${empVOupdate.empBirthday}">                                                 
+                                               		<font class="text-danger">${errorMsgsMap["empBirthday"]}</font>
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>電子信箱＊</label>
-                                                    <input type="email" id="Email" class="form-control" name="email" value="${empVO.email}" />
-                                                    <font class="text-danger">${errorMsgsMap["email"]}</font>
+                                                    <input type="email" id="Email" class="form-control" name="email" value="${empVOupdate.email}"/>                                                   
+                                                	<font class="text-danger">${errorMsgsMap["email"]}</font>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>聯絡電話</label>
-                                                    <input type="text"  name="empCellphoneNo" class="form-control" value="${empVO.empCellphoneNo}"/>
-                                                    <font class="text-danger">${errorMsgsMap["empCellphoneNo"]}</font>
+                                                    <input type="text"  name="empCellphoneNo" class="form-control" value="${empVOupdate.empCellphoneNo}"/>
+                                                	<font class="text-danger">${errorMsgsMap["empCellphoneNo"]}</font>
                                                 </div>
                                             </div>
                                         </div>
@@ -391,14 +390,14 @@
                                                     <label>職等</label>
                                                     </br>
                                                     <div class="form-group">
+                                                    <option value="none" selected disabled hidden>${empVOupdate.jobLevels}</option> 
                                                         <select style="width:100%" name="jobLevels">
-                                                         <option value="none" selected disabled hidden >請選擇職等</option> 
                                                             <option value="Manger">Manger</option>
                                                             <option value="Supervisor">Supervisor</option>
                                                             <option value="Staff">Staff</option>
                                                         </select>
                                                         <font class="text-danger">${errorMsgsMap["jobLevels"]}</font>
-                                                                                                            
+                                                                                                           
                                                     </div>
                                                 </div>
                                             </div>
@@ -406,20 +405,16 @@
                                                 <div class="form-group">
                                                     <label>性別</label>
                                                     <br />
-                                                    <input type="radio" name="gender" value="Male" id="sexOption"
-                                                        />男
-                                                    <input type="radio" name="gender" value="Female" id="sexOption" />女
-                                                </div><font class="text-danger">${errorMsgsMap["gender"]}</font>
-                                                
+                                                    <input  readonly type="radio" name="gender" value="${empVOupdate.gender}" id="sexOption"
+                                                     onclick="return false" checked/>${empVOupdate.gender}                                                   
+                                                </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label>狀態</label>
                                                     <br />
-                                                    <input type="radio" name="status" value="stay"
-                                                        onclick="return false"  checked />在職
-                                                    <input type="radio" name="status" value="leave"
-                                                        onclick="return false"  />離職
+                                                    <input type="radio" name="status" value="stay" checked/>在職
+                                                    <input type="radio" name="status" value="leave"/>離職
                                                 </div>
                                             </div>
                                         </div>
@@ -427,23 +422,23 @@
 
                                         <div class="form-group">
                                             <label>地址</label>
-                                            <input type="text" class="form-control" name="empAddress" value="${empVO.empAddress}"
+                                            <input type="text" class="form-control" name="empAddress" value="${empVOupdate.empAddress}"
                                                 placeholder="居住地址" />
-                                                <font class="text-danger">${errorMsgsMap["empAddress"]}</font>
-                                        </div>
+                                        </div><font class="text-danger">${errorMsgsMap["empAddress"]}</font>
                                         
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>雇用日期</label>
-                                                    <input class="date-pick form-control" type="date" name="startDate" value="${empVO.startDate}" />
+                                                    <input readonly class="date-pick form-control" type="date" name="startDate" value="${empVOupdate.startDate}"
+                                                     onclick="return false"/>                                                    
                                                 </div>
-                                                <font class="text-danger">${errorMsgsMap["startDate"]}</font>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>離職日期</label>
-                                                    <input readonly class="date-pick form-control" type="date" name="resignationDate"/>
+                                                    <input class="date-pick form-control" type="date" name="resignationDate"
+                                                     value="${empVOupdate.resignationDate}"/>                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -451,11 +446,8 @@
 
                                         <div class="row d-flex justify-content-center">
                                             <div class="col-sm-12" style="text-align:right">
-                                            <div class="col-sm-12">
-                                            ${errorMsgs}
-                                            </div>
                                                 <div class="form-group">
-                                                    <button class="btn btn-primary" type="submit" name="action" value="EMPAdd">確認註冊</button>
+                                                    <button class="btn btn-primary" name="action" value="EMPUpdate" type="submit" >確認修改</button>
                                                 </div>
                                             </div>
                                         </div>

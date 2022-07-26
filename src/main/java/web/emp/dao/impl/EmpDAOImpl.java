@@ -33,17 +33,15 @@ public class EmpDAOImpl implements EmpDAO {
 		}
 	}
 
-	private static final String INSERT_STMT = "INSERT INTO Employee(EMP_Picture_Id,English_Last_Name,English_First_Name,Job_Levels,Gender,EMP_Birthday,Passport_No,"
+	private static final String INSERT_STMT = "INSERT INTO Employee(EMP_Picture_ID,English_Last_Name,English_First_Name,Job_Levels,Gender,EMP_Birthday,Passport_No,"
 			+ "Email,Start_Date,Resignation_Date,Password,EMP_Cellphone_No,EMP_Address,Status,Last_Modification_Date,Login_Time)  "
 			+ "VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?,?, ?, ?,?)";
-	private static final String GET_ALL_STMT = "SELECT (employeeId,empPictureId,englishLastName,englishFirstName,jobLevels,gender,empBirthday,passportNo,"
-			+ "email,startDate,resignationDate,password,empCellphoneNo,empAddress,status,lastModificationDate,loginTime) "
-			+ "FROM Pandora order by employeeId";
-	private static final String GET_ONE_STMT = "SELECT (employeeId,empPictureId,englishLastName,englishFirstName,jobLevels,gender,empBirthday,passportNo,"
-			+ "email,startDate,resignationDate,password,empCellphoneNo,empAddress,status,lastModificationDate,loginTime)"
-			+ " FROM Pandora where employeeId = ?";
-	private static final String DELETE = "DELETE FROM Pandora where employeeId = ?";
-	private static final String UPDATE = "UPDATE Pandora set (empPictureId=?,englishLastName=?,englishFirstName=?,jobLevels=?,gender=?,empBirthday=?,passportNo=?,email=?,startDate=?,resignationDate=?,password=?,empCellphoneNo=?,empAddress=?,status=?,lastModificationDate=?,loginTime=?) where employeeId = ?";
+	private static final String GET_ALL_STMT = "SELECT * FROM Employee order by Employee_ID";
+	private static final String GET_ONE_STMT = "SELECT * FROM Employee where Employee_ID = ?";
+	private static final String DELETE = "DELETE FROM Pandora where Employee_ID = ?";
+	private static final String UPDATE                = "UPDATE Employee set Employee_ID=?,EMP_Picture_ID=?,English_Last_Name=?,English_First_Name=?,Job_Levels=?,Gender=?,EMP_Birthday=?,Passport_No=?,Email=?,Start_Date=?,Resignation_Date=?,Password=?,EMP_Cellphone_No=?,EMP_Address=?,Status=?,Last_Modification_Date=?,Login_Time=? where Employee_ID = ?";
+	private static final String UPDATE_WithOutPicture = "UPDATE Employee set Employee_ID=?                 ,English_Last_Name=?,English_First_Name=?,Job_Levels=?,Gender=?,EMP_Birthday=?,Passport_No=?,Email=?,Start_Date=?,Resignation_Date=?,Password=?,EMP_Cellphone_No=?,EMP_Address=?,Status=?,Last_Modification_Date=?,Login_Time=? where Employee_ID = ?";
+	private static final String EMAIL_CHECK = "SELECT Email FROM Employee WHERE Email=?";
 
 	@Override
 	public void insert(EmpVO empVO) {
@@ -66,7 +64,6 @@ public class EmpDAOImpl implements EmpDAO {
 			pstmt.setString(8, empVO.getEmail());
 			pstmt.setDate(9, Date.valueOf(empVO.getStartDate()));
 			pstmt.setDate(10, empVO.getResignationDate() != null ? Date.valueOf(empVO.getResignationDate()) : null);
-
 			pstmt.setString(11, empVO.getPassword());
 			pstmt.setString(12, empVO.getEmpCellphoneNo());
 			pstmt.setString(13, empVO.getEmpAddress());
@@ -109,7 +106,60 @@ public class EmpDAOImpl implements EmpDAO {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setBytes(1, empVO.getEmpPictureId());
+			pstmt.setInt(1, empVO.getEmployeeId());
+			pstmt.setBytes(2, empVO.getEmpPictureId());
+			pstmt.setString(3, empVO.getEnglishLastName());
+			pstmt.setString(4, empVO.getEnglishFirstName());
+			pstmt.setString(5, empVO.getJobLevels());
+			pstmt.setString(6, empVO.getGender());
+			pstmt.setDate(7, Date.valueOf(empVO.getEmpBirthday()));
+			pstmt.setString(8, empVO.getPassportNo());
+			pstmt.setString(9, empVO.getEmail());
+			pstmt.setDate(10, Date.valueOf(empVO.getStartDate()));
+			pstmt.setDate(11, empVO.getResignationDate() != null ? Date.valueOf(empVO.getResignationDate()) : null);
+			pstmt.setString(12, empVO.getPassword());
+			pstmt.setString(13, empVO.getEmpCellphoneNo());
+			pstmt.setString(14, empVO.getEmpAddress());
+			pstmt.setString(15, empVO.getStatus());
+			pstmt.setTimestamp(16, Timestamp.valueOf(empVO.getLastModificationDate()));
+			pstmt.setTimestamp(17, empVO.getLoginTime() != null ? Timestamp.valueOf(empVO.getLoginTime()) : null);
+			pstmt.setInt(18, empVO.getEmployeeId());
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}
+
+	@Override
+	public void updateWithOutPicture(EmpVO empVO) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_WithOutPicture);
+			pstmt.setInt(1, empVO.getEmployeeId());
 			pstmt.setString(2, empVO.getEnglishLastName());
 			pstmt.setString(3, empVO.getEnglishFirstName());
 			pstmt.setString(4, empVO.getJobLevels());
@@ -118,15 +168,14 @@ public class EmpDAOImpl implements EmpDAO {
 			pstmt.setString(7, empVO.getPassportNo());
 			pstmt.setString(8, empVO.getEmail());
 			pstmt.setDate(9, Date.valueOf(empVO.getStartDate()));
-			pstmt.setDate(9, Date.valueOf(empVO.getResignationDate()));
-			pstmt.setString(10, empVO.getPassword());
-			pstmt.setString(11, empVO.getEmpCellphoneNo());
-			pstmt.setString(12, empVO.getEmpAddress());
-			pstmt.setString(13, empVO.getStatus());
-			pstmt.setTimestamp(14, Timestamp.valueOf(empVO.getLastModificationDate()));
-			pstmt.setTimestamp(15, Timestamp.valueOf(empVO.getLoginTime()));
-			pstmt.setInt(16, empVO.getEmployeeId());
-
+			pstmt.setDate(10, empVO.getResignationDate() != null ? Date.valueOf(empVO.getResignationDate()) : null);
+			pstmt.setString(11, empVO.getPassword());
+			pstmt.setString(12, empVO.getEmpCellphoneNo());
+			pstmt.setString(13, empVO.getEmpAddress());
+			pstmt.setString(14, empVO.getStatus());
+			pstmt.setTimestamp(15, Timestamp.valueOf(empVO.getLastModificationDate()));
+			pstmt.setTimestamp(16, empVO.getLoginTime() != null ? Timestamp.valueOf(empVO.getLoginTime()) : null);
+			pstmt.setInt(17, empVO.getEmployeeId());
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
@@ -202,31 +251,34 @@ public class EmpDAOImpl implements EmpDAO {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
-
 			pstmt.setInt(1, employeeId);
-
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				// empVo 也稱為 Domain objects
 				empVO = new EmpVO();
-				empVO.setEmployeeId(rs.getInt("EmployeeId"));
-				empVO.setEmpPictureId(rs.getBytes("empPictureId"));
-				empVO.setEnglishLastName(rs.getString("englishLastName"));
-				empVO.setEnglishFirstName(rs.getString("englishFirstName"));
-				empVO.setJobLevels(rs.getString("jobLevels"));
-				empVO.setGender(rs.getString("gender"));
-				empVO.setEmpBirthday(rs.getDate("empBirthday").toLocalDate());
-				empVO.setPassportNo(rs.getString("passportNo"));
-				empVO.setEmail(rs.getString("email"));
-				empVO.setStartDate(rs.getDate("startDate").toLocalDate());
-				empVO.setResignationDate(rs.getDate("resignationDate").toLocalDate());
-				empVO.setPassword(rs.getString("password"));
-				empVO.setEmpCellphoneNo(rs.getString("empCellphoneNo"));
-				empVO.setEmpAddress(rs.getString("empAddress"));
-				empVO.setStatus(rs.getString("status"));
-				empVO.setLastModificationDate(rs.getTimestamp("lastModificationDate").toLocalDateTime());
-				empVO.setLoginTime(rs.getTimestamp("loginTime").toLocalDateTime());
+				empVO.setEmployeeId(rs.getInt("Employee_ID"));
+				empVO.setEmpPictureId(rs.getBytes("EMP_Picture_ID"));
+				empVO.setEnglishLastName(rs.getString("English_Last_Name"));
+				empVO.setEnglishFirstName(rs.getString("English_First_Name"));
+				empVO.setJobLevels(rs.getString("Job_Levels"));
+				empVO.setGender(rs.getString("Gender"));
+				empVO.setEmpBirthday(rs.getDate("EMP_Birthday").toLocalDate());
+				empVO.setPassportNo(rs.getString("Passport_No"));
+				empVO.setEmail(rs.getString("Email"));
+				empVO.setStartDate(rs.getDate("Start_Date").toLocalDate());
+				if (rs.getDate("Resignation_Date") != null) {
+					empVO.setResignationDate(rs.getDate("Resignation_Date").toLocalDate());
+				}
+				empVO.setPassword(rs.getString("Password"));
+				empVO.setEmpCellphoneNo(rs.getString("EMP_Cellphone_No"));
+				empVO.setEmpAddress(rs.getString("EMP_Address"));
+				empVO.setStatus(rs.getString("Status"));
+				empVO.setLastModificationDate(rs.getTimestamp("Last_Modification_Date").toLocalDateTime());
+				if (rs.getTimestamp("Login_Time") != null) {
+					empVO.setLoginTime(rs.getTimestamp("Login_Time").toLocalDateTime());
+
+				}
 
 			}
 
@@ -264,7 +316,6 @@ public class EmpDAOImpl implements EmpDAO {
 	public List<EmpVO> getAll() {
 		List<EmpVO> list = new ArrayList<EmpVO>();
 		EmpVO empVO = null;
-
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -278,23 +329,40 @@ public class EmpDAOImpl implements EmpDAO {
 			while (rs.next()) {
 				// empVO 也稱為 Domain objects
 				empVO = new EmpVO();
-				empVO.setEmployeeId(rs.getInt("EmployeeId"));
-				empVO.setEmpPictureId(rs.getBytes("empPictureId"));
-				empVO.setEnglishLastName(rs.getString("englishLastName"));
-				empVO.setEnglishFirstName(rs.getString("englishFirstName"));
-				empVO.setJobLevels(rs.getString("jobLevels"));
-				empVO.setGender(rs.getString("gender"));
-				empVO.setEmpBirthday(rs.getDate("empBirthday").toLocalDate());
-				empVO.setPassportNo(rs.getString("passportNo"));
-				empVO.setEmail(rs.getString("email"));
-				empVO.setStartDate(rs.getDate("startDate").toLocalDate());
-				empVO.setResignationDate(rs.getDate("resignationDate").toLocalDate());
-				empVO.setPassword(rs.getString("password"));
-				empVO.setEmpCellphoneNo(rs.getString("empCellphoneNo"));
-				empVO.setEmpAddress(rs.getString("empAddress"));
-				empVO.setStatus(rs.getString("status"));
-				empVO.setLastModificationDate(rs.getTimestamp("lastModificationDate").toLocalDateTime());
-				empVO.setLoginTime(rs.getTimestamp("loginTime").toLocalDateTime());
+				empVO.setEmployeeId(rs.getInt("Employee_ID"));
+				empVO.setEmpPictureId(rs.getBytes("Emp_Picture_ID"));
+				empVO.setEnglishLastName(rs.getString("English_Last_Name"));
+				empVO.setEnglishFirstName(rs.getString("English_First_Name"));
+				empVO.setJobLevels(rs.getString("Job_Levels"));
+				empVO.setGender(rs.getString("Gender"));
+				empVO.setEmpBirthday(rs.getDate("Emp_Birthday").toLocalDate());
+				empVO.setPassportNo(rs.getString("Passport_No"));
+				empVO.setEmail(rs.getString("Email"));
+				empVO.setStartDate(rs.getDate("Start_Date").toLocalDate());
+				if (rs.getDate("Resignation_Date") != null) {
+					empVO.setResignationDate(rs.getDate("Resignation_Date").toLocalDate());
+				}
+//				if (rs.getDate("Resignation_Date").toLocalDate() ==null) {
+//					empVO.setResignationDate(null);
+//				}else {
+//					empVO.setResignationDate(rs.getDate("2030-03-06").toLocalDate());
+//				}
+				empVO.setPassword(rs.getString("Password"));
+				empVO.setEmpCellphoneNo(rs.getString("EMP_Cellphone_No"));
+				empVO.setEmpAddress(rs.getString("EMP_Address"));
+				empVO.setStatus(rs.getString("Status"));
+				empVO.setLastModificationDate(rs.getTimestamp("Last_Modification_Date").toLocalDateTime());
+//				if (rs.getTimestamp("Login_Time") == null) {
+//					empVO.setLoginTime(null);
+//				}else {
+//					empVO.setLoginTime(rs.getTimestamp("2030-03-06").toLocalDateTime());
+//				}
+//				
+				if (rs.getTimestamp("Login_Time") != null) {
+					empVO.setLoginTime(rs.getTimestamp("Login_Time").toLocalDateTime());
+
+				}
+
 				list.add(empVO);
 				// Store the row in the list
 			}
@@ -363,7 +431,7 @@ public class EmpDAOImpl implements EmpDAO {
 					resultEmpVO.setLastModificationDate(rs.getTimestamp("Last_Modification_Date").toLocalDateTime());
 					if (rs.getTimestamp("Login_Time") != null) {
 						resultEmpVO.setLoginTime(rs.getTimestamp("Login_Time").toLocalDateTime());
-					
+
 					}
 					return resultEmpVO;
 				}
@@ -375,5 +443,21 @@ public class EmpDAOImpl implements EmpDAO {
 		}
 
 		return null;
+	}
+
+	@Override
+	public boolean isExistEmail(String email) {
+
+		try (Connection conn = ds.getConnection(); PreparedStatement pstmt = conn.prepareStatement(EMAIL_CHECK);) {
+			pstmt.setString(1, email);
+
+			ResultSet rs = pstmt.executeQuery();
+			return rs.next();
+
+		} catch (Exception e) { 
+			throw new RuntimeException();
+			
+		}
+
 	}
 }

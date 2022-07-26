@@ -1,16 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="web.emp.service.impl.EmpServiceImpl"%>
+<%@page import="web.emp.service.EmpService"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="web.emp.bean.*"%>
 
 
-	
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ROYAL CLASS PANDORA_新增員工</title>
+    <title>ROYAL CLASS PANDORA_員工資料</title>
 
 
     <!-- Google Font: Source Sans Pro -->
@@ -22,6 +24,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Theme style -->
     <link rel="stylesheet" href="css/adminlte.css" />
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -65,10 +68,12 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                     	<img src="<%=request.getContextPath()%>/EMPImageServlet?action=usesrImage"  name="action" value="empVO" class="img-circle elevation-2" alt="User Image" />
+                        <img src="<%=request.getContextPath()%>/EMPImageServlet?action=usesrImage"  name="action"  class="img-circle elevation-2" alt="User Image" />
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">${loginUser.englishFirstName}&nbsp${loginUser.englishLastName}</a>
+                          <input name="Userlogin" type="hidden">
+                         <a href="#" class="d-block">${loginUser.englishFirstName}&nbsp${loginUser.englishLastName}</a>
+                      
                     </div>
                 </div>
 
@@ -87,8 +92,8 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item" >
-                              		 <a href="<%=request.getContextPath()%>/EmpLoginServlet?action=EMPAllList" class="nav-link">
+                                <li class="nav-item menu-open">
+                                    <a href="<%=request.getContextPath()%>/EmpLoginServlet?action=EMPAllList" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>員工資料表</p>
                                     </a>
@@ -289,18 +294,17 @@
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        <div class="col-sm-6" style="width:100%">
-
-
+                        <div class="col-sm-6">
+                            <h1 class="m-0">PANDORA後台系統 </h1>
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item">
-                                    <a href="<%=request.getContextPath()%>/EmpLoginServlet?action=EMPAllList">員工資料</a>
+                                    <a href="#">員工資料</a>
                                 </li>
                                 <li class="breadcrumb-item active">
-                                    新增員工
+                                    EMP Page
                                 </li>
                             </ol>
                         </div>
@@ -313,159 +317,112 @@
             <!-- /.content-header -->
 
             <!-- Main content -->
-            <main>
-                <section id="hero" class="login">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-xl-6 col-lg-5 col-md-6 col-sm-8">
-                                <div id="login">
-                                    <div class="form-group">
-                                        <h1>
-                                            新增員工
-                                        </h1>
-                                        <hr />
-                                    </div>
-                                    </br>
-                                   
-                                    <form action="<%=request.getContextPath()%>/EmpLoginServlet" method="Post" enctype="multipart/form-data" >
-    								  <center>
-    										<input type="file" name="empPictureId" />
-    									
-                                    
-                                        <div class="col-sm-6" style="text-align:center">
-                                            <img src="images/meatball.jpg" alt="Image" width=100% />
-                                        </div>
-                                      </center>
-                                    <hr />
-                                  
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>護照英文名字*</label>
-                                                    <input type="text" class="form-control" name="englishFirstName" 
-                                                    value="${empVO.englishFirstName}" />
-                                                    <font class="text-danger">${errorMsgsMap["englishFirstName"]}</font>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>護照英文姓氏*</label>
-                                                    <input type="text" class="form-control" name="englishLastName" value="${empVO.englishLastName}" />
-                                                    <font class="text-danger">${errorMsgsMap["englishLastName"]}</font>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>護照號碼*</label>
-                                                    <input type="text" class="form-control" name="passportNo" value="${empVO.passportNo}" />
-                                                    <font class="text-danger">${errorMsgsMap["passportNo"]}</font>
-                                                </div>
-                                            </div>
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- left column -->
+                        <div class="col-md-12">
+                            <!-- jquery validation -->
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        員工資料表
 
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>出生日期＊</label>
-                                                    <input class="date-pick form-control" type="date" name="empBirthday" value="${empVO.empBirthday}">
-                                                    <font class="text-danger">${errorMsgsMap["empBirthday"]}</font>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>電子信箱＊</label>
-                                                    <input type="email" id="Email" class="form-control" name="email" value="${empVO.email}" />
-                                                    <font class="text-danger">${errorMsgsMap["email"]}</font>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>聯絡電話</label>
-                                                    <input type="text"  name="empCellphoneNo" class="form-control" value="${empVO.empCellphoneNo}"/>
-                                                    <font class="text-danger">${errorMsgsMap["empCellphoneNo"]}</font>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>職等</label>
-                                                    </br>
-                                                    <div class="form-group">
-                                                        <select style="width:100%" name="jobLevels">
-                                                         <option value="none" selected disabled hidden >請選擇職等</option> 
-                                                            <option value="Manger">Manger</option>
-                                                            <option value="Supervisor">Supervisor</option>
-                                                            <option value="Staff">Staff</option>
-                                                        </select>
-                                                        <font class="text-danger">${errorMsgsMap["jobLevels"]}</font>
-                                                                                                            
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="form-group">
-                                                    <label>性別</label>
-                                                    <br />
-                                                    <input type="radio" name="gender" value="Male" id="sexOption"
-                                                        />男
-                                                    <input type="radio" name="gender" value="Female" id="sexOption" />女
-                                                </div><font class="text-danger">${errorMsgsMap["gender"]}</font>
-                                                
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="form-group">
-                                                    <label>狀態</label>
-                                                    <br />
-                                                    <input type="radio" name="status" value="stay"
-                                                        onclick="return false"  checked />在職
-                                                    <input type="radio" name="status" value="leave"
-                                                        onclick="return false"  />離職
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="form-group">
-                                            <label>地址</label>
-                                            <input type="text" class="form-control" name="empAddress" value="${empVO.empAddress}"
-                                                placeholder="居住地址" />
-                                                <font class="text-danger">${errorMsgsMap["empAddress"]}</font>
-                                        </div>
-                                        
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>雇用日期</label>
-                                                    <input class="date-pick form-control" type="date" name="startDate" value="${empVO.startDate}" />
-                                                </div>
-                                                <font class="text-danger">${errorMsgsMap["startDate"]}</font>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>離職日期</label>
-                                                    <input readonly class="date-pick form-control" type="date" name="resignationDate"/>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="row d-flex justify-content-center">
-                                            <div class="col-sm-12" style="text-align:right">
-                                            <div class="col-sm-12">
-                                            ${errorMsgs}
-                                            </div>
-                                                <div class="form-group">
-                                                    <button class="btn btn-primary" type="submit" name="action" value="EMPAdd">確認註冊</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                                    </h3>
                                 </div>
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <div class="container">
+
+
+                                    <table id="table" data-toggle="table" data-search="true" data-filter-control="true"
+                                        data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                        <thead>
+                                            <tr>
+
+                                                <th data-field="Employee_ID" data-filter-control="input"
+                                                    data-sortable="true">員工編號</th>
+                                                <th data-field="Job_Levels" data-filter-control="select"
+                                                    data-sortable="true">職等</th>
+                                                <th data-field="Englis_Last_Name" data-filter-control="select"
+                                                    data-sortable="true">英文姓氏
+                                                </th>
+                                                <th data-field="Englis_First_Name" data-filter-control="select"
+                                                    data-sortable="true">
+                                                    英文姓名</th>
+                                                <th data-field="Gender" data-filter-control="select"
+                                                    data-sortable="true">性別</th>
+                                                <th data-field="EMP_Birthdy" data-filter-control="select"
+                                                    data-sortable="true">生日</th>
+                                                <th data-field="Passport_No" data-filter-control="select"
+                                                    data-sortable="true">護照號碼</th>
+                                                <th data-field="E-mail" data-filter-control="select"
+                                                    data-sortable="true">電子信箱</th>
+                                                <th data-field="Start_Date" data-filter-control="select"
+                                                    data-sortable="true">到職日</th>
+                                                <th data-field="Status" data-filter-control="select"
+                                                    data-sortable="true">狀態</th>
+                                                <th></th>
+                                           </tr>                                           
+                                        </thead>
+                              
+                                        <tbody>
+                                     
+                                        
+                                          <c:forEach var="empVOView" items="${empAllList}" >
+                                            <tr>				
+                                             	<td>${empVOView.employeeId}</td>
+                                                <td>${empVOView.jobLevels}</td>
+                                                <td>${empVOView.englishLastName}</td>
+                                                <td>${empVOView.englishFirstName}</td>
+                                                <td>${empVOView.gender}</td>
+                                                <td>${empVOView.empBirthday}</td>
+                                                <td>${empVOView.passportNo}</td>
+                                                <td>${empVOView.email}</td>
+                                                <td>${empVOView.startDate}</td>                                         
+                                                <td>${empStatusMap[empVOView.status]}</td>
+                                                <td>
+                                                <form method="Post" action="<%=request.getContextPath()%>/EmpLoginServlet">	
+                                                 <input type="submit" value="編輯"  style="width:100%;height:100%;color:#fff;background-color:#007bff;border-color:#fff">
+                                                 <input type="hidden" name="employeeId" value="${empVOView.employeeId}">
+			    				 				 <input type="hidden" name="action"	value="EMPGetOneForUpdate">
+                                               
+                                               </form>    
+                                               </td>                                        
+                                            </tr>  
+                                          </c:forEach>     
+                                                                                                           
+                                        </tbody>
+                                        
+                                                                      
+                                    </table>
+                                   <a href="<%=request.getContextPath()%>/EMP_Register.jsp"> 
+                                    <input type="button" value="新增員工" text-align=center 
+                                     style="margin-right: 0%;width:250px;float: right;">
+                                   </a>
+
+                                </tfoot>
+                               
+
                             </div>
+ 							<center>
+                                <div style="width:100%;text-align:center">
+                                    <input style="display:inline-block;width:150px" type="button"
+                                        onclick="history.go(-1)" value="上一頁"></input>
+                                    <input style="display:inline-block;width:150px" type="button"
+                                        onclick="history.forward()" value="下一頁">
+                                </div>
+							</center>
                         </div>
+                        <!-- /.card -->
                     </div>
-                </section>
-            </main>
+                    <!--/.col (left) -->
+                    <!-- right column -->
+                    <div class="col-md-6"></div>
+                    <!--/.col (right) -->
+                </div>
+                <!-- /.row -->
+            </div>
             <!-- /.container-fluid -->
         </div>
         <!-- /.content -->
@@ -497,6 +454,32 @@
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="js/adminlte.js"></script>
+    <script>
+        //exporte les données sélectionnées
+        var $table = $('#table');
+
+
+        var trBoldBlue = $(" table"); $(trBoldBlue).on("click", "tr", function () {
+            $(this).toggleClass("bold-blue");
+        }); </script>
+
+    <!-- 上下頁 -->
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://github.com/kayalshri/tableExport.jquery.plugin/blob/master/jquery.base64.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>
+    <!-- Latest compiled and minified Locales -->
+    <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
