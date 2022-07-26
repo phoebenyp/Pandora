@@ -409,7 +409,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <td>
                                                         	<select name="roomTypeNo">
 		                                                        <c:forEach var="roomTypeVO" items="${list}">
-																	<option value="${roomTypeVO.roomTypeNo}" ${(roomTypeVO.roomTypeNo==roomTypeTotalCountVO.roomTypeNo)?'selected':'' } >${roomTypeVO.roomType}
+																	<option value="${roomTypeVO.roomTypeNo}" ${(roomTypeTotalCountVO.roomTypeNo==roomTypeVO.roomTypeNo)?'selected':'' } >${roomTypeVO.roomType}
 																</c:forEach>
 	                                                        </select>
 <!--                                                         	<select> -->
