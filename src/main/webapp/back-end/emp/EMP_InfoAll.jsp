@@ -99,7 +99,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<%=request.getContextPath()%>/EMP_Register.jsp" class="nav-link">
+                                    <a href="<%=request.getContextPath()%>/back-end/emp/EMP_Register.jsp" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>新增員工</p>
                                     </a>
@@ -396,7 +396,7 @@
                                         
                                                                       
                                     </table>
-                                   <a href="<%=request.getContextPath()%>/EMP_Register.jsp"> 
+                                   <a href="<%=request.getContextPath()%>/back-end/emp]/EMP_Register.jsp"> 
                                     <input type="button" value="新增員工" text-align=center 
                                      style="margin-right: 0%;width:250px;float: right;">
                                    </a>
