@@ -15,5 +15,6 @@ public interface PortNameListDAO {
 	PortNameListVO selectLastSecond(Integer portsOfCallListNo);
 
 	PortNameListVO selectFirst(Integer portsOfCallListNo);
-
+	
+	PortNameListVO selectPNL(Integer portsOfCallListNo);
 }

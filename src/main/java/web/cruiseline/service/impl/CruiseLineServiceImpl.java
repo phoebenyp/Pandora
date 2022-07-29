@@ -44,6 +44,9 @@ public class CruiseLineServiceImpl {
 	public PortNameListVO selectPortNameListFirst(Integer portsOfCallListNo) {
 		return daoPortNameList.selectFirst(portsOfCallListNo);
 	}
+	public PortNameListVO selectPortNameListPNL(Integer portsOfCallListNo) {
+		return daoPortNameList.selectPNL(portsOfCallListNo);
+	}
 	
 	public PortsOfCallListVO insertPCL(Integer cruiseLinesNo,Integer portOfCallNo,Integer portOfCallSequence) {
 		PortsOfCallListVO portsOfCallListVO = new PortsOfCallListVO();

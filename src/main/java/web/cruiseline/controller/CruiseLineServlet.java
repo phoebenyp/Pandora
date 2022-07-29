@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import web.cruiseline.bean.CruiseLineVO;
+import web.cruiseline.bean.PortNameListVO;
 import web.cruiseline.bean.PortsOfCallListVO;
 import web.cruiseline.service.impl.CruiseLineServiceImpl;
 import web.emp.bean.EmpVO;
@@ -78,7 +79,7 @@ public class CruiseLineServlet extends HttpServlet {
 				successView.forward(request, response);
 		}
 		
-		if ("updatePCL".equals(action)) { // 來自update_emp_input.jsp的請求
+		if ("updatePCLBefore".equals(action)) { // 來自update_emp_input.jsp的請求
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -88,25 +89,56 @@ public class CruiseLineServlet extends HttpServlet {
 		
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				Integer portsOfCallListNo = Integer.valueOf(request.getParameter("portsOfCallListNo"));
-				Integer portOfCallNo = Integer.valueOf(request.getParameter("portOfCallNo"));
-				Integer portOfCallSequence = Integer.valueOf(request.getParameter("portOfCallSequence"));
-				Integer cruiseLinesNo = Integer.valueOf(request.getParameter("cruiseLinesNo"));
-				System.out.println(portOfCallNo);
-				PortsOfCallListVO portsOfCallListVO=new PortsOfCallListVO();
-				portsOfCallListVO.setPortsOfCallListNo(portsOfCallListNo);
-				portsOfCallListVO.setCruiseLinesNo(cruiseLinesNo);
-				portsOfCallListVO.setPortOfCallNo(portOfCallNo);
-				portsOfCallListVO.setPortOfCallSequence(portOfCallSequence);
-//				portsOfCallListVO
+				Integer cruiseLineNo = Integer.valueOf(request.getParameter("cruiseLineNo"));
+//				System.out.println(portsOfCallListNo);
+				String cruiseLines =request.getParameter("cruiseLines");
+
 
 				// Send the use back to the form, if there were errors
 				
 				/***************************2.開始修改資料*****************************************/
 				CruiseLineServiceImpl clSvc = new CruiseLineServiceImpl();
-				portsOfCallListVO = clSvc.updatePCL(cruiseLinesNo, portOfCallNo, portOfCallSequence, portsOfCallListNo);
+				PortNameListVO portNameListVO = new PortNameListVO();
+				portNameListVO = clSvc.selectPortNameListPNL(portsOfCallListNo);
 				
 				//抽出單艘船的資料
+//				CruiseLineVO cruiseLineVO = clSvc.selectCruiseNo(cruiseLinesNo);
+				
+				/***************************3.修改完成,準備轉交(Send the Success view)*************/				
+				
+				request.setAttribute("portNameListVO", portNameListVO);
+				request.setAttribute("cruiseLines", cruiseLines);
+				request.setAttribute("cruiseLineNo", cruiseLineNo);
+                String url = "/back-end/cruiseline/cruiselinePNLUpdate.jsp";
+				RequestDispatcher successView = request.getRequestDispatcher(url);   // 修改成功後,轉交回送出修改的來源網頁
+				successView.forward(request, response);
+		}
+		if ("updatePCL".equals(action)) { // 來自update_emp_input.jsp的請求
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			request.setAttribute("errorMsgs", errorMsgs);
+			
+		
+				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+				Integer portsOfCallListNo = Integer.valueOf(request.getParameter("portsOfCallListNo").trim());
+				System.out.println("portsOfCallListNo="+portsOfCallListNo);
+				Integer cruiseLinesNo = Integer.valueOf(request.getParameter("cruiseLinesNo").trim());
+				System.out.println(cruiseLinesNo);
+				Integer portOfCallNo = Integer.valueOf(request.getParameter("portOfCallNo").trim());
+				System.out.println(portOfCallNo);
+				Integer portOfCallSequence = Integer.valueOf(request.getParameter("portOfCallSequence").trim());
+				System.out.println(portOfCallSequence);
+
+				// Send the use back to the form, if there were errors
+				
+				/***************************2.開始修改資料*****************************************/
+				CruiseLineServiceImpl clSvc = new CruiseLineServiceImpl();
+				PortsOfCallListVO portsOfCallListVO = clSvc.updatePCL(cruiseLinesNo, portOfCallNo, portOfCallSequence, portsOfCallListNo);
 				CruiseLineVO cruiseLineVO = clSvc.selectCruiseNo(cruiseLinesNo);
+				//抽出單艘船的資料
+//				CruiseLineVO cruiseLineVO = clSvc.selectCruiseNo(cruiseLinesNo);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/				
 				
@@ -115,6 +147,40 @@ public class CruiseLineServlet extends HttpServlet {
 				RequestDispatcher successView = request.getRequestDispatcher(url);   // 修改成功後,轉交回送出修改的來源網頁
 				successView.forward(request, response);
 		}
+			if ("insertPCL".equals(action)) { // 來自update_emp_input.jsp的請求
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			request.setAttribute("errorMsgs", errorMsgs);
+			
+		
+				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+				Integer portOfCallNo = Integer.valueOf(request.getParameter("portOfCallNo").trim());
+				System.out.println("portOfCallNo="+portOfCallNo);
+				Integer cruiseLineNo = Integer.valueOf(request.getParameter("cruiseLineNo").trim());
+				System.out.println(cruiseLineNo);
+				
+
+				// Send the use back to the form, if there were errors
+				
+				/***************************2.開始修改資料*****************************************/
+				CruiseLineServiceImpl clSvc = new CruiseLineServiceImpl();
+				CruiseLineVO cruiseLineVO = clSvc.selectCruiseNo(cruiseLineNo);
+				//抽出單艘船的資料
+//				CruiseLineVO cruiseLineVO = clSvc.selectCruiseNo(cruiseLinesNo);
+				Integer portOfCallSequence = clSvc.selectPortNameListLast(cruiseLineNo).getPortOfCallSequence() + 1;
+				System.out.println(portOfCallSequence);
+				PortsOfCallListVO portsOfCallListVO = clSvc.insertPCL(cruiseLineNo, portOfCallNo, portOfCallSequence);
+				/***************************3.修改完成,準備轉交(Send the Success view)*************/				
+				
+				request.setAttribute("cruiseLineVO", cruiseLineVO);
+                String url = "/back-end/cruiseline/cruiselineUpdate.jsp";
+				RequestDispatcher successView = request.getRequestDispatcher(url);   // 修改成功後,轉交回送出修改的來源網頁
+				successView.forward(request, response);
+		}
+		
+		
 	}
 
 }
