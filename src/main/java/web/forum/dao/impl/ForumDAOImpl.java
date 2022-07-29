@@ -32,7 +32,7 @@ public class ForumDAOImpl implements ForumDAO {
 	private static final String INSERT_STMT = 
 			"INSERT INTO Forum (Member_ID,Post_Title,Post_Content,Post_Time,Clicks,Status) VALUES (?, ?, ?, ?, ?, ?)";
 		private static final String GET_ALL_STMT = 
-			"SELECT postId,memberId,postTitle,postContent,postTime,clicks,status FROM forum order by postId";
+			"SELECT * FROM forum";
 		private static final String GET_ONE_STMT = 
 			"SELECT postId,memberId,postTitle,postContent,postTime,clicks,status FROM emp2 where postId = ?";
 		private static final String DELETE = 
@@ -192,13 +192,13 @@ public class ForumDAOImpl implements ForumDAO {
 			while (rs.next()) {
 				// empVo 也稱為 Domain objects
 				forumVO = new ForumVO();
-				forumVO.setPostId(rs.getInt("postId"));
-				forumVO.setMemberId(rs.getInt("memberId"));
-				forumVO.setPostTitle(rs.getString("postTitle"));
-				forumVO.setPostContent(rs.getString("postContent"));
-				forumVO.setPostTime(rs.getTimestamp("postTime").toLocalDateTime());
-				forumVO.setClicks(rs.getInt("clicks"));
-				forumVO.setStatus(rs.getString("status"));
+				forumVO.setPostId(rs.getInt("Post_ID"));
+				forumVO.setMemberId(rs.getInt("Member_ID"));
+				forumVO.setPostTitle(rs.getString("Post_Title"));
+				forumVO.setPostContent(rs.getString("Post_Content"));
+				forumVO.setPostTime(rs.getTimestamp("Post_Time").toLocalDateTime());
+				forumVO.setClicks(rs.getInt("Clicks"));
+				forumVO.setStatus(rs.getString("Status"));
 			}
 
 			// Handle any driver errors
@@ -251,13 +251,13 @@ public class ForumDAOImpl implements ForumDAO {
 			while (rs.next()) {
 				// empVO 也稱為 Domain objects
 				forumVO = new ForumVO();
-				forumVO.setPostId(rs.getInt("postId"));
-				forumVO.setMemberId(rs.getInt("memberId"));
-				forumVO.setPostTitle(rs.getString("postTitle"));
-				forumVO.setPostContent(rs.getString("postContent"));
-				forumVO.setPostTime(rs.getTimestamp("postTime").toLocalDateTime());
-				forumVO.setClicks(rs.getInt("clicks"));
-				forumVO.setStatus(rs.getString("status"));
+				forumVO.setPostId(rs.getInt("Post_ID"));
+				forumVO.setMemberId(rs.getInt("Member_ID"));
+				forumVO.setPostTitle(rs.getString("Post_Title"));
+				forumVO.setPostContent(rs.getString("Post_Content"));
+				forumVO.setPostTime(rs.getTimestamp("Post_Time").toLocalDateTime());
+				forumVO.setClicks(rs.getInt("Clicks"));
+				forumVO.setStatus(rs.getString("Status"));
 				list.add(forumVO); // Store the row in the list
 			}
 
