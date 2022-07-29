@@ -59,20 +59,20 @@ public class EmpLoginServlet extends HttpServlet {
 			req.getSession().setAttribute("loginUser", empVO);
 
 			if (empVO != null) {
-				String url = "/EMP_HomePage.jsp";
+				String url = "back-end/emp/EMP_HomePage.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, resp);
 				return;
 			} else {
 				req.setAttribute("errorMsg", "帳號密碼錯誤");
-				RequestDispatcher failView = req.getRequestDispatcher("/EMP_login.jsp");
+				RequestDispatcher failView = req.getRequestDispatcher("back-end/emp/EMP_login.jsp");
 				failView.forward(req, resp);
 				return;
 			}
 		}
 
 		if ("EMPSignOut".equals(action)) {
-			String url = req.getContextPath() + "/EMP_login.jsp";
+			String url = req.getContextPath() + "/back-end/emp/EMP_login.jsp";
 			req.getSession().invalidate();
 			resp.sendRedirect(url);
 
@@ -83,7 +83,7 @@ public class EmpLoginServlet extends HttpServlet {
 			EmpService empSerive = new EmpServiceImpl();
 			List<EmpVO> empAllList = empSerive.getAll();
 			req.setAttribute("empAllList", empAllList);
-			RequestDispatcher successView = req.getRequestDispatcher("/EMP_InfoAll.jsp");
+			RequestDispatcher successView = req.getRequestDispatcher("back-end/emp/EMP_InfoAll.jsp");
 			successView.forward(req, resp);
 			return;
 		}
@@ -110,7 +110,7 @@ public class EmpLoginServlet extends HttpServlet {
 			EmpVO empVOupdate = empService.getOneEmp(employeeId);
 			req.setAttribute("empVOupdate", empVOupdate);
 
-			String url = "/EMP_GetOneEdiotrByManger.jsp";
+			String url = "back-end/emp/EMP_GetOneEdiotrByManger.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 			successView.forward(req, resp);
 		}
@@ -260,21 +260,21 @@ public class EmpLoginServlet extends HttpServlet {
 //			// Send the use back to the form, if there were errors
 			if (!errorMsgs.isEmpty()|| !errorMsgsMap.isEmpty()) {
 				req.setAttribute("empVOupdate", empVO); // 含有輸入格式錯誤的empVO物件,也存入req
-				RequestDispatcher failureView = req.getRequestDispatcher("EMP_GetOneEdiotrByManger.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("back-end/emp/EMP_GetOneEdiotrByManger.jsp");
 				failureView.forward(req, resp);
 				return;
 			}
 
 			empVO = empService.updateEmp(empVO);
 			req.setAttribute("empAllList", empService.getAll());
-			String url = "/EMP_InfoAll.jsp";
+			String url = "back-end/emp/EMP_InfoAll.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);// 編輯成功重載 EMP_GetOneEdiotrByManger.jsp
 			successView.forward(req, resp);
 
 		}
 
 		if ("EMPAdd".equals(action)) {
-			String url = req.getContextPath() + "/EMP_Register.jsp";
+			String url = req.getContextPath() + "back-end/emp/EMP_Register.jsp";
 			List<String> errorMsgs = new LinkedList<String>();
 			Map<String, String> errorMsgsMap = new LinkedHashMap<>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -413,7 +413,7 @@ public class EmpLoginServlet extends HttpServlet {
 
 				req.setAttribute("empVO", empVO); // 含有輸入格式錯誤的empVO物件,也存入req
 
-				RequestDispatcher failureView = req.getRequestDispatcher("/EMP_Register.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("back-end/emp/EMP_Register.jsp");
 				failureView.forward(req, resp);
 				return;
 			}
@@ -423,7 +423,7 @@ public class EmpLoginServlet extends HttpServlet {
 			empVO = empSvc.addEmp(empVO);
 			req.setAttribute("empAllList", empSvc.getAll());
 			/*************************** 3.完成,準備轉交(Send the Success view) ***********/
-			RequestDispatcher successView = req.getRequestDispatcher("/EMP_InfoAll.jsp");
+			RequestDispatcher successView = req.getRequestDispatcher("back-end/emp/EMP_InfoAll.jsp");
 			successView.forward(req, resp);
 
 			return;
