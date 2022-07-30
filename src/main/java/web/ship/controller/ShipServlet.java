@@ -465,6 +465,11 @@ request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的shipsVO�
 					RequestDispatcher successView = request.getRequestDispatcher(url);// 成功轉交 shipUpdateRTTC.jsp
 					successView.forward(request, response);
 			}
+			if ("shiptoinsert".equals(action)) {
+				String url = "/back-end/ship/shipInsert.jsp";
+				RequestDispatcher successView = request.getRequestDispatcher(url);// 成功轉交 shipUpdateRTTC.jsp
+				successView.forward(request, response);
+			}
 		
 	}
 

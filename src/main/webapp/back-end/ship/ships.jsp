@@ -418,10 +418,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </table>
                                     </div>
 
-                                    
-                                    <input type="button" name="EMPregister" value="新增郵輪" text-align=center
-                                        style="margin-right: 0%;width:250px;float: right;"
-                                        onclick="javascript:window.location.href='shipInsert.jsp'" />
+                                     <form method="post"  action="<%=request.getContextPath()%>/ShipServlet">
+                                     <input type="hidden" name="action" value="shiptoinsert">
+                                    <input type="submit" name="EMPregister" value="新增郵輪" text-align=center
+                                        style="margin-right: 0%;width:250px;float: right;"/>
+                                        </form>
                                 </div>
 
                                 </tfoot>

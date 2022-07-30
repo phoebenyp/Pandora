@@ -373,9 +373,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
 
                                         <div class="col-md-4">
-                                        <input name="portsOfCallListNo" value="${portNameListVO.portsOfCallListNo}" type="text">
-                                        <input name="cruiseLinesNo" value="${portNameListVO.cruiseLinesNo}" type="text">
-                                        <input name="portOfCallSequence" value="${portNameListVO.portOfCallSequence}" type="text">
+                                        <input name="portsOfCallListNo" value="${portNameListVO.portsOfCallListNo}" type="hidden">
+                                        <input name="cruiseLinesNo" value="${portNameListVO.cruiseLinesNo}" type="hidden">
+                                        <input name="portOfCallSequence" value="${portNameListVO.portOfCallSequence}" type="hidden">
                                         <input name="action" value="updatePCL" type="hidden">
                                             <input type="submit" name="EMPregister" value="變更停靠點" text-align=center
                                             style="margin-left: 0%;width:250px;float: left;"/>

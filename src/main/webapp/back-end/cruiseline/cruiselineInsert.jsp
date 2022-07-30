@@ -1,31 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page import="java.util.*"%>
-<%@ page import="web.cruiseline.bean.CruiseLineVO" %>
-<%@	page import="web.cruiseline.dao.PortNameListDAO" %>
-<%@	page import="web.cruiseline.dao.impl.PortNameListDAOImpl" %>
-<%@	page import="web.cruiseline.bean.PortNameListVO" %>
-<%@ page import="web.port.dao.impl.PortDAOImpl" %>
-<%@ page import="web.port.bean.PortVO" %>
+
 
 <%
-	CruiseLineVO cruiseLineVO =(CruiseLineVO) request.getAttribute("cruiseLineVO");
-	
-	Integer cruiseLineNo = cruiseLineVO.getCruiseLineNo();
-	
-	PortNameListDAOImpl pnlSVC =new PortNameListDAOImpl();
-	List<PortNameListVO> pNLlist =pnlSVC.getAll(cruiseLineNo);
-	Integer count = 0;
-	pageContext.setAttribute("pNLlist",pNLlist);
-	pageContext.setAttribute("count", count);
-	
-	PortDAOImpl pSVC = new PortDAOImpl();
-	List<PortVO> plist = pSVC.getAll();
-	pageContext.setAttribute("plist", plist);
+
 
 %>
 <!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
 <html lang="en">
 
 <head>
@@ -348,15 +334,7 @@
                 <!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
-			<%-- 錯誤表列 --%>
-				<c:if test="${not empty errorMsgs}">
-					<font style="color:red">請修正以下錯誤:</font>
-					<ul>
-					    <c:forEach var="message" items="${errorMsgs}">
-							<li style="color:red">${message}</li>
-						</c:forEach>
-					</ul>
-				</c:if>
+
             <!-- Main content -->
             <div class="content">
                 <div class="container-fluid">
@@ -376,106 +354,24 @@
                                 <div class="container">
 
                                     <div class="row">
-                                    	<form method="post"  action="<%=request.getContextPath()%>/CruiseLineServlet" enctype='multipart/form-data'>
-                                       <div class="col-md-3">航線編號</div>
-                                       <div class="col-md-9"> <input type="hidden" name="cruiseLineNo" value="${cruiseLineVO.cruiseLineNo }"> <%=cruiseLineVO.getCruiseLineNo() %></div>
-                                       <div class="col-md-3">航線名稱</div>
-                                       <div class="col-md-9"><input type="hidden" name="cruiseLines" value="<%=cruiseLineVO.getCruiseLines() %>"><%=cruiseLineVO.getCruiseLines() %></div>
-                                       <div class="col-md-3">最後維護時間</div>
-                                       <div class="col-md-9"><input id="f_date1" class="date-pick form-control" type="text" name="time" value="${cruiseLineVO.time}"></div>
-                                       <div class="col-6">
-                                           <label>航線圖片：</label>
-                                           <input type="file" name="cruiselinePic" />
-                                           <img id="img_content" src="<%=request.getContextPath()%>/CruiseLineServlet?action=cruiseLineVOUpdate&cruiseLineNo=${cruiseLineVO.cruiseLineNo}"  name="action" class="img-circle elevation-2 col-12" alt="CruiseLine Image" style=width:100% />
-                                       </div>
-                                       <div id="preview" class="preview col-md-12" >
-<!--                                         <span class="text">預覽圖</span> -->
-<!--                                         <img id="img_content"> -->
-                                       </div>
-                                       <div class="col-md-4">
-                                       		<input type="hidden" name="action" value="updateCL">
-                                            <input type="submit" name="EMPregister" value="編輯航線" text-align=center
-                                            style="margin-left: 0%;width:250px;float: left;"
-                                            onclick="javascript:window.location.href=''" />
+                                       <form method="post"  action="<%=request.getContextPath()%>/CruiseLineServlet" enctype='multipart/form-data'>
+                                        <div class="col-6">
+                                            <label>航線圖片：</label>
+                                            <input type="file" id="p_file" name="cruiselinePic"/>
+                                        </div>
+                                        <div id="preview" class="preview col-md-12" >
+                                            <span class="text">預覽圖</span>
+                                        </div>
+                                        <div class="col-md-3">最後維護時間</div>
+                                        <div class="col-md-9"><input id="f_date1" type="text" name="time"></div>
+                                        
+                                        <div class="col-md-4">
+                                        <input type="hidden" name="action" value="cruiselineInsert" />
+                                            <input type="submit" name="EMPregister" value="新增航線" text-align=center
+                                            style="margin-left: 0%;width:250px;float: left;" />
                                         </div>
                                         </form>
-                                        <div class="col-md-4">
-                                        <form method="post"  action="<%=request.getContextPath()%>/CruiseLineServlet">
-                                        <input type="hidden" name="cruiseLineNo" value="${cruiseLineVO.cruiseLineNo}">
-                                        <input type="hidden" name="action" value="insertPCL">
-                                            <select name="portOfCallNo" id="" style="width:250px;float: center;">
-                                            <c:forEach items="${plist}"	 var="pVO">
-                                            <option value="${pVO.portOfCallNo }" >${pVO.portName }</option>
-                                            </c:forEach>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <button type="submit" style="margin-right: 0%;width:250px;float: right;">新增停靠點</button>
-                                        </div>
-                                        </form>
-                                       <div class="col-md-12 " data-click-to-select="true" data-toolbar="#toolbar">
-                                        <table>
-                                            <table class=" col-md-12" id="table" data-toggle="table" data-filter-control="true"
-                                        data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                                        <thead>
-                                            <tr>
-
-                                                <th data-field="Employee_ID" data-filter-control="input"
-                                                    >行程</th>
-                                                <th data-field="Job_Levels" data-filter-control="select"
-                                                    >國家/城市</th>
-                                                    <th data-field="update" data-filter-control="select"
-                                                    >變更</th>
-                                                    <th data-field="delete" data-filter-control="select"
-                                                    >去除</th>
-                                                
-
-
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-<%--                                         <%! int count=0; %> --%>
-                                        	<c:forEach items="${pNLlist }" var="pNLVO">
-                                        	
-                                        	
-                                            <tr>
-										
-                                                <td>停靠點<%=count+=1%></td>
-                                                <td>${pNLVO.portName}</td>
-<!-- 												<td> -->
-<!-- 													<select name="portOfCallNo" style="width:250px;"> -->
-<%-- 			                                            <c:forEach items="${plist}"	 var="pVO"> --%>
-<%-- 			                                            	<option value="${pVO.portOfCallNo }" ${(pNLVO.portOfCallNo==pVO.portOfCallNo)?'selected':'' }>${pVO.portName }</option> --%>
-<%-- 			                                            </c:forEach> --%>
-<!-- 		                                            </select> -->
-<!-- 		                                        </td> -->
-                                                <td>
-                                                	<form method="post"  action="<%=request.getContextPath()%>/CruiseLineServlet">
-                                                	<input name="portsOfCallListNo" type="hidden" value="${pNLVO.portsOfCallListNo}">
-                                                	<input name="cruiseLines" type="hidden" value="${cruiseLineVO.cruiseLines }">
-                                                	<input name="cruiseLineNo" type="hidden" value="${cruiseLineVO.cruiseLineNo }">
-                                                    <input name="action" type="hidden" value="updatePCLBefore">
-                                                    <button class="btn btn-primary btn-sm" type="submit"
-                                                        onclick="對應謀個function"
-                                               			style="width:100%;height:100%">更改</button>
-                                                    </form>
-                                                </td>
-                                                <td><form method="get" id="update" action="<%=request.getContextPath()%>/CruiseLineServlet">
-                                                    <input name="action" type="hidden" value="deletePCL">
-                                                    <input name="portsOfCallListNo" type="hidden" value="${pNLVO.portsOfCallListNo}">
-                                                    <input name="cruiseLineNo" type="hidden" value="${cruiseLineVO.cruiseLineNo }">
-                                                    <button class="btn btn-primary btn-sm" type="submit"
-                                                        style="width:100%;height:100%;">刪除</button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        	</c:forEach>
-                                        </tbody>
-                                        </table>
-                                       </div>
                                     </div>
-                                    
                                     
                                     </div>
 
@@ -569,58 +465,40 @@
         });
         </script>
         <script>
-          window.addEventListener("load", function (e) {
-        
-              var preview_el = document.getElementById("preview");
-              console.log(preview_el);
-              var p_file_el = document.getElementById("p_file");
-              console.log(p_file_el);
-
-            //讀取預覽圖
-        var preview_img = function (file) {
-          // file是資料位置
-          // 用來讀取檔案
-          var reader = new FileReader();
-
-          // 讀取檔案
-          reader.readAsDataURL(file);
-          reader.addEventListener("load", function (){
-              console.log(reader.result);
-
-            let img_str =
-              //設定檔案數據
-              '<img src="' + reader.result + '" class="preview_img">';
-
-            //新增檔案數據
-            preview_el.innerHTML = img_str;
+            window.addEventListener("load", function (e) {
+                var preview_el = document.getElementById("preview");
+                console.log(preview_el);
+                var p_file_el = document.getElementById("p_file");
+                console.log(p_file_el);
+  
+              //讀取預覽圖
+          var preview_img = function (file) {
+            // file是資料位置
+            // 用來讀取檔案
+            var reader = new FileReader();
+  
+            // 讀取檔案
+            reader.readAsDataURL(file);
+            reader.addEventListener("load", function (){
+                console.log(reader.result);
+  
+              let img_str =
+                //設定檔案數據
+                '<img src="' + reader.result + '" class="preview_img">';
+  
+              //新增檔案數據
+              preview_el.innerHTML = img_str;
+            });
+          };
+          p_file_el.addEventListener("change", function (e) {
+            if (this.files.length > 0) {
+              preview_img(this.files[0]);
+            } else {
+              preview_el.innerHTML = '<span class="text">預覽圖</span>';
+            }
           });
-        };
-        p_file_el.addEventListener("change", function (e) {
-          if (this.files.length > 0) {
-            preview_img(this.files[0]);
-          } else {
-            preview_el.innerHTML = '<span class="text">預覽圖</span>';
-          }
-        });
-        
-        
-        
-        var photo = document.getElementById('photo');
-        var img = document.getElementById('img_content');
-        
-        function readURL(input){
-        	if(input.files && input.files[0]){
-        	    var reader = new FileReader();
-        	    reader.onload = function (e) {
-        	       img.setAttribute('src', e.target.result);
-        	    }
-        	    reader.readAsDataURL(input.files[0]);
-        	  }
-        }
-        
-          });
-          
-        </script>
+            });
+          </script>
 </body>
 
 </html>
