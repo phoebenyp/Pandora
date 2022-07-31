@@ -47,7 +47,7 @@ public class ShipServlet extends HttpServlet {
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				request.setAttribute("shipsVO", shipsVO);         // 資料庫取出的shipsVO物件,存入req
-				String url = "/shipUpdate.jsp";
+				String url = "/back-end/ship/shipUpdate.jsp";
 				RequestDispatcher successView = request.getRequestDispatcher(url);// 成功轉交 shipUpdate.jsp
 				successView.forward(request, response);
 		}
@@ -114,7 +114,7 @@ shipstatusNo = Integer.parseInt(request.getParameter("shipstatusNo").trim());
 				if (!errorMsgs.isEmpty()) {
 request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的shipsVO物件,也存入req
 					RequestDispatcher failureView = request
-							.getRequestDispatcher("shipInsert.jsp");
+							.getRequestDispatcher("/back-end/ship/shipInsert.jsp");
 					failureView.forward(request, response);
 					return;
 				}
@@ -127,7 +127,7 @@ request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的shipsVO�
 //				System.out.println("success");
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				//因為還要新增房型數量，所以要再經過一個頁面
-				String url = "/ships.jsp";
+				String url = "/back-end/ship/ships.jsp";
 				RequestDispatcher successView = request.getRequestDispatcher(url); // 新增成功後轉交ships.jsp
 				successView.forward(request, response);				
 		}
@@ -179,7 +179,7 @@ request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的shipsVO�
 					if (!errorMsgs.isEmpty()) {
 	request.setAttribute("shipNo", shipNo); // 含有輸入格式錯誤的shipNo參數,也存入req
 						RequestDispatcher failureView = request
-								.getRequestDispatcher("/shipInsertRTTC.jsp");
+								.getRequestDispatcher("/back-end/ship/shipInsertRTTC.jsp");
 						failureView.forward(request, response);
 						return;
 					}
@@ -201,7 +201,7 @@ request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的shipsVO�
 							request.setAttribute("roomTypeNo", roomTypeTotalCountVO.getRoomTypeNo());
 							ShipsVO shipsVO = shipSvc.getOneShip(shipNo);
 							request.setAttribute("shipsVO", shipsVO);
-							String url = "/shipUpdate.jsp";
+							String url = "/back-end/ship/shipUpdate.jsp";
 							RequestDispatcher successView = request.getRequestDispatcher(url); // 新增成功後轉交shipUpdate.jsp
 							successView.forward(request, response);	
 							return;
@@ -218,7 +218,7 @@ request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的shipsVO�
 					/***************************3.新增完成,準備轉交(Send the Success view)***********/
 					request.setAttribute("shipsVO", shipsVO);
 					//要跳回到shipUpdate.jsp需經過一個頁面，再傳入action=getOne_For_Update_Ship
-					String url = "/shipUpdate.jsp";
+					String url = "/back-end/ship/shipUpdate.jsp";
 					RequestDispatcher successView = request.getRequestDispatcher(url); // 新增成功後轉交shipUpdate.jsp
 					successView.forward(request, response);				
 			}
@@ -281,7 +281,7 @@ shipstatusNo = Integer.parseInt(request.getParameter("shipstatusNo"));
 request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的shipsVO物件,也存入req
 					System.out.println(shipsVO.getShipNo());
 						RequestDispatcher failureView = request
-								.getRequestDispatcher("shipUpdate.jsp");
+								.getRequestDispatcher("/back-end/ship/shipUpdate.jsp");
 						failureView.forward(request, response);
 						System.out.println("失敗");
 						return; //程式中斷
@@ -293,7 +293,7 @@ request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的shipsVO�
 //					System.out.println(shipsVO);
 					/***************************3.修改完成,準備轉交(Send the Success view)*************/
 					request.setAttribute("shipsVO", shipsVO); // 資料庫update成功後,正確的的shipsVO物件,存入req
-					String url = "/ships.jsp";
+					String url = "/back-end/ship/ships.jsp";
 					RequestDispatcher successView = request.getRequestDispatcher(url); // 修改成功後,轉交ships.jsp
 					successView.forward(request, response);
 			}
@@ -350,7 +350,7 @@ request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的shipsVO�
 						//為了下一頁方便搜尋，傳入的是roomTotalVO物件
 	request.setAttribute("roomTotalVO", roomTotalVO); // 含有輸入格式錯誤的roomTotalVO物件,也存入req
 						RequestDispatcher failureView = request
-								.getRequestDispatcher("/shipUpdateRTTC.jsp");
+								.getRequestDispatcher("/back-end/ship/shipUpdateRTTC.jsp");
 						failureView.forward(request, response);
 						return;
 					}
@@ -366,7 +366,7 @@ request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的shipsVO�
 					//資料庫取出的rTTCNo參數,存入req
 					request.setAttribute("rTTCNo", rTTCNo);
 					request.setAttribute("shipsVO", shipsVO); // 資料庫update成功後,正確的的shipsVO物件,存入req
-					String url = "shipUpdate.jsp";
+					String url = "/back-end/ship/shipUpdate.jsp";
 					RequestDispatcher successView = request.getRequestDispatcher(url); // 新增成功後轉交shipUpdate.jsp
 					successView.forward(request, response);	
 			}
@@ -387,7 +387,7 @@ request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的shipsVO�
 					shipSvc.deleteShip(shipNo);
 					
 					/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-					String url = "ships.jsp";
+					String url = "/back-end/ship/ships.jsp";
 					RequestDispatcher successView = request.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 					successView.forward(request, response);
 			}
@@ -413,7 +413,7 @@ request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的shipsVO�
 					//資料庫取出的shipNo參數,存入req
 					request.setAttribute("shipNo", shipNo);
 					request.setAttribute("shipsVO", shipsVO); // 資料庫update成功後,正確的的shipsVO物件,存入req
-					String url = "shipUpdate.jsp";
+					String url = "/back-end/ship/shipUpdate.jsp";
 					RequestDispatcher successView = request.getRequestDispatcher(url);// 刪除成功後,轉交到刪除成功的網頁shipUpdate.jsp
 					successView.forward(request, response);
 			}
@@ -437,7 +437,7 @@ request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的shipsVO�
 									
 					/***************************3.查詢完成,準備轉交(Send the Success view)************/
 					request.setAttribute("shipNo", shipNo);         // 資料庫取出的shipNo物件,存入req
-					String url = "/shipInsertRTTC.jsp";
+					String url = "/back-end/ship/shipInsertRTTC.jsp";
 					RequestDispatcher successView = request.getRequestDispatcher(url);// 成功轉交 shipInsertRTTC.jsp
 					successView.forward(request, response);
 			}
@@ -461,7 +461,7 @@ request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的shipsVO�
 									
 					/***************************3.查詢完成,準備轉交(Send the Success view)************/
 					request.setAttribute("roomTotalVO", roomTotalVO);         // 資料庫取出的roomTotalVO物件,存入req
-					String url = "/shipUpdateRTTC.jsp";
+					String url = "/back-end/ship/shipUpdateRTTC.jsp";
 					RequestDispatcher successView = request.getRequestDispatcher(url);// 成功轉交 shipUpdateRTTC.jsp
 					successView.forward(request, response);
 			}

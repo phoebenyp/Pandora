@@ -94,7 +94,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<%=request.getContextPath()%>/EMP_Register.jsp" class="nav-link">
+                                    <a href="<%=request.getContextPath()%>/back-end/emp/EMP_Register.jsp" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>新增員工</p>
                                     </a>
@@ -319,7 +319,7 @@
                         <div class="row justify-content-center">
                             <div class="col-xl-6 col-lg-5 col-md-6 col-sm-8">
                                 <div id="login">
-                                <form action="<%=request.getContextPath()%>/EmpLoginServlet" method="Post" enctype="multipart/form-data" >
+                                <form action="<%=request.getContextPath()%>/EmpLoginServlet" method="Post" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <h1>
                                            <input type="hidden" name="employeeId" value="${empVOupdate.employeeId}"> 員工編號:${empVOupdate.employeeId}
@@ -452,6 +452,7 @@
                                             </div>
                                         </div>
                                     </form>
+                                       
                                 </div>
                             </div>
                         </div>
