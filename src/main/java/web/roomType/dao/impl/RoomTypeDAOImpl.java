@@ -1,4 +1,4 @@
-package web.room.dao.impl;
+package web.roomType.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +16,7 @@ import web.room.bean.RoomTypeVO;
 import web.roomType.dao.RoomTypeDAO;
 
 public class RoomTypeDAOImpl implements RoomTypeDAO{
+	
 	private static DataSource ds = null;
 	static {
 		try {
@@ -25,8 +26,39 @@ public class RoomTypeDAOImpl implements RoomTypeDAO{
 			e.printStackTrace();
 		}
 	}
-	private static final String GET_ALL_STMT ="SELECT * FROM Room_Type";
+
+	private static final String INSERT_ROOMTYPE = "INSERT INTO ROOM_TYPE(Room_Type, Room_Price, Max_Capacity, Room_Picture)"
+			+ "VALUES (?, ?, ?, ?)";
+	private static final String GET_ALL_ROOMTYPE = "SELECT * FROM Pandora.Room_Type";
+	private static final String GET_ONE_ROOMTYPE = "SELECT * FROM Pandora.Room_Type where Room_Type_No = ?";
+	private static final String DELETE = "DELETE FROM Room_Type where Room_Type_No = ?";
+	private static final String UPDATE = "UPDATE Room_Type set (Room_Type=?, Room_Price=?, Max_Capacity=?, Room_Picture= ?) where Room_Type_No= ?";
 	
+	@Override
+	public void insert(RoomTypeVO roomTypeVO) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(RoomTypeVO roomTypeVO) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(Integer roomTypeNo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public RoomTypeVO findByPrimaryKey(Integer roomTypeNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public List<RoomTypeVO> getAll() {
 		List<RoomTypeVO> list = new ArrayList<RoomTypeVO>();
 		RoomTypeVO roomTypeVO = null;
@@ -38,23 +70,24 @@ public class RoomTypeDAOImpl implements RoomTypeDAO{
 		try {
 
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ALL_STMT);
+			pstmt = con.prepareStatement(GET_ALL_ROOMTYPE);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
+				// empVO 也稱為 Domain objects
 				roomTypeVO = new RoomTypeVO();
 				roomTypeVO.setRoomTypeNo(rs.getInt("Room_Type_No"));
 				roomTypeVO.setRoomType(rs.getString("Room_Type"));
 				roomTypeVO.setRoomPrice(rs.getInt("Room_Price"));
 				roomTypeVO.setMaxCapacity(rs.getInt("Max_Capacity"));
 				roomTypeVO.setRoomPicture(rs.getBytes("Room_Picture"));
-				list.add(roomTypeVO); // Store the row in the list
+				list.add(roomTypeVO);
+				// Store the row in the list
 			}
 
 			// Handle any driver errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
+			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
 		} finally {
 			if (rs != null) {
@@ -80,29 +113,5 @@ public class RoomTypeDAOImpl implements RoomTypeDAO{
 			}
 		}
 		return list;
-	}
-
-	@Override
-	public void insert(RoomTypeVO roomTypeVO) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update(RoomTypeVO roomTypeVO) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(Integer roomTypeNo) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public RoomTypeVO findByPrimaryKey(Integer roomTypeNo) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
