@@ -29,9 +29,9 @@
     rel="stylesheet" />
 
   <!-- COMMON CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet" />
-  <link href="css/style.css" rel="stylesheet" />
-  <link href="css/vendors.css" rel="stylesheet" />
+  <link href="<%=request.getContextPath()%>/front-end/package/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="<%=request.getContextPath()%>/front-end/package/css/style.css" rel="stylesheet" />
+  <link href="<%=request.getContextPath()%>/front-end/package/css/vendors.css" rel="stylesheet" />
 
   <!-- CUSTOM CSS -->
   <link href="css/custom.css" rel="stylesheet" />
@@ -178,8 +178,10 @@
     <!-- container -->
   </header>
   <!-- End Header -->
-
+ <form action="<%=request.getContextPath()%>/PackagesServlet" method="Post">
   <section id="search_container" style="background: url('https://picsum.photos/1903/800?random=5')">
+    
+   
     <div id="search">
       <ul class="nav nav-tabs">
 
@@ -199,13 +201,16 @@
               <div class="form-group">
                 <label>出發地</label>
                 <div class="styled-select-common">
-                  <select name="port">
-                    <option value="Centre" selected>任何港口</option>
-                    <option value="Gar du Nord Station">
-                      基隆
-                    </option>
-                    <option value="La Defance">橫濱</option>
-                  </select>
+               
+       <select  name="Departure" >
+        			<option value="Centre" selected>請選擇出發點</option>
+         <c:forEach var="packagesVO" items="${packagesList}" > 
+           		            		
+         		    <option value="${packagesVO.departure}">         		
+         		          		    ${packagesVO.departure}
+         </c:forEach>   
+       </select>
+                
                 </div>
               </div>
             </div>
@@ -254,16 +259,15 @@
           </div>
           <!-- End row -->
           <hr />
-          <button class="btn_1 green">
-            <i class="icon-search"></i>查詢行程(4)
-          </button>
-
-        </div>
-
-
+         <button class="btn_1 green" type="submit" name="action" value="listPackages_ByCompositeQuery">查詢行程</button>
+                  <i class="icon-search"></i>共有_個匹配行程()
+        
+	      </div>
       </div>
     </div>
+
   </section>
+  </form>
   <hr>
   <!-- End hero -->
 
@@ -412,9 +416,9 @@
   <!-- /Sign In Popup -->
 
   <!-- Common scripts -->
-  <script src="js/jquery-3.6.0.min.js"></script>
-  <script src="js/common_scripts_min.js"></script>
-  <script src="js/functions.js"></script>
+  <script src="<%=request.getContextPath()%>/front-end/package/js/jquery-3.6.0.min.js"></script>
+  <script src="<%=request.getContextPath()%>/front-end/package/s/common_scripts_min.js"></script>
+  <script src="<%=request.getContextPath()%>/front-end/package/js/functions.js"></script>
 
   <!-- Specific scripts -->
   <script>
