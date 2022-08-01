@@ -13,7 +13,7 @@ public class packages_CompositeQuery {
 			aCondition = columnName + " like '%" + value + "%'";
 		}else if("Duration".equals(columnName)){
 			aCondition = columnName + ">=" + value;			
-		}else if ("Departure_Time".equals(columnName) || "Arrival_Time".equals(columnName)) // 用於date
+		}else if ("Departure_Time".equals(columnName)) // 用於date
 			aCondition = columnName + " like '%" + value + "%'";
 //			aCondition = columnName + "=" + "'" + value + "'"; 
 		// for 其它DB 的 date

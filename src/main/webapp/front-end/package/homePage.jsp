@@ -202,13 +202,12 @@
                 <label>出發地</label>
                 <div class="styled-select-common">
                
-       <select  name="Departure" >
-        			<option value="Centre" selected>請選擇出發點</option>
-         <c:forEach var="packagesVO" items="${packagesList}" > 
-           		            		
-         		    <option value="${packagesVO.departure}">         		
-         		          		    ${packagesVO.departure}
-         </c:forEach>   
+       <select  name="Departure" id="departureID">
+        			<option value="" selected>請選擇出發點</option>
+         			<c:forEach var="departure" items="${departureDistinct}" >            		            	
+         		   <option value="${departure}" ${departure==param["Departure"]?"selected":""}>
+         		             	  ${departure}
+         			</c:forEach>   
        </select>
                 
                 </div>
@@ -218,13 +217,14 @@
               <div class="form-group">
                 <label>目的地</label>
                 <div class="styled-select-common">
-                  <select name="port">
-                    <option value="Centre" selected>任何港口</option>
-                    <option value="Gar du Nord Station">
-                      雪梨
-                    </option>
-                    <option value="La Defance">別府</option>
-                  </select>
+                  <select  name="Destination" >
+        			<option value="" selected>請選擇目的地</option>
+        				 <c:forEach var="destination" items="${destinationDistinct}" > 
+           		    <option value="${destination}" ${destination==param["Destination"]?"selected":"" }>         		
+         		          		    ${destination}      		
+         		    
+         				</c:forEach>   
+       		     </select>
                 </div>
               </div>
             </div>
@@ -232,13 +232,14 @@
               <div class="form-group">
                 <label>出發年月</label>
                 <div class="styled-select-common">
-                  <select name="date">
-                    <option value="Centre" selected>任何年月</option>
-                    <option value="Gar du Nord Station">
-                      2022-08
-                    </option>
-                    <option value="La Defance">2022-09</option>
-                  </select>
+            <select  name="DepartureTime" >
+        			<option value="" selected>請選擇出航日期</option>
+        		<c:forEach var="departureTime" items="${departureTimeDistinct}" > 
+           		            		
+         		    <option value="${departureTime}">         		
+         		          		    ${departureTime}
+         		</c:forEach>   
+       		</select>
                 </div>
               </div>
             </div>
@@ -247,11 +248,10 @@
                 <label>天數</label>
                 <div class="styled-select-common">
                   <select name="Duration">
-                    <option value="Centre" selected>任何天數</option>
-                    <option value="Gar du Nord Station">
-                      3~5天
-                    </option>
-                    <option value="La Defance">6~10天</option>
+                    <option value="" selected>任何天數</option>
+                    <option value="short">1~5天</option>
+                    <option value="medium">6~9天</option>
+                    <option value="Long">10天以上</option>
                   </select>
                 </div>
               </div>
@@ -259,8 +259,12 @@
           </div>
           <!-- End row -->
           <hr />
-         <button class="btn_1 green" type="submit" name="action" value="listPackages_ByCompositeQuery">查詢行程</button>
-                  <i class="icon-search"></i>共有_個匹配行程()
+         		<button class="btn_1 green" type="submit" name="action" value="listPackagesByCompositeQuery" style=width:200px>查詢行程</button>
+               
+                <button class="btn_1 green" id="clearBtn" style=width:200px>清除</button></br>
+				<i class="icon-search"></i>共有${count}個匹配行程
+        </div>
+                  
         
 	      </div>
       </div>
@@ -421,6 +425,43 @@
   <script src="<%=request.getContextPath()%>/front-end/package/js/functions.js"></script>
 
   <!-- Specific scripts -->
+  <script>
+  $(function (){
+	  $("#departureID").change(function(){
+		  alert($( this ).val())
+		  var request=$.ajax({
+			url: "<%=request.getContextPath()%>/PackagesServlet",
+		 	method:"POST",
+		 	data:{"action":"updateOption","Departure":$( this ).val()},
+		 	dataType:"json"
+			  
+		  });
+		  request.done(function(data){
+		  	console.log(data)
+			 
+			let departureAll='<option>請選擇出發地</option>';
+	    	data.departureDistinct.forEach(function(departure){
+	    	  departureAll = departureAll + '<option>'+departure+'</option>'
+	    	});
+	    	$('#departure').html(departureAll);	
+	  	
+		  });
+		  
+		  
+		  let departureTimeAll='<option>請選擇啟航時間</option>';
+	    	data.departureDistinct.forEach(function(departureTime){
+	    		departureTimeAll = departureTimeAll + '<option>'+departureTime+'</option>'
+	    	});
+	    	$('#departureTime').html(departureAll);	
+	  	
+		  });
+		  
+	  });
+	  
+  })
+  
+  </script>
+  
   <script>
     $(function () {
       $("input.date-pick").daterangepicker(

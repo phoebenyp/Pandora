@@ -30,8 +30,7 @@ public class PackagesDAOImpl implements PackagesDAO{
 			e.printStackTrace();
 		}
 	}
-	private static final String GET_ALL_STMT = "SELECT * FROM Packages order by Package_ID";
-	private static final String GET_ONE_STMT = "SELECT * FROM Packages where Package_ID = ?";
+
 	
 	
 	@Override
