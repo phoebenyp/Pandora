@@ -8,4 +8,13 @@
 		<welcome-file>index.jsp</welcome-file>
 		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>CartHotelServlet</servlet-name>
+		<servlet-class>web.cartHotel.controller.CartHotelServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CartHotelServlet</servlet-name>
+		<url-pattern>/cartHotel.do</url-pattern>
+	</servlet-mapping>
 </web-app>

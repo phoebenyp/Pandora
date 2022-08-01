@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-
 <%@ page import="java.util.*"%>
 <%@ page import="web.roomType.service.*"%>
 <%@ page import="web.room.bean.*"%>
 <%@ page import="web.roomType.service.impl.*"%>
-
 
 <!DOCTYPE html>
 <html>
@@ -66,8 +64,6 @@
 	RoomTypeServiceImpl roomTypeService = new RoomTypeServiceImpl();
 	List<RoomTypeVO> roomTypeVOList = roomTypeService.getAll();
 	%>
-
-
 
 	<div id="preloader">
 		<div class="sk-spinner sk-spinner-wave">

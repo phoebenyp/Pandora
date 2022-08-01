@@ -27,8 +27,8 @@ public class RoomTypeDAOImpl implements RoomTypeDAO{
 		}
 	}
 
-	private static final String INSERT_ROOMTYPE = "INSERT INTO ROOM_TYPE(Room_Type, Room_Price, Max_Capacity, Room_Picture)"
-			+ "VALUES (?, ?, ?, ?)";
+	
+	private static final String INSERT_ROOMTYPE= "INSERT INTO ROOM_TYPE(Room_Type, Room_Price, Max_Capacity, Room_Picture VALUES (?, ?, ?, ?)";
 	private static final String GET_ALL_ROOMTYPE = "SELECT * FROM Pandora.Room_Type";
 	private static final String GET_ONE_ROOMTYPE = "SELECT * FROM Pandora.Room_Type where Room_Type_No = ?";
 	private static final String DELETE = "DELETE FROM Room_Type where Room_Type_No = ?";
