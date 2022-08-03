@@ -682,6 +682,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         //   .catch((err) => {});
         axios.post(url, { item }).then((response) => {
           // console.log(response.data);
+          console.log(response.data);
           scv = response.data
             .replace("[", "")
             .replace("]", "")

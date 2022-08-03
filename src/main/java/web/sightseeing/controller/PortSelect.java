@@ -47,7 +47,6 @@ public class PortSelect extends HttpServlet {
 		List<String> portName = result.stream().map(vo -> vo.getPortName()).collect(Collectors.toList());
 		response.getWriter().print(portName);
 		response.getWriter().print(portOfCallNo);
-		response.getWriter().print(cruiselineNo);
 
 	}
 
