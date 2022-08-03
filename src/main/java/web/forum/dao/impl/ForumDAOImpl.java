@@ -34,11 +34,11 @@ public class ForumDAOImpl implements ForumDAO {
 		private static final String GET_ALL_STMT = 
 			"SELECT * FROM forum";
 		private static final String GET_ONE_STMT = 
-			"SELECT postId,memberId,postTitle,postContent,postTime,clicks,status FROM emp2 where postId = ?";
+			"SELECT Post_Id,Member_ID,Post_Title,Post_Content,Post_Time,Clicks,Status FROM forum where Post_Id = ?";
 		private static final String DELETE = 
-			"DELETE FROM forum where postId = ?";
+			"DELETE FROM forum where Post_Id = ?";
 		private static final String UPDATE = 
-			"UPDATE forum set memberId=?, postTitle=?, postContent=?, postTime=?, clicks=?, status=? where postId = ?";
+			"UPDATE forum setMember_ID=?, Post_Title=?, Post_Content=?, Post_Time=?, Clicks=?, Status=? where Post_Id = ?";
 
 	
 	

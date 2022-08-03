@@ -1,17 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@page import="java.util.List"%>
-<%@page import="web.forum.service.impl.ForumServiceImpl"%>
-<%@page import="web.forum.bean.ForumVO"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<%@page import="web.forum.bean.ForumVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <%
-ForumServiceImpl forumSvc = new ForumServiceImpl();
-List<ForumVO> list = forumSvc.getAll();
-pageContext.setAttribute("list", list);
+  ForumVO forumVO = (ForumVO) request.getAttribute("forumVO"); //ForumServlet.java (Concroller) 存入req的forumVO物件 (包括幫忙取出的forumVO, 也包括輸入資料錯誤時的forumVO物件)
 %>
+<%= forumVO==null %>--${forumVO.postId}--
 
 <!DOCTYPE html>
 <html>
@@ -281,67 +277,66 @@ pageContext.setAttribute("list", list);
 								<!-- form start -->
 								<div class="container">
 
+<%-- 錯誤表列 --%>
+<c:if test="${not empty errorMsgs}">
+	<font style="color:red">請修正以下錯誤:</font>
+	<ul>
+		<c:forEach var="message" items="${errorMsgs}">
+			<li style="color:red">${message}</li>
+		</c:forEach>
+	</ul>
+</c:if>
 
-									<table id="table" data-toggle="table" data-search="true"
-										data-filter-control="true" data-show-export="true"
-										data-click-to-select="true" data-toolbar="#toolbar">
-										<thead>
-											<tr>
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ForumServlet" >
+<table>
+	<tr>
+		<td>文章編號:<font color=red><b>*</b></font></td>
+		<td><%=forumVO.getPostId()%></td>
+	</tr>
+	<tr>
+		<td>作者:</td>
+		<td><input type="TEXT" name="memberId" size="45" value="<%=forumVO.getMemberId()%>" /></td>
+	</tr>
+	<tr>
+		<td>標題:</td>
+		<td><input type="TEXT" name="postTitle" size="45"	value="<%=forumVO.getPostTitle()%>" /></td>
+	</tr>
+	<tr>
+		<td>內容:</td>
+		<td><input type="TEXT" name="postContent" size="45"	value="<%=forumVO.getPostContent()%>" /></td>
+	</tr>
+	<tr>
+		<td>時間:</td>
+		<td><input type="TEXT" name="postTime" size="45"	value="<%=forumVO.getPostTime()%>" /></td>
+	</tr>
+	<tr>
+		<td>次數:</td>
+		<td><input type="TEXT" name="clicks" size="45"	value="<%=forumVO.getClicks()%>" /></td>
+	</tr>
+	<tr>
+		<td>狀態:</td>
+		<td><input type="TEXT" name="status" size="45"	value="<%=forumVO.getStatus()%>" /></td>
+	</tr>
+	
 
-												<th>文章編號</th>
-												<th>作者</th>
-												<th>標題</th>
-												<th>內容</th>
-												<th>發表時間</th>
-												<th>次數</th>
-												<th>狀態</th>
-												<th>修改</th>
-												<th>刪除</th>
+<%-- 	<jsp:useBean id="forumSvc" scope="page" class="web.forum.service.impl.ForumServiceImpl" /> --%>
+<!-- 	<tr> -->
+<!-- 		<td>部門:<font color=red><b>*</b></font></td> -->
+<!-- 		<td><select size="1" name="postId"> -->
+<%-- 			<c:forEach var="forumVO" items="${forumSvc.all}"> --%>
+<%-- 				<option value="${forumVO.postId}" ${(forumVO.postId==forumVO.postId)?'selected':'' } >${forumVO.dname} --%>
+<!-- 			</c:forEach> -->
+<!-- 		</select></td> -->
+<!-- 	</tr> -->
+
+</table>
+<br>
+<input type="hidden" name="action" value="update">
+<input type="hidden" name="postid" value="<%=forumVO.getPostId()%>">
+<input type="submit" value="送出修改"></FORM>
 
 
-
-
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach items="${list}" var="forumVO">
-
-												<tr>
-													<td>${forumVO.postId }</td>
-													<td>${forumVO.memberId }</td>
-													<td>${forumVO.postTitle }</td>
-													<td>${forumVO.postContent }</td>
-													<td>${forumVO.postTime }</td>
-													<td>${forumVO.clicks }</td>
-													<td>${forumVO.status }</td>
-													<td>
-														<FORM METHOD="post"
-															ACTION="<%=request.getContextPath()%>/ForumServlet"
-															style="margin-bottom: 0px;">
-															<input type="submit" value="修改"> <input
-																type="hidden" name="postID" value="${forumVO.postId}">
-															<input type="hidden" name="action"
-																value="getOne_For_Update_Forum">
-														</FORM>
-													</td>
-													<td>
-														<FORM METHOD="post"
-															ACTION="<%=request.getContextPath()%>/ForumServlet"
-															style="margin-bottom: 0px;">
-															<input type="submit" value="刪除"> <input
-																type="hidden" name="postID" value="${forumVO.postId}">
-															<input type="hidden" name="action" value="delete">
-														</FORM>
-													</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-									<input type="button" name="EMPregister" value="備用按鈕"
-										text-align=center
-										style="margin-right: 0%; width: 250px; float: right;"
-										onclick="javascript:window.location.href='https://www.juksy.com/article/96554-%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%8D%B1%E9%9A%AA%E7%9A%84%E5%A5%B3%E4%BA%BA%EF%BC%81Dua+Lipa+%E6%80%A7%E6%84%9F%E5%8F%88%E8%BF%B7%E4%BA%BA%E7%9A%84%E9%AD%85%E5%8A%9B%E8%AA%B0%E6%93%8B%E5%BE%97%E4%BA%86%EF%BC%9F%E8%87%AA%E6%8B%8D%E7%A7%80%E3%80%8C%E9%9B%95%E5%88%BB%E8%85%B9%E8%82%8C%E3%80%8D%E5%85%A8%E9%9D%A0+15+%E5%88%86%E9%90%98%E5%B0%B1%E8%83%BD%E9%A4%8A%E6%88%90%EF%BD%9E'" />
-								</div>
+</div>
 
 								</tfoot>
 								<div style="width: 100%; text-align: center">
@@ -429,5 +424,7 @@ pageContext.setAttribute("list", list);
 		integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
 		crossorigin="anonymous"></script>
 </body>
+
+
 
 </html>
