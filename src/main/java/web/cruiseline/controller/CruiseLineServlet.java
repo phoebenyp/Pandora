@@ -72,7 +72,6 @@ public class CruiseLineServlet extends HttpServlet {
 				//抽出單艘船的資料
 				CruiseLineVO cruiseLineVO = cruiseLineSvc.selectCruiseNo(cruiseLineNo);
 //				System.out.println(shipsVO);
-								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				request.setAttribute("cruiseLineVO", cruiseLineVO);    
 				String url = "/back-end/cruiseline/cruiselineUpdate.jsp";
