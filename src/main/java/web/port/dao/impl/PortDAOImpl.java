@@ -35,8 +35,8 @@ public class PortDAOImpl implements PortDAO {
 //			+ "FROM Port order by Port_of_Call_No";
 	private static final String GET_ALL_STMT = "SELECT * "
 			+ "FROM Port";
-	private static final String GET_ONE_STMT = "SELECT (portOfCallNo,portName,portLatitude,portLongitude,sightseeing,sightseeingLatitude,sightseeingLongitude)"
-			+ " FROM Pandora where portOfCallNo = ?";
+	private static final String GET_ONE_STMT = "SELECT Port_of_Call_No,Port_Name,Port_Latitude,Port_Longitude,Sightseeing,Sightseeing_Latitude,Sightseeing_Longitude "
+			+ " FROM Port where Port_of_Call_No = ?";
 	private static final String DELETE = "DELETE FROM Pandora where portOfCallNo = ?";
 	private static final String UPDATE = "UPDATE Pandora set (portName=?,portLatitude=?,portLongitude=?,sightseeing=?,sightseeingLatitude=?,sightseeingLongitude=?) where portOfCallNo = ?";
 		
@@ -184,13 +184,13 @@ public class PortDAOImpl implements PortDAO {
 			while (rs.next()) {
 				// empVo 也稱為 Domain objects
 				portVO = new PortVO();
-				pstmt.setInt(1, portVO.getPortOfCallNo());
-				pstmt.setBigDecimal(2, portVO.getPortLatitude());
-				pstmt.setBigDecimal(3, portVO.getPortLongitude());
-				pstmt.setString(4, portVO.getSightseeing());
-				pstmt.setBigDecimal(5, portVO.getSightseeingLatitude());
-				pstmt.setBigDecimal(6, portVO.getPortLongitude());
-
+				portVO.setPortOfCallNo(rs.getInt("Port_of_Call_No"));
+				portVO.setPortName(rs.getString("Port_Name"));
+				portVO.setPortLatitude(rs.getBigDecimal("Port_Latitude"));
+				portVO.setPortLongitude( rs.getBigDecimal("Port_Longitude"));
+				portVO.setSightseeing(rs.getString("Sightseeing"));
+				portVO.setSightseeingLatitude(rs.getBigDecimal("Sightseeing_Latitude"));
+				portVO.setSightseeingLongitude( rs.getBigDecimal("Sightseeing_Longitude"));
 			}
 
 			// Handle any driver errors

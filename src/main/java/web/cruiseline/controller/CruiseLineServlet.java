@@ -1,29 +1,29 @@
 package web.cruiseline.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import web.cruiseline.bean.CruiseLineVO;
 import web.cruiseline.bean.PortNameListVO;
 import web.cruiseline.bean.PortsOfCallListVO;
 import web.cruiseline.service.impl.CruiseLineServiceImpl;
 import web.emp.bean.EmpVO;
-import web.emp.service.EmpService;
-import web.emp.service.impl.EmpServiceImpl;
-import web.ship.bean.ShipsVO;
-import web.ship.service.impl.ShipService;
 
 @WebServlet("/CruiseLineServlet")
+@MultipartConfig
 public class CruiseLineServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -37,6 +37,7 @@ public class CruiseLineServlet extends HttpServlet {
 //			System.out.println(cruiseLineNo);
 			CruiseLineServiceImpl clsSvc = new CruiseLineServiceImpl();
 			CruiseLineVO cruiseLineVO = clsSvc.selectCruiseNo(cruiseLineNo);
+//			byte[] img64 = Base64.encode(new String(cruiseLineVO.getCruiseLinePicture()));
 			out.write(cruiseLineVO.getCruiseLinePicture());
 		}
 
@@ -71,9 +72,8 @@ public class CruiseLineServlet extends HttpServlet {
 				//抽出單艘船的資料
 				CruiseLineVO cruiseLineVO = cruiseLineSvc.selectCruiseNo(cruiseLineNo);
 //				System.out.println(shipsVO);
-								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-				request.setAttribute("cruiseLineVO", cruiseLineVO);         // 資料庫取出的shipsVO物件,存入req
+				request.setAttribute("cruiseLineVO", cruiseLineVO);    
 				String url = "/back-end/cruiseline/cruiselineUpdate.jsp";
 				RequestDispatcher successView = request.getRequestDispatcher(url);// 成功轉交 shipUpdate.jsp
 				successView.forward(request, response);
@@ -123,13 +123,13 @@ public class CruiseLineServlet extends HttpServlet {
 		
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				Integer portsOfCallListNo = Integer.valueOf(request.getParameter("portsOfCallListNo").trim());
-				System.out.println("portsOfCallListNo="+portsOfCallListNo);
+//				System.out.println("portsOfCallListNo="+portsOfCallListNo);
 				Integer cruiseLinesNo = Integer.valueOf(request.getParameter("cruiseLinesNo").trim());
-				System.out.println(cruiseLinesNo);
+//				System.out.println(cruiseLinesNo);
 				Integer portOfCallNo = Integer.valueOf(request.getParameter("portOfCallNo").trim());
-				System.out.println(portOfCallNo);
+//				System.out.println(portOfCallNo);
 				Integer portOfCallSequence = Integer.valueOf(request.getParameter("portOfCallSequence").trim());
-				System.out.println(portOfCallSequence);
+//				System.out.println(portOfCallSequence);
 
 				// Send the use back to the form, if there were errors
 				
@@ -137,6 +137,9 @@ public class CruiseLineServlet extends HttpServlet {
 				CruiseLineServiceImpl clSvc = new CruiseLineServiceImpl();
 				PortsOfCallListVO portsOfCallListVO = clSvc.updatePCL(cruiseLinesNo, portOfCallNo, portOfCallSequence, portsOfCallListNo);
 				CruiseLineVO cruiseLineVO = clSvc.selectCruiseNo(cruiseLinesNo);
+				String lastname = clSvc.updateCLNames(portsOfCallListVO.getCruiseLinesNo()).getCruiseLines();
+				cruiseLineVO.setCruiseLines(lastname);
+				clSvc.selectCNLAll(cruiseLinesNo);
 				//抽出單艘船的資料
 //				CruiseLineVO cruiseLineVO = clSvc.selectCruiseNo(cruiseLinesNo);
 				
@@ -157,9 +160,9 @@ public class CruiseLineServlet extends HttpServlet {
 		
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				Integer portOfCallNo = Integer.valueOf(request.getParameter("portOfCallNo").trim());
-				System.out.println("portOfCallNo="+portOfCallNo);
+//				System.out.println("portOfCallNo="+portOfCallNo);
 				Integer cruiseLineNo = Integer.valueOf(request.getParameter("cruiseLineNo").trim());
-				System.out.println(cruiseLineNo);
+//				System.out.println(cruiseLineNo);
 				
 
 				// Send the use back to the form, if there were errors
@@ -170,8 +173,10 @@ public class CruiseLineServlet extends HttpServlet {
 				//抽出單艘船的資料
 //				CruiseLineVO cruiseLineVO = clSvc.selectCruiseNo(cruiseLinesNo);
 				Integer portOfCallSequence = clSvc.selectPortNameListLast(cruiseLineNo).getPortOfCallSequence() + 1;
-				System.out.println(portOfCallSequence);
+//				System.out.println(portOfCallSequence);
 				PortsOfCallListVO portsOfCallListVO = clSvc.insertPCL(cruiseLineNo, portOfCallNo, portOfCallSequence);
+				String lastname = clSvc.updateCLNames(portsOfCallListVO.getCruiseLinesNo()).getCruiseLines();
+				cruiseLineVO.setCruiseLines(lastname);
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/				
 				
 				request.setAttribute("cruiseLineVO", cruiseLineVO);
@@ -180,7 +185,120 @@ public class CruiseLineServlet extends HttpServlet {
 				successView.forward(request, response);
 		}
 		
+			if ("deletePCL".equals(action)) { // 來自listAllEmp.jsp
+
+				List<String> errorMsgs = new LinkedList<String>();
+				// Store this set in the request scope, in case we need to
+				// send the ErrorPage view.
+				request.setAttribute("errorMsgs", errorMsgs);
 		
+					/***************************1.接收請求參數***************************************/
+					Integer portsOfCallListNo = Integer.valueOf(request.getParameter("portsOfCallListNo"));
+					Integer cruiseLineNo = Integer.valueOf(request.getParameter("cruiseLineNo"));
+					/***************************2.開始刪除資料***************************************/
+					CruiseLineServiceImpl clSvc = new CruiseLineServiceImpl();
+					clSvc.deletePCL(portsOfCallListNo);
+					CruiseLineVO cruiseLineVO = clSvc.selectCruiseNo(cruiseLineNo);
+					String lastname = clSvc.updateCLNames(cruiseLineNo).getCruiseLines();
+					cruiseLineVO.setCruiseLines(lastname);
+					/***************************3.刪除完成,準備轉交(Send the Success view)***********/
+					//要跳回到shipUpdate.jsp需經過一個頁面，再傳入action=getOne_For_Update_Ship
+					//資料庫取出的shipNo參數,存入req
+					request.setAttribute("cruiseLineVO", cruiseLineVO);
+					String url = "/back-end/cruiseline/cruiselineUpdate.jsp";
+					RequestDispatcher successView = request.getRequestDispatcher(url);// 刪除成功後,轉交到刪除成功的網頁shipUpdate.jsp
+					successView.forward(request, response);
+			}
+			if ("updateCL".equals(action)) {
+				response.setContentType("image/jpeg");
+				List<String> errorMsgs = new LinkedList<String>();
+				request.setAttribute("errorMsgs", errorMsgs);
+
+
+				Integer cruiseLineNo = Integer.valueOf(request.getParameter("cruiseLineNo"));
+				String cruiseLines = request.getParameter("cruiseLines");
+				
+				Part fileEmpPictureId = request.getPart("cruiselinePic"); // Retrieves <input type="file" name="empPictureId">
+				byte[] cruiselinePic = fileEmpPictureId.getInputStream().readAllBytes();
+
+
+				LocalDate time = null;
+				try {
+					time = java.sql.Date.valueOf(request.getParameter("time").trim()).toLocalDate();
+				} catch (IllegalArgumentException e) {
+					time = new java.sql.Date(System.currentTimeMillis()).toLocalDate();
+					errorMsgs.add("請輸入日期!");
+				}
+				CruiseLineVO cruiseLineVO = new CruiseLineVO();
+				cruiseLineVO.setCruiseLineNo(cruiseLineNo);
+				cruiseLineVO.setCruiseLines(cruiseLines);
+				cruiseLineVO.setCruiseLinePicture(cruiselinePic);
+				cruiseLineVO.setTime(time);
+//				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					request.setAttribute("cruiseLineVO", cruiseLineVO); // 含有輸入格式錯誤的empVO物件,也存入req
+					RequestDispatcher failureView = request.getRequestDispatcher("/back-end/cruiseline/cruiselineUpdate.jsp");
+					failureView.forward(request, response);
+					return;
+				}
+				CruiseLineServiceImpl cLSSVC = new CruiseLineServiceImpl();
+				cruiseLineVO=cLSSVC.updateCL(cruiseLines, cruiselinePic, time, cruiseLineNo); 
+				String lastname = cLSSVC.updateCLNames(cruiseLineNo).getCruiseLines();
+				cruiseLineVO.setCruiseLines(lastname);
+				String url = "/back-end/cruiseline/cruiseline.jsp";
+				RequestDispatcher successView = request.getRequestDispatcher(url);// 編輯成功重載 EMP_GetOneEdiotrByManger.jsp
+				successView.forward(request, response);
+
+			}
+			if ("cruiselineInsert".equals(action)) { // 來自update_emp_input.jsp的請求
+				
+				List<String> errorMsgs = new LinkedList<String>();
+				// Store this set in the request scope, in case we need to
+				// send the ErrorPage view.
+				request.setAttribute("errorMsgs", errorMsgs);
+				
+			
+					/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+					
+					Part fileEmpPictureId = request.getPart("cruiselinePic"); // Retrieves <input type="file" name="empPictureId">
+					byte[] cruiselinePic = fileEmpPictureId.getInputStream().readAllBytes();
+					LocalDate time = null;
+					try {
+						time = java.sql.Date.valueOf(request.getParameter("time").trim()).toLocalDate();
+					} catch (IllegalArgumentException e) {
+						time = new java.sql.Date(System.currentTimeMillis()).toLocalDate();
+						errorMsgs.add("請輸入日期!");
+					}
+					// Send the use back to the form, if there were errors
+					
+					/***************************2.開始修改資料*****************************************/
+					CruiseLineServiceImpl clSvc = new CruiseLineServiceImpl();
+					clSvc.insertCL(cruiselinePic, time);
+					clSvc.cruiseLineLast();
+					/***************************3.修改完成,準備轉交(Send the Success view)*************/				
+	                String url = "/back-end/cruiseline/cruiseline.jsp";
+					RequestDispatcher successView = request.getRequestDispatcher(url);   // 修改成功後,轉交回送出修改的來源網頁
+					successView.forward(request, response);
+			}
+			if ("cruiselineInsertBefore".equals(action)) {
+				String url = "/back-end/cruiseline/cruiselineInsert.jsp";
+				RequestDispatcher successView = request.getRequestDispatcher(url);
+				successView.forward(request, response);
+			}
+			if ("deleteCruiseNo".equals(action)) {
+					/***************************1.接收請求參數***************************************/
+					Integer cruiseLineNo = Integer.valueOf(request.getParameter("cruiseLineNo"));
+					/***************************2.開始刪除資料***************************************/
+					CruiseLineServiceImpl clSvc = new CruiseLineServiceImpl();
+					clSvc.deleteCruiseLineNo(cruiseLineNo);
+					
+					/***************************3.刪除完成,準備轉交(Send the Success view)***********/
+					//要跳回到shipUpdate.jsp需經過一個頁面，再傳入action=getOne_For_Update_Ship
+					//資料庫取出的shipNo參數,存入req
+					String url = "/back-end/cruiseline/cruiseline.jsp";
+					RequestDispatcher successView = request.getRequestDispatcher(url);// 刪除成功後,轉交到刪除成功的網頁shipUpdate.jsp
+					successView.forward(request, response);
+			}
 	}
 
 }

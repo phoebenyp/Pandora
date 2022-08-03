@@ -365,7 +365,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <th data-field="cruiseName" data-filter-control="select"
                                                     >航線名稱</th>
                                                 <th data-field="time" data-filter-control="select"
-                                                    >最後修改日期</th>
+                                                    >最後維護時間</th>
                                                 <th data-field="update" data-filter-control="select"
                                                     >修改</th>
                                                     <th data-field="delete" data-filter-control="select"
@@ -394,7 +394,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                                                </td>
 	                                                <td>
 	                                                    <form method="post"  action="<%=request.getContextPath()%>/CruiseLineServlet">
-	                                                        <input name="action" type="hidden" value="delete">
+	                                                        <input name="action" type="hidden" value="deleteCruiseNo">
 	                                                        <input name="cruiseLineNo" type="hidden" value="${cruiseLineVO.cruiseLineNo }">
 	                                                        <button class="btn btn-primary btn-sm" type="submit"
 	                                                            onclick="對應謀個function"
@@ -408,10 +408,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </tbody>
                                     </table> 
                                     </div>
-                                    
-                                    <input type="button" name="EMPregister" value="新增航線" text-align=center
-                                        style="margin-right: 0%;width:250px;float: right;"
-                                        onclick="javascript:window.location.href='cruise2insert.html'" />
+                                   <form method="post"  action="<%=request.getContextPath()%>/CruiseLineServlet">
+                                   <input type="hidden" name="action" value="cruiselineInsertBefore"> 
+                                    <input type="submit" name="EMPregister" value="新增航線" text-align=center
+                                        style="margin-right: 0%;width:250px;float: right;"/>
+                                        </form>
                                     </div>
 
                                 <div style="width:100%;text-align:center">

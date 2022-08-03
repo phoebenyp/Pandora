@@ -9,5 +9,7 @@ public interface PortsOfCallListDAO {
 	void update(PortsOfCallListVO portsOfCallListVO);
 
 	void delete(Integer portsOfCallListNo);
+	
+	void deleteAll(Integer cruise_Lines_No);
 
 }

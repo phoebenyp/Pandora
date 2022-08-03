@@ -10,10 +10,14 @@ public interface CruiseLineDAO {
 
 	CruiseLineVO selectNo(Integer cruiseLineNo);
 
-	CruiseLineVO selectLast(Integer cruiseLineNo);
+	CruiseLineVO selectLast();
 
 	void update(CruiseLineVO cruiseLineVO);
 
+	void updateUNPic(CruiseLineVO cruiseLineVO);
+	
+	void updateCLName(CruiseLineVO cruiseLineVO);
+	
 	void insert(CruiseLineVO cruiseLineVO);
 
 	void delete(Integer cruiseLineNo);

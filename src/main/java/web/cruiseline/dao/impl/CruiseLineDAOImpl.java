@@ -33,10 +33,14 @@ public class CruiseLineDAOImpl implements CruiseLineDAO {
 			+ " FROM Cruise_Line WHERE Cruise_Line_No = ?";
 	private static final String SELECT_LAST ="SELECT Cruise_Line_No,Cruise_Lines,Cruise_Line_Picture,Time"
 			+ " FROM Cruise_Line ORDER BY Cruise_Line_No DESC LIMIT 1";
-	private static final String UPDATE = "UPDATE Cruise_Line SET Cruise_Lines = ? , Cruise_Line_Picture = ?"
+	private static final String UPDATE = "UPDATE Cruise_Line SET Cruise_Lines = ? , Cruise_Line_Picture = ? , Time = ? "
 			+ " WHERE Cruise_Line_No = ?";
-	private static final String INSERT = "INSERT INTO Cruise_Line(Cruise_Lines,Cruise_Line_Picture)"
-			+ " VALUES(? , ?);";
+	private static final String UPDATE_UNPIC = "UPDATE Cruise_Line SET Cruise_Lines = ? ,Time = ?"
+			+ " WHERE Cruise_Line_No = ?";
+	private static final String UPDATE_CLNAME = "UPDATE Cruise_Line SET Cruise_Lines = ? "
+			+ " WHERE Cruise_Line_No = ?";
+	private static final String INSERT = "INSERT INTO Cruise_Line(Cruise_Lines,Cruise_Line_Picture,Time)"
+			+ " VALUES(? , ? , ?)";
 	private static final String DELETE = "DELETE FROM Cruise_Line WHERE Cruise_Line_No = ? ";
 	
 	@Override
@@ -147,7 +151,7 @@ public class CruiseLineDAOImpl implements CruiseLineDAO {
 	}
 	
 	@Override
-	public CruiseLineVO selectLast(Integer cruiseLineNo) {
+	public CruiseLineVO selectLast() {
 		CruiseLineVO cruiseLineVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -158,7 +162,6 @@ public class CruiseLineDAOImpl implements CruiseLineDAO {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(SELECT_LAST);
 
-			pstmt.setInt(1, cruiseLineNo);
 
 			rs = pstmt.executeQuery();
 
@@ -211,10 +214,10 @@ public class CruiseLineDAOImpl implements CruiseLineDAO {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
-			pstmt.setInt(1, cruiseLineVO.getCruiseLineNo());
-			pstmt.setString(2, cruiseLineVO.getCruiseLines());
-			pstmt.setBytes(3, cruiseLineVO.getCruiseLinePicture());
-			pstmt.setDate(4 ,Date.valueOf(cruiseLineVO.getTime()));
+			pstmt.setString(1, cruiseLineVO.getCruiseLines());
+			pstmt.setBytes(2, cruiseLineVO.getCruiseLinePicture());
+			pstmt.setDate(3 ,Date.valueOf(cruiseLineVO.getTime()));
+			pstmt.setInt(4, cruiseLineVO.getCruiseLineNo());
 			
 			pstmt.executeUpdate();
 
@@ -242,6 +245,82 @@ public class CruiseLineDAOImpl implements CruiseLineDAO {
 	}
 	
 	@Override
+	public void updateUNPic(CruiseLineVO cruiseLineVO) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_UNPIC);
+			pstmt.setString(1, cruiseLineVO.getCruiseLines());
+			pstmt.setDate(2 ,Date.valueOf(cruiseLineVO.getTime()));
+			pstmt.setInt(3, cruiseLineVO.getCruiseLineNo());
+			
+			pstmt.executeUpdate();
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}
+	
+	@Override
+	public void updateCLName(CruiseLineVO cruiseLineVO) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_CLNAME);
+			pstmt.setString(1, cruiseLineVO.getCruiseLines());
+			pstmt.setInt(2, cruiseLineVO.getCruiseLineNo());
+			
+			pstmt.executeUpdate();
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}
+	@Override
 	public void insert(CruiseLineVO cruiseLineVO) {
 
 		Connection con = null;
@@ -251,8 +330,9 @@ public class CruiseLineDAOImpl implements CruiseLineDAO {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT);
-			pstmt.setInt(1, cruiseLineVO.getCruiseLineNo());
+			pstmt.setString(1, cruiseLineVO.getCruiseLines());
 			pstmt.setBytes(2, cruiseLineVO.getCruiseLinePicture());
+			pstmt.setDate(3, Date.valueOf(cruiseLineVO.getTime()));
 			
 			pstmt.executeUpdate();
 
