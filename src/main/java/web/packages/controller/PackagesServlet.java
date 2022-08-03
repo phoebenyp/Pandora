@@ -43,13 +43,14 @@ public class PackagesServlet extends HttpServlet {
 		System.out.println(action);
 
 		if ("homePage".equals(action)) {
+						
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-
 			Map<String, String[]> map = req.getParameterMap();
 			PackagesService packagesService = new PackagesServiceImpl();
-
+			
 			List<PackagesVO> packagesList = packagesService.getAll(map);
+			List<String> packageNoList = packagesList.stream().map(vo -> vo.getPackageNo().toString()).collect(Collectors.toList());
 			List<String> departureDistinct = packagesList.stream().map(vo -> vo.getDeparture()).distinct()
 					.collect(Collectors.toList());
 			List<String> destinationDistinct = packagesList.stream().map(vo -> vo.getDestination()).distinct()
@@ -57,24 +58,49 @@ public class PackagesServlet extends HttpServlet {
 			List<String> departureTimeDistinct = packagesList.stream()
 					.map(vo -> vo.getDepartureTime().format(DateTimeFormatter.ofPattern("yyyy-MM"))).distinct()
 					.collect(Collectors.toList());
-			Integer count = packagesList.toArray().length;
+			List<String> duration = packagesList.stream().map(vo -> vo.getDestination()).distinct()
+					.collect(Collectors.toList());
 
+			Integer count = packagesList.toArray().length;
+			
+			req.setAttribute("packageNoList", packageNoList);
 			req.setAttribute("departureDistinct", departureDistinct);
 			req.setAttribute("destinationDistinct", destinationDistinct);
 			req.setAttribute("departureTimeDistinct", departureTimeDistinct);
 			req.setAttribute("packagesList", packagesList);
+			req.setAttribute("Duration", duration);
 			req.setAttribute("count", count);
+			System.out.println(departureDistinct);
+			System.err.println(destinationDistinct);
+			System.out.println(departureTimeDistinct);
 
+//			System.out.println(duration);
 			RequestDispatcher successView = req.getRequestDispatcher("/front-end/package/homePage.jsp"); // 成功轉交listEmps_ByCompositeQuery.jsp
 			successView.forward(req, resp);
 		}
+		
+//		if("clearBtn".equals(action)) {
+//			String url = req.getContextPath() + ("/front-end/package/homePage.jsp");
+//			
+//			resp.sendRedirect("http://localhost:8080/PackagesServlet?action=homePage");
+//		}
+		
+		
 		if ("listPackagesByCompositeQuery".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			Map<String, String[]> map = req.getParameterMap();
 			PackagesService packagesService = new PackagesServiceImpl();
 
+			for (String i : map.keySet()) {
+				System.out.println("我是KEY" + i + ":" + map.get(i));
+				for (String j : map.get(i)) {
+					System.out.println("我是Vaule:" + j);
+				}
+			}
+
 			List<PackagesVO> packagesList = packagesService.getAll(map);
+			List<String> packageNoList = packagesList.stream().map(vo -> vo.getPackageNo().toString()).collect(Collectors.toList());
 			List<String> departureDistinct = packagesList.stream().map(vo -> vo.getDeparture()).distinct()
 					.collect(Collectors.toList());
 			List<String> destinationDistinct = packagesList.stream().map(vo -> vo.getDestination()).distinct()
@@ -82,18 +108,26 @@ public class PackagesServlet extends HttpServlet {
 			List<String> departureTimeDistinct = packagesList.stream()
 					.map(vo -> vo.getDepartureTime().format(DateTimeFormatter.ofPattern("yyyy-MM"))).distinct()
 					.collect(Collectors.toList());
-	
+			List<String> duration = packagesList.stream().map(vo -> vo.getDuration().toString()).distinct()
+					.collect(Collectors.toList());
+
 			Integer count = packagesList.toArray().length;
-			System.out.println(packagesList);
+			
+
+			System.out.println("Servlet:listPackagesByCompositeQuery");
 			System.out.println(departureDistinct);
 			System.out.println(departureTimeDistinct);
+			System.out.println(duration);
 
 			req.setAttribute("departureDistinctB", departureDistinct);
 			req.setAttribute("destinationDistinctB", destinationDistinct);
 			req.setAttribute("departureTimeDistinctB", departureTimeDistinct);
 			req.setAttribute("packagesListB", packagesList);
+			req.setAttribute("Duration", duration);
 			req.setAttribute("count", count);
-			System.out.println(count);
+//			req.setAttribute("listPackagesByCompositeQuery",packagesService);
+
+//			System.out.println(count);
 			RequestDispatcher successView = req.getRequestDispatcher("/front-end/package/packagesSearch.jsp"); // 成功轉交listEmps_ByCompositeQuery.jsp
 			successView.forward(req, resp);
 		}
@@ -108,6 +142,7 @@ public class PackagesServlet extends HttpServlet {
 			Map<String, String[]> map = req.getParameterMap();
 			PackagesService packagesService = new PackagesServiceImpl();
 			List<PackagesVO> packagesList = packagesService.getAll(map);
+			List<String> packageNoList = packagesList.stream().map(vo -> vo.getPackageNo().toString()).collect(Collectors.toList());
 			List<String> departureDistinct = packagesList.stream().map(vo -> vo.getDeparture()).distinct()
 					.collect(Collectors.toList());
 			List<String> destinationDistinct = packagesList.stream().map(vo -> vo.getDestination()).distinct()
@@ -115,12 +150,16 @@ public class PackagesServlet extends HttpServlet {
 			List<String> departureTimeDistinct = packagesList.stream()
 					.map(vo -> vo.getDepartureTime().format(DateTimeFormatter.ofPattern("yyyy-MM"))).distinct()
 					.collect(Collectors.toList());
-			
+			List<String> duration = packagesList.stream().map(vo -> vo.getDuration().toString()).distinct()
+					.collect(Collectors.toList());
+			System.out.println(duration); 
 			Map<String, List<String>> optionMap = new HashMap<>();
+			optionMap.put("packageNoList",packageNoList);
 			optionMap.put("departureDistinct", departureDistinct);
 			optionMap.put("destinationDistinct", destinationDistinct);
 			optionMap.put("departureTimeDistinct", departureTimeDistinct);
-		
+			optionMap.put("Duration",duration);
+			
 			out.print(gson.toJson(optionMap));
 			out.flush();
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -197,8 +198,8 @@
               <div class="form-group">
                 <label>出發地</label>
                 <div class="styled-select-common">
-                 <select id="departure"  name="Departure" >
-        			<option value="">請選擇出發地</option>
+                 <select id="departureID"  name="Departure" >
+        			<option value=""></option>
         				 <c:forEach var="departure" items="${departureDistinctB}" > 
            		            		
          		    <option value="${departure}" ${departure==param["Departure"]?"selected":""}>
@@ -212,8 +213,8 @@
               <div class="form-group">
                 <label>目的地</label>
                 <div class="styled-select-common">
-                 <select id="destination" name="Destination" >
-        			<option value="" >請選擇目的地</option>
+                 <select id="destinationID" name="Destination" >
+        			<option value="" ></option>
         			<c:forEach var="destination" items="${destinationDistinctB}" > 
            		            		
          		    <option value="${destination}" ${destination==param["Destination"]?"selected":"" }>         		
@@ -227,11 +228,11 @@
               <div class="form-group">
                 <label>出發年月</label>
                 <div class="styled-select-common">
-                <select  name="DepartureTime" >
-        			<option value="">請選擇出航日期</option>
+                <select name="DepartureTime" id="departureTimeID" class="departureTimeSelect">
+        			<option value=""></option>
         		<c:forEach var="departureTime" items="${departureTimeDistinctB}" > 
            		            		
-         		    <option value="${departureTime}" ${departureTime==param["DepartureTime"]?"selected":"" }>         		
+         		    <option value="${departureTime}" ${departureTime==param["DepartureTime"]?"selected":"" }}>         		
          		          		    ${departureTime}
          		</c:forEach>   
        		</select>
@@ -242,11 +243,11 @@
               <div class="form-group">
                 <label>天數</label>
                 <div class="styled-select-common">
-                 <select name="Duration">
-                    <option value="" selected>任何天數</option>
-                    <option value="short">1~5天</option>
-                    <option value="medium">6~9天</option>
-                    <option value="Long">10天以上</option>
+                 <select name="Duration" id="durationID" class="durationSelect">
+                    <option value="" selected>${param.Duration}</option>
+                    <option value="5">1~5天</option>
+                    <option value="10">6~9天</option>
+                    <option value="20">10天以上</option>
                   </select>
                 </div>
               </div>
@@ -536,24 +537,30 @@
     		request.done(function( data ) {
     			console.log(data)
     			
-	    		let departureAll='<option>請選擇出發地</option>';
+	    		let departureAll='<option></option>';
 	    		data.departureDistinct.forEach(function(departure){
 	    			departureAll = departureAll + '<option>'+departure+'</option>'
 	    		});
 	    		
-	    		let destinationAll='<option>請選擇目的地</option>';
+	    		let destinationAll='<option></option>';
 	    		data.destinationDistinct.forEach(function(destination){
 	    			destinationAll = destinationAll + '<option>'+destination+'</option>'
 	       		})
 	       		
-	       		let departureTimeAll='<option>請選擇啟航日期</option>';
-	    		data.departureTimeDistinct.forEach(function(departureTime){
-	    			departureTimeAll = departureTimeAll + '<option>'+departureTime+'</option>'
+	       		let departureTimeAll='<option></option>';
+	    		data.departureTimeDistinct.forEach(function(departureTime){	    		
+	    			departureTimeAll = departureTimeAll + '<option>'+ departureTime +'</option>'
 	       		})
 	       		
-	   			$('#departure').html(departureAll);	
-	    		$('#destination').html(destinationAll);
-	    		$('#departureTime').html(departureTimeAll);
+	       		let durationAll='<option></option>';
+	    			    				    			
+	    		durationAll = '<option></option>'+'<option value="5">1~5天</option>'+' <option value="10">6~9天</option>'+'<option value="20">10天以上</option>'
+	    		
+	       		
+	   			$('#departureID').html(departureAll);	
+	    		$('#destinationID').html(destinationAll);
+	    		$('#departureTimeID').html(departureTimeAll);
+	    		$('#durationID').html(durationAll);
    			});
     	
     	})

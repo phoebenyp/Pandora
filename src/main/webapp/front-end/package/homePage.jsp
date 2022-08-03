@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
 <!DOCTYPE html>
@@ -202,8 +203,8 @@
                 <label>出發地</label>
                 <div class="styled-select-common">
                
-       <select  name="Departure" id="departureID">
-        			<option value="" selected>請選擇出發點</option>
+       <select  name="Departure" id="departureID" class="departureSelect">
+        			<option value="" selected></option>
          			<c:forEach var="departure" items="${departureDistinct}" >            		            	
          		   <option value="${departure}" ${departure==param["Departure"]?"selected":""}>
          		             	  ${departure}
@@ -217,10 +218,10 @@
               <div class="form-group">
                 <label>目的地</label>
                 <div class="styled-select-common">
-                  <select  name="Destination" >
-        			<option value="" selected>請選擇目的地</option>
+                  <select  name="Destination" id="destinationID" class="destinationSelect" >
+        			<option value="" selected></option>
         				 <c:forEach var="destination" items="${destinationDistinct}" > 
-           		    <option value="${destination}" ${destination==param["Destination"]?"selected":"" }>         		
+           		    <option value="${destination}" ${destination==param["Destination"]?"selected":""}>         		
          		          		    ${destination}      		
          		    
          				</c:forEach>   
@@ -232,8 +233,8 @@
               <div class="form-group">
                 <label>出發年月</label>
                 <div class="styled-select-common">
-            <select  name="DepartureTime" >
-        			<option value="" selected>請選擇出航日期</option>
+            <select  name="DepartureTime" id="departureTimeID" class="departureTimeSelect">
+        			<option value="" selected></option>
         		<c:forEach var="departureTime" items="${departureTimeDistinct}" > 
            		            		
          		    <option value="${departureTime}">         		
@@ -247,11 +248,12 @@
               <div class="form-group">
                 <label>天數</label>
                 <div class="styled-select-common">
-                  <select name="Duration">
-                    <option value="" selected>任何天數</option>
-                    <option value="short">1~5天</option>
-                    <option value="medium">6~9天</option>
-                    <option value="Long">10天以上</option>
+                  <select name="Duration" id="durationID" class="durationSelect">
+                    <option value="" selected></option>
+                    <option value="5">1~5天</option>
+                    <option value="10">6~9天</option>
+                    <option value="20">10天以上</option>
+                    
                   </select>
                 </div>
               </div>
@@ -262,7 +264,7 @@
          		<button class="btn_1 green" type="submit" name="action" value="listPackagesByCompositeQuery" style=width:200px>查詢行程</button>
                
                 <button class="btn_1 green" id="clearBtn" style=width:200px>清除</button></br>
-				<i class="icon-search"></i>共有${count}個匹配行程
+				<div id="count"><i class="icon-search"></i>共有${fn:length(packageNoList)}個匹配行程</div>
         </div>
                   
         
@@ -429,38 +431,179 @@
   $(function (){
 	  $("#departureID").change(function(){
 		  alert($( this ).val())
-		  var request=$.ajax({
+		    var request=$.ajax({
 			url: "<%=request.getContextPath()%>/PackagesServlet",
-		 	method:"POST",
-		 	data:{"action":"updateOption","Departure":$( this ).val()},
+		 	method:"POST",											   				
+		 	data:{"action":"updateOption","Departure":$( this ).val(),"Destination":$(destinationID).val(),"DepartureTime":$(departureTimeID).val()},
 		 	dataType:"json"
 			  
 		  });
 		  request.done(function(data){
 		  	console.log(data)
-			 
-			let departureAll='<option>請選擇出發地</option>';
-	    	data.departureDistinct.forEach(function(departure){
-	    	  departureAll = departureAll + '<option>'+departure+'</option>'
-	    	});
-	    	$('#departure').html(departureAll);	
-	  	
-		  });
-		  
-		  
-		  let departureTimeAll='<option>請選擇啟航時間</option>';
-	    	data.departureDistinct.forEach(function(departureTime){
-	    		departureTimeAll = departureTimeAll + '<option>'+departureTime+'</option>'
-	    	});
-	    	$('#departureTime').html(departureAll);	
-	  	
-		  });
-		  
-	  });
+		  	console.log(data.packageNoList.length)
+			console.log(data.Duration)
+			console.log(data.departureTimeDistinct)
+// 			let departureAll='<option>請選擇出發地</option>';
+// 	    	data.departureDistinct.forEach(function(departure){
+// 	    	  departureAll =  '<option>'+departure+'</option>'
+// 	    	});
+// 	    	$('.departureSelect').html(departureAll);	
+
+			let destinationAll='<option></option>';
+    		data.destinationDistinct.forEach(function(destination){
+    			if(destinationAll.length!=0){
+    				destinationAll =  destinationAll + '<option>'+destination+'</option>'
+		    	}else{
+		    		destinationAll = destinationAll + '<option>'+destination+'</option>'
+		    	}    				    		
+		         			    		
+       		});												
+    		$('.destinationSelect').html(destinationAll); 
+	    		       
+			let departureTimeAll='<option></option>';
+    		data.departureTimeDistinct.forEach(function(departureTime){
+    		  departureTimeAll = departureTimeAll + '<option>'+departureTime+'</option>'
+       		});
+    		$('.departureTimeSelect').html(departureTimeAll); 
+    		
+    		
+    		let durationAll='<option></option>';    		
+    		data.Duration.forEach(function(duration){
+    			if(duration==5){
+    				durationAll=durationAll+'<option>1~5天</option>'
+    			}else if(duration==9){
+    				durationAll=durationAll+'<option>6~9天</option>'
+    			}else{
+    				durationAll=durationAll+'<option>10天以上</option>'
+    			} 		
+
+    		});    			    		
+    		$('.durationSelect').html(durationAll); 
+    		
+    		let counts=data.packageNoList.length
+    		var count=document.getElementById("count");
+    			count.innerHTML= "共有"+counts+"個匹配行程";
+    		
+    	
+		  }); 	//end of  request.done	
+		 
+	  }); //change departure event
 	  
-  })
+	  $("#destinationID").change(function(){
+		  alert($( this ).val())
+		  var request=$.ajax({
+			url: "<%=request.getContextPath()%>/PackagesServlet",
+		 	method:"POST",				  
+		 	data:{"action":"updateOption","Destination":$( this ).val(),"Departure":$(departureID).val(),"DepartureTime":$(departureTimeID).val()},
+		 	dataType:"json"
+			  
+		  });
+		  request.done(function(data){
+		  	console.log(data)
+		  	console.log(data.packageNoList.length)
+			console.log(data.Duration)
+			console.log(data.departureTimeDistinct)
+			
+			
+			
+			let departureAll='<option></option>';
+	    	data.departureDistinct.forEach(function(departure){
+	    		if(departureAll.length!=0){
+		    		departureAll ='<option>'+departure+'</option>'
+		    	}else{
+		    		 departureAll = departureAll+  '<option>'+departure+'</option>'
+		    	}	    	
+	    	 });
+	    	
+	    	$('.departureSelect').html(departureAll);	
+
+// 			let destinationAll='<option>請選擇目的地</option>';
+//     		data.destinationDistinct.forEach(function(destination){
+//     			destinationAll = destinationAll + '<option>'+destination+'</option>'
+//        		});												
+//     		$('.destinationSelect').html(destinationAll); 
+	    		       
+			let departureTimeAll='<option></option>';
+    		data.departureTimeDistinct.forEach(function(departureTime){
+    		  departureTimeAll = departureTimeAll + '<option>'+departureTime+'</option>'
+       		});
+    		$('.departureTimeSelect').html(departureTimeAll); 
+    		
+    		
+    		let durationAll='<option></option>';    		
+    		data.Duration.forEach(function(duration){
+    			if(duration==5){
+    				durationAll=durationAll+'<option>1~5天</option>'
+    			}else if(duration==9){
+    				durationAll=durationAll+'<option>6~9天</option>'
+    			}else{
+    				durationAll=durationAll+'<option>10天以上</option>'
+    			} 		
+
+    		});    			    		
+    		$('.durationSelect').html(durationAll); 
+    		
+    		let counts=data.packageNoList.length
+    		var count=document.getElementById("count");
+    			count.innerHTML= "共有"+counts+"個匹配行程";
+    		
+    	
+		  }); 	//end of  request.done	
+		 
+	  }); // change destination
+	  
+	  
+	  
+	  
+	  
+  })//function
   
   </script>
+     <script>
+    $(function () {
+    	$('#clearBtn').click(function(){
+    		alert("HI");
+    		var request = $.ajax({
+   			  url: "<%=request.getContextPath()%>/PackagesServlet",
+   			  method: "POST",
+   			  data:{"action":"updateOption"},
+   			  dataType: "json"
+    		});
+    			 
+    		request.done(function( data ) {
+    			console.log(data)
+    			
+	    		let departureAll='<option></option>';
+	    		data.departureDistinct.forEach(function(departure){
+	    			departureAll = departureAll + '<option>'+departure+'</option>'
+	    		});
+	    		
+	    		let destinationAll='<option></option>';
+	    		data.destinationDistinct.forEach(function(destination){
+	    			destinationAll = destinationAll + '<option>'+destination+'</option>'
+	       		})
+	       		
+	       		let departureTimeAll='<option></option>';
+	    		data.departureTimeDistinct.forEach(function(departureTime){	    		
+	    			departureTimeAll = departureTimeAll + '<option>'+ departureTime +'</option>'
+	       		})
+	       		
+	       		let durationAll='<option></option>';
+	    			    				    			
+	    		durationAll = '<option></option>'+'<option value="5">1~5天</option>'+' <option value="10">6~9天</option>'+'<option value="20">10天以上</option>'
+	    		
+	       		
+	   			$('#departureID').html(departureAll);	
+	    		$('#destinationID').html(destinationAll);
+	    		$('#departureTimeID').html(departureTimeAll);
+	    		$('#durationID').html(durationAll);
+   			});
+    	
+    	})
+    	
+    	
+    });
+    </script>
   
   <script>
     $(function () {

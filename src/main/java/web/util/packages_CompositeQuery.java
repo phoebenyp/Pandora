@@ -10,12 +10,30 @@ public class packages_CompositeQuery {
 		String aCondition = null;
 
 		if ("Departure".equals(columnName) || "Destination".equals(columnName)) {// 用於varchar
-			aCondition = columnName + " like '%" + value + "%'";
-		}else if("Duration".equals(columnName)){
-			aCondition = columnName + ">=" + value;			
-		}else if ("Departure_Time".equals(columnName)) // 用於date
-			aCondition = columnName + " like '%" + value + "%'";
-//			aCondition = columnName + "=" + "'" + value + "'"; 
+			
+				aCondition = columnName + " like '%" + value + "%'";
+			
+
+		} else if ("Duration".equals(columnName)) {
+			System.out.println(value);
+			if (value.equals("1~5天")||value.equals("5")) {
+				aCondition = "Duration" + "<=" + "5";
+			} else if (value.equals("6~9天")||value.equals("10")) {
+				aCondition = "Duration" + ">" + "6" + "&&" + "Duration" + "<" + "10";
+			}else if (value.equals("10天以上")||value.equals("20")) {
+				aCondition = "Duration" + ">" + "10";
+			}
+
+//			aCondition = "Duration" + ">=" + value;
+		} else if ("DepartureTime".equals(columnName)) { // 用於date
+			if (value.equals("請選擇啟航日期")) {
+				aCondition = "";
+			}
+
+			aCondition = "Departure_Time" + " like '%" + value + "%'";
+		}
+
+		// aCondition = columnName + "=" + "'" + value + "'";
 		// for 其它DB 的 date
 //		    aCondition = "to_char(" + columnName + ",'yyyy-mm-dd')='" + value + "'";  //for Oracle 的 date
 
@@ -32,10 +50,14 @@ public class packages_CompositeQuery {
 				count++;
 				String aCondition = get_aCondition_For_myDB(key, value.trim());
 
-				if (count == 1)
+				if (count == 1) {
 					whereCondition.append(" where " + aCondition);
-				else
-					whereCondition.append(" and " + aCondition);
+				} else {
+					if (aCondition !="") {
+						whereCondition.append(" and " + aCondition);
+					}
+
+				}
 
 				System.out.println("有送出查詢資料的欄位數count = " + count);
 			}
