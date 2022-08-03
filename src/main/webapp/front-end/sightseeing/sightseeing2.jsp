@@ -596,7 +596,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     <!-- Map -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaLnCT5X3SOIuBBlEMSlXuFLIh4qLyXxQ&libraries=places"></script>
 
-    <!-- <script src="<%=request.getContextPath()%>/front-end/sightseeing/js/map_full_page.js"></script> -->
+    <script src="<%=request.getContextPath()%>/front-end/sightseeing/js/map_full_page.js"></script>
 
     <script src="<%=request.getContextPath()%>/Cart/html/js/infobox.js"></script>
     <script
@@ -716,7 +716,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
           console.log(parseFloat(lalo[0]), parseFloat(lalo[1]));
           //加入位置
           var mapOptions = {
-            zoom: 15,
+            zoom: 16,
             //             center: new google.maps.LatLng(24.288734,120.508477),
             center: new google.maps.LatLng(
               parseFloat(lalo[0]),
@@ -1008,28 +1008,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
             document.getElementById("map"),
             mapOptions
           );
-          //         for (var key in markersData)
-          //           markersData[key].forEach(function (item) {
-          //             marker = new google.maps.Marker({
-          //               position: new google.maps.LatLng(
-          //                 parseFloat(lalo[0]) + " ," + parseFloat(lalo[1])
-          //               ),
-          //               map: mapObject,
-          //               icon: "img/pins/" + key + ".png",
-          //             });
-
-          //             if ("undefined" === typeof markers[key]) markers[key] = [];
-          //             markers[key].push(marker);
-          //             google.maps.event.addListener(marker, "click", function () {
-          //               closeInfoBox();
-          //               getInfoBox(item).open(mapObject, this);
-          //               mapObject.setCenter(
-          //                 new google.maps.LatLng(
-          //                   parseFloat(lalo[0]) + " ," + parseFloat(lalo[1])
-          //                 )
-          //               );
-          //             });
-          //           });
           //加入位置
         });
       });

@@ -184,8 +184,8 @@
 		};
 
 			var mapOptions = {
-				zoom: 15,
-				center: new google.maps.LatLng(24.288734,120.508477),
+				zoom: 16,
+				center: new google.maps.LatLng(25.129925,121.740365),
 				mapTypeId: google.maps.MapTypeId.ROADMAP,
 
 				mapTypeControl: false,
