@@ -287,16 +287,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- <div data-role="main" class="ui-content">
-						<div data-role="collapsible">
-						  <h1>点击我 - 我可以折叠！</h1>
-						  <p>我是可折叠的内容。</p>
-						</div>
-					  </div> -->
-
-					<!-- <div id="div_block" style="padding-left: 51px;">
-						<h3>同行人資料</h3>
-					</div> -->
 
 					<div id="div_block" style="background: none; color: #222;">
 						<h3 style="padding-left: 51px;">同行人資料</h3>
@@ -445,7 +435,7 @@
 									</tr>
 									<tr>
 										<td>
-											出發日期
+											行程天數
 										</td>
 										<td id="Start_Date" class="text-end">
 											2022年07月20日
@@ -453,7 +443,7 @@
 									</tr>
 									<tr>
 										<td>
-											結束日期
+											出發日期
 										</td>
 										<td id="End_Date" class="text-end">
 											2022年07月28日
@@ -461,7 +451,7 @@
 									</tr>
 									<tr>
 										<td>
-											預定房型
+											房型資訊
 										</td>
 										<td id="Room_Type" class="text-end">
 											豪華客房 x 1
@@ -487,22 +477,12 @@
 							</table>
 							<a class="btn_full_outline" href="Cart/html/index_7.html"><i class="icon-right"></i>變更搜尋條件</a>
 						</div>
-
-
-
-
-
-
-
 					</aside>
-
-
 					<!--End row -->
 				</div>
 				<!--End container -->
 	</main>
 	<!-- End main -->
-
 	<footer class="revealed">
 		<div class="container">
 			<div class="row">
@@ -511,7 +491,6 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div id="social_footer">
-
 						<p>© Pandora 2022</p>
 					</div>
 				</div>

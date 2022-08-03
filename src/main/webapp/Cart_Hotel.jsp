@@ -49,11 +49,13 @@
 #Package {
 	margin: 0 60px;
 }
-.Opacity04{
+
+.Opacity04 {
 	opacity: 0.4;
 }
+
 .ARoomMargin {
-	margin-left: 18px !important; 
+	margin-left: 18px !important;
 }
 </style>
 <link rel="stylesheet" href="Cart/html/css/roompick.css">
@@ -304,8 +306,8 @@
 								</div>
 								<!-- End col-lg-8 -->
 
-								<aside class="col-lg-4">
-									<div class="box_style_1">
+								<aside class="col-lg-4" style="margin-top: 15px;">
+									<div id="orderSummary1" class="box_style_1">
 										<h3 class="inner">-行程概要-</h3>
 										<table class="table table_summary">
 											<tbody>
@@ -315,18 +317,19 @@
 												</tr>
 												<tr>
 													<td>行程天數</td>
-													<td id="Start_Date" class="text-end"></td>
+													<td id="Duration" class="text-end"></td>
 												</tr>
 												<tr>
 													<td>出發日期</td>
-													<td id="End_Date" class="text-end"></td>
+													<td id="Start_Date" class="text-end"></td>
 												</tr>
 												<tr>
 													<td>預定房型</td>
 													<td id="Room_Type1" class="text-end"></td>
+													<!-- <td id="Number_of_Rooms" class="text-end"></td> -->
 												</tr>
 												<tr>
-													<td>房間數量</td>
+													<td>房間總數</td>
 													<td id="Number_of_Rooms" class="text-end"></td>
 												</tr>
 												<tr class="total">
@@ -335,9 +338,8 @@
 												</tr>
 											</tbody>
 										</table>
-										<a id="confirmRoomType" class="btn_full">立即預訂</a> <a
-											class="btn_full_outline" href="index_7.html"><i
-											class="icon-right"></i>返回行程搜尋</a>
+										<a id="confirmRoomType" class="btn_full">前往房間劃位</a> <a
+											class="btn_full_outline" href="index_7.html">返回行程搜尋</a>
 									</div>
 
 								</aside>
@@ -352,12 +354,13 @@
 								<div class="col-8">
 									<section id="bus_container">
 										<div class="d-flex justify-content-left" id="bus"
-											style="padding-bottom: 100px; padding-top: 60px;">
+											style="padding-bottom: 50px; padding-top: 30px;">
 											<div class="">
 												<ul class="bus bus2"
-													style="padding: 20px; border-radius: 100px 100px 10px 10px;">
+													style="padding: 20px; border-radius: 100px 100px 10px 10px; margin-left: 55px;">
 													<li style="margin: 60px 0 0 0;">
-														<!--seat1 = 潘多拉套房--> <a id="A01"  class="seat1 ARoomMargin Opacity04"
+														<!--seat1 = 潘多拉套房--> <a id="A01"
+														class="seat1 ARoomMargin Opacity04"
 														style="background-color: #00FFFF" data-pickStatus="false"></a>
 														<span class="passage"></span> <a id="A02"
 														class="seat1 justify-content-center Opacity04"
@@ -365,76 +368,80 @@
 													</li>
 													<li><span class="passage" style="height: 10px;"></span></li>
 													<li>
-														<!--seat2 = 精緻客房--> <a
-														id="B01" class="seat2 justify-content-center Opacity04"
-														style="background-color: #52eb11" data-pickStatus="false"></a> <a
-														id="B02" class="seat2 justify-content-center Opacity04"
-														style="background-color: #52eb11" data-pickStatus="false"></a> <span
-														class="passage"></span> <a
-														id="B03" class="seat2 justify-content-center Opacity04"
-														style="background-color: #52eb11" data-pickStatus="false"></a> <a
-														id="B04" class="seat2 justify-content-center Opacity04"
+														<!--seat2 = 精緻客房--> <a id="B01"
+														class="seat2 justify-content-center Opacity04"
+														style="background-color: #52eb11" data-pickStatus="false"></a>
+														<a id="B02" class="seat2 justify-content-center Opacity04"
+														style="background-color: #52eb11" data-pickStatus="false"></a>
+														<span class="passage"></span> <a id="B03"
+														class="seat2 justify-content-center Opacity04"
+														style="background-color: #52eb11" data-pickStatus="false"></a>
+														<a id="B04" class="seat2 justify-content-center Opacity04"
 														style="background-color: #52eb11" data-pickStatus="false"></a>
 													</li>
-													<li><a id="B05" class="seat2 justify-content-center Opacity04"
-														style="background-color: #52eb11" data-pickStatus="false"></a> <a
-														id="B06" class="seat2 justify-content-center Opacity04"
-														style="background-color: #52eb11" data-pickStatus="false"></a> <span
-														class="passage"></span> <a
-														id="B07" class="seat2 justify-content-center Opacity04"
-														style="background-color: #52eb11" data-pickStatus="false"></a> <a
-														id="B08" class="seat2 justify-content-center Opacity04"
+													<li><a id="B05"
+														class="seat2 justify-content-center Opacity04"
+														style="background-color: #52eb11" data-pickStatus="false"></a>
+														<a id="B06" class="seat2 justify-content-center Opacity04"
+														style="background-color: #52eb11" data-pickStatus="false"></a>
+														<span class="passage"></span> <a id="B07"
+														class="seat2 justify-content-center Opacity04"
+														style="background-color: #52eb11" data-pickStatus="false"></a>
+														<a id="B08" class="seat2 justify-content-center Opacity04"
 														style="background-color: #52eb11" data-pickStatus="false"></a></li>
 													<li><span class="passage" style="height: 10px;"></span></li>
 													<li>
-														<!--seat3 = 家庭客房--> <a
-														id="C01" class="seat3 justify-content-center Opacity04"
-														style="background-color: #816cdf" data-pickStatus="false"></a> <a
-														id="C02" class="seat3 justify-content-center Opacity04"
-														style="background-color: #816cdf" data-pickStatus="false"></a> <span
-														class="passage"></span> <a
-														id="C03" class="seat3 justify-content-center Opacity04"
-														style="background-color: #816cdf" data-pickStatus="false"></a> <a
-														id="C04" class="seat3 justify-content-center Opacity04"
+														<!--seat3 = 家庭客房--> <a id="C01"
+														class="seat3 justify-content-center Opacity04"
+														style="background-color: #816cdf" data-pickStatus="false"></a>
+														<a id="C02" class="seat3 justify-content-center Opacity04"
+														style="background-color: #816cdf" data-pickStatus="false"></a>
+														<span class="passage"></span> <a id="C03"
+														class="seat3 justify-content-center Opacity04"
+														style="background-color: #816cdf" data-pickStatus="false"></a>
+														<a id="C04" class="seat3 justify-content-center Opacity04"
 														style="background-color: #816cdf" data-pickStatus="false"></a>
 													</li>
-													<li><a id="C05" class="seat3 justify-content-center Opacity04"
-														style="background-color: #816cdf" data-pickStatus="false"></a> <a
-														id="C06" class="seat3 justify-content-center Opacity04"
-														style="background-color: #816cdf" data-pickStatus="false"></a> <span
-														class="passage"></span> <a
-														id="C07" class="seat3 justify-content-center Opacity04"
-														style="background-color: #816cdf" data-pickStatus="false"></a> <a
-														id="C08" class="seat3 justify-content-center Opacity04"
+													<li><a id="C05"
+														class="seat3 justify-content-center Opacity04"
+														style="background-color: #816cdf" data-pickStatus="false"></a>
+														<a id="C06" class="seat3 justify-content-center Opacity04"
+														style="background-color: #816cdf" data-pickStatus="false"></a>
+														<span class="passage"></span> <a id="C07"
+														class="seat3 justify-content-center Opacity04"
+														style="background-color: #816cdf" data-pickStatus="false"></a>
+														<a id="C08" class="seat3 justify-content-center Opacity04"
 														style="background-color: #816cdf" data-pickStatus="false"></a></li>
 													<li><span class="passage" style="height: 10px;"></span></li>
 													<li>
-														<!--seat4 = 豪華客房--> <a
-														id="D01" class="seat4 justify-content-center Opacity04"
-														style="background-color: #e3b981" data-pickStatus="false"></a> <a
-														id="D02" class="seat4 justify-content-center Opacity04"
-														style="background-color: #e3b981" data-pickStatus="false"></a> <span
-														class="passage"></span> <a
-														id="D03" class="seat4 justify-content-center Opacity04"
-														style="background-color: #e3b981" data-pickStatus="false"></a> <a
-														id="D04" class="seat4 justify-content-center Opacity04"
+														<!--seat4 = 豪華客房--> <a id="D01"
+														class="seat4 justify-content-center Opacity04"
+														style="background-color: #e3b981" data-pickStatus="false"></a>
+														<a id="D02" class="seat4 justify-content-center Opacity04"
+														style="background-color: #e3b981" data-pickStatus="false"></a>
+														<span class="passage"></span> <a id="D03"
+														class="seat4 justify-content-center Opacity04"
+														style="background-color: #e3b981" data-pickStatus="false"></a>
+														<a id="D04" class="seat4 justify-content-center Opacity04"
 														style="background-color: #e3b981" data-pickStatus="false"></a>
 													</li>
-													<li><a id="D05" class="seat4 justify-content-center Opacity04"
-														style="background-color: #e3b981" data-pickStatus="false"></a> <a
-														id="D06" class="seat4 justify-content-center Opacity04"
-														style="background-color: #e3b981" data-pickStatus="false"></a> <span
-														class="passage"></span> <a
-														id="D07" class="seat4 justify-content-center Opacity04"
-														style="background-color: #e3b981" data-pickStatus="false"></a> <a
-														id="D08" class="seat4 justify-content-center Opacity04"
+													<li><a id="D05"
+														class="seat4 justify-content-center Opacity04"
+														style="background-color: #e3b981" data-pickStatus="false"></a>
+														<a id="D06" class="seat4 justify-content-center Opacity04"
+														style="background-color: #e3b981" data-pickStatus="false"></a>
+														<span class="passage"></span> <a id="D07"
+														class="seat4 justify-content-center Opacity04"
+														style="background-color: #e3b981" data-pickStatus="false"></a>
+														<a id="D08" class="seat4 justify-content-center Opacity04"
 														style="background-color: #e3b981" data-pickStatus="false"></a></li>
 													<li><span class="passage" style="height: 10px;"></span></li>
 
 													<li><a id="A03" class="seat1 ARoomMargin Opacity04"
 														style="background-color: #00FFFF" data-pickStatus="false"></a>
-														<span class="passage"></span> <a id="A04" class="seat1 Opacity04"
-														style="background-color: #00FFFF" data-pickStatus="false"></a></li>
+														<span class="passage"></span> <a id="A04"
+														class="seat1 Opacity04" style="background-color: #00FFFF"
+														data-pickStatus="false"></a></li>
 												</ul>
 												<div>
 													<small>*房型分類： Ａ = 潘多拉套房，B = 精緻客房，C = 家庭客房，D = 豪華客房</small>
@@ -444,7 +451,7 @@
 									</section>
 								</div>
 
-								<aside class="col-lg-4" style="margin-top: 60px;">
+								<aside class="col-lg-4" style="margin-top: 30px;">
 									<div class="box_style_1">
 										<h3 class="inner">-選擇房型-</h3>
 										<table class="table table_summary">
@@ -463,13 +470,14 @@
 												</tr>
 											</tbody>
 										</table>
-										<a class="btn_full" id="pickOrNotButton">選擇</a>
+										<a class="btn_full" id="pickOrNotButton">選擇</a> <a
+											id="goToPayment" class="btn_full_outline">前往結帳</a>
 									</div>
 								</aside>
 
 							</div>
 						</div>
-					</main>
+						</main>
 						<!-- End main -->
 
 						<footer class="revealed">
@@ -912,8 +920,8 @@ $('.table.table-striped.cart-list.add_bottom_30').find('div').on('click', '.inc.
 
 	// 將roomType key 遍例出來組成 roomTypeOneStr & 計算房間總數量
 	for (let [key, value] of roomTypeAndCountPair) {
-		roomTypeOneStr = roomTypeOneStr + key + '<br>'; // 預定房型內容文字串接
-		roomTotalCount += parseInt(value); // 房間數量累加 (parseInt 將文字轉成數字)
+		roomTypeOneStr = roomTypeOneStr + key + "&emsp;" + (parseInt(value)) + '<br>'; // 預定房型內容文字串接
+		roomTotalCount += parseInt(value);  // 房間數量累加 (parseInt 將文字轉成數字)
 
 		// 計算總價
 		let roomTypeCount = parseInt(value);
@@ -930,8 +938,8 @@ $('.table.table-striped.cart-list.add_bottom_30').find('div').on('click', '.inc.
 	roomTypeOne.innerHTML = roomTypeOneStr;
 
 	// 房間數量 : 取得element 並使用innerHTML roomTotalCount 放入html結構
-	let passengerNumber = document.getElementById('Number_of_Rooms');
-	passengerNumber.innerHTML = roomTotalCount;
+	let roomQuantity = document.getElementById('Number_of_Rooms');
+	roomQuantity.innerHTML = roomTotalCount;
 
 	// 總計 : 取得element 並使用innerHTML roomTotalPrice 放入html結構
 	let totalCost = document.getElementById('Total_Cost');
@@ -970,7 +978,7 @@ $('.table.table-striped.cart-list.add_bottom_30').find('div').on('click', '.dec.
 
 	// 將roomType key 遍例出來組成 roomTypeOneStr & 計算房間總數量
 	for (let [key, value] of roomTypeAndCountPair) {
-		roomTypeOneStr = roomTypeOneStr + key + '<br>';
+		roomTypeOneStr = roomTypeOneStr + key + "&emsp;" + (parseInt(value)) + '<br>';
 		roomTotalCount += parseInt(value); // 房間數量累加 (parseInt 將文字轉成數字)
 
 		// 計算總價
@@ -988,8 +996,8 @@ $('.table.table-striped.cart-list.add_bottom_30').find('div').on('click', '.dec.
 	roomTypeOne.innerHTML = roomTypeOneStr;
 
 	// 房間數量 : 取得element 並使用innerHTML roomTotalCount 放入html結構
-	let passengerNumber = document.getElementById('Number_of_Rooms');
-	passengerNumber.innerHTML = roomTotalCount;
+	let roomQuantity = document.getElementById('Number_of_Rooms');
+	roomQuantity.innerHTML = roomTotalCount;
 
 	// 總計 : 取得element 並使用innerHTML roomTotalPrice 放入html結構
 	let totalCost = document.getElementById('Total_Cost');
@@ -1023,9 +1031,6 @@ $('#confirmRoomType').on('click', function(e) {
 					doc.firstElementChild.innerHTML='';
 					doc.setAttribute('style', 'pointer-events: none; background-color:#494444')
 					/* console.log(o.bookedRoomNo); */
-					
-					
-					
 				}
 			}
 		}
@@ -1035,9 +1040,12 @@ $('#confirmRoomType').on('click', function(e) {
 
 <script>
 	let currentPickRoomNode = undefined;
+	let pickedRoomNo = "";
+	
+	
 	$('.bus.bus2 a').on('click', function(e) {
 		/* let pickedRoom = document.getElementById('A01').value; */
-		console.log(e.target.textContent);
+		/* console.log(e.target.textContent); */
 		let roomNumber = e.target.textContent;
 		
 		let data = {};
@@ -1045,19 +1053,18 @@ $('#confirmRoomType').on('click', function(e) {
 		data.shipNo = "1";
 		data.roomNo = roomNumber;
 		
-		console.log("<%=request.getContextPath()%>/cartHotel.do");
+		<%-- console.log("<%=request.getContextPath()%>/cartHotel.do"); --%>
 		
 		$.ajax({
 			url : "<%=request.getContextPath()%>/cartHotel.do",
 			type : "post",
 			data : data,
 			success : function(result) {
-				console.log(result); 
+				/* console.log(result);  */
 				let obj = JSON.parse(result);
 				/* console.log(obj.roomListNo);
 				console.log(obj); */
 				
-					
 					// 取得element 並使用innerHTML 將obj.room 放入html結構
 					let roomNo = document.getElementById('PickedRoomNo');
 					roomNo.innerHTML = obj.roomNo;
@@ -1073,13 +1080,15 @@ $('#confirmRoomType').on('click', function(e) {
 					let isPick = currentPickRoomNode.getAttribute('data-pickstatus');
 					if(isPick === 'true'){
 						$('#pickOrNotButton').html('取消選擇');
+						pickedRoomNo = pickedRoomNo + isPick;
 					} else {
 						$('#pickOrNotButton').html('選擇');
 					}
-				
 			}
 		});
 	});
+	
+	console.log(pickedRoomNo);
 	
 	$('#pickOrNotButton').on('click', function(){
 		let isPick = currentPickRoomNode.getAttribute('data-pickstatus');
@@ -1096,5 +1105,43 @@ $('#confirmRoomType').on('click', function(e) {
 			currentPickRoomNode.setAttribute('style', newStyle);
 		}
 	});
+
+$('#goToPayment').on('click', function(e){
+	/* console.log(e.target); */
+	
+	let roomTypeOne = document.getElementById('Room_Type1');
+	let roomQuantity = document.getElementById('Number_of_Rooms');
+	let totalCost = document.getElementById('Total_Cost');
+	let roomNo = document.getElementById('PickedRoomNo');
+	
+	
+	/* console.log(roomNo);
+	console.log(roomTypeOne); */
+
+	let order = {};
+	order.action = "goToPayment";
+	
+	order.packageNo = "1";
+	order.duration = "5";
+	order.startDate = "date()";
+	order.roomType = roomTypeOne;
+	order.numberOfRooms = roomQuantity;
+	order.totalCost = totalCost;
+	
+	
+	
+	/* console.log(order.roomType);
+	console.log(order.numberofRooms);
+	console.log(order.totalCost); */
+	
+	/* 
+	$.ajax({
+	  url: "地址",
+	  data: {id: 'xxxx'},
+	  dataType: 'json',
+	  success: function(res){
+	    console.log(res)
+	  }  */
+});
 </script>
 </html>
