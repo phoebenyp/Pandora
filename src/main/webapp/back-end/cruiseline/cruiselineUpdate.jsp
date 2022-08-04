@@ -382,7 +382,7 @@
                                        <div class="col-md-3">航線名稱</div>
                                        <div class="col-md-9"><input type="hidden" name="cruiseLines" value="<%=cruiseLineVO.getCruiseLines() %>"><%=cruiseLineVO.getCruiseLines() %></div>
                                        <div class="col-md-3">最後維護時間</div>
-                                       <div class="col-md-9"><input id="f_date1" class="date-pick form-control" type="text" name="time" value="${cruiseLineVO.time}"></div>
+                                       <div class="col-md-9"><input id="f_date1" class="date-pick form-control" type="hidden" name="time" value="${cruiseLineVO.time}">${cruiseLineVO.time}</div>
                                        <div class="col-6">
                                            <label>航線圖片：</label>
                                            <input type="file" name="cruiselinePic" />

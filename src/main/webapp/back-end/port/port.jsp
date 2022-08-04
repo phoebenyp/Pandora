@@ -350,7 +350,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <!-- form start -->
                                 <div class="container">
                                     <div class="col-md-12">
-                                        <table id="table" data-toggle="table" data-search="true" data-filter-control="true"
+                                        <table id="table" data-toggle="table" data-search="false" data-filter-control="true"
                                         data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                         <thead>
                                             <tr>
@@ -369,7 +369,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach var="portVO" items="${list}" >
+                                        	<%@ include file="page1.file" %>
+                                        <c:forEach var="portVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
                                             <tr>
                                                 <td>${portVO.portOfCallNo}</td>
                                                 <td>${portVO.portName}</td>
@@ -380,16 +381,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                          </c:forEach>
                                         </tbody>
                                     </table>
+                                    <%@ include file="page2.file" %>
                                     </div>
                                 </div>
 
                                 </tfoot>
-                                <div style="width:100%;text-align:center">
-                                    <input style="display:inline-block;width:150px" type="button"
-                                        onclick="history.go(-1)" value="上一頁"></input>
-                                    <input style="display:inline-block;width:150px" type="button"
-                                        onclick="history.forward()" value="下一頁">
-                                </div>
+<!--                                 <div style="width:100%;text-align:center"> -->
+<!--                                     <input style="display:inline-block;width:150px" type="button" -->
+<!--                                         onclick="history.go(-1)" value="上一頁"></input> -->
+<!--                                     <input style="display:inline-block;width:150px" type="button" -->
+<!--                                         onclick="history.forward()" value="下一頁"> -->
+<!--                                 </div> -->
 
 
                             </div>

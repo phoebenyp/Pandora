@@ -365,7 +365,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <th data-field="cruiseName" data-filter-control="select"
                                                     >航線名稱</th>
                                                 <th data-field="time" data-filter-control="select"
-                                                    >最後維護時間</th>
+                                                    >最後編輯時間</th>
                                                 <th data-field="update" data-filter-control="select"
                                                     >修改</th>
                                                     <th data-field="delete" data-filter-control="select"
@@ -376,7 +376,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        	<c:forEach var="cruiseLineVO" items="${list}">
+<%@ include file="page1.file" %>
+                                        	<c:forEach var="cruiseLineVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
                                         	
 	                                            <tr>
 	
@@ -413,14 +414,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <input type="submit" name="EMPregister" value="新增航線" text-align=center
                                         style="margin-right: 0%;width:250px;float: right;"/>
                                         </form>
+                                    <%@ include file="page2.file" %>
                                     </div>
-
-                                <div style="width:100%;text-align:center">
-                                    <input style="display:inline-block;width:150px" type="button"
-                                        onclick="history.go(-1)" value="上一頁"></input>
-                                    <input style="display:inline-block;width:150px" type="button"
-                                        onclick="history.forward()" value="下一頁">
-                                </div>
+<%--                                 <div style="width:100%;text-align:center"> --%>
+<%--                                     <input style="display:inline-block;width:150px" type="button" --%>
+<%--                                         onclick="history.go(-1)" value="上一頁"></input> --%>
+<%--                                     <input style="display:inline-block;width:150px" type="button" --%>
+<%--                                         onclick="history.forward()" value="下一頁"> --%>
+<%--                                 </div> --%>
 
 
                             </div>

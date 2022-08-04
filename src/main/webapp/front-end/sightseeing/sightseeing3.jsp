@@ -393,7 +393,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         </div>
         <div class="col-6">
           <div class="mpa_list">
-            <ul id="maplist" style="list-style: none">
+            <ul
+              id="maplist"
+              style="list-style: none; overflow-y: auto; height: 100%"
+            >
               <li style="list-style: none" class="port18">
                 <img
                   src="<%=request.getContextPath()%>/images/map1.png"

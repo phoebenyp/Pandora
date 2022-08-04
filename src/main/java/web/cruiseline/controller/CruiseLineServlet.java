@@ -2,6 +2,7 @@ package web.cruiseline.controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -222,13 +223,13 @@ public class CruiseLineServlet extends HttpServlet {
 				byte[] cruiselinePic = fileEmpPictureId.getInputStream().readAllBytes();
 
 
-				LocalDate time = null;
-				try {
-					time = java.sql.Date.valueOf(request.getParameter("time").trim()).toLocalDate();
-				} catch (IllegalArgumentException e) {
-					time = new java.sql.Date(System.currentTimeMillis()).toLocalDate();
-					errorMsgs.add("請輸入日期!");
-				}
+				LocalDate time = LocalDate.now();
+//				try {
+//					time = java.sql.Date.valueOf(request.getParameter("time").trim()).toLocalDate();
+//				} catch (IllegalArgumentException e) {
+//					time = new java.sql.Date(System.currentTimeMillis()).toLocalDate();
+//					errorMsgs.add("請輸入日期!");
+//				}
 				CruiseLineVO cruiseLineVO = new CruiseLineVO();
 				cruiseLineVO.setCruiseLineNo(cruiseLineNo);
 				cruiseLineVO.setCruiseLines(cruiseLines);
