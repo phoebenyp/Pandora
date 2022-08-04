@@ -123,10 +123,10 @@ public class PackagesServlet extends HttpServlet {
 			System.out.println(departureTimeDistinct);
 			System.out.println(duration);
 
-			req.setAttribute("departureDistinctB", departureDistinct);
-			req.setAttribute("destinationDistinctB", destinationDistinct);
-			req.setAttribute("departureTimeDistinctB", departureTimeDistinct);
-			req.setAttribute("packagesListB", packagesList);
+			req.setAttribute("departureDistinct", departureDistinct);
+			req.setAttribute("destinationDistinct", destinationDistinct);
+			req.setAttribute("departureTimeDistinct", departureTimeDistinct);
+			req.setAttribute("packagesList", packagesList);
 			req.setAttribute("Duration", duration);
 			req.setAttribute("count", count);
 //			req.setAttribute("listPackagesByCompositeQuery",packagesService);

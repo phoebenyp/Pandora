@@ -20,7 +20,7 @@ public class packages_CompositeQuery {
 			if (value.equals("1~5天")||value.equals("5")) {
 				aCondition = "Duration" + "<=" + "5";
 			} else if (value.equals("6~9天")||value.equals("10")) {
-				aCondition = "Duration" + ">" + "6" + "&&" + "Duration" + "<" + "10";
+				aCondition = "Duration" + ">" + "5" + "&&" + "Duration" + "<" + "10";
 			}else if (value.equals("10天以上")||value.equals("20")) {
 				aCondition = "Duration" + ">" + "10";
 			}
