@@ -400,22 +400,14 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                   style="width: 70%"
                   alt=""
                 />
-                <button
-                  class="btn btn_change"
-                  style="height: 100%; width: 25%; background-color: #bbcfe2"
-                  data-hr=".letmeopen"
-                >
-                  變更
-                </button>
-                <div class="popup-wrap letmeopen">
-                  <div class="popup-box transform-out" data-port="port18">
-                    <button class="btn_back"><h3>原本</h3></button>
-                    <button class="btn_rest port18">餐廳</button>
-                    <button class="btn_mark">景點</button>
-                    <button class="btn_act">活動</button>
-                    <a class="close-btn popup-close" href="#">x</a>
-                  </div>
-                </div>
+
+                <select id="change1">
+                  <option value="0">請選擇</option>
+                  <option value="1">餐廳</option>
+                  <option value="2">景點</option>
+                  <option value="3">活動</option>
+                  <option value="4">回復</option>
+                </select>
               </li>
               <li style="list-style: none" class="port19">
                 <img
@@ -423,22 +415,13 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                   style="width: 70%"
                   alt=""
                 />
-                <button
-                  class="btn btn_change"
-                  style="height: 100%; width: 25%; background-color: #bbcfe2"
-                  data-hr=".letmeopen"
-                >
-                  變更
-                </button>
-                <div class="popup-wrap letmeopen">
-                  <div class="popup-box transform-out" data-port="port19">
-                    <button class="btn_back"><h3>原本</h3></button>
-                    <button class="btn_rest port19">餐廳</button>
-                    <button class="btn_mark">景點</button>
-                    <button class="btn_act">活動</button>
-                    <a class="close-btn popup-close" href="#">x</a>
-                  </div>
-                </div>
+                <select id="change2">
+                  <option value="0">請選擇</option>
+                  <option value="1">餐廳</option>
+                  <option value="2">景點</option>
+                  <option value="3">活動</option>
+                  <option value="4">回復</option>
+                </select>
               </li>
               <li style="list-style: none" class="port20">
                 <img
@@ -446,22 +429,13 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                   style="width: 70%"
                   alt=""
                 />
-                <button
-                  class="btn btn_change"
-                  style="height: 100%; width: 25%; background-color: #bbcfe2"
-                  data-hr=".letmeopen"
-                >
-                  變更
-                </button>
-                <div class="popup-wrap letmeopen">
-                  <div class="popup-box transform-out" data-port="port20">
-                    <button class="btn_back"><h3>原本</h3></button>
-                    <button class="btn_rest port19">餐廳</button>
-                    <button class="btn_mark">景點</button>
-                    <button class="btn_act">活動</button>
-                    <a class="close-btn popup-close" href="#">x</a>
-                  </div>
-                </div>
+                <select id="change3">
+                  <option value="0">請選擇</option>
+                  <option value="1">餐廳</option>
+                  <option value="2">景點</option>
+                  <option value="3">活動</option>
+                  <option value="4">回復</option>
+                </select>
               </li>
             </ul>
           </div>
@@ -609,6 +583,369 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       referrerpolicy="no-referrer"
     ></script>
     <script>
+      //#change1
+      $("#change1").change(function () {
+        var item = $("#change1  option:selected").val();
+        // console.log(item);
+        // console.log(this);
+        if (item == 1) {
+          var af = $(this).closest("li").clone();
+          $(".rest").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).closest("li").clone();
+          $(".mark").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).closest("li").clone();
+          $(".act").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).closest("li").clone();
+          $("#maplist").append(af);
+          $(this).closest("li").remove();
+        }
+      });
+      $(".rest").change("#change1  option:selected", function () {
+        var item = $("#change1  option:selected").val();
+        // console.log(item);
+        // console.log(this.find("#change1"));
+        if (item == 1) {
+          var af = $(this).find("#change1").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change1").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change1").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change1").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change1").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change1").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change1").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change1").closest("li").remove();
+        }
+      });
+      $(".mark").change("#change1  option:selected", function () {
+        var item = $("#change1  option:selected").val();
+        // console.log(item);
+        // console.log(this.find("#change1"));
+        if (item == 1) {
+          var af = $(this).find("#change1").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change1").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change1").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change1").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change1").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change1").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change1").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change1").closest("li").remove();
+        }
+      });
+      $(".act").change("#change1  option:selected", function () {
+        var item = $("#change1  option:selected").val();
+        // console.log(item);
+        // console.log(this.find("#change1"));
+        if (item == 1) {
+          var af = $(this).find("#change1").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change1").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change1").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change1").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change1").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change1").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change1").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change1").closest("li").remove();
+        }
+      });
+      $("#maplist").change("#change1  option:selected", function () {
+        var item = $("#change1  option:selected").val();
+        // console.log(item);
+        // console.log(this.find("#change1"));
+        if (item == 1) {
+          var af = $(this).find("#change1").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change1").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change1").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change1").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change1").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change1").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change1").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change1").closest("li").remove();
+        }
+      });
+      //#change1
+
+      //#change2
+      $("#change2").change(function () {
+        var item = $("#change2  option:selected").val();
+        if (item == 1) {
+          var af = $(this).closest("li").clone();
+          $(".rest").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).closest("li").clone();
+          $(".mark").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).closest("li").clone();
+          $(".act").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).closest("li").clone();
+          $("#maplist").append(af);
+          $(this).closest("li").remove();
+        }
+      });
+      $(".rest").change("#change2  option:selected", function () {
+        var item = $("#change2  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change2").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change2").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change2").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change2").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change2").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change2").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change2").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change2").closest("li").remove();
+        }
+      });
+      $(".mark").change("#change2  option:selected", function () {
+        var item = $("#change2  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change2").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change2").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change2").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change2").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change2").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change2").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change2").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change2").closest("li").remove();
+        }
+      });
+      $(".act").change("#change2  option:selected", function () {
+        var item = $("#change2  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change2").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change2").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change2").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change2").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change2").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change2").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change2").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change2").closest("li").remove();
+        }
+      });
+      $("#maplist").change("#change2  option:selected", function () {
+        var item = $("#change2  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change2").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change2").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change2").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change2").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change2").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change2").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change2").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change2").closest("li").remove();
+        }
+      });
+      //#change2
+
+      //#change3
+      $("#change2").change(function () {
+        var item = $("#change3  option:selected").val();
+        if (item == 1) {
+          var af = $(this).closest("li").clone();
+          $(".rest").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).closest("li").clone();
+          $(".mark").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).closest("li").clone();
+          $(".act").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).closest("li").clone();
+          $("#maplist").append(af);
+          $(this).closest("li").remove();
+        }
+      });
+      $(".rest").change("#change3  option:selected", function () {
+        var item = $("#change3  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change3").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change3").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change3").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change3").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change3").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change3").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change3").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change3").closest("li").remove();
+        }
+      });
+      $(".mark").change("#change3  option:selected", function () {
+        var item = $("#change3  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change3").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change3").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change3").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change3").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change3").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change3").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change3").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change3").closest("li").remove();
+        }
+      });
+      $(".act").change("#change3  option:selected", function () {
+        var item = $("#change3  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change3").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change3").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change3").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change3").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change3").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change3").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change3").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change3").closest("li").remove();
+        }
+      });
+      $("#maplist").change("#change3  option:selected", function () {
+        var item = $("#change3  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change3").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change3").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change3").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change3").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change3").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change3").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change3").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change3").closest("li").remove();
+        }
+      });
+      //#change3
       // $.ajax({
       //   url: "http://localhost:8080/pandora/SightseeingServlet", // 資料請求的網址
       //   type: "POST", // GET | POST | PUT | DELETE | PATCH
@@ -729,16 +1066,16 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
               "<img src='" +
               lalo[i] +
               "' style='width: 70%' alt=''/>" +
-              "<button class='btn btn_change' style='height: 100%; width: 25%; background-color: #bbcfe2' data-hr='.letmeopen'>" +
-              "變更</button>" +
-              "<div class='popup-wrap letmeopen'>" +
-              "<div class='popup-box transform-out'>" +
-              " <button class='btn_back'><h3>原本</h3></button>" +
-              "<button class='btn_rest'>餐廳</button>" +
-              "<button class='btn_mark'>景點</button>" +
-              "<button class='btn_act'>活動</button>" +
-              "<a class='close-btn popup-close' href='#'>x</a>" +
-              " </div> </div> </li>";
+              "<select id='change" +
+              (i - 1) +
+              "'>" +
+              "<option value='0'>請選擇</option>" +
+              "<option value='1'>餐廳</option>" +
+              "<option value='2'>景點</option>" +
+              "<option value='3'>活動</option>" +
+              "<option value='4'>回復</option>" +
+              "</select></li>";
+            i + 1;
           }
           $("ul#maplist").html(sss);
           //加入位置
@@ -1037,170 +1374,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
           );
           //加入位置
         });
-      });
-      // $("#maplist").on("click", "button.btm_change", function () {
-      //   let af = $(this).parent("li");
-      //   $(".act").append(af);
-      // });
-      $("#maplist").on("click", "button.btn_change", function () {
-        var af = $(this).closest("li");
-        let href = $(this).attr("data-hr");
-        // console.log(this);
-        // console.log(this.closest("li"));
-        $(href).fadeIn(250);
-        $(href)
-          .children("popup-box")
-          .removeClass("transform-out")
-          .addClass("transform-in");
-        // e.preventDefault();
-        $(href).attr("data", af);
-      });
-      $(".popup-close").click(function () {
-        closeWindow();
-      });
-      function closeWindow() {
-        $(".popup-wrap").fadeOut(200);
-        $(".popup-box").removeClass("transform-in").addClass("transform-out");
-        event.preventDefault();
-      }
-      $("#maplist").on("click", "button.btn_rest", function () {
-        let v = "li." + this.closest("div").dataset.port;
-        console.log(v);
-        var af = $(this).closest(v).clone();
-        let v2 = "maplist" + v;
-        console.log($(v2).clone());
-        console.log(af);
-        console.log(this);
-        // console.log(this.closest("div").dataset.port);
-        $(".rest").append(af);
-        $(this).closest("li").remove();
-        closeWindow();
-      });
-      $("#maplist").on("click", "button.btn_back", function () {
-        var af = $(this).closest("li").clone();
-        $("#maplist").append(af);
-        $(this).closest("li").remove();
-        closeWindow();
-      });
-      $("#maplist").on("click", "button.btn_mark", function () {
-        var af = $(this).closest("li").clone();
-        $(".mark").append(af);
-        $(this).closest("li").remove();
-        closeWindow();
-      });
-      $("#maplist").on("click", "button.btn_act", function () {
-        var af = $(this).closest("li").clone();
-        $(".act").append(af);
-        $(this).closest("li").remove();
-        closeWindow();
-      });
-      $(".rest").on("click", "button.btn_change", function () {
-        var af = $(this).closest("li");
-        let href = $(this).attr("data-hr");
-        console.log(af);
-        $(href).fadeIn(250);
-        $(href)
-          .children("popup-box")
-          .removeClass("transform-out")
-          .addClass("transform-in");
-        // e.preventDefault();
-        $(href).attr("data", af);
-      });
-      $(".rest").on("click", "button.btn_back", function () {
-        var af = $(this).closest("li").clone();
-        $("#maplist").append(af);
-        $(this).closest("li").remove();
-        closeWindow();
-      });
-      $(".rest").on("click", "button.btn_rest", function () {
-        var af = $(this).closest("li").clone();
-        $(".rest").append(af);
-        $(this).closest("li").remove();
-        closeWindow();
-      });
-      $(".rest").on("click", "button.btn_mark", function () {
-        var af = $(this).closest("li").clone();
-        $(".mark").append(af);
-        $(this).closest("li").remove();
-        closeWindow();
-      });
-      $(".rest").on("click", "button.btn_act", function () {
-        var af = $(this).closest("li").clone();
-        $(".act").append(af);
-        $(this).closest("li").remove();
-        closeWindow();
-      });
-      $(".mark").on("click", "button.btn_change", function () {
-        var af = $(this).closest("li");
-        let href = $(this).attr("data-hr");
-        console.log(af);
-        $(href).fadeIn(250);
-        $(href)
-          .children("popup-box")
-          .removeClass("transform-out")
-          .addClass("transform-in");
-        // e.preventDefault();
-        $(href).attr("data", af);
-      });
-      $(".mark").on("click", "button.btn_back", function () {
-        var af = $(this).closest("li").clone();
-        $("#maplist").append(af);
-        $(this).closest("li").remove();
-        closeWindow();
-      });
-      $(".mark").on("click", "button.btn_rest", function () {
-        var af = $(this).closest("li").clone();
-        $(".rest").append(af);
-        $(this).closest("li").remove();
-        closeWindow();
-      });
-      $(".mark").on("click", "button.btn_mark", function () {
-        var af = $(this).closest("li").clone();
-        $(".mark").append(af);
-        $(this).closest("li").remove();
-        closeWindow();
-      });
-      $(".mark").on("click", "button.btn_act", function () {
-        var af = $(this).closest("li").clone();
-        $(".act").append(af);
-        $(this).closest("li").remove();
-        closeWindow();
-      });
-      $(".act").on("click", "button.btn_change", function () {
-        var af = $(this).closest("li");
-        let href = $(this).attr("data-hr");
-        console.log(af);
-        $(href).fadeIn(250);
-        $(href)
-          .children("popup-box")
-          .removeClass("transform-out")
-          .addClass("transform-in");
-        // e.preventDefault();
-        $(href).attr("data", af);
-      });
-      $(".act").on("click", "button.btn_back", function () {
-        var af = $(this).closest("li").clone();
-        $("#maplist").append(af);
-        $(this).closest("li").remove();
-        closeWindow();
-      });
-      $(".act").on("click", "button.btn_rest", function () {
-        var af = $(this).closest("li").clone();
-        $(".rest").append(af);
-        $(this).closest("li").remove();
-        closeWindow();
-      });
-      $(".act").on("click", "button.btn_mark", function () {
-        var af = $(this).closest("li").clone();
-        $(".mark").append(af);
-        $(this).closest("li").remove();
-        closeWindow();
-      });
-      $(".act").on("click", "button.btn_act", function () {
-        var af = $(this).closest("li").clone();
-        $(".act").append(af);
-        $(this).closest("li").remove();
-        closeWindow();
       });
     </script>
   </body>
