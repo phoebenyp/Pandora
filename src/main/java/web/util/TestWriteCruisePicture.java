@@ -1,4 +1,4 @@
-package web.cruiseline.bean;
+package web.util;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -51,12 +51,55 @@ public class TestWriteCruisePicture {
 			pstmt.executeUpdate();
 			is2.close();
 			
+			// 4. setBytes
 			pstmt.setString(1, "紐西蘭 奧克蘭港-澳洲 杰拉爾頓港-澳洲 伯斯港");
 			byte[] pic2 = getPictureByteArray("src/main/webapp/images/cruiseline4.jpg");
 			pstmt.setBytes(2, pic2);
 			pstmt.setInt(3, 4);
 			pstmt.executeUpdate();
-
+			
+			// 5. setBytes
+			pstmt.setString(1, "日本 橫濱港-韓國 濟州港-日本 鹿兒島港");
+			byte[] pic3 = getPictureByteArray("src/main/webapp/images/cruiseline5.jpg");
+			pstmt.setBytes(2, pic3);
+			pstmt.setInt(3, 5);
+			pstmt.executeUpdate();
+			
+			// 6. setBytes
+			pstmt.setString(1, "日本 橫濱港-韓國 濟州港-日本 長崎港");
+			byte[] pic4 = getPictureByteArray("src/main/webapp/images/cruiseline6.jpg");
+			pstmt.setBytes(2, pic4);
+			pstmt.setInt(3, 6);
+			pstmt.executeUpdate();
+			
+			// 7. setBytes
+			pstmt.setString(1, "紐西蘭 奧克蘭港-紐西蘭 群島灣港-澳洲 布里斯本港");
+			byte[] pic5 = getPictureByteArray("src/main/webapp/images/cruiseline7.jpg");
+			pstmt.setBytes(2, pic5);
+			pstmt.setInt(3, 7);
+			pstmt.executeUpdate();
+			
+			// 8. setBytes
+			pstmt.setString(1, "澳洲 雪梨港-紐西蘭 陶蘭加港-紐西蘭 奧克蘭港");
+			byte[] pic6 = getPictureByteArray("src/main/webapp/images/cruiseline8.jpg");
+			pstmt.setBytes(2, pic6);
+			pstmt.setInt(3, 8);
+			pstmt.executeUpdate();
+			
+			// 9. setBytes
+			pstmt.setString(1, "紐西蘭 奧克蘭港-紐西蘭 陶蘭加港-紐西蘭 群島灣港");
+			byte[] pic7 = getPictureByteArray("src/main/webapp/images/cruiseline9.jpg");
+			pstmt.setBytes(2, pic7);
+			pstmt.setInt(3, 9);
+			pstmt.executeUpdate();
+			
+			// 10. setBytes
+			pstmt.setString(1, "日本 橫濱港-日本 鹿兒島港-日本 橫濱港");
+			byte[] pic8 = getPictureByteArray("src/main/webapp/images/cruiseline10.jpg");
+			pstmt.setBytes(2, pic8);
+			pstmt.setInt(3, 10);
+			pstmt.executeUpdate();
+			
 			System.out.println("新增成功");
 
 		} catch (ClassNotFoundException ce) {

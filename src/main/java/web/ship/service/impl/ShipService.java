@@ -80,6 +80,13 @@ public class ShipService {
 		shipsVO.setShipStatusNo(shipStatusNo);
 		daoShip.insert(shipsVO);
 //		System.out.println(shipsVO);
+		
+		Integer shipNO = daoShip.selectLast().getShipNo();
+//		System.out.println(shipNO);
+		addRTTCLast(shipNO);
+		addRTTC(shipNO,2,10);
+		addRTTC(shipNO,3,10);
+		addRTTC(shipNO,4,10);
 		return shipsVO;
 	}
 	
@@ -99,12 +106,23 @@ public class ShipService {
 		return shipsVO;
 	}
 	public void deleteShip(Integer shipNo) {//刪除郵輪
+		daoRTTC.deleteAll(shipNo);
 		daoShip.delete(shipNo);
 	}
 	
 	//新增房型數量資料
 	public RoomTypeTotalCountVO addRTTC(Integer shipNo,Integer roomTypeNo,Integer maxCountOfRoomType) {
 		RoomTypeTotalCountVO roomTypeTotalCountVO = new RoomTypeTotalCountVO();
+		RoomTypeTotalCountVO check =selectOnly(shipNo, roomTypeNo);
+		if (check!=null) {
+			Integer abcInteger =check.getrTTCNo();
+			if (check.getRoomTypeNo()==roomTypeNo && check.getShipNo()==shipNo) {
+				maxCountOfRoomType += check.getMaxCountOfRoomType();
+				roomTypeTotalCountVO = updateRTTC(shipNo, roomTypeNo, maxCountOfRoomType,abcInteger);
+				return roomTypeTotalCountVO;
+			}
+		}
+		
 		
 		roomTypeTotalCountVO.setShipNo(shipNo);
 		roomTypeTotalCountVO.setRoomTypeNo(roomTypeNo);

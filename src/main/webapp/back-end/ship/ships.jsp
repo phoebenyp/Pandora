@@ -79,7 +79,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Brand Logo -->
             <a href="#" class="brand-link">
 <!--             			  src/main/webapp/back-end/ship/ships.jsp -->
-                <img src="../../images/LOGo.png" alt="PANDORA Logo" class="brand-image img-circle elevation-3"
+                <img src="<%=request.getContextPath()%>/images/LOGo.png" alt="PANDORA Logo" class="brand-image img-circle elevation-3"
                     style="opacity: 0.8" />
                 <pre></pre>
             </a>
@@ -89,7 +89,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="../.././images/girlimg.jpg" class="img-circle elevation-2" alt="User Image" />
+                        <img src="<%=request.getContextPath()%>/images/girlimg.jpg" class="img-circle elevation-2" alt="User Image" />
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">Lucifer Morningstar</a>

@@ -93,7 +93,7 @@
         <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="#" class="brand-link">
-                <img src="images/LOGo.png" alt="PANDORA Logo" class="brand-image img-circle elevation-3"
+                <img src="<%=request.getContextPath()%>/images/LOGo.png" alt="PANDORA Logo" class="brand-image img-circle elevation-3"
                     style="opacity: 0.8" />
                 <pre></pre>
             </a>
@@ -103,7 +103,7 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="./images/girlimg.jpg" class="img-circle elevation-2" alt="User Image" />
+                        <img src="<%=request.getContextPath()%>/images/girlimg.jpg" class="img-circle elevation-2" alt="User Image" />
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">Lucifer Morningstar</a>
@@ -385,13 +385,12 @@
                                        <div class="col-md-9"><input id="f_date1" class="date-pick form-control" type="hidden" name="time" value="${cruiseLineVO.time}">${cruiseLineVO.time}</div>
                                        <div class="col-6">
                                            <label>航線圖片：</label>
-                                           <input type="file" name="cruiselinePic" />
-                                           <img id="img_content" src="<%=request.getContextPath()%>/CruiseLineServlet?action=cruiseLineVOUpdate&cruiseLineNo=${cruiseLineVO.cruiseLineNo}"  name="action" class="img-circle elevation-2 col-12" alt="CruiseLine Image" style=width:100% />
+                                           <input type="file" id="p_file" name="cruiselinePic" />
+                                           <div id="preview">
+                                               <img id="img_content" src="<%=request.getContextPath()%>/CruiseLineServlet?action=cruiseLineVOUpdate&cruiseLineNo=${cruiseLineVO.cruiseLineNo}"  name="action" class="img-circle elevation-2 col-12" alt="CruiseLine Image" style=width:100% />
+                                           </div>
                                        </div>
-                                       <div id="preview" class="preview col-md-12" >
-<!--                                         <span class="text">預覽圖</span> -->
-<!--                                         <img id="img_content"> -->
-                                       </div>
+                                       
                                        <div class="col-md-4">
                                        		<input type="hidden" name="action" value="updateCL">
                                             <input type="submit" name="EMPregister" value="編輯航線" text-align=center

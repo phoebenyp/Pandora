@@ -35,6 +35,9 @@ public class RoomTypeTotalCountDAOImpl implements RoomTypeTotalCountDAO {
 	private static final String INSERT_LAST = "INSERT INTO Room_Type_Total_Count(Ship_No)"
 			+ "VALUES ( ?)";
 	private static final String DELETE = "DELETE FROM Room_Type_Total_Count where RTTC_No = ?";
+	
+	private static final String DELETE_ALL = "DELETE FROM Room_Type_Total_Count where Ship_No = ?";
+	
 	private static final String UPDATE = "UPDATE Room_Type_Total_Count set Ship_No=?,Room_Type_No=?,Max_Count_of_Room_Type=? where RTTC_No = ?";
 		
 	//指定其中一艘郵輪的房型
@@ -301,6 +304,47 @@ public class RoomTypeTotalCountDAOImpl implements RoomTypeTotalCountDAO {
 				}
 			}
 		}
+		
+		
+
+	}
+	
+	@Override
+	public void deleteAll(Integer shipNo) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(DELETE_ALL);
+			pstmt.setInt(1, shipNo);
+			
+			pstmt.executeUpdate();
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		
 
 	}
 }

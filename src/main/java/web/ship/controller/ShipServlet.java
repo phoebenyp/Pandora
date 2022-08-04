@@ -122,8 +122,8 @@ request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的shipsVO�
 				/***************************2.開始新增資料***************************************/
 				ShipService shipSvc = new ShipService();
 				shipsVO = shipSvc.addShip(shipname,shipstart,shipmain,shipfloor,shipstatusNo);
-				Integer shipNo = shipSvc.selectLast().getShipNo();
-				shipSvc.addRTTCLast(shipNo);
+//				Integer shipNo = shipSvc.selectLast().getShipNo();
+//				shipSvc.addRTTCLast(shipNo);
 //				System.out.println("success");
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				//因為還要新增房型數量，所以要再經過一個頁面
@@ -186,27 +186,27 @@ request.setAttribute("shipsVO", shipsVO); // 含有輸入格式錯誤的shipsVO�
 					
 					/***************************2.開始新增資料***************************************/
 					ShipService shipSvc = new ShipService();
-					RoomTypeTotalCountVO check=shipSvc.selectOnly(shipNo, roomTypeNo);
+//					RoomTypeTotalCountVO check=shipSvc.selectOnly(shipNo, roomTypeNo);
 //					System.out.println(check);
 //					System.out.println(check.getShipNo());
-					if (check != null) {
-						Integer abcInteger =check.getrTTCNo();
-						//如果新增的是同艘郵輪且同房型時，將併入進去同筆資料中
-						if (check.getRoomTypeNo()==roomTypeNo && check.getShipNo()==shipNo) {
-							maxCountOfRoomType += check.getMaxCountOfRoomType();
-							roomTypeTotalCountVO = shipSvc.updateRTTC(shipNo, roomTypeNo, maxCountOfRoomType,abcInteger);
-							
-							//新增shipNo和roomTypeNo參數進入request，以方便下一頁搜尋到指定郵輪
-							request.setAttribute("shipNo", roomTypeTotalCountVO.getShipNo());
-							request.setAttribute("roomTypeNo", roomTypeTotalCountVO.getRoomTypeNo());
-							ShipsVO shipsVO = shipSvc.getOneShip(shipNo);
-							request.setAttribute("shipsVO", shipsVO);
-							String url = "/back-end/ship/shipUpdate.jsp";
-							RequestDispatcher successView = request.getRequestDispatcher(url); // 新增成功後轉交shipUpdate.jsp
-							successView.forward(request, response);	
-							return;
-						}
-					}
+//					if (check != null) {
+//						Integer abcInteger =check.getrTTCNo();
+//						//如果新增的是同艘郵輪且同房型時，將併入進去同筆資料中
+//						if (check.getRoomTypeNo()==roomTypeNo && check.getShipNo()==shipNo) {
+//							maxCountOfRoomType += check.getMaxCountOfRoomType();
+//							roomTypeTotalCountVO = shipSvc.updateRTTC(shipNo, roomTypeNo, maxCountOfRoomType,abcInteger);
+//							
+//							//新增shipNo和roomTypeNo參數進入request，以方便下一頁搜尋到指定郵輪
+//							request.setAttribute("shipNo", roomTypeTotalCountVO.getShipNo());
+//							request.setAttribute("roomTypeNo", roomTypeTotalCountVO.getRoomTypeNo());
+//							ShipsVO shipsVO = shipSvc.getOneShip(shipNo);
+//							request.setAttribute("shipsVO", shipsVO);
+//							String url = "/back-end/ship/shipUpdate.jsp";
+//							RequestDispatcher successView = request.getRequestDispatcher(url); // 新增成功後轉交shipUpdate.jsp
+//							successView.forward(request, response);	
+//							return;
+//						}
+//					}
 					
 					
 					

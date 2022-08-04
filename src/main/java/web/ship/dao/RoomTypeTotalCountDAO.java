@@ -17,4 +17,6 @@ public interface RoomTypeTotalCountDAO {
 	//刪除房型數量資料
 	void delete(Integer shipNo);
 	
+	void deleteAll(Integer shipNo);
+	
 }
