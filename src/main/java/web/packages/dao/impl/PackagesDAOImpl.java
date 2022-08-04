@@ -49,27 +49,29 @@ public class PackagesDAOImpl implements PackagesDAO{
 			pstmt = con.prepareStatement(finalSQL);
 			System.out.println("●●finalSQL(by DAO) = "+finalSQL);
 			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				packagesVO = new PackagesVO();
-				packagesVO.setPackageNo(rs.getInt("Package_No"));
-				packagesVO.setPackageName(rs.getString("Package_Name"));
-				packagesVO.setPackageImages(rs.getBytes("Package_images"));
-				packagesVO.setShipNo(rs.getInt("Ship_No"));
-				packagesVO.setCruiseLineNo(rs.getInt("Cruise_Line_No"));
-				packagesVO.setDuration(rs.getInt("Duration"));
-				packagesVO.setRegistrationStartTime(rs.getDate("Registration_Start_Time").toLocalDate());
-				packagesVO.setRegistrationDeadTime(rs.getDate("Registration_Dead_Time").toLocalDate());
-				packagesVO.setDeparture(rs.getString("Departure"));
-				packagesVO.setDestination(rs.getString("Destination"));
-				packagesVO.setDepartureTime(rs.getTimestamp("Departure_Time").toLocalDateTime());
-				packagesVO.setArrivalTime(rs.getTimestamp("Arrival_Time").toLocalDateTime());
-								
-				list.add(packagesVO);	
+			
+				while (rs.next()) {
+					packagesVO = new PackagesVO();
+					packagesVO.setPackageNo(rs.getInt("Package_No"));
+					packagesVO.setPackageName(rs.getString("Package_Name"));
+					packagesVO.setPackageImages(rs.getBytes("Package_images"));
+					packagesVO.setShipNo(rs.getInt("Ship_No"));
+					packagesVO.setCruiseLineNo(rs.getInt("Cruise_Line_No"));
+					packagesVO.setDuration(rs.getInt("Duration"));
+					packagesVO.setRegistrationStartTime(rs.getDate("Registration_Start_Time").toLocalDate());
+					packagesVO.setRegistrationDeadTime(rs.getDate("Registration_Dead_Time").toLocalDate());
+					packagesVO.setDeparture(rs.getString("Departure"));
+					packagesVO.setDestination(rs.getString("Destination"));
+					packagesVO.setDepartureTime(rs.getTimestamp("Departure_Time").toLocalDateTime());
+					packagesVO.setArrivalTime(rs.getTimestamp("Arrival_Time").toLocalDateTime());
+									
+					list.add(packagesVO);	
+						
 					
-				
-				
-			}
+					
+				}
+			
+			
 			}catch (SQLException se) {
 				throw new RuntimeException("A database error occured. "
 						+ se.getMessage());

@@ -232,7 +232,7 @@
         			<option value=""></option>
         		<c:forEach var="departureTime" items="${departureTimeDistinctB}" > 
            		            		
-         		    <option value="${departureTime}" ${departureTime==param["DepartureTime"]?"selected":"" }}>         		
+         		    <option value="${departureTime}" ${departureTime==param["DepartureTime"]?"selected":"" }>         		
          		          		    ${departureTime}
          		</c:forEach>   
        		</select>
