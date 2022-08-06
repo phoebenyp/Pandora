@@ -38,7 +38,7 @@ public class ForumDAOImpl implements ForumDAO {
 		private static final String DELETE = 
 			"DELETE FROM forum where Post_Id = ?";
 		private static final String UPDATE = 
-			"UPDATE forum setMember_ID=?, Post_Title=?, Post_Content=?, Post_Time=?, Clicks=?, Status=? where Post_Id = ?";
+			"UPDATE forum set Member_ID=?, Post_Title=?, Post_Content=?, Post_Time=?, Clicks=?, Status=? where Post_Id = ?";
 
 	
 	
@@ -105,6 +105,7 @@ public class ForumDAOImpl implements ForumDAO {
 			pstmt.setTimestamp(4, forumVO.getPostTime() != null ? Timestamp.valueOf(forumVO.getPostTime()) : null);
 			pstmt.setInt(5, forumVO.getClicks());
 			pstmt.setString(6, forumVO.getStatus());
+			pstmt.setInt(7,forumVO.getPostId());
 
 			pstmt.executeUpdate();
 

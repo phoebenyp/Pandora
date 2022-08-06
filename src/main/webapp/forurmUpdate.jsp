@@ -1,8 +1,9 @@
 
 
 <%@page import="web.forum.bean.ForumVO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%
   ForumVO forumVO = (ForumVO) request.getAttribute("forumVO"); //ForumServlet.java (Concroller) 存入req的forumVO物件 (包括幫忙取出的forumVO, 也包括輸入資料錯誤時的forumVO物件)
@@ -290,8 +291,8 @@
 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ForumServlet" >
 <table>
 	<tr>
-		<td>文章編號:<font color=red><b>*</b></font></td>
-		<td><%=forumVO.getPostId()%></td>
+		<td>文章編號:<font color=red></font></td>
+		<td><input type="hidden" name="postId" size="45" value="<%=forumVO.getPostId()%>" /><%=forumVO.getPostId()%></td>
 	</tr>
 	<tr>
 		<td>作者:</td>
@@ -319,13 +320,9 @@
 	</tr>
 	
 
-<%-- 	<jsp:useBean id="forumSvc" scope="page" class="web.forum.service.impl.ForumServiceImpl" /> --%>
 <!-- 	<tr> -->
 <!-- 		<td>部門:<font color=red><b>*</b></font></td> -->
 <!-- 		<td><select size="1" name="postId"> -->
-<%-- 			<c:forEach var="forumVO" items="${forumSvc.all}"> --%>
-<%-- 				<option value="${forumVO.postId}" ${(forumVO.postId==forumVO.postId)?'selected':'' } >${forumVO.dname} --%>
-<!-- 			</c:forEach> -->
 <!-- 		</select></td> -->
 <!-- 	</tr> -->
 

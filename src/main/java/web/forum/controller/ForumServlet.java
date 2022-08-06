@@ -1,6 +1,8 @@
 package web.forum.controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -65,13 +67,9 @@ public class ForumServlet extends HttpServlet {
 						/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 		Integer postId = Integer.valueOf(request.getParameter("postId").trim());
 						
-		String memberId = request.getParameter("memberId");
-						String enameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
-						if (memberId == null || memberId.trim().length() == 0) {
-							errorMsgs.add("作者: 請勿空白");
-						} else if(!memberId.trim().matches(enameReg)) { //以下練習正則(規)表示式(regular-expression)
-							errorMsgs.add("作者: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
-			            }
+		Integer memberId = Integer.valueOf(request.getParameter("memberId").trim());
+				
+				
 						
 		String postTitle = request.getParameter("postTitle").trim();
 						if (postTitle == null || postTitle.trim().length() == 0) {
@@ -83,15 +81,13 @@ public class ForumServlet extends HttpServlet {
 							errorMsgs.add("內容請勿空白");
 						}
 						
-		String postTime = request.getParameter("postTime").trim();
-						if (postTime == null || postTime.trim().length() == 0) {
-							errorMsgs.add("時間請勿空白");
-						}
+		LocalDateTime postTime = LocalDateTime.now();
 						
-		String clicks = request.getParameter("clicks").trim();
-						if (clicks == null || clicks.trim().length() == 0) {
-							errorMsgs.add("次數請勿空白");
-						}
+		
+		Integer clicks = Integer.valueOf(request.getParameter("clicks").trim());
+		
+		
+						
 					
 		String status = request.getParameter("status").trim();
 						if (status == null || status.trim().length() == 0) {
@@ -99,16 +95,15 @@ public class ForumServlet extends HttpServlet {
 						}
 		
 
-		Integer postId = Integer.valueOf(request.getParameter("postId").trim());
 
 						ForumVO forumVO = new ForumVO();
-						ForumVO.setPostId(postId);
-						ForumVO.setMemberId(memberId);
-						ForumVO.setPostTitle(postTitle);
-						ForumVO.setPostContent(postContent);
-						ForumVO.setPostTime(postTime);
-						ForumVO.setClicks(clicks);
-						ForumVO.setStatus(status);
+						forumVO.setPostId(postId);
+						forumVO.setMemberId(memberId);
+						forumVO.setPostTitle(postTitle);
+						forumVO.setPostContent(postContent);
+						forumVO.setPostTime(postTime);
+						forumVO.setClicks(clicks);
+						forumVO.setStatus(status);
 
 						// Send the use back to the form, if there were errors
 						if (!errorMsgs.isEmpty()) {
@@ -121,11 +116,11 @@ public class ForumServlet extends HttpServlet {
 						
 						/***************************2.開始修改資料*****************************************/
 						ForumServiceImpl forumSvc = new ForumServiceImpl();
-						forumVO = forumSvc.updateForum(postId, memberId, postTitle, postContent, postTime, clicks, status);
+						forumVO = forumSvc.updateForum(memberId, postTitle, postContent, postTime, clicks, status, postId);
 						
 						/***************************3.修改完成,準備轉交(Send the Success view)*************/
 						request.setAttribute("forumVO", forumVO); // 資料庫update成功後,正確的的empVO物件,存入req
-						String url = "/emp/listOneEmp.jsp";
+						String url = "/front-end/forum/forumAll.jsp";
 						RequestDispatcher successView = request.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 						successView.forward(request, response);
 				}

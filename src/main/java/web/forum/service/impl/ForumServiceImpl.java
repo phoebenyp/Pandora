@@ -34,6 +34,22 @@ public class ForumServiceImpl {
 		return forumVO;		
 	}
 	
+	public ForumVO updateForum( Integer memberId, String postTitle, String postContent, LocalDateTime postTime, Integer clicks, String status,Integer postId) {
+		
+		ForumVO forumVO = new ForumVO();
+		
+		forumVO.setMemberId(memberId);
+		forumVO.setPostTitle(postTitle);
+		forumVO.setPostContent(postContent);
+		forumVO.setPostTime(postTime);
+		forumVO.setClicks(clicks);
+		forumVO.setStatus(status);
+		forumVO.setPostId(postId);
+		dao.update(forumVO);
+		
+		return forumVO;		
+	}
+	
 	public void deleteForum(Integer postId) {
 		dao.delete(postId);
 	}
