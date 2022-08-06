@@ -393,7 +393,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         </div>
         <div class="col-6">
           <div class="mpa_list">
-            <ul id="maplist" style="list-style: none">
+            <ul
+              id="maplist"
+              style="list-style: none; height: 100%; overflow: auto"
+            >
               <li style="list-style: none" class="port18">
                 <img
                   src="<%=request.getContextPath()%>/images/map1.png"
@@ -407,7 +410,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                 >
                   變更
                 </button>
-                <div class="popup-wrap letmeopen">
+                <div class="popup-wrap letmeopen port18">
                   <div class="popup-box transform-out" data-port="port18">
                     <button class="btn_back"><h3>原本</h3></button>
                     <button class="btn_rest port18">餐廳</button>
@@ -467,7 +470,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
           </div>
         </div>
       </div>
-      <div class="row wearherTitle"></div>
+      <!--       <div class="row wearherTitle"></div> -->
       <div class="row">
         <div class="col-4 like_title">
           <ul>
@@ -741,6 +744,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
               " </div> </div> </li>";
           }
           $("ul#maplist").html(sss);
+          $(".rest").html("");
+          $(".mark").html("");
+          $(".act").html("");
           //加入位置
           var mapOptions = {
             zoom: 16,
@@ -1042,21 +1048,47 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       //   let af = $(this).parent("li");
       //   $(".act").append(af);
       // });
-      $("#maplist").on("click", "button.btn_change", function () {
+      $("#maplist").on("click", "button.btn_change", function (e) {
+        // console.log("test");
+        // console.log(e.target.parentNode);
         var af = $(this).closest("li");
         let href = $(this).attr("data-hr");
         // console.log(this);
         // console.log(this.closest("li"));
-        $(href).fadeIn(250);
-        $(href)
+
+        // let cc = $(this).closest("div.port18");
+        // let ccc = $(this).next();
+        // console.log(cc);
+        // console.log(ccc);
+        // console.log(cc.find("div.port18"));
+        $(this).next().fadeIn(250);
+        $(this)
+          .next()
           .children("popup-box")
           .removeClass("transform-out")
           .addClass("transform-in");
         // e.preventDefault();
-        $(href).attr("data", af);
+        $(this).next().attr("data", af);
       });
       $(".popup-close").click(function () {
         closeWindow();
+        event.preventDefault();
+      });
+      $("#maplist").on("click", "a", function (e) {
+        closeWindow();
+        event.preventDefault();
+      });
+      $(".rest").on("click", "a", function (e) {
+        closeWindow();
+        event.preventDefault();
+      });
+      $(".mark").on("click", "a", function (e) {
+        closeWindow();
+        event.preventDefault();
+      });
+      $(".act").on("click", "a", function (e) {
+        closeWindow();
+        event.preventDefault();
       });
       function closeWindow() {
         $(".popup-wrap").fadeOut(200);
@@ -1064,13 +1096,13 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         event.preventDefault();
       }
       $("#maplist").on("click", "button.btn_rest", function () {
-        let v = "li." + this.closest("div").dataset.port;
-        console.log(v);
-        var af = $(this).closest(v).clone();
+        let v = this.closest("li");
+        // console.log(v);
+        var af = $(this).closest("li").clone();
         let v2 = "maplist" + v;
-        console.log($(v2).clone());
-        console.log(af);
-        console.log(this);
+        // console.log($(v2).clone());
+        // console.log(af);
+        // console.log(this);
         // console.log(this.closest("div").dataset.port);
         $(".rest").append(af);
         $(this).closest("li").remove();
@@ -1098,13 +1130,14 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         var af = $(this).closest("li");
         let href = $(this).attr("data-hr");
         console.log(af);
-        $(href).fadeIn(250);
-        $(href)
+        $(this).next().fadeIn(250);
+        $(this)
+          .next()
           .children("popup-box")
           .removeClass("transform-out")
           .addClass("transform-in");
         // e.preventDefault();
-        $(href).attr("data", af);
+        $(this).next().attr("data", af);
       });
       $(".rest").on("click", "button.btn_back", function () {
         var af = $(this).closest("li").clone();
@@ -1134,13 +1167,14 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         var af = $(this).closest("li");
         let href = $(this).attr("data-hr");
         console.log(af);
-        $(href).fadeIn(250);
-        $(href)
+        $(this).next().fadeIn(250);
+        $(this)
+          .next()
           .children("popup-box")
           .removeClass("transform-out")
           .addClass("transform-in");
         // e.preventDefault();
-        $(href).attr("data", af);
+        $(this).next().attr("data", af);
       });
       $(".mark").on("click", "button.btn_back", function () {
         var af = $(this).closest("li").clone();
@@ -1170,13 +1204,14 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         var af = $(this).closest("li");
         let href = $(this).attr("data-hr");
         console.log(af);
-        $(href).fadeIn(250);
-        $(href)
+        $(this).next().fadeIn(250);
+        $(this)
+          .next()
           .children("popup-box")
           .removeClass("transform-out")
           .addClass("transform-in");
         // e.preventDefault();
-        $(href).attr("data", af);
+        $(this).next().attr("data", af);
       });
       $(".act").on("click", "button.btn_back", function () {
         var af = $(this).closest("li").clone();
@@ -1202,6 +1237,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         $(this).closest("li").remove();
         closeWindow();
       });
+      // $("#maplist button").on("click", function (e) {
+      //   console.log("test");
+      //   console.log(e.target);
+      // });
     </script>
   </body>
 </html>

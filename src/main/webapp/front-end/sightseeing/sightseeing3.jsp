@@ -397,7 +397,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
               id="maplist"
               style="list-style: none; overflow-y: auto; height: 100%"
             >
-              <li style="list-style: none" class="port18">
+              <!-- 測驗組 -->
+
+              <!-- <li style="list-style: none" class="port18">
                 <img
                   src="<%=request.getContextPath()%>/images/map1.png"
                   style="width: 70%"
@@ -439,7 +441,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                   <option value="3">活動</option>
                   <option value="4">回復</option>
                 </select>
-              </li>
+              </li> -->
+
+              <!-- 測驗組 -->
             </ul>
           </div>
         </div>
@@ -833,7 +837,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       //#change2
 
       //#change3
-      $("#change2").change(function () {
+      $("#change3").change(function () {
         var item = $("#change3  option:selected").val();
         if (item == 1) {
           var af = $(this).closest("li").clone();
@@ -949,6 +953,832 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         }
       });
       //#change3
+
+      //#change4
+      $("#change4").change(function () {
+        var item = $("#change4  option:selected").val();
+        if (item == 1) {
+          var af = $(this).closest("li").clone();
+          $(".rest").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).closest("li").clone();
+          $(".mark").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).closest("li").clone();
+          $(".act").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).closest("li").clone();
+          $("#maplist").append(af);
+          $(this).closest("li").remove();
+        }
+      });
+      $(".rest").change("#change4  option:selected", function () {
+        var item = $("#change4  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change4").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change4").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change4").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change4").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change4").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change4").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change4").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change4").closest("li").remove();
+        }
+      });
+      $(".mark").change("#change4  option:selected", function () {
+        var item = $("#change4  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change4").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change4").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change4").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change4").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change4").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change4").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change4").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change4").closest("li").remove();
+        }
+      });
+      $(".act").change("#change4  option:selected", function () {
+        var item = $("#change4  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change4").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change4").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change4").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change4").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change4").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change4").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change4").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change4").closest("li").remove();
+        }
+      });
+      $("#maplist").change("#change4  option:selected", function () {
+        var item = $("#change4  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change4").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change4").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change4").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change4").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change4").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change4").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change4").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change4").closest("li").remove();
+        }
+      });
+      //#change4
+
+      //#change5
+      $("#change5").change(function () {
+        var item = $("#change5  option:selected").val();
+        if (item == 1) {
+          var af = $(this).closest("li").clone();
+          $(".rest").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).closest("li").clone();
+          $(".mark").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).closest("li").clone();
+          $(".act").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).closest("li").clone();
+          $("#maplist").append(af);
+          $(this).closest("li").remove();
+        }
+      });
+      $(".rest").change("#change5  option:selected", function () {
+        var item = $("#change5  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change5").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change5").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change5").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change5").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change5").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change5").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change5").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change5").closest("li").remove();
+        }
+      });
+      $(".mark").change("#change5  option:selected", function () {
+        var item = $("#change5  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change5").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change5").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change5").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change5").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change5").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change5").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change5").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change5").closest("li").remove();
+        }
+      });
+      $(".act").change("#change5  option:selected", function () {
+        var item = $("#change5  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change5").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change5").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change5").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change5").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change5").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change5").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change5").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change5").closest("li").remove();
+        }
+      });
+      $("#maplist").change("#change5  option:selected", function () {
+        var item = $("#change5  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change5").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change5").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change5").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change5").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change5").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change5").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change5").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change5").closest("li").remove();
+        }
+      });
+      //#change5
+
+      //#change6
+      $("#change6").change(function () {
+        var item = $("#change6  option:selected").val();
+        if (item == 1) {
+          var af = $(this).closest("li").clone();
+          $(".rest").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).closest("li").clone();
+          $(".mark").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).closest("li").clone();
+          $(".act").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).closest("li").clone();
+          $("#maplist").append(af);
+          $(this).closest("li").remove();
+        }
+      });
+      $(".rest").change("#change6  option:selected", function () {
+        var item = $("#change6  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change6").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change6").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change6").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change6").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change6").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change6").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change6").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change6").closest("li").remove();
+        }
+      });
+      $(".mark").change("#change6  option:selected", function () {
+        var item = $("#change6  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change6").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change6").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change6").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change6").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change6").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change6").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change6").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change6").closest("li").remove();
+        }
+      });
+      $(".act").change("#change6  option:selected", function () {
+        var item = $("#change6  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change6").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change6").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change6").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change6").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change6").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change6").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change6").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change6").closest("li").remove();
+        }
+      });
+      $("#maplist").change("#change6  option:selected", function () {
+        var item = $("#change6  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change6").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change6").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change6").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change6").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change6").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change6").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change6").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change6").closest("li").remove();
+        }
+      });
+      //#change6
+
+      //#change7
+      $("#change7").change(function () {
+        var item = $("#change7  option:selected").val();
+        if (item == 1) {
+          var af = $(this).closest("li").clone();
+          $(".rest").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).closest("li").clone();
+          $(".mark").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).closest("li").clone();
+          $(".act").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).closest("li").clone();
+          $("#maplist").append(af);
+          $(this).closest("li").remove();
+        }
+      });
+      $(".rest").change("#change7  option:selected", function () {
+        var item = $("#change7  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change7").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change7").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change7").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change7").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change7").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change7").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change7").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change7").closest("li").remove();
+        }
+      });
+      $(".mark").change("#change7  option:selected", function () {
+        var item = $("#change7  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change7").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change7").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change7").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change7").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change7").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change7").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change7").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change7").closest("li").remove();
+        }
+      });
+      $(".act").change("#change7  option:selected", function () {
+        var item = $("#change7  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change7").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change7").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change7").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change7").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change7").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change7").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change7").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change7").closest("li").remove();
+        }
+      });
+      $("#maplist").change("#change7  option:selected", function () {
+        var item = $("#change7  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change7").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change7").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change7").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change7").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change7").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change7").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change7").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change7").closest("li").remove();
+        }
+      });
+      //#change7
+
+      //#change8
+      $("#change8").change(function () {
+        var item = $("#change8  option:selected").val();
+        if (item == 1) {
+          var af = $(this).closest("li").clone();
+          $(".rest").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).closest("li").clone();
+          $(".mark").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).closest("li").clone();
+          $(".act").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).closest("li").clone();
+          $("#maplist").append(af);
+          $(this).closest("li").remove();
+        }
+      });
+      $(".rest").change("#change8  option:selected", function () {
+        var item = $("#change8  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change8").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change8").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change8").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change8").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change8").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change8").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change8").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change8").closest("li").remove();
+        }
+      });
+      $(".mark").change("#change8  option:selected", function () {
+        var item = $("#change8  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change8").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change8").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change8").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change8").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change8").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change8").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change8").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change8").closest("li").remove();
+        }
+      });
+      $(".act").change("#change8  option:selected", function () {
+        var item = $("#change8  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change8").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change8").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change8").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change8").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change8").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change8").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change8").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change8").closest("li").remove();
+        }
+      });
+      $("#maplist").change("#change8  option:selected", function () {
+        var item = $("#change8  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change8").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change8").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change8").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change8").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change8").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change8").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change8").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change8").closest("li").remove();
+        }
+      });
+      //#change8
+
+      //#change9
+      $("#change9").change(function () {
+        var item = $("#change9  option:selected").val();
+        if (item == 1) {
+          var af = $(this).closest("li").clone();
+          $(".rest").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).closest("li").clone();
+          $(".mark").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).closest("li").clone();
+          $(".act").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).closest("li").clone();
+          $("#maplist").append(af);
+          $(this).closest("li").remove();
+        }
+      });
+      $(".rest").change("#change9  option:selected", function () {
+        var item = $("#change9  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change9").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change9").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change9").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change9").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change9").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change9").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change9").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change9").closest("li").remove();
+        }
+      });
+      $(".mark").change("#change9  option:selected", function () {
+        var item = $("#change9  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change9").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change9").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change9").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change9").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change9").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change9").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change9").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change9").closest("li").remove();
+        }
+      });
+      $(".act").change("#change9  option:selected", function () {
+        var item = $("#change9  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change9").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change9").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change9").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change9").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change9").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change9").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change9").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change9").closest("li").remove();
+        }
+      });
+      $("#maplist").change("#change9  option:selected", function () {
+        var item = $("#change9  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change9").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change9").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change9").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change9").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change9").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change9").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change9").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change9").closest("li").remove();
+        }
+      });
+      //#change9
+
+      //#change10
+      $("#change10").change(function () {
+        var item = $("#change10  option:selected").val();
+        if (item == 1) {
+          var af = $(this).closest("li").clone();
+          $(".rest").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).closest("li").clone();
+          $(".mark").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).closest("li").clone();
+          $(".act").append(af);
+          $(this).closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).closest("li").clone();
+          $("#maplist").append(af);
+          $(this).closest("li").remove();
+        }
+      });
+      $(".rest").change("#change10  option:selected", function () {
+        var item = $("#change10  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change10").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change10").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change10").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change10").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change10").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change10").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change10").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change10").closest("li").remove();
+        }
+      });
+      $(".mark").change("#change10  option:selected", function () {
+        var item = $("#change10  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change10").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change10").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change10").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change10").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change10").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change10").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change10").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change10").closest("li").remove();
+        }
+      });
+      $(".act").change("#change10  option:selected", function () {
+        var item = $("#change10  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change10").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change10").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change10").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change10").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change10").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change10").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change10").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change10").closest("li").remove();
+        }
+      });
+      $("#maplist").change("#change10  option:selected", function () {
+        var item = $("#change10  option:selected").val();
+        if (item == 1) {
+          var af = $(this).find("#change10").closest("li").clone();
+          $(".rest").append(af);
+          $(this).find("#change10").closest("li").remove();
+        }
+        if (item == 2) {
+          var af = $(this).find("#change10").closest("li").clone();
+          $(".mark").append(af);
+          $(this).find("#change10").closest("li").remove();
+        }
+        if (item == 3) {
+          var af = $(this).find("#change10").closest("li").clone();
+          $(".act").append(af);
+          $(this).find("#change10").closest("li").remove();
+        }
+        if (item == 4) {
+          var af = $(this).find("#change10").closest("li").clone();
+          $("#maplist").append(af);
+          $(this).find("#change10").closest("li").remove();
+        }
+      });
+      //#change10
       // $.ajax({
       //   url: "http://localhost:8080/pandora/SightseeingServlet", // 資料請求的網址
       //   type: "POST", // GET | POST | PUT | DELETE | PATCH
