@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import="java.util.*"%>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -280,6 +285,7 @@
           </p>
         </div>
 
+        <c:forEach var="packageItem" items="${packagesList}" >
         <div class="row">
           <div class="col-lg-12 col-md-6 wow zoomIn" data-wow-delay="0.1s">
             <div class="tour_container">
@@ -287,16 +293,18 @@
                 <a href="single_tour.html">
                   <img src="https://picsum.photos/1296/533?random=1" class="img-fluid" alt="Image" />
                   <div class="short_info">
-                    <i class="icon_set_1_icon-8"></i>行程1<span class="price"><sup>$</sup>56000</span>
+                    <i class="icon_set_1_icon-8"></i>共計:${packageItem.duration} 天 &ensp;&ensp;啟航時間:${packageItem.departureTime} &ensp;&ensp;結束時間:${packageItem.arrivalTime}<span class="price"><sup>
+				
 
+						
                   </div>
                 </a>
               </div>
-              <div class="tour_title" style="width:845px">
+              <div class="tour_title" style="width:1250px">
                 <!--寫個function 觸發onclick事件=>form表單 input(查詢參數)=>送到後端  -->
                 <!--action 對應到謀個servlet -->
-                <h3><strong>行程1</strong>
-                  &ensp;&ensp;航線:A->B
+                <h3><strong>${packageItem.packageName}</strong>
+                  &ensp;&ensp;航線:${portsOfCallListMap.get(packageItem.packageNo)}
                 </h3>
                 <h3 style="display:inline-block;width:300px">
                   <form method="get" id="reservationnow1" action="https://www.google.com/">
@@ -307,114 +315,17 @@
 
                 </h3>
                 <h3 style="display:inline-block;width:300px">
-                  <form method="get" id="learnmore1" action="https://www.google.com/">
-                    <input name="packages" type="hidden" value="1">
-                    <button class="btn btn-primary btn-sm" type="submit" onclick="對應謀個function"
+                   <form action="<%=request.getContextPath()%>/PackagesServlet" method="Post">
+                   	<input type="hidden" name="packageNo" value="${packageItem.packageNo}">
+                    <button class="btn btn-primary btn-sm" type="submit" name="action" value="getOnePackageDetail"
                       style="width:300px;height:30px;">了解航線詳情</button>
                   </form>
                 </h3>
 
               </div>
             </div>
+          </c:forEach>  
             <!-- End col -->
-
-            <div class="col-lg-12 col-md-6 wow zoomIn" data-wow-delay="0.2s">
-              <div class="tour_container">
-                <div class="img_container">
-                  <a href="single_tour.html">
-                    <img src="https://picsum.photos/900/533?random=2" class="img-fluid" alt="Image" />
-                    <div class="badge_save"><strong>7折</strong></div>
-                    <div class="short_info">
-                      <i class="icon_set_1_icon-8"></i>行程2<span class="price"><sup>$</sup>27900</span>
-                    </div>
-                  </a>
-                </div>
-                <div class="tour_title" style="width:845px">
-                  <h3><strong>行程2</strong> &ensp;&ensp;航線:A->C</h3>
-                  <h3 style="display:inline-block;width:300px">
-                    <form method="get" id="reservationnow1" action="https://www.google.com/">
-                      <input name="packages" type="hidden" value="1">
-                      <button class="btn btn-primary btn-sm" type="submit" onclick="對應謀個function"
-                        style="width:300px;height:30px;">立即預定</button>
-                    </form>
-
-                  </h3>
-                  <h3 style="display:inline-block;width:300px">
-                    <form method="get" id="learnmore1" action="https://www.google.com/">
-                      <input name="packages" type="hidden" value="1">
-                      <button class="btn btn-primary btn-sm" type="submit" onclick="對應謀個function"
-                        style="width:300px;height:30px;">了解航線詳情</button>
-                    </form>
-                  </h3>
-
-
-                </div>
-              </div>
-
-            </div>
-            <!-- End col -->
-            <div class="col-lg-12 col-md-6 wow zoomIn" data-wow-delay="0.3s">
-              <div class="tour_container">
-                <!-- <div class="ribbon_3 popular"><span>Popular</span></div> -->
-                <div class="img_container">
-                  <a href="single_tour.html">
-                    <img src="https://picsum.photos/1296/533?random=3" class="img-fluid" alt="Image" />
-                    <div class="short_info">
-                      <i class="icon_set_1_icon-8"></i>行程3<span class="price"><sup>$</sup>48000</span>
-
-                    </div>
-                  </a>
-                </div>
-                <div class="tour_title" style="width:845px">
-                  <!--寫個function 觸發onclick事件=>form表單 input(查詢參數)=>送到後端  -->
-                  <!--action 對應到謀個servlet -->
-                  <h3><strong>行程3</strong> &ensp;&ensp;航線:B->D</h3>
-                  <h3 style="display:inline-block;width:300px">
-                    <form method="get" id="reservationnow1" action="https://www.google.com/">
-                      <input name="packages" type="hidden" value="1">
-                      <button class="btn btn-primary btn-sm" type="submit" onclick="對應謀個function"
-                        style="width:300px;height:30px;">立即預定</button>
-                    </form>
-
-                  </h3>
-                  <h3 style="display:inline-block;width:300px">
-                    <form method="get" id="learnmore1" action="https://www.google.com/">
-                      <input name="packages" type="hidden" value="1">
-                      <button class="btn btn-primary btn-sm" type="submit" onclick="對應謀個function"
-                        style="width:300px;height:30px;">了解航線詳情</button>
-                    </form>
-                  </h3>
-                </div>
-                <!-- End col -->
-
-                <div class="col-lg-12 col-md-6 wow zoomIn" data-wow-delay="0.4s">
-                  <div class="tour_container">
-                    <div class="img_container">
-                      <a href="single_tour.html">
-                        <img src="https://picsum.photos/1296/533?random=" class="img-fluid" alt="Image" />
-                        <div class="short_info">
-                          <i class="icon_set_1_icon-8"></i>行程4<span class="price"><sup>$</sup>36000</span>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="tour_title" style="width:845px">
-                      <h3><strong>行程4</strong> &ensp;&ensp;航線:E->F</h3>
-                      <h3 style="display:inline-block;width:300px">
-                        <form method="get" id="reservationnow1" action="https://www.google.com/">
-                          <input name="packages" type="hidden" value="1">
-                          <button class="btn btn-primary btn-sm" type="submit" onclick="對應謀個function"
-                            style="width:300px;height:30px;">立即預定</button>
-                        </form>
-                      </h3>
-                      <h3 style="display:inline-block;width:300px">
-                        <form method="get" id="learnmore1" action="https://www.google.com/">
-                          <input name="packages" type="hidden" value="1">
-                          <button class="btn btn-primary btn-sm" type="submit" onclick="對應謀個function"
-                            style="width:300px;height:30px;">了解航線詳情</button>
-                        </form>
-                      </h3>
-
-                    </div>
 
                     <!-- End row -->
                     <div class="col-lg-12 col-md-6 wow zoomIn" data-wow-delay="0.4s">

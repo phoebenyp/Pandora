@@ -3,6 +3,7 @@ package web.packages.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import web.packages.bean.PackageDetailVO;
 import web.packages.bean.PackagesVO;
 import web.packages.dao.PackagesDAO;
 import web.packages.dao.impl.PackagesDAOImpl;
@@ -21,6 +22,7 @@ public class PackagesServiceImpl implements PackagesService {
 
 	}
 	
+
 	
 
 }
