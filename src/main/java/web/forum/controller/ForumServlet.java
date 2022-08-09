@@ -8,10 +8,12 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import web.forum.bean.ForumVO;
 import web.forum.service.impl.ForumServiceImpl;
@@ -21,6 +23,7 @@ import web.forum.service.impl.ForumServiceImpl;
  * Servlet implementation class ForumServlet
  */
 @WebServlet("/ForumServlet")
+@MultipartConfig
 public class ForumServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,17 +43,14 @@ public class ForumServlet extends HttpServlet {
 					
 						/***************************1.接收請求參數****************************************/
 						Integer postId = Integer.valueOf(request.getParameter("postID"));
-						System.out.println(request.getParameter("postID"));
 						
 						/***************************2.開始查詢資料****************************************/
 						ForumServiceImpl forumSvc = new ForumServiceImpl();
 						//抽出單艘船的資料
 						ForumVO forumVO = forumSvc.getOneForum(postId);
-						System.out.println(forumVO);
-										
 						/***************************3.查詢完成,準備轉交(Send the Success view)************/
 						request.setAttribute("forumVO", forumVO);         // 資料庫取出的forumVO物件,存入req
-						String url = "forurmUpdate.jsp";
+						String url = "/front-end/forum/forumUpdateFront.jsp";
 						RequestDispatcher successView = request.getRequestDispatcher(url);// 成功轉交 forumUpdate.jsp
 						successView.forward(request, response);
 				}
@@ -94,37 +94,43 @@ public class ForumServlet extends HttpServlet {
 							errorMsgs.add("狀態請勿空白");
 						}
 		
-
+		Part filePostPic = request.getPart("postPic"); // Retrieves <input type="file" name="empPictureId">
+		byte[] postPic = filePostPic.getInputStream().readAllBytes();
 
 						ForumVO forumVO = new ForumVO();
-						forumVO.setPostId(postId);
 						forumVO.setMemberId(memberId);
 						forumVO.setPostTitle(postTitle);
 						forumVO.setPostContent(postContent);
 						forumVO.setPostTime(postTime);
 						forumVO.setClicks(clicks);
 						forumVO.setStatus(status);
+						forumVO.setPostPic(postPic);
+						forumVO.setPostId(postId);
 
+						System.out.println(forumVO.toString());
 						// Send the use back to the form, if there were errors
 						if (!errorMsgs.isEmpty()) {
 							request.setAttribute("forumVO", forumVO); // 含有輸入格式錯誤的empVO物件,也存入req
 							RequestDispatcher failureView = request
-									.getRequestDispatcher("/forumUpdate.jsp");
+									.getRequestDispatcher("/forumUpdateFront.jsp");
 							failureView.forward(request, response);
 							return; //程式中斷
 						}
 						
 						/***************************2.開始修改資料*****************************************/
 						ForumServiceImpl forumSvc = new ForumServiceImpl();
-						forumVO = forumSvc.updateForum(memberId, postTitle, postContent, postTime, clicks, status, postId);
+						forumVO = forumSvc.updateForum(memberId, postTitle, postContent, postTime, clicks, status, postPic, postId);
 						
 						/***************************3.修改完成,準備轉交(Send the Success view)*************/
+//						/Pandora/src/main/webapp/front-end/forum/forumAll.jsp
 						request.setAttribute("forumVO", forumVO); // 資料庫update成功後,正確的的empVO物件,存入req
 						String url = "/front-end/forum/forumAll.jsp";
 						RequestDispatcher successView = request.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 						successView.forward(request, response);
 				}
 		
+				
+				
 	}
 
 	

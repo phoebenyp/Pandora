@@ -1,16 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="web.forum.bean.ForumVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page import="java.util.*"%>
-<%@page import="web.forum.bean.ForumVO"%>
 
 <%
-ForumVO forumVO = (ForumVO) request.getAttribute("forumVO");
+  ForumVO forumVO = (ForumVO) request.getAttribute("forumVO"); //ForumServlet.java (Concroller) 存入req的forumVO物件 (包括幫忙取出的forumVO, 也包括輸入資料錯誤時的forumVO物件)
 %>
 <%= forumVO==null %>--${forumVO.postId}--
 
-    
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -80,6 +78,23 @@ ForumVO forumVO = (ForumVO) request.getAttribute("forumVO");
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+  
+  <!-- COMMON CSS -->
+    <link href="<%=request.getContextPath()%>/front-end/forum/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/front-end/forum/css/style.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/front-end/forum/css/vendors.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/forum/css/adminlte.css" />
+    <!-- 引用後台css -->
+
+    <!-- CUSTOM CSS -->
+    <link href="<%=request.getContextPath()%>/front-end/forum/css/custom.css" rel="stylesheet" />
+    <style>
+      #wishlist_link::before {
+        content: "\e97a";
+      }
+    </style>
+  
   </head>
   <body>
     <div id="preloader">
@@ -261,9 +276,7 @@ ForumVO forumVO = (ForumVO) request.getAttribute("forumVO");
         <br>
         <br>
         
-       <form action="<%=request.getContextPath()%>/ForumServlet"
-					method="post" enctype="multipart/form-data">
-					<input type="hidden" name="action" value="insert">
+ <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ForumServlet" enctype='multipart/form-data'>
 <!-- 					<input type="hidden" name="merberusing" -->
 <%--                         value="<%=memberVO.getmemberId()%>"> --%>
 
@@ -274,7 +287,7 @@ ForumVO forumVO = (ForumVO) request.getAttribute("forumVO");
 									<label for="product_title" class="form-label">文章標題</label> 
 									　　<input
 										type="text" placeholder="Type here" class="form-control"
-										id="product_title" name="title"
+										id="product_title" name="postTitle"
 										value="<%=(forumVO == null) ? "" : forumVO.getPostTitle()%>"/>
 								</div>
 								<div id="errMsg"></div>
@@ -294,13 +307,31 @@ ForumVO forumVO = (ForumVO) request.getAttribute("forumVO");
 								<div>
 									<label for="article_content" class="form-label">文章內容</label>
 									<textarea id="article_content" placeholder="Type here" class="form-control"
-										rows="20" name="content" style="height: 300px"><%=(forumVO == null) ? "" : forumVO.getPostContent()%></textarea>
+										rows="20" name="postContent" style="height: 300px"><%=(forumVO == null) ? "" : forumVO.getPostContent()%></textarea>
 								</div>
 								<div id="errMsg2"/></div>
 							</div>
 							<div class="card-body">
+							
+						<tr>
+		
+		<td><input type="hidden" name="memberId" size="45" value="<%=forumVO.getMemberId()%>" /></td>
+	</tr>
 
-
+<tr>
+		
+		<td><input type="hidden" name="postTime" size="45"	value="<%=forumVO.getPostTime()%>" /></td>
+	</tr>
+	
+	<tr>
+		
+		<td><input type="hidden" name="clicks" size="45"	value="<%=forumVO.getClicks()%>" /></td>
+	</tr>
+	
+<tr>
+		
+		<td><input type="hidden" name="status" size="45"	value="<%=forumVO.getStatus()%>" /></td>
+	</tr>
 <!-- 								<div class="mb-4"> -->
 <!-- 									<label class="form-label">#HashTags</label> <input type="text" -->
 <!-- 										placeholder="Type here" class="form-control" /> -->
@@ -325,29 +356,16 @@ ForumVO forumVO = (ForumVO) request.getAttribute("forumVO");
 
 
 									<label class="form-label">上傳圖片</label> <input
-										class="form-control" type="file" name="file" />
+										type="file" name="postPic" />
 								</div>
 							</div>
 						</div>
 						<div class="card mb-7"></div>
 
 						<div>
-							<input type="hidden" name="action" value="insert">
-<input type="submit" value="送出新增"></FORM>
-						</div>
-					</div>
-				</form>
-        <br>
-        <button>取消</button>
-        <button type="submit" class="btn btn-md rounded font-sm hover-up">發文</button>
-
-    
-
-            
-        <br>
-        <button>取消</button>
-        <button>發文</button>
-
+<input type="hidden" name="action" value="update">
+<input type="hidden" name="postId" value="<%=forumVO.getPostId()%>">
+<input type="submit" value="送出修改"></FORM>
           
         </div>
       </div>
@@ -455,9 +473,9 @@ ForumVO forumVO = (ForumVO) request.getAttribute("forumVO");
     <!-- /Sign In Popup -->
 
     <!-- Common scripts -->
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/common_scripts_min.js"></script>
-    <script src="js/functions.js"></script>
+    <script src="<%=request.getContextPath()%>/front-end/forum/js/jquery-3.6.0.min.js"></script>
+    <script src="<%=request.getContextPath()%>/front-end/forum/js/common_scripts_min.js"></script>
+    <script src="<%=request.getContextPath()%>/front-end/forum/js/functions.js"></script>
     
     
 
@@ -496,7 +514,7 @@ ForumVO forumVO = (ForumVO) request.getAttribute("forumVO");
       });
     </script>
 
-    <script src="js/jquery.ddslick.js"></script>
+    <script src="<%=request.getContextPath()%>/front-end/forum/js/jquery.ddslick.js"></script>
     <script>
       $("select.ddslick").each(function () {
         $(this).ddslick({

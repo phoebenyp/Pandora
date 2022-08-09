@@ -507,6 +507,10 @@
     </script>
 
     <script src="<%=request.getContextPath()%>/front-end/forum/js/jquery.ddslick.js"></script>
+    <script src="<%=request.getContextPath()%>/front-end/forum/css/style.css"></script>
+    <script src="<%=request.getContextPath()%>/front-end/forum/css/bootstrap.min.css "></script>
+    <script src="<%=request.getContextPath()%>/front-end/forum/css/vendors.css "></script>
+    
     <script>
       $("select.ddslick").each(function () {
         $(this).ddslick({
