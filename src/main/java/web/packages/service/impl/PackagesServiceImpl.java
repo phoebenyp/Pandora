@@ -21,6 +21,12 @@ public class PackagesServiceImpl implements PackagesService {
 		return dao.getAll(map);
 
 	}
+
+	@Override
+	public List<PackagesVO> getALLList() {
+		
+		return dao.getALLList();
+	}
 	
 
 	

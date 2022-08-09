@@ -2,6 +2,8 @@ package web.packages.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,15 +35,22 @@ import web.emp.service.EmpService;
 import web.emp.service.impl.EmpServiceImpl;
 import web.packages.bean.PackageDetailVO;
 import web.packages.bean.PackagesVO;
+import web.packages.bean.PortsOfCallDateVO;
 import web.packages.service.PackageDetailService;
 import web.packages.service.PackagesService;
+import web.packages.service.PortsOfCallDateService;
 import web.packages.service.PortsOfCallListService;
 import web.packages.service.impl.PackageDetailServiceImpl;
 import web.packages.service.impl.PackagesServiceImpl;
+import web.packages.service.impl.PortsOfCallDateServiceImpl;
 import web.packages.service.impl.PortsOfCallListServiceImpl;
+import web.ship.bean.ShipTotalVO;
+import web.ship.bean.ShipsVO;
+import web.ship.dao.impl.ShipsDAOImpl;
+import web.ship.service.impl.ShipService;
 
-@WebServlet("/PackagesServlet")
-public class PackagesServlet extends HttpServlet {
+@WebServlet("/PackagesBackEndServlet")
+public class PackagesBackEndServlet extends HttpServlet {
 	private Gson gson = new Gson();
 
 	@Override
@@ -54,6 +63,40 @@ public class PackagesServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		System.out.println(action);
+		
+		
+		if("getAllPackage".equals(action)) {
+			System.out.println("hi大聰明我在:getAllPackage");
+			PackagesService packagesService = new PackagesServiceImpl();
+			List<PackagesVO> packagesList = packagesService.getALLList();
+			req.setAttribute("packagesList", packagesList);
+			req.setAttribute("dateTimeFormat",DateTimeFormatter.ofPattern("yyyy年MM月dd日HH點mm分"));
+			RequestDispatcher successView = req.getRequestDispatcher("/back-end/package/packageAll.jsp");
+			successView.forward(req, resp);
+		}
+		
+		if("packageADD".equals(action)) {
+			PackagesService packagesService = new PackagesServiceImpl();
+			ShipService shipService = new ShipService();
+			CruiseLineServiceImpl  cruiseLineServiceImpl = new CruiseLineServiceImpl();
+			PortsOfCallDateService portsOfCallDateService = new PortsOfCallDateServiceImpl();
+		
+			
+			List<ShipTotalVO> shipList = shipService.getAll();
+			List<CruiseLineVO> cruiseLineList = cruiseLineServiceImpl.getCruiseLineALL();
+			List<PortsOfCallDateVO> portsOfCallDateList = portsOfCallDateService.getAll();
+		
+			
+			String packageName =req.getParameter("packageName");
+			String duration = req.getParameter("duration");
+			String registrationStartTime  = req.getParameter("registrationStartTime");
+			String registrationDeadTime = req.getParameter("registrationDeadTime");
+			
+			
+			
+			
+			
+		}
 
 		if ("homePage".equals(action)) {
 
@@ -198,6 +241,7 @@ public class PackagesServlet extends HttpServlet {
 					.collect(Collectors.toList());
 			List<String> duration = packagesList.stream().map(vo -> vo.getDuration().toString()).distinct()
 					.collect(Collectors.toList());
+			
 			System.out.println("天數:" + duration);
 
 			optionMap.put("packageNoList", packageNoList);
@@ -238,8 +282,6 @@ public class PackagesServlet extends HttpServlet {
 			successView.forward(req, resp);	
 			
 		}
-		
-	
 
 	}
 

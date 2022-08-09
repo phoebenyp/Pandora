@@ -130,7 +130,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="<%=request.getContextPath()%>/PackagesBackEndServlet?action=getAllPackage"  class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>行程資訊管理</p>
                                     </a>

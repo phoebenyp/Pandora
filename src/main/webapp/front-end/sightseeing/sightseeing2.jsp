@@ -378,11 +378,11 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       <div class="row" style="margin-top: 12%">
         <div class="col-3">
           <select name="" id="first">
-            <c:forEach var="result" items="${result}">
+            <!-- <c:forEach var="result" items="${result}">
               <option value="${result.cruiseLineNo }">
                 ${result.cruiseLines }
               </option>
-            </c:forEach>
+            </c:forEach> -->
           </select>
           <select name="" id="second"></select>
         </div>
@@ -393,8 +393,11 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         </div>
         <div class="col-6">
           <div class="mpa_list">
-            <ul id="maplist" style="list-style: none">
-              <li style="list-style: none">
+            <ul
+              id="maplist"
+              style="list-style: none; height: 100%; overflow: auto"
+            >
+              <li style="list-style: none" class="port18">
                 <img
                   src="<%=request.getContextPath()%>/images/map1.png"
                   style="width: 70%"
@@ -407,61 +410,196 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                 >
                   變更
                 </button>
+                <div class="popup-wrap letmeopen port18">
+                  <div class="popup-box transform-out" data-port="port18">
+                    <button
+                      class="btn_back"
+                      style="
+                        background-color: #bbcfe2;
+                        border: 1px solid #fff;
+                        border-radius: 20%;
+                        font-size: 30px;
+                        padding: 10px 20px;
+                      "
+                    >
+                      恢復
+                    </button>
+                    <button
+                      class="btn_rest port18"
+                      style="
+                        background-color: #bbcfe2;
+                        border: 1px solid #fff;
+                        border-radius: 20%;
+                        font-size: 30px;
+                        padding: 10px 20px;
+                      "
+                    >
+                      餐廳
+                    </button>
+                    <button
+                      class="btn_mark"
+                      style="
+                        background-color: #bbcfe2;
+                        border: 1px solid #fff;
+                        border-radius: 20%;
+                        font-size: 30px;
+                        padding: 10px 20px;
+                      "
+                    >
+                      景點
+                    </button>
+                    <button
+                      class="btn_act"
+                      style="
+                        background-color: #bbcfe2;
+                        border: 1px solid #fff;
+                        border-radius: 20%;
+                        font-size: 30px;
+                        padding: 10px 20px;
+                      "
+                    >
+                      活動
+                    </button>
+                    <a class="close-btn popup-close" href="#">x</a>
+                  </div>
+                </div>
+              </li>
+              <li style="list-style: none" class="port19">
+                <img
+                  src="<%=request.getContextPath()%>/images/sightseeing4.png"
+                  style="width: 70%"
+                  alt=""
+                />
+                <button
+                  class="btn btn_change"
+                  style="height: 100%; width: 25%; background-color: #bbcfe2"
+                  data-hr=".letmeopen"
+                >
+                  變更
+                </button>
                 <div class="popup-wrap letmeopen">
-                  <div class="popup-box transform-out">
-                    <button class="btn_back"><h3>原本</h3></button>
-                    <button class="btn_rest">餐廳</button>
-                    <button class="btn_mark">景點</button>
-                    <button class="btn_act">活動</button>
+                  <div class="popup-box transform-out" data-port="port19">
+                    <button
+                      class="btn_back"
+                      style="
+                        background-color: #bbcfe2;
+                        border: 1px solid #fff;
+                        border-radius: 20%;
+                        font-size: 30px;
+                        padding: 10px 20px;
+                      "
+                    >
+                      恢復
+                    </button>
+                    <button
+                      class="btn_rest port19"
+                      style="
+                        background-color: #bbcfe2;
+                        border: 1px solid #fff;
+                        border-radius: 20%;
+                        font-size: 30px;
+                        padding: 10px 20px;
+                      "
+                    >
+                      餐廳
+                    </button>
+                    <button
+                      class="btn_mark"
+                      style="
+                        background-color: #bbcfe2;
+                        border: 1px solid #fff;
+                        border-radius: 20%;
+                        font-size: 30px;
+                        padding: 10px 20px;
+                      "
+                    >
+                      景點
+                    </button>
+                    <button
+                      class="btn_act"
+                      style="
+                        background-color: #bbcfe2;
+                        border: 1px solid #fff;
+                        border-radius: 20%;
+                        font-size: 30px;
+                        padding: 10px 20px;
+                      "
+                    >
+                      活動
+                    </button>
+                    <a class="close-btn popup-close" href="#">x</a>
+                  </div>
+                </div>
+              </li>
+              <li style="list-style: none" class="port20">
+                <img
+                  src="<%=request.getContextPath()%>/images/sightseeing3.png"
+                  style="width: 70%"
+                  alt=""
+                />
+                <button
+                  class="btn btn_change"
+                  style="height: 100%; width: 25%; background-color: #bbcfe2"
+                  data-hr=".letmeopen"
+                >
+                  變更
+                </button>
+                <div class="popup-wrap letmeopen">
+                  <div class="popup-box transform-out" data-port="port20">
+                    <button
+                      class="btn_back"
+                      style="
+                        background-color: #bbcfe2;
+                        border: 1px solid #fff;
+                        border-radius: 20%;
+                        font-size: 30px;
+                        padding: 10px 20px;
+                      "
+                    >
+                      恢復
+                    </button>
+                    <button
+                      class="btn_rest port19"
+                      style="
+                        background-color: #bbcfe2;
+                        border: 1px solid #fff;
+                        border-radius: 20%;
+                        font-size: 30px;
+                        padding: 10px 20px;
+                      "
+                    >
+                      餐廳
+                    </button>
+                    <button
+                      class="btn_mark"
+                      style="
+                        background-color: #bbcfe2;
+                        border: 1px solid #fff;
+                        border-radius: 20%;
+                        font-size: 30px;
+                        padding: 10px 20px;
+                      "
+                    >
+                      景點
+                    </button>
+                    <button
+                      class="btn_act"
+                      style="
+                        background-color: #bbcfe2;
+                        border: 1px solid #fff;
+                        border-radius: 20%;
+                        font-size: 30px;
+                        padding: 10px 20px;
+                      "
+                    >
+                      活動
+                    </button>
                     <a class="close-btn popup-close" href="#">x</a>
                   </div>
                 </div>
               </li>
             </ul>
           </div>
-          <!-- <div id="map_filter">
-            <ul>
-              <li>
-                <a href="javascript:toggleMarkers('Historic');"
-                  ><i class="icon_set_1_icon-44"></i
-                  ><span>Historic Buildings</span></a
-                >
-              </li>
-              <li>
-                <a href="javascript:toggleMarkers('Sightseeing');"
-                  ><i class="icon_set_1_icon-3"></i
-                  ><span>City sightseeing</span></a
-                >
-              </li>
-              <li>
-                <a href="javascript:toggleMarkers('Museums');"
-                  ><i class="icon_set_1_icon-4"></i><span>Museum</span></a
-                >
-              </li>
-              <li>
-                <a href="javascript:toggleMarkers('Skyline');"
-                  ><i class="icon_set_1_icon-28"></i
-                  ><span>Skyline tours</span></a
-                >
-              </li>
-              <li>
-                <a href="javascript:toggleMarkers('Eat_drink');"
-                  ><i class="icon_set_1_icon-14"></i><span>Eat & Drink</span></a
-                >
-              </li>
-              <li>
-                <a href="javascript:toggleMarkers('Walking');"
-                  ><i class="icon_set_1_icon-37"></i
-                  ><span>Walking tours</span></a
-                >
-              </li>
-              <li>
-                <a href="javascript:toggleMarkers('Churches');"
-                  ><i class="icon_set_1_icon-43"></i><span>Churces</span></a
-                >
-              </li>
-            </ul>
-          </div> -->
         </div>
       </div>
       <div class="row wearherTitle"></div>
@@ -596,7 +734,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     <!-- Map -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaLnCT5X3SOIuBBlEMSlXuFLIh4qLyXxQ&libraries=places"></script>
 
-    <!-- <script src="<%=request.getContextPath()%>/front-end/sightseeing/js/map_full_page.js"></script> -->
+    <script src="<%=request.getContextPath()%>/front-end/sightseeing/js/map_full_page.js"></script>
 
     <script src="<%=request.getContextPath()%>/Cart/html/js/infobox.js"></script>
     <script
@@ -682,7 +820,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         //   .catch((err) => {});
         axios.post(url, { item }).then((response) => {
           // console.log(response.data);
-          console.log(response.data);
+          // console.log(response.data);
           scv = response.data
             .replace("[", "")
             .replace("]", "")
@@ -708,15 +846,88 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       $("#second").change(function () {
         var port = $("#second  option:selected").val();
         // console.log(port);
+        switch (port) {
+          case "1":
+            // console.log(port);
+            axios
+              .get(
+                "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-051?Authorization=CWB-7B427A7B-6E43-41EE-9DCA-8CE82754A1E7&limit=1&offset=4&format=JSON&elementName=&sort=time"
+              )
+              .then((response) => {
+                // data = json.loads(response.text);
+                weather(response);
+              });
+            break;
+          case "2":
+            // console.log(port);
+            axios
+              .get(
+                "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-075?Authorization=CWB-7B427A7B-6E43-41EE-9DCA-8CE82754A1E7&limit=1&offset=28&format=JSON&elementName=&sort=time"
+              )
+              .then((response) => {
+                // data = json.loads(response.text);
+                weather(response);
+              });
+            break;
+          case "3":
+            // console.log(port);
+            axios
+              .get(
+                "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-067?Authorization=CWB-7B427A7B-6E43-41EE-9DCA-8CE82754A1E7&limit=1&offset=24&format=JSON&elementName=&sort=time"
+              )
+              .then((response) => {
+                // data = json.loads(response.text);
+                weather(response);
+              });
+            break;
+          case "4":
+            // console.log(port);
+            axios
+              .get(
+                "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-043?Authorization=CWB-7B427A7B-6E43-41EE-9DCA-8CE82754A1E7&limit=1&offset=2&format=JSON&elementName=&sort=time"
+              )
+              .then((response) => {
+                // data = json.loads(response.text);
+                weather(response);
+              });
+            break;
+        }
         let url = "http://localhost:8080/pandora/LaLoPicServlet";
         axios.post(url, { port }).then((response) => {
           // console.log(response.data);
           var lalo = response.data.split(" ");
           // console.log(parseFloat(lalo[0]) + " ," + parseFloat(lalo[1]));
-          console.log(parseFloat(lalo[0]), parseFloat(lalo[1]));
+          //           console.log(parseFloat(lalo[0]), parseFloat(lalo[1]));
+          // console.log(parseFloat(lalo[0]), parseFloat(lalo[1]));
+          // console.log(lalo[2][0], lalo[2][1], lalo[2][2]);
+          // console.log(lalo[2]);
+          // console.log(lalo[3]);
+          // console.log(lalo[4]);
+          let sss = "";
+          for (i = 2; i < lalo.length; i++) {
+            sss +=
+              "<li style='list-style: none'>" +
+              "<img src='" +
+              lalo[i] +
+              "' style='width: 70%' alt=''/>" +
+              "<button class='btn btn_change' style='height: 100%; width: 25%; background-color: #bbcfe2' data-hr='.letmeopen'>" +
+              "變更</button>" +
+              "<div class='popup-wrap letmeopen'>" +
+              "<div class='popup-box transform-out'>" +
+              " <button class='btn_back' style='background-color: #bbcfe2;border: 1px solid #fff;border-radius: 20%;font-size: 30px;padding: 10px 20px;'>恢復</button>" +
+              "<button class='btn_rest' style='background-color: #bbcfe2;border: 1px solid #fff;border-radius: 20%;font-size: 30px;padding: 10px 20px;'>餐廳</button>" +
+              "<button class='btn_mark' style='background-color: #bbcfe2;border: 1px solid #fff;border-radius: 20%;font-size: 30px;padding: 10px 20px;'>景點</button>" +
+              "<button class='btn_act' style='background-color: #bbcfe2;border: 1px solid #fff;border-radius: 20%;font-size: 30px;padding: 10px 20px;'>活動</button>" +
+              "<a class='close-btn popup-close' href='#'>x</a>" +
+              " </div> </div> </li>";
+          }
+          $("ul#maplist").html(sss);
+          $(".rest").html("");
+          $(".mark").html("");
+          $(".act").html("");
           //加入位置
           var mapOptions = {
-            zoom: 15,
+            zoom: 16,
             //             center: new google.maps.LatLng(24.288734,120.508477),
             center: new google.maps.LatLng(
               parseFloat(lalo[0]),
@@ -1008,49 +1219,54 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
             document.getElementById("map"),
             mapOptions
           );
-          //         for (var key in markersData)
-          //           markersData[key].forEach(function (item) {
-          //             marker = new google.maps.Marker({
-          //               position: new google.maps.LatLng(
-          //                 parseFloat(lalo[0]) + " ," + parseFloat(lalo[1])
-          //               ),
-          //               map: mapObject,
-          //               icon: "img/pins/" + key + ".png",
-          //             });
-
-          //             if ("undefined" === typeof markers[key]) markers[key] = [];
-          //             markers[key].push(marker);
-          //             google.maps.event.addListener(marker, "click", function () {
-          //               closeInfoBox();
-          //               getInfoBox(item).open(mapObject, this);
-          //               mapObject.setCenter(
-          //                 new google.maps.LatLng(
-          //                   parseFloat(lalo[0]) + " ," + parseFloat(lalo[1])
-          //                 )
-          //               );
-          //             });
-          //           });
           //加入位置
         });
       });
-      $("#maplist").on("click", "button.btm_change", function () {
-        let af = $(this).closest("li");
-        $(".act").append(af);
-      });
-      $("#maplist").on("click", "button.btn_change", function () {
+      // $("#maplist").on("click", "button.btm_change", function () {
+      //   let af = $(this).parent("li");
+      //   $(".act").append(af);
+      // });
+      $("#maplist").on("click", "button.btn_change", function (e) {
+        // console.log("test");
+        // console.log(e.target.parentNode);
         var af = $(this).closest("li");
         let href = $(this).attr("data-hr");
-        console.log(af);
-        $(href).fadeIn(250);
-        $(href)
+        // console.log(this);
+        // console.log(this.closest("li"));
+
+        // let cc = $(this).closest("div.port18");
+        // let ccc = $(this).next();
+        // console.log(cc);
+        // console.log(ccc);
+        // console.log(cc.find("div.port18"));
+        $(this).next().fadeIn(250);
+        $(this)
+          .next()
           .children("popup-box")
           .removeClass("transform-out")
           .addClass("transform-in");
         // e.preventDefault();
-        $(href).attr("data", af);
+        $(this).next().attr("data", af);
       });
       $(".popup-close").click(function () {
         closeWindow();
+        event.preventDefault();
+      });
+      $("#maplist").on("click", "a", function (e) {
+        closeWindow();
+        event.preventDefault();
+      });
+      $(".rest").on("click", "a", function (e) {
+        closeWindow();
+        event.preventDefault();
+      });
+      $(".mark").on("click", "a", function (e) {
+        closeWindow();
+        event.preventDefault();
+      });
+      $(".act").on("click", "a", function (e) {
+        closeWindow();
+        event.preventDefault();
       });
       function closeWindow() {
         $(".popup-wrap").fadeOut(200);
@@ -1058,7 +1274,14 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         event.preventDefault();
       }
       $("#maplist").on("click", "button.btn_rest", function () {
+        let v = this.closest("li");
+        // console.log(v);
         var af = $(this).closest("li").clone();
+        let v2 = "maplist" + v;
+        // console.log($(v2).clone());
+        // console.log(af);
+        // console.log(this);
+        // console.log(this.closest("div").dataset.port);
         $(".rest").append(af);
         $(this).closest("li").remove();
         closeWindow();
@@ -1085,13 +1308,14 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         var af = $(this).closest("li");
         let href = $(this).attr("data-hr");
         console.log(af);
-        $(href).fadeIn(250);
-        $(href)
+        $(this).next().fadeIn(250);
+        $(this)
+          .next()
           .children("popup-box")
           .removeClass("transform-out")
           .addClass("transform-in");
         // e.preventDefault();
-        $(href).attr("data", af);
+        $(this).next().attr("data", af);
       });
       $(".rest").on("click", "button.btn_back", function () {
         var af = $(this).closest("li").clone();
@@ -1121,13 +1345,14 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         var af = $(this).closest("li");
         let href = $(this).attr("data-hr");
         console.log(af);
-        $(href).fadeIn(250);
-        $(href)
+        $(this).next().fadeIn(250);
+        $(this)
+          .next()
           .children("popup-box")
           .removeClass("transform-out")
           .addClass("transform-in");
         // e.preventDefault();
-        $(href).attr("data", af);
+        $(this).next().attr("data", af);
       });
       $(".mark").on("click", "button.btn_back", function () {
         var af = $(this).closest("li").clone();
@@ -1157,13 +1382,14 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         var af = $(this).closest("li");
         let href = $(this).attr("data-hr");
         console.log(af);
-        $(href).fadeIn(250);
-        $(href)
+        $(this).next().fadeIn(250);
+        $(this)
+          .next()
           .children("popup-box")
           .removeClass("transform-out")
           .addClass("transform-in");
         // e.preventDefault();
-        $(href).attr("data", af);
+        $(this).next().attr("data", af);
       });
       $(".act").on("click", "button.btn_back", function () {
         var af = $(this).closest("li").clone();
@@ -1189,6 +1415,516 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         $(this).closest("li").remove();
         closeWindow();
       });
+      // $("#maplist button").on("click", function (e) {
+      //   console.log("test");
+      //   console.log(e.target);
+      // });
+      function weather(response) {
+        let cc = response.data.records.locations[0].location[0].weatherElement;
+        // console.log(cc);
+        // console.log(cc[1].time[14].elementValue[0].value);
+        // console.log(cc[9]);
+        // console.log(cc[6].time[4].startTime.split(" "));
+        // console.log(cc[6].time[2].elementValue[0].value);
+        let sc = "";
+        // if (cc[6].time[2].elementValue[0].value === "晴時多雲") {
+        //   console.log(1);
+        // }
+        // var hs;
+        for (let i = 0; i < 14; i++) {
+          // if (cc[6].time[2].elementValue[0].value === "晴時多雲") {
+          //   var hs =
+          //     "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/03.svg'>";
+          // }
+          switch (cc[6].time[2].elementValue[0].value) {
+            case "晴天":
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/01.svg'>";
+              break;
+            case "晴時多雲":
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/02.svg'>";
+              break;
+            case "多雲時晴":
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/03.svg'>";
+              break;
+            case "多雲":
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/04.svg'>";
+              break;
+            case "多雲時陰":
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/05.svg'>";
+              break;
+            case "陰時多雲":
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/06.svg'>";
+              break;
+            case "陰天":
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/07.svg'>";
+              break;
+            case ("多雲陣雨",
+            "多雲短暫雨",
+            "多雲短暫陣雨",
+            "午後短暫陣雨",
+            "短暫陣雨",
+            "多雲時晴短暫陣雨",
+            "多雲時晴短暫雨",
+            "晴時多雲短暫陣雨",
+            "晴短暫陣雨",
+            "短暫雨"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/08.svg'>";
+              break;
+            case ("多雲時陰短暫雨", "多雲時陰短暫陣雨"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/09.svg'>";
+              break;
+            case ("陰時多雲短暫雨", "陰時多雲短暫陣雨"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/010.svg'>";
+              break;
+            case ("雨天",
+            "晴午後陰短暫雨",
+            "晴午後陰短暫陣雨",
+            "陰短暫雨",
+            "陰短暫陣雨",
+            "陰午後短暫陣雨"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/11.svg'>";
+              break;
+            case ("多雲時陰有雨",
+            "多雲時陰陣雨",
+            "晴時多雲陣雨",
+            "多雲時晴陣雨"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/12.svg'>";
+              break;
+            case ("陰時多雲有雨", "陰時多雲有陣雨", "陰時多雲陣雨"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/13.svg'>";
+              break;
+            case ("陰有雨",
+            "陰有陣雨",
+            "陰雨",
+            "陰陣雨",
+            "陣雨",
+            "午後陣雨",
+            "有雨"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/14.svg'>";
+              break;
+            case ("多雲陣雨或雷雨",
+            "多雲短暫陣雨或雷雨",
+            "多雲短暫雷陣雨",
+            "多雲雷陣雨",
+            "短暫陣雨或雷雨後多雲",
+            "短暫雷陣雨後多雲",
+            "短暫陣雨或雷雨",
+            "晴時多雲短暫陣雨或雷雨",
+            "晴短暫陣雨或雷雨",
+            "多雲時晴短暫陣雨或雷雨",
+            "午後短暫雷陣雨"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/15.svg'>";
+              break;
+            case ("多雲時陰陣雨或雷雨",
+            "多雲時陰短暫陣雨或雷雨",
+            "多雲時陰短暫雷陣雨",
+            "多雲時陰雷陣雨",
+            "晴陣雨或雷雨",
+            "晴時多雲陣雨或雷雨",
+            "多雲時晴陣雨或雷雨"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/16.svg'>";
+              break;
+            case ("陰時多雲有雷陣雨",
+            "陰時多雲陣雨或雷雨",
+            "陰時多雲短暫陣雨或雷雨",
+            "陰時多雲短暫雷陣雨",
+            "陰時多雲雷陣雨"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/17.svg'>";
+              break;
+            case ("陰有陣雨或雷雨",
+            "陰有雷陣雨",
+            "陰陣雨或雷雨",
+            "陰雷陣雨",
+            "晴午後陰短暫陣雨或雷雨",
+            "晴午後陰短暫雷陣雨",
+            "陰短暫陣雨或雷雨",
+            "陰短暫雷陣雨",
+            "雷雨",
+            "陣雨或雷雨後多雲",
+            "陰陣雨或雷雨後多雲",
+            "陰短暫陣雨或雷雨後多雲",
+            "陰短暫雷陣雨後多雲",
+            "陰雷陣雨後多雲",
+            "雷陣雨後多雲",
+            "陣雨或雷雨",
+            "雷陣雨",
+            "午後雷陣雨"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/18.svg'>";
+              break;
+            case ("晴午後多雲局部雨",
+            "晴午後多雲局部陣雨",
+            "晴午後多雲局部短暫雨",
+            "晴午後多雲局部短暫陣雨",
+            "晴午後多雲短暫雨",
+            "晴午後多雲短暫陣雨",
+            "晴午後局部雨",
+            "晴午後局部陣雨",
+            "晴午後局部短暫雨",
+            "晴午後局部短暫陣雨",
+            "晴午後陣雨",
+            "晴午後短暫雨",
+            "晴午後短暫陣雨",
+            "晴時多雲午後短暫陣雨"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/19.svg'>";
+              break;
+            case ("多雲午後局部雨",
+            "多雲午後局部陣雨",
+            "多雲午後局部短暫雨",
+            "多雲午後局部短暫陣雨",
+            "多雲午後陣雨",
+            "多雲午後短暫雨",
+            "多雲午後短暫陣雨",
+            "多雲時陰午後短暫陣雨",
+            "陰時多雲午後短暫陣雨",
+            "多雲時晴午後短暫陣雨"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/20.svg'>";
+              break;
+            case ("晴午後多雲陣雨或雷雨",
+            "晴午後多雲雷陣雨",
+            "晴午後陣雨或雷雨",
+            "晴午後雷陣雨",
+            "晴午後多雲局部陣雨或雷雨",
+            "晴午後多雲局部短暫陣雨或雷雨",
+            "晴午後多雲局部短暫雷陣雨",
+            "晴午後多雲局部雷陣雨",
+            "晴午後多雲短暫陣雨或雷雨",
+            "晴午後多雲短暫雷陣雨",
+            "晴午後局部短暫雷陣雨",
+            "晴午後局部雷陣雨",
+            "晴午後短暫雷陣雨",
+            "晴雷陣雨",
+            "晴時多雲雷陣雨",
+            "晴時多雲午後短暫雷陣雨"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/21.svg'>";
+              break;
+            case ("多雲午後局部陣雨或雷雨",
+            "多雲午後局部短暫陣雨或雷雨",
+            "多雲午後局部短暫雷陣雨",
+            "多雲午後局部雷陣雨",
+            "多雲午後陣雨或雷雨",
+            "多雲午後短暫陣雨或雷雨",
+            "多雲午後短暫雷陣雨",
+            "多雲午後雷陣雨",
+            "多雲時晴雷陣雨",
+            "多雲時晴午後短暫雷陣雨",
+            "多雲時陰午後短暫雷陣雨",
+            "陰時多雲午後短暫雷陣雨",
+            "陰午後短暫雷陣雨"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/22.svg'>";
+              break;
+            case ("多雲局部陣雨或雪",
+            "多雲時陰有雨或雪",
+            "多雲時陰短暫雨或雪",
+            "多雲短暫雨或雪",
+            "陰有雨或雪",
+            "陰時多雲有雨或雪",
+            "陰時多雲短暫雨或雪",
+            "陰短暫雨或雪",
+            "多雲時陰有雪",
+            "多雲時陰短暫雪",
+            "多雲短暫雪",
+            "陰有雪",
+            "陰時多雲有雪",
+            "陰時多雲短暫雪",
+            "陰短暫雪",
+            "有雨或雪",
+            "有雨或短暫雪",
+            "陰有雨或短暫雪",
+            "陰時多雲有雨或短暫雪",
+            "多雲時陰有雨或短暫雪",
+            "多雲有雨或短暫雪",
+            "多雲有雨或雪",
+            "多雲時晴有雨或雪",
+            "晴時多雲有雨或雪",
+            "晴有雨或雪",
+            "短暫雨或雪",
+            "多雲時晴短暫雨或雪",
+            "晴時多雲短暫雨或雪",
+            "晴短暫雨或雪",
+            "有雪",
+            "多雲有雪",
+            "多雲時晴有雪",
+            "晴時多雲有雪",
+            "晴有雪",
+            "短暫雪",
+            "多雲時晴短暫雪",
+            "晴時多雲短暫雪",
+            "晴短暫雪"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/23.svg'>";
+              break;
+            case ("晴有霧", "晴晨霧"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/24.svg'>";
+              break;
+            case ("晴時多雲有霧", "晴時多雲晨霧"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/25.svg'>";
+              break;
+            case ("多雲時晴有霧", "多雲時晴晨霧"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/26.svg'>";
+              break;
+            case ("多雲有霧", "多雲晨霧", "有霧", "晨霧"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/27.svg'>";
+              break;
+            case ("陰有霧",
+            "陰晨霧",
+            "多雲時陰有霧",
+            "多雲時陰晨霧",
+            "陰時多雲有霧",
+            "陰時多雲晨霧"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/28.svg'>";
+              break;
+            case ("多雲局部雨",
+            "多雲局部陣雨",
+            "多雲局部短暫雨",
+            "多雲局部短暫陣雨"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/29.svg'>";
+              break;
+            case ("多雲時陰局部雨",
+            "多雲時陰局部陣雨",
+            "多雲時陰局部短暫雨",
+            "多雲時陰局部短暫陣雨",
+            "晴午後陰局部雨",
+            "晴午後陰局部陣雨",
+            "晴午後陰局部短暫雨",
+            "晴午後陰局部短暫陣雨",
+            "陰局部雨",
+            "陰局部陣雨",
+            "陰局部短暫雨",
+            "陰局部短暫陣雨",
+            "陰時多雲局部雨",
+            "陰時多雲局部陣雨",
+            "陰時多雲局部短暫雨",
+            "陰時多雲局部短暫陣雨"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/30.svg'>";
+              break;
+            case ("多雲有霧有局部雨",
+            "多雲有霧有局部陣雨",
+            "多雲有霧有局部短暫雨",
+            "多雲有霧有局部短暫陣雨",
+            "多雲有霧有陣雨",
+            "多雲有霧有短暫雨",
+            "多雲有霧有短暫陣雨",
+            "多雲局部雨有霧",
+            "多雲局部雨晨霧",
+            "多雲局部陣雨有霧",
+            "多雲局部陣雨晨霧",
+            "多雲局部短暫雨有霧",
+            "多雲局部短暫雨晨霧",
+            "多雲局部短暫陣雨有霧",
+            "多雲局部短暫陣雨晨霧",
+            "多雲陣雨有霧",
+            "多雲短暫雨有霧",
+            "多雲短暫雨晨霧",
+            "多雲短暫陣雨有霧",
+            "多雲短暫陣雨晨霧",
+            "有霧有短暫雨",
+            "有霧有短暫陣雨"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/31.svg'>";
+              break;
+            case ("多雲時陰有霧有局部雨",
+            "多雲時陰有霧有局部陣雨",
+            "多雲時陰有霧有局部短暫雨",
+            "多雲時陰有霧有局部短暫陣雨",
+            "多雲時陰有霧有陣雨",
+            "多雲時陰有霧有短暫雨",
+            "多雲時陰有霧有短暫陣雨",
+            "多雲時陰局部雨有霧",
+            "多雲時陰局部陣雨有霧",
+            "多雲時陰局部短暫雨有霧",
+            "多雲時陰局部短暫陣雨有霧",
+            "多雲時陰陣雨有霧",
+            "多雲時陰短暫雨有霧",
+            "多雲時陰短暫雨晨霧",
+            "多雲時陰短暫陣雨有霧",
+            "多雲時陰短暫陣雨晨霧",
+            "陰有霧有陣雨",
+            "陰局部雨有霧",
+            "陰局部陣雨有霧",
+            "陰局部短暫陣雨有霧",
+            "陰時多雲有霧有局部雨",
+            "陰時多雲有霧有局部陣雨",
+            "陰時多雲有霧有局部短暫雨",
+            "陰時多雲有霧有局部短暫陣雨",
+            "陰時多雲有霧有陣雨",
+            "陰時多雲有霧有短暫雨",
+            "陰時多雲有霧有短暫陣雨",
+            "陰時多雲局部雨有霧",
+            "陰時多雲局部陣雨有霧",
+            "陰時多雲局部短暫雨有霧",
+            "陰時多雲局部短暫陣雨有霧",
+            "陰時多雲陣雨有霧",
+            "陰時多雲短暫雨有霧",
+            "陰時多雲短暫雨晨霧",
+            "陰時多雲短暫陣雨有霧",
+            "陰時多雲短暫陣雨晨霧",
+            "陰陣雨有霧",
+            "陰短暫雨有霧",
+            "陰短暫雨晨霧",
+            "陰短暫陣雨有霧",
+            "陰短暫陣雨晨霧"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/32.svg'>";
+              break;
+            case ("多雲局部陣雨或雷雨",
+            "多雲局部短暫陣雨或雷雨",
+            "多雲局部短暫雷陣雨",
+            "多雲局部雷陣雨"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/33.svg'>";
+              break;
+            case ("多雲時陰局部陣雨或雷雨",
+            "多雲時陰局部短暫陣雨或雷雨",
+            "多雲時陰局部短暫雷陣雨",
+            "多雲時陰局部雷陣雨",
+            "晴午後陰局部陣雨或雷雨",
+            "晴午後陰局部短暫陣雨或雷雨",
+            "晴午後陰局部短暫雷陣雨",
+            "晴午後陰局部雷陣雨",
+            "陰局部陣雨或雷雨",
+            "陰局部短暫陣雨或雷雨",
+            "陰局部短暫雷陣雨",
+            "陰局部雷陣雨",
+            "陰時多雲局部陣雨或雷雨",
+            "陰時多雲局部短暫陣雨或雷雨",
+            "陰時多雲局部短暫雷陣雨",
+            "陰時多雲局部雷陣雨"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/34.svg'>";
+              break;
+            case ("多雲有陣雨或雷雨有霧",
+            "多雲有雷陣雨有霧",
+            "多雲有霧有陣雨或雷雨",
+            "多雲有霧有雷陣雨",
+            "多雲局部陣雨或雷雨有霧",
+            "多雲局部短暫陣雨或雷雨有霧",
+            "多雲局部短暫雷陣雨有霧",
+            "多雲局部雷陣雨有霧",
+            "多雲陣雨或雷雨有霧",
+            "多雲短暫陣雨或雷雨有霧",
+            "多雲短暫雷陣雨有霧",
+            "多雲雷陣雨有霧",
+            "多雲時晴短暫陣雨或雷雨有霧"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/35.svg'>";
+              break;
+            case ("多雲時陰有陣雨或雷雨有霧",
+            "多雲時陰有雷陣雨有霧",
+            "多雲時陰有霧有陣雨或雷雨",
+            "多雲時陰有霧有雷陣雨",
+            "多雲時陰局部陣雨或雷雨",
+            "有霧",
+            "多雲時陰局部短暫陣雨或雷雨有霧",
+            "多雲時陰局部短暫雷陣雨有霧",
+            "多雲時陰局部雷陣雨有霧",
+            "多雲時陰陣雨或雷雨有霧",
+            "多雲時陰短暫陣雨或雷雨有霧",
+            "多雲時陰短暫雷陣雨有霧",
+            "多雲時陰雷陣雨有霧",
+            "陰局部陣雨或雷雨有霧",
+            "陰局部短暫陣雨或雷雨有霧",
+            "陰局部短暫雷陣雨有霧",
+            "陰局部雷陣雨有霧",
+            "陰時多雲有陣雨或雷雨有霧",
+            "陰時多雲有雷陣雨有霧",
+            "陰時多雲有霧有陣雨或雷雨",
+            "陰時多雲有霧有雷陣雨",
+            "陰時多雲局部陣雨或雷雨有霧",
+            "陰時多雲局部短暫陣雨或雷雨有霧",
+            "陰時多雲局部短暫雷陣雨有霧",
+            "陰時多雲局部雷陣雨有霧",
+            "陰時多雲陣雨或雷雨有霧",
+            "陰時多雲短暫陣雨或雷雨有霧",
+            "陰時多雲短暫雷陣雨有霧",
+            "陰時多雲雷陣雨有霧",
+            "陰短暫陣雨或雷雨有霧",
+            "陰短暫雷陣雨有霧",
+            "雷陣雨有霧"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/36.svg'>";
+              break;
+            case ("多雲局部雨或雪有霧",
+            "多雲時陰局部雨或雪有霧",
+            "陰時多雲局部雨或雪有霧",
+            "陰局部雨或雪有霧",
+            "短暫雨或雪有霧",
+            "有雨或雪有霧"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/37.svg'>";
+              break;
+            case ("短暫陣雨有霧", "短暫陣雨晨霧", "短暫雨有霧", "短暫雨晨霧"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/38.svg'>";
+              break;
+            case ("有雨有霧", "陣雨有霧"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/39.svg'>";
+              break;
+            case ("短暫陣雨或雷雨有霧", "陣雨或雷雨有霧"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/41.svg'>";
+              break;
+            case ("下雪", "積冰", "暴風雪"):
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/42.svg'>";
+              break;
+            default:
+              var hs =
+                "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/40.svg'>";
+              break;
+          }
+          sc +=
+            "<div class='col' style='border-radius: 20%; background-color: #fff;margin: 5px'>" +
+            "<div>" +
+            hs +
+            cc[6].time[i].startTime.split(" ")[0] +
+            "</div>" +
+            "<div>" +
+            cc[6].time[i].elementValue[0].value +
+            "</div>" +
+            "<div>平均溫度:" +
+            cc[1].time[i].elementValue[0].value +
+            "</div>" +
+            "<div>風向:" +
+            cc[13].time[i].elementValue[0].value +
+            "</div>" +
+            "<div></div>" +
+            "<div></div>" +
+            "</div>";
+
+          i++;
+        }
+        $(".wearherTitle").html(sc);
+      }
     </script>
   </body>
 </html>

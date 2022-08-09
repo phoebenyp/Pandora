@@ -1,18 +1,15 @@
-<%@page import="web.emp.service.impl.EmpServiceImpl"%>
-<%@page import="web.emp.service.EmpService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ROYAL CLASS PANDORA_員工資料</title>
+    <title>ROYAL CLASS PANDORA_行程資料表</title>
 
 
     <!-- Google Font: Source Sans Pro -->
@@ -24,8 +21,11 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Theme style -->
     <link rel="stylesheet" href="css/adminlte.css" />
+    <style>
 
+    </style>
 </head>
+
 
 <body class="hold-transition sidebar-mini">
     <!-- 主要開發區塊 -->
@@ -47,7 +47,7 @@
 
                 </div>
                 <li class="nav-item">
-                     <a class="nav-link" data-widget="login-out" href="<%=request.getContextPath()%>/EmpLoginServlet?action=EMPSignOut" role="button">
+                    <a class="nav-link" data-widget="login-out" href="#" role="button">
                         <i class="fas fa-arrow-right-from-bracket"></i>
                     </a>
                 </li>
@@ -68,12 +68,11 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="<%=request.getContextPath()%>/EMPImageServlet?action=usesrImage"  name="action"  class="img-circle elevation-2" alt="User Image" />
+                       <img src="<%=request.getContextPath()%>/EMPImageServlet?action=usesrImage"  name="action"  class="img-circle elevation-2" alt="User Image" />
                     </div>
                     <div class="info">
-                          <input name="Userlogin" type="hidden">
+                         <input name="Userlogin" type="hidden">
                          <a href="#" class="d-block">${loginUser.englishFirstName}&nbsp${loginUser.englishLastName}</a>
-                      
                     </div>
                 </div>
 
@@ -83,7 +82,7 @@
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
-                        <li class="nav-item menu-open">
+                        <li class="nav-item">
                             <a href="#" class="nav-link ">
                                 <i class="fa-solid fa-briefcase"></i>
                                 <p type="">
@@ -92,21 +91,21 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item menu-open">
-                                    <a href="<%=request.getContextPath()%>/EmpLoginServlet?action=EMPAllList" class="nav-link">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>員工資料表</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<%=request.getContextPath()%>/back-end/emp/EMP_Register.jsp" class="nav-link">
+                                    <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>新增員工</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item ">
                             <a href="#" class="nav-link">
                                 <i class="fa-solid fa-address-card"></i>
                                 <p>
@@ -134,8 +133,8 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<%=request.getContextPath()%>/PackagesBackEndServlet?action=getAllPackage"  class="nav-link">
+                                <li class="nav-item menu-open">
+                                    <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>行程資訊管理</p>
                                     </a>
@@ -234,7 +233,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item menu-open">
                             <a href="#" class="nav-link">
                                 <i class="fa-solid fa-chart-pie"></i>
                                 <p>
@@ -301,10 +300,10 @@
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item">
-                                    <a href="#">員工資料</a>
+                                    <a href="#">行程資訊管理</a>
                                 </li>
                                 <li class="breadcrumb-item active">
-                                    EMP Page
+                                    新增行程
                                 </li>
                             </ol>
                         </div>
@@ -317,115 +316,292 @@
             <!-- /.content-header -->
 
             <!-- Main content -->
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <!-- left column -->
-                        <div class="col-md-12">
-                            <!-- jquery validation -->
-                            <div class="card card-primary">
-                                <div class="card-header">
-                                    <h3 class="card-title">
-                                        員工資料表
 
-                                    </h3>
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <!-- 行程圖文編輯開始 -->
+                    <div class="row" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+
+
+
+
+                    </div>
+                </div>
+                </br>
+
+                <div class="col-md-12">
+
+                    <div class="row" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                        <div class="card-header" style="background-color: rgb(112, 150, 189) ;">
+                            <h4 class="card-title" style="color:white">
+                                新增行程圖片
+                            </h4>
+                        </div>
+                        <div class="container">
+                            <div class="row" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                <div class="col" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                    <img class="img-fluid" src="https://picsum.photos/1296/533?random=1"
+                                        style="transform:scale(1);" alt="圖片遺失">
                                 </div>
-                                <!-- /.card-header -->
-                                <!-- form start -->
-                                <div class="container">
-
-
-                                    <table id="table" data-toggle="table" data-search="true" data-filter-control="true"
-                                        data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                                        <thead>
-                                            <tr>
-
-                                                <th data-field="Employee_ID" data-filter-control="input"
-                                                    data-sortable="true">員工編號</th>
-                                                <th data-field="Job_Levels" data-filter-control="select"
-                                                    data-sortable="true">職等</th>
-                                                <th data-field="Englis_Last_Name" data-filter-control="select"
-                                                    data-sortable="true">英文姓氏
-                                                </th>
-                                                <th data-field="Englis_First_Name" data-filter-control="select"
-                                                    data-sortable="true">
-                                                    英文姓名</th>
-                                                <th data-field="Gender" data-filter-control="select"
-                                                    data-sortable="true">性別</th>
-                                                <th data-field="EMP_Birthdy" data-filter-control="select"
-                                                    data-sortable="true">生日</th>
-                                                <th data-field="Passport_No" data-filter-control="select"
-                                                    data-sortable="true">護照號碼</th>
-                                                <th data-field="E-mail" data-filter-control="select"
-                                                    data-sortable="true">電子信箱</th>
-                                                <th data-field="Start_Date" data-filter-control="select"
-                                                    data-sortable="true">到職日</th>
-                                                <th data-field="Status" data-filter-control="select"
-                                                    data-sortable="true">狀態</th>
-                                                <th></th>
-                                           </tr>                                           
-                                        </thead>
-                              
-                                        <tbody>
-                                     
-                                        
-                                          <c:forEach var="empVOView" items="${empAllList}" >
-                                            <tr>				
-                                             	<td>${empVOView.employeeId}</td>
-                                                <td>${empVOView.jobLevels}</td>
-                                                <td>${empVOView.englishLastName}</td>
-                                                <td>${empVOView.englishFirstName}</td>
-                                                <td>${empVOView.gender}</td>
-                                                <td>${empVOView.empBirthday}</td>
-                                                <td>${empVOView.passportNo}</td>
-                                                <td>${empVOView.email}</td>
-                                                <td>${empVOView.startDate}</td>                                         
-                                                <td>${empStatusMap[empVOView.status]}</td>
-                                                <td>
-                                                <form method="Post" action="<%=request.getContextPath()%>/EmpLoginServlet">	
-                                                 <input type="submit" value="編輯"  style="width:100%;height:100%;color:#fff;background-color:#007bff;border-color:#fff">
-                                                 <input type="hidden" name="employeeId" value="${empVOView.employeeId}">
-			    				 				 <input type="hidden" name="action"	value="EMPGetOneForUpdate">
-                                               
-                                               </form>    
-                                               </td>                                        
-                                            </tr>  
-                                          </c:forEach>     
-                                                                                                           
-                                        </tbody>
-                                        
-                                                                      
-                                    </table>
-                                   <a href="<%=request.getContextPath()%>/back-end/emp]/EMP_Register.jsp"> 
-                                    <input type="button" value="新增員工" text-align=center 
-                                     style="margin-right: 0%;width:250px;float: right;">
-                                   </a>
-
-                                </tfoot>
-                               
 
                             </div>
- 							<center>
-                                <div style="width:100%;text-align:center">
-                                    <input style="display:inline-block;width:150px" type="button"
-                                        onclick="history.go(-1)" value="上一頁"></input>
-                                    <input style="display:inline-block;width:150px" type="button"
-                                        onclick="history.forward()" value="下一頁">
-                                </div>
-							</center>
                         </div>
-                        <!-- /.card -->
+
+                        <!-- jquery validation -->
+                        <div class="row" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                            <div class="card-header" style="background-color: rgb(112, 150, 189) ;">
+                                <h4 class="card-title" style="color:white">
+                                    新增行程
+                                </h4>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="container"></div>
+
+                            <div class="row" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                <div class="col-4" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                    行程名稱
+                                </div>
+                                <div class="col-8" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+
+                                    <input type="text" class="right border" style="width:calc(100%);"
+                                        placeholder="請輸入行程名稱" name="packageName" value="">
+
+                                </div>
+                            </div>
+                            <div class="row" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                <div class="col-4" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                    郵輪
+                                </div>
+                                <div class="col-8" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                    <div class="button dropdown;col-8"
+                                        style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                        
+                                        
+                                        <select name="ship" style="width:calc(100%);">
+                                            <option value="">請選擇郵輪</option>
+                                            <option value="1">1_PANDORA</option>
+                                            <option value="2">2_DisneyWish</option>
+                                            <option value="3">3_Silversea</option>
+                                            <option value="4">4_DREAM</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                <div class="col-4" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                    航線
+                                </div>
+                                <div class="col-8" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                    <div class="button dropdown;col-8"
+                                        style="border: 1px solid #ddd;margin: 0; padding: 0;">
+
+                                        <select class="select" style="width:calc(100%);" id="criuseLines"
+                                            onchange="loveyou(event)" onclick="loveyou(event)">
+                                            <option value="">請選擇航線</option>
+                                            <option value="1">1_Keelung port-Hualien port</option>
+                                            <option value="2">2_Yokohama port-Miyazaki port</option>
+                                            <option value="3">3_Auckland port-Sydney port</option>
+                                            <option value="4">4_Sydney port-Victoria Harbour</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- <script>
+                                function loveyou(event) {
+                                    //隐藏div
+                                    //给div添加change事件
+                                    $("#criuseLines").change(function () {
+                                        if (event.target.value == 1) {
+                                            document.getElementById("criuse").style.visibility = 'visible';
+                                        }
+                                    })
+                                }
+                            </script> -->
+
+
+                            <div class="row" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                <div class="col-4" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                    啟航時間
+                                </div>
+                                <div class="col-8" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                    航線設定的第一個停靠點_停靠時間,自動設定為啟航時間
+                                </div>
+                            </div>
+                            <div class="row" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                <div class="col-4" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                    結束時間
+                                </div>
+                                <div class="col-8" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                    航線設定的最後一個停靠點_停靠時間,自動設定為結束時間
+                                </div>
+                            </div>
+                            <div class="row" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                <div class="col-4" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                    行程天數
+                                </div>
+                                <div class="col-8" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                    <div class="button dropdown;col-8"
+                                        style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                        <input name="Duration" type="number" style="width:calc(100%);" min="1"
+                                            max="364">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                <div class="col-4" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                    上架日期
+                                </div>
+                                <div class="col-8" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                    <div class="button dropdown;col-8"
+                                        style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                        <input name="Registration_Start_Time" type="date" style="width:calc(100%);">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                <div class="col-4" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                    下架日期
+                                </div>
+                                <div class="col-8" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                    <div class="button dropdown;col-8"
+                                        style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                        <input name="Registration_Dead_Time" type="date" style="width:calc(100%);">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <!-- 停靠點停靠時間 -->
+
+
+                            <!-- 停靠點停靠時間 -->
+
+                            <div class="row" id="criuse" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+
+                                <!-- 停靠點停靠時間 -->
+
+                                <div class="card-header" style="background-color: rgb(112, 150, 189) ;">
+                                    <h4 class="card-title" style="color:white">
+                                        航線名稱
+                                    </h4>
+                                </div>
+
+                                <div class="row" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                    <div class="col-4" style="border: 1px solid #ddd;">
+                                        <img class="img-fluid"
+                                            style="display:block; margin:auto;max-width:100%; min-height: 100%;;"
+                                            src="https://picsum.photos/1296/533?random=2" alt="圖片遺失">
+                                    </div>
+
+
+
+                                    <div class="col-8"
+                                        style="border: 1px solid #ddd;text-align:center;margin: 0; padding: 0;min-height:27px ;">
+                                        <div class="row" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                            <div class="col-2"
+                                                style="border: 1px solid #ddd;text-align:center;margin: 0; padding: 0;min-height:27px ;">
+                                                停靠點
+                                            </div>
+                                            <div class="col-4" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                                國家/港口
+                                            </div>
+                                            <div class="col-3"
+                                                style="border: 1px solid #ddd;margin: 0; padding: 0;min-height:25px">
+                                                啟航時間
+                                            </div>
+                                            <div class="col-3"
+                                                style="border: 1px solid #ddd;text-align:center;margin: 0; padding: 0;min-height:27px ;">
+                                                抵達時間
+                                            </div>
+                                        </div>
+                                        <c:forEach var="packagesDetailVO" items="${packagesDetailList}"
+                                            varStatus="packageStatus">
+                                            <div class="row" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                                <div class="col-2"
+                                                    style="border: 1px solid #ddd;text-align:center;margin: 0; padding: 0;min-height:27px ;">
+                                                    第 ${packageStatus.count}個停靠港口
+                                                </div>
+                                                <div class="col-4"
+                                                    style="border: 1px solid #ddd;margin: 0; padding: 0;">
+                                                    ${packagesDetailVO.portName}
+                                                </div>
+                                                <div class="col-3"
+                                                    style="border: 1px solid #ddd;margin: 0; padding: 0;min-height:25px">
+                                                    <input name="startTime" type="datetime-local"
+                                                        style="width:calc(100%);max-height:25px;padding:0">
+
+                                                </div>
+                                                <div class="col-3"
+                                                    style="border: 1px solid #ddd;text-align:center;margin: 0; padding: 0;min-height:27px ;">
+                                                    <input name="endTime" type="datetime-local"
+                                                        style="width:calc(100%);max-height:25px;padding:0">
+                                                </div>
+                                            </div>
+                                        </c:forEach>
+                                    </div>
+
+                                </div>
+                                </br>
+
+
+
+
+
+
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+
+
+
                     </div>
-                    <!--/.col (left) -->
-                    <!-- right column -->
-                    <div class="col-md-6"></div>
-                    <!--/.col (right) -->
+
+
+                    <!-- /.card -->
                 </div>
-                <!-- /.row -->
+
             </div>
-            <!-- /.container-fluid -->
+            <!-- /.row -->
         </div>
-        <!-- /.content -->
+        <hr>
+
+    </div>
+    </div>
+    </main>
+    </br>
+
+
+    <!-- End container -->
+
+
+    </main>
+    <!-- End main -->
+
+    <!--/.col (left) -->
+    <!-- right column -->
+    <div class="col-md-6"></div>
+    <!--/.col (right) -->
+    </div>
+    <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
     </div>
     <!-- ============ Footer段落 ============ -->
     <footer class="main-footer">

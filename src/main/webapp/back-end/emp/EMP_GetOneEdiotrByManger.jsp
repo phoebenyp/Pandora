@@ -24,7 +24,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
-    <!-- 主要開發區塊 -->
+      <!-- 主要開發區塊 -->
     <div class="wrapper">
         <!-- Navbar header區塊-->
         <nav id="navbar-header" class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -63,12 +63,13 @@
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                                 
                     <div class="image">
-                       <img src="<%=request.getContextPath()%>/EMPImageServlet?action=usesrImage"  name="action" class="img-circle elevation-2" alt="User Image" />
+                        <img src="<%=request.getContextPath()%>/EMPImageServlet?action=usesrImage"  name="action"  class="img-circle elevation-2" alt="User Image" />
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">${loginUser.englishFirstName}&nbsp${loginUser.englishLastName}</a>
+                          <input name="Userlogin" type="hidden">
+                         <a href="#" class="d-block">${loginUser.englishFirstName}&nbsp${loginUser.englishLastName}</a>
+                      
                     </div>
                 </div>
 
@@ -87,8 +88,8 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item" >
-                              		 <a href="<%=request.getContextPath()%>/EmpLoginServlet?action=EMPAllList" class="nav-link">
+                                <li class="nav-item menu-open">
+                                    <a href="<%=request.getContextPath()%>/EmpLoginServlet?action=EMPAllList" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>員工資料表</p>
                                     </a>
@@ -130,7 +131,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="<%=request.getContextPath()%>/PackagesBackEndServlet?action=getAllPackage"  class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>行程資訊管理</p>
                                     </a>
@@ -485,11 +486,11 @@
     <!-- /.content-wrapper -->
     </div>
     <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="<%=request.getContextPath()%>/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<%=request.getContextPath()%>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="js/adminlte.js"></script>
+    <script src="<%=request.getContextPath()%>/js/adminlte.js"></script>
 </body>
 
 </html>
