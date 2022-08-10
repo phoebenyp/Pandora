@@ -547,7 +547,6 @@ pageEncoding="UTF-8"%>
             ul.id = "area";
             ul.style = "list-style: none; margin: 0; padding: 0;";
             messagesArea.appendChild(ul);
-            // 這行的jsonObj.message是從redis撈出跟好友的歷史訊息，再parse成JSON格式處理
             var messages = JSON.parse(jsonObj.message);
             for (var i = 0; i < messages.length; i++) {
               var historyData = JSON.parse(messages[i]);
@@ -555,7 +554,6 @@ pageEncoding="UTF-8"%>
               var li = document.createElement("li");
               li.style =
                 "display: inline-block;clear: both;padding: 20px;border-radius: 30px;margin-bottom: 2px;font-family: Helvetica, Arial, sans-serif;";
-              // 根據發送者是自己還是對方來給予不同的class名, 以達到訊息左右區分
               historyData.sender === self
                 ? (li.className += "me")
                 : (li.className += "friend");
@@ -590,10 +588,10 @@ pageEncoding="UTF-8"%>
         var friend = statusOutput.textContent;
         var message = inputMessage.value.trim();
         if (message === "") {
-          alert("請輸入訊息");
+          alert("input message");
           inputMessage.focus();
         } else if (friend === "") {
-          alert("請選擇服務對象");
+          alert("select target");
         } else {
           var jsonObj = {
             type: "chat",
@@ -607,7 +605,6 @@ pageEncoding="UTF-8"%>
         }
       };
 
-      // 有好友上線或離線就更新列表
       function refreshFriendList(jsonObj) {
         var friends = jsonObj.users;
         var row = document.getElementById("row");
@@ -627,7 +624,6 @@ pageEncoding="UTF-8"%>
         }
         addListener();
       }
-      // 註冊列表點擊事件並抓取好友名字以取得歷史訊息
       function addListener() {
         var container = document.getElementById("row");
         container.addEventListener("click", function (e) {

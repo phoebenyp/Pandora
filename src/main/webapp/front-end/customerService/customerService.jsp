@@ -312,9 +312,7 @@
         data-opacity-mask="rgba(0, 0, 0, 0.6)"
       >
         <div class="animated fadeInDown">
-          <!-- <h1>歡迎使用線上客服系統,請問該如何稱呼您?</h1> -->
           <h1>線上客服系統</h1>
-          <!-- <p>Cursus neque cursus curae ante scelerisque vehicula</p> -->
         </div>
       </div>
     </section>
@@ -328,10 +326,10 @@
           <div class="col-12" style="height: 250px;">
             <div class="talk_con">
                 <div class="conbox" >
-                <h1 style="justify-content: center; align-items: center; margin-left: 40%;">請問如何稱呼您?</h1>
+                <h1 style="justify-content: center; align-items: center; margin-left: 40%;">請輸入姓名?</h1>
                 <form id="myForm" action="<%=request.getContextPath()%>/main/chat" method="POST" autocomplete="off">
                     <div class="forminput" align-items="center">
-                    <input id="userName" name="userName" class="text-field" type="text" style="width:30%;margin-left: 30%;margin-top: 8%;" placeholder="請輸入您的稱呼,客服人員即將為您服務" /> 
+                    <input id="userName" name="userName" class="text-field" type="text" style="width:30%;margin-left: 30%;margin-top: 8%;" placeholder="請輸入您的姓名" /> 
                     <button style="width: 150px; background-color: #bbcfe2; border-radius: 5%; border: 0px;" type="submit" id="send" class="contactFormSubmitBtn" value="送出" onclick="sendName();">送出</button>
                     </div>
                 </form>
@@ -453,13 +451,7 @@
 	function sendName() {
 		var userName = inputUserName.value.trim();
 		if (userName === "") {
-			alert("請輸入您的稱呼");
-// 			Swal.fire({
-//   				icon: 'error',
-//   				title: 'Oops...',
-//   				text: '請輸入您的稱呼',
-// 			})
-// 			inputUserName.focus();
+			alert("請輸入您的姓名");
 			return;
 		} else {
 			document.getElementById("myForm").submit();

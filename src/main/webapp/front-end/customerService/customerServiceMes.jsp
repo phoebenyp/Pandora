@@ -356,20 +356,6 @@
         <div class="row">
           <div class="col-12" style="height: 450px">
             <div class="talk_input row">
-              <!-- <p src="">會員登入</p> -->
-                <!-- ======================================= 測試用 =========================================== -->
-                <!--         <select class="whotalk" id="who"> -->
-                <!--           <option value="0">接收方</option> -->
-                <!--           <option value="1">傳送方</option> -->
-                <!--         </select> -->
-                <!-- ===================================== 測試結束 =================================================== -->
-                <!--         <a href="https://www.google.com/" style="color:black">會員/登入</a> -->
-                <!--         <textarea -->
-                <!--           class="talk_word" -->
-                <!--           id="talkwords" -->
-                <!--           placeholder="請輸入訊息文字" -->
-                <!--           style="overflow-y: hidden;" -->
-                <!--         ></textarea> -->
                 <div class="col-12">
                     <h3 id="statusOutput" class="statusOutput" style="display: none">friend</h3>
                   <h3
@@ -557,13 +543,11 @@
                     var ul = document.createElement('ul');
                     ul.id = "area";
                     messagesArea.appendChild(ul);
-                    // 這行的jsonObj.message是從redis撈出跟好友的歷史訊息，再parse成JSON格式處理
                     var messages = JSON.parse(jsonObj.message);
                     for (var i = 0; i < messages.length; i++) {
                         var historyData = JSON.parse(messages[i]);
                         var showMsg = historyData.message;
                         var li = document.createElement('li');
-                        // 根據發送者是自己還是對方來給予不同的class名, 以達到訊息左右區分
                         historyData.sender === self ? li.className += 'me' : li.className += 'friend';
                         li.innerHTML = showMsg;
                         ul.appendChild(li);
@@ -591,27 +575,8 @@
             var inputMessage = document.getElementById("message");
             var friend = statusOutput.textContent;
             var message = inputMessage.value.trim();
-    // 		console.log(friend);
-    // 		console.log(/manager/i.test(friend));
             if (friend === "" ||  true != /manager/i.test(friend)) {
-    // 			alert("當前非服務時段,請填寫表單或致電");
-            const Toast = Swal.mixin({
-                  toast: true,
-                  position: 'center',
-                  showConfirmButton: false,
-                  timer: 5000,
-                  timerProgressBar: true,
-                  didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                  }
-            })
-            Toast.fire({
-                  icon: 'warning',
-                  title: '當前非服務時段,請填寫表單或致電'
-            })
-            
-            setTimeout("location.href='mail.html'",6000);
+    			alert("非服務時間,請致電");
             
             } else if (message === "") {
                 alert("請輸入訊息");
@@ -621,7 +586,6 @@
                     "type" : "chat",
                     "sender" : self,
                     "receiver" : "manager",
-    // 				"receiver" : friend,
                     "message" : message
                 };
                 webSocket.send(JSON.stringify(jsonObj));
@@ -630,7 +594,6 @@
             }
         }
         
-        // 有好友上線或離線就更新列表
         function refreshFriendList(jsonObj) {
             var friends = jsonObj.users;
             var row = document.getElementById("row");
@@ -641,22 +604,6 @@
             }
             addListener();
         }
-        // 註冊列表點擊事件並抓取好友名字以取得歷史訊息
-    // 	function addListener() {
-    // 		var container = document.getElementById("row");
-    // 		container.addEventListener("click", function(e) {
-    // 			var friend = e.srcElement.textContent;
-    // 			updateFriendName(friend);
-    // 			var jsonObj = {
-    // 					"type" : "history",
-    // 					"sender" : self,
-    // 					"receiver" : friend,
-    // 					"message" : ""
-    // 				};
-    // 			webSocket.send(JSON.stringify(jsonObj));
-    // 		});
-    // 	}
-        //=====================================
     function addListener() {
             var container = document.getElementById("row");
     // 		container.click();
@@ -676,7 +623,6 @@
     setTimeout(function(e){
         document.getElementById("row").click();
     },1000);
-        //=====================================
         
         function disconnect() {
             webSocket.close();
