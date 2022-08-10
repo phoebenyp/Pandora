@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib prefix="fmt"
-uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,33 +15,29 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     <title>CITY TOURS - City tours and travel site template by Ansonika</title>
 
     <!-- Favicons-->
-    <link
-      rel="shortcut icon"
-      href="/pandora/Cart/html/img/favicon.ico"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="<%=request.getContextPath()%>/Cart/html/img/favicon.ico" type="image/x-icon" />
     <link
       rel="apple-touch-icon"
       type="image/x-icon"
-      href="/pandora/Cart/html/img/apple-touch-icon-57x57-precomposed.png"
+      href="<%=request.getContextPath()%>/Cart/html/img/apple-touch-icon-57x57-precomposed.png"
     />
     <link
       rel="apple-touch-icon"
       type="image/x-icon"
       sizes="72x72"
-      href="/pandora/Cart/html/img/apple-touch-icon-72x72-precomposed.png"
+      href="<%=request.getContextPath()%>/Cart/html/img/apple-touch-icon-72x72-precomposed.png"
     />
     <link
       rel="apple-touch-icon"
       type="image/x-icon"
       sizes="114x114"
-      href="/pandora/Cart/html/img/apple-touch-icon-114x114-precomposed.png"
+      href="<%=request.getContextPath()%>/Cart/html/img/apple-touch-icon-114x114-precomposed.png"
     />
     <link
       rel="apple-touch-icon"
       type="image/x-icon"
       sizes="144x144"
-      href="/pandora/Cart/html/img/apple-touch-icon-144x144-precomposed.png"
+      href="<%=request.getContextPath()%>/Cart/html/img/apple-touch-icon-144x144-precomposed.png"
     />
 
     <!-- GOOGLE WEB FONT -->
@@ -54,12 +47,12 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     />
 
     <!-- COMMON CSS -->
-    <link href="/pandora/Cart/html/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/pandora/Cart/html/css/style.css" rel="stylesheet" />
-    <link href="/pandora/Cart/html/css/vendors.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/Cart/html/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/Cart/html/css/style.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/Cart/html/css/vendors.css" rel="stylesheet" />
 
     <!-- CUSTOM CSS -->
-    <link href="/pandora/Cart/html/css/custom.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/Cart/html/css/custom.css" rel="stylesheet" />
     <style>
       #wishlist_link::before {
         content: "\e97a";
@@ -78,8 +71,8 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       }
 
       #message {
-        min-width: 50%;
-        max-width: 60%;
+        min-width: 75%;
+        max-width: 100%;
       }
       .text-field {
         border: 1px solid grey;
@@ -121,6 +114,35 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         font: 15px verdana, Times New Roman, arial, helvetica, sans-serif,
           Microsoft JhengHei;
       }
+      .talk_show.ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.talk_show.ul .talk_show.li{
+/*   display:inline-block; */
+  clear: both;
+  padding: 20px;
+  border-radius: 30px;
+  margin-bottom: 2px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.friend{
+	margin: 10px 0 0 -35px  ;
+    background: #0181cc;
+    border-radius: 10px;
+    color: #fff;
+    padding: 5px;
+    max-width: 200px;
+    white-space: pre-wrap;
+    text-align: left;
+    list-style:none;
+}
+.me{
+   	margin: 10px;
+    text-align: right;
+    list-style:none;
+    }
     </style>
   </head>
 
@@ -187,7 +209,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
             <div class="main-menu">
               <div id="header_menu">
                 <img
-                  src="/pandora/Cart/html/img/logo.png"
+                  src="<%=request.getContextPath()%>/Cart/html/img/logo.png"
                   width="160"
                   height="34"
                   alt="City tours"
@@ -272,30 +294,21 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                   <ul class="dropdown-menu" id="cart_items">
                     <li>
                       <div class="image">
-                        <img
-                          src="/pandora/Cart/html/img/thumb_cart_1.jpg"
-                          alt="image"
-                        />
+                        <img src="<%=request.getContextPath()%>/Cart/html/img/thumb_cart_1.jpg" alt="image" />
                       </div>
                       <strong><a href="#">Louvre museum</a>1x $36.00 </strong>
                       <a href="#" class="action"><i class="icon-trash"></i></a>
                     </li>
                     <li>
                       <div class="image">
-                        <img
-                          src="/pandora/Cart/html/img/thumb_cart_2.jpg"
-                          alt="image"
-                        />
+                        <img src="<%=request.getContextPath()%>/Cart/html/img/thumb_cart_2.jpg" alt="image" />
                       </div>
                       <strong><a href="#">Versailles tour</a>2x $36.00 </strong>
                       <a href="#" class="action"><i class="icon-trash"></i></a>
                     </li>
                     <li>
                       <div class="image">
-                        <img
-                          src="/pandora/Cart/html/img/thumb_cart_3.jpg"
-                          alt="image"
-                        />
+                        <img src="<%=request.getContextPath()%>/Cart/html/img/thumb_cart_3.jpg" alt="image" />
                       </div>
                       <strong><a href="#">Versailles tour</a>1x $36.00 </strong>
                       <a href="#" class="action"><i class="icon-trash"></i></a>
@@ -321,81 +334,92 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 
     <section
       class="parallax-window"
-      data-image-src="/pandora/images/fagtitle.png"
+      data-image-src="<%=request.getContextPath()%>/images/fagtitle.png"
     >
       <div
         class="parallax-content-1 opacity-mask"
         data-opacity-mask="rgba(0, 0, 0, 0.6)"
       >
         <div class="animated fadeInDown">
-          <h1>聊天室</h1>
+          <!-- <h1>歡迎使用線上客服系統,請問該如何稱呼您?</h1> -->
+          <h1>線上客服系統</h1>
           <!-- <p>Cursus neque cursus curae ante scelerisque vehicula</p> -->
         </div>
       </div>
     </section>
     <!-- End Section -->
 
-    <main>
+    <main style="height: 550px;">
       <!-- End Position -->
 
       <div class="container">
         <div class="row">
-          <div class="col-12">
-            <h1>線上聊天室</h1>
-            <h3
-              id="statusOutput"
-              class="statusOutput"
-              style="height: 50px"
-            ></h3>
-            <textarea
-              id="messagesArea"
-              class="panel message-area"
-              readonly
-              style="height: 350px"
-            ></textarea>
-            <div class="panel input-area">
-              <!--               <input -->
-              <!--                 id="userName" -->
-              <!--                 class="text-field" -->
-              <!--                 type="hidden" -->
-              <!--                 placeholder="User name" -->
-              <%-- value="<%= session.getAttribute("loginMember") %>" --%>
-              <!--               /> -->
-              <input
-                id="userName"
-                class="text-field"
-                type="text"
-                placeholder="使用者名稱"
-              />
-              <input
-                id="message"
-                class="text-field"
-                type="text"
-                placeholder="請填入訊息"
-                onkeydown="if (event.keyCode == 13) sendMessage();"
-              />
-              <input
-                type="submit"
-                id="sendMessage"
-                class="button"
-                value="傳送訊息"
-                onclick="sendMessage();"
-              />
-              <input
-                type="button"
-                id="connect"
-                class="button"
-                value="連線"
-                onclick="connect();"
-              />
-              <input
-                type="button"
-                id="disconnect"
-                class="button"
-                value="斷線"
-                onclick="disconnect();"
-              />
+          <div class="col-12" style="height: 450px">
+            <div class="talk_input row">
+              <!-- <p src="">會員登入</p> -->
+                <!-- ======================================= 測試用 =========================================== -->
+                <!--         <select class="whotalk" id="who"> -->
+                <!--           <option value="0">接收方</option> -->
+                <!--           <option value="1">傳送方</option> -->
+                <!--         </select> -->
+                <!-- ===================================== 測試結束 =================================================== -->
+                <!--         <a href="https://www.google.com/" style="color:black">會員/登入</a> -->
+                <!--         <textarea -->
+                <!--           class="talk_word" -->
+                <!--           id="talkwords" -->
+                <!--           placeholder="請輸入訊息文字" -->
+                <!--           style="overflow-y: hidden;" -->
+                <!--         ></textarea> -->
+                <div class="col-12">
+                    <h3 id="statusOutput" class="statusOutput" style="display: none">friend</h3>
+                  <h3
+                    id="statusOutput"
+                    class="statusOutput"
+                    style="text-align: left;display: none"
+                  ></h3>
+                </div>
+                <div class="col-12" >
+                  <div id="messagesArea" class="panel message-area" style="height: 300px;margin-top:5px"></div>
+                </div>
+                <div class="col-12">
+                  <div class="panel input-area">
+                    <input
+                      id="message"
+                      class="text-field"
+                      type="text"
+                      placeholder="請輸入訊息"
+                      onkeydown="if (event.keyCode == 13) sendMessage();"
+                    />
+                    <input
+                      type="submit"
+                      id="sendMessage"
+                      class="button"
+                      value="確認送出"
+                      onclick="sendMessage();"
+                    />
+                    <input
+                      type="button"
+                      id="connect"
+                      class="button"
+                      value="連結"
+                      onclick="connect();"
+                    />
+                    <input
+                      type="button"
+                      id="disconnect"
+                      class="button"
+                      value="斷網"
+                      onclick="disconnect();"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
+            <div
+              id="row"
+              class="choose"
+              style="display: block; display: none"
+            ></div>
           </div>
         </div>
       </div>
@@ -503,81 +527,166 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     <!-- /Sign In Popup -->
 
     <!-- Common scripts -->
-    <script src="/pandora/Cart/html/js/jquery-3.6.0.min.js"></script>
-    <script src="/pandora/Cart/html/js/common_scripts_min.js"></script>
-    <script src="/pandora/Cart/html/js/functions.js"></script>
-    <script>
-      var MyPoint = "/TogetherWS/james";
-      var host = window.location.host;
-      var path = window.location.pathname;
-      var webCtx = path.substring(0, path.indexOf("/", 1));
-      var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
-      // ws://localhost:8081+/WebSocketChatWeb + /TogetherWS/james
-      var statusOutput = document.getElementById("statusOutput");
-      var webSocket;
-
-      function connect() {
-        // create a websocket
-        webSocket = new WebSocket(endPointURL);
-
-        webSocket.onopen = function (event) {
-          updateStatus("線上聊天室");
-          document.getElementById("sendMessage").disabled = false;
-          document.getElementById("connect").disabled = true;
-          document.getElementById("disconnect").disabled = false;
-        };
-
-        webSocket.onmessage = function (event) {
-          var messagesArea = document.getElementById("messagesArea");
-          var jsonObj = JSON.parse(event.data);
-          var message = jsonObj.userName + ": " + jsonObj.message + "\r\n";
-          messagesArea.value = messagesArea.value + message;
-          messagesArea.scrollTop = messagesArea.scrollHeight;
-        };
-
-        webSocket.onclose = function (event) {
-          updateStatus("WebSocket Disconnected");
-        };
-      }
-
-      var inputUserName = document.getElementById("userName");
-      inputUserName.focus();
-
-      function sendMessage() {
-        var userName = inputUserName.value.trim();
-        if (userName === "") {
-          alert("Input a user name");
-          inputUserName.focus();
-          return;
+    <script src="<%=request.getContextPath()%>/Cart/html/js/jquery-3.6.0.min.js"></script>
+    <script src="<%=request.getContextPath()%>/Cart/html/js/common_scripts_min.js"></script>
+    <script src="<%=request.getContextPath()%>/Cart/html/js/functions.js"></script>
+    <script>var MyPoint = "/FriendWS/${userName}";
+        var host = window.location.host;
+        var path = window.location.pathname;
+        var webCtx = path.substring(0, path.indexOf('/', 1));
+        var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
+        var statusOutput = document.getElementById("statusOutput");
+        var messagesArea = document.getElementById("messagesArea");
+        var self = '${userName}';
+        var webSocket;
+        function connect() {
+            // create a websocket
+            webSocket = new WebSocket(endPointURL);
+            webSocket.onopen = function(event) {
+                console.log("Connect Success!");
+                document.getElementById('sendMessage').disabled = false;
+                document.getElementById('connect').disabled = true;
+                document.getElementById('disconnect').disabled = false;
+            };
+            webSocket.onmessage = function(event) {
+                var jsonObj = JSON.parse(event.data);
+                if ("open" === jsonObj.type) {
+                    refreshFriendList(jsonObj);
+                } else if ("history" === jsonObj.type) {
+                    messagesArea.innerHTML = '';
+                    var ul = document.createElement('ul');
+                    ul.id = "area";
+                    messagesArea.appendChild(ul);
+                    // 這行的jsonObj.message是從redis撈出跟好友的歷史訊息，再parse成JSON格式處理
+                    var messages = JSON.parse(jsonObj.message);
+                    for (var i = 0; i < messages.length; i++) {
+                        var historyData = JSON.parse(messages[i]);
+                        var showMsg = historyData.message;
+                        var li = document.createElement('li');
+                        // 根據發送者是自己還是對方來給予不同的class名, 以達到訊息左右區分
+                        historyData.sender === self ? li.className += 'me' : li.className += 'friend';
+                        li.innerHTML = showMsg;
+                        ul.appendChild(li);
+                    }
+                    messagesArea.scrollTop = messagesArea.scrollHeight;
+                } else if ("chat" === jsonObj.type) {
+                    var li = document.createElement('li');
+                    jsonObj.sender === self ? li.className += 'me' : li.className += 'friend';
+                    li.innerHTML = jsonObj.message;
+                    console.log(li);
+                    document.getElementById("area").appendChild(li);
+                    messagesArea.scrollTop = messagesArea.scrollHeight;
+                } else if ("close" === jsonObj.type) {
+                    refreshFriendList(jsonObj);
+                }
+                
+            };
+            webSocket.onclose = function(event) {
+                console.log("Disconnected!");
+            };
+            
         }
-
-        var inputMessage = document.getElementById("message");
-        var message = inputMessage.value.trim();
-
-        if (message === "") {
-          alert("Input a message");
-          inputMessage.focus();
-        } else {
-          var jsonObj = {
-            userName: userName,
-            message: message,
-          };
-          webSocket.send(JSON.stringify(jsonObj));
-          inputMessage.value = "";
-          inputMessage.focus();
+        
+        function sendMessage() {
+            var inputMessage = document.getElementById("message");
+            var friend = statusOutput.textContent;
+            var message = inputMessage.value.trim();
+    // 		console.log(friend);
+    // 		console.log(/manager/i.test(friend));
+            if (friend === "" ||  true != /manager/i.test(friend)) {
+    // 			alert("當前非服務時段,請填寫表單或致電");
+            const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'center',
+                  showConfirmButton: false,
+                  timer: 5000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+            })
+            Toast.fire({
+                  icon: 'warning',
+                  title: '當前非服務時段,請填寫表單或致電'
+            })
+            
+            setTimeout("location.href='mail.html'",6000);
+            
+            } else if (message === "") {
+                alert("請輸入訊息");
+                inputMessage.focus();
+            } else {
+                var jsonObj = {
+                    "type" : "chat",
+                    "sender" : self,
+                    "receiver" : "manager",
+    // 				"receiver" : friend,
+                    "message" : message
+                };
+                webSocket.send(JSON.stringify(jsonObj));
+                inputMessage.value = "";
+                inputMessage.focus();
+            }
         }
-      }
-
-      function disconnect() {
-        webSocket.close();
-        document.getElementById("sendMessage").disabled = true;
-        document.getElementById("connect").disabled = false;
-        document.getElementById("disconnect").disabled = true;
-      }
-
-      function updateStatus(newStatus) {
-        statusOutput.innerHTML = newStatus;
-      }
-    </script>
+        
+        // 有好友上線或離線就更新列表
+        function refreshFriendList(jsonObj) {
+            var friends = jsonObj.users;
+            var row = document.getElementById("row");
+            row.innerHTML = '';
+            for (var i = 0; i < friends.length; i++) {
+                if (friends[i] === self) { continue; }
+                row.innerHTML +='<div id=' + i + ' class="column" name="friendName" value=' + friends[i] + ' ><h2>' + friends[i] + '</h2></div>';
+            }
+            addListener();
+        }
+        // 註冊列表點擊事件並抓取好友名字以取得歷史訊息
+    // 	function addListener() {
+    // 		var container = document.getElementById("row");
+    // 		container.addEventListener("click", function(e) {
+    // 			var friend = e.srcElement.textContent;
+    // 			updateFriendName(friend);
+    // 			var jsonObj = {
+    // 					"type" : "history",
+    // 					"sender" : self,
+    // 					"receiver" : friend,
+    // 					"message" : ""
+    // 				};
+    // 			webSocket.send(JSON.stringify(jsonObj));
+    // 		});
+    // 	}
+        //=====================================
+    function addListener() {
+            var container = document.getElementById("row");
+    // 		container.click();
+            container.addEventListener("click", function(e) {
+                var friend = e.srcElement.textContent;
+                updateFriendName(friend);
+                var jsonObj = {
+                        "type" : "history",
+                        "sender" : self,
+                        "receiver" : friend,
+                        "message" : ""
+                    };
+                webSocket.send(JSON.stringify(jsonObj));
+            });
+        }
+        
+    setTimeout(function(e){
+        document.getElementById("row").click();
+    },1000);
+        //=====================================
+        
+        function disconnect() {
+            webSocket.close();
+            document.getElementById('sendMessage').disabled = true;
+            document.getElementById('connect').disabled = false;
+            document.getElementById('disconnect').disabled = true;
+        }
+        
+        function updateFriendName(name) {
+            statusOutput.innerHTML = name;
+        }</script>
   </body>
 </html>

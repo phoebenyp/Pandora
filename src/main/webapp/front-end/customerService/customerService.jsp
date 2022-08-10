@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib prefix="fmt"
-uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,33 +15,29 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     <title>CITY TOURS - City tours and travel site template by Ansonika</title>
 
     <!-- Favicons-->
-    <link
-      rel="shortcut icon"
-      href="/pandora/Cart/html/img/favicon.ico"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="<%=request.getContextPath()%>/Cart/html/img/favicon.ico" type="image/x-icon" />
     <link
       rel="apple-touch-icon"
       type="image/x-icon"
-      href="/pandora/Cart/html/img/apple-touch-icon-57x57-precomposed.png"
+      href="<%=request.getContextPath()%>/Cart/html/img/apple-touch-icon-57x57-precomposed.png"
     />
     <link
       rel="apple-touch-icon"
       type="image/x-icon"
       sizes="72x72"
-      href="/pandora/Cart/html/img/apple-touch-icon-72x72-precomposed.png"
+      href="<%=request.getContextPath()%>/Cart/html/img/apple-touch-icon-72x72-precomposed.png"
     />
     <link
       rel="apple-touch-icon"
       type="image/x-icon"
       sizes="114x114"
-      href="/pandora/Cart/html/img/apple-touch-icon-114x114-precomposed.png"
+      href="<%=request.getContextPath()%>/Cart/html/img/apple-touch-icon-114x114-precomposed.png"
     />
     <link
       rel="apple-touch-icon"
       type="image/x-icon"
       sizes="144x144"
-      href="/pandora/Cart/html/img/apple-touch-icon-144x144-precomposed.png"
+      href="<%=request.getContextPath()%>/Cart/html/img/apple-touch-icon-144x144-precomposed.png"
     />
 
     <!-- GOOGLE WEB FONT -->
@@ -54,12 +47,12 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     />
 
     <!-- COMMON CSS -->
-    <link href="/pandora/Cart/html/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/pandora/Cart/html/css/style.css" rel="stylesheet" />
-    <link href="/pandora/Cart/html/css/vendors.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/Cart/html/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/Cart/html/css/style.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/Cart/html/css/vendors.css" rel="stylesheet" />
 
     <!-- CUSTOM CSS -->
-    <link href="/pandora/Cart/html/css/custom.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/Cart/html/css/custom.css" rel="stylesheet" />
     <style>
       #wishlist_link::before {
         content: "\e97a";
@@ -124,7 +117,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     </style>
   </head>
 
-  <body onload="connect();" onunload="disconnect();">
+  <body >
     <!--[if lte IE 8]>
       <p class="chromeframe">
         You are using an <strong>outdated</strong> browser. Please
@@ -187,7 +180,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
             <div class="main-menu">
               <div id="header_menu">
                 <img
-                  src="/pandora/Cart/html/img/logo.png"
+                  src="<%=request.getContextPath()%>/Cart/html/img/logo.png"
                   width="160"
                   height="34"
                   alt="City tours"
@@ -272,30 +265,21 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                   <ul class="dropdown-menu" id="cart_items">
                     <li>
                       <div class="image">
-                        <img
-                          src="/pandora/Cart/html/img/thumb_cart_1.jpg"
-                          alt="image"
-                        />
+                        <img src="<%=request.getContextPath()%>/Cart/html/img/thumb_cart_1.jpg" alt="image" />
                       </div>
                       <strong><a href="#">Louvre museum</a>1x $36.00 </strong>
                       <a href="#" class="action"><i class="icon-trash"></i></a>
                     </li>
                     <li>
                       <div class="image">
-                        <img
-                          src="/pandora/Cart/html/img/thumb_cart_2.jpg"
-                          alt="image"
-                        />
+                        <img src="<%=request.getContextPath()%>/Cart/html/img/thumb_cart_2.jpg" alt="image" />
                       </div>
                       <strong><a href="#">Versailles tour</a>2x $36.00 </strong>
                       <a href="#" class="action"><i class="icon-trash"></i></a>
                     </li>
                     <li>
                       <div class="image">
-                        <img
-                          src="/pandora/Cart/html/img/thumb_cart_3.jpg"
-                          alt="image"
-                        />
+                        <img src="<%=request.getContextPath()%>/Cart/html/img/thumb_cart_3.jpg" alt="image" />
                       </div>
                       <strong><a href="#">Versailles tour</a>1x $36.00 </strong>
                       <a href="#" class="action"><i class="icon-trash"></i></a>
@@ -321,14 +305,15 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 
     <section
       class="parallax-window"
-      data-image-src="/pandora/images/fagtitle.png"
+      data-image-src="<%=request.getContextPath()%>/images/fagtitle.png"
     >
       <div
         class="parallax-content-1 opacity-mask"
         data-opacity-mask="rgba(0, 0, 0, 0.6)"
       >
         <div class="animated fadeInDown">
-          <h1>聊天室</h1>
+          <!-- <h1>歡迎使用線上客服系統,請問該如何稱呼您?</h1> -->
+          <h1>線上客服系統</h1>
           <!-- <p>Cursus neque cursus curae ante scelerisque vehicula</p> -->
         </div>
       </div>
@@ -340,61 +325,16 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 
       <div class="container">
         <div class="row">
-          <div class="col-12">
-            <h1>線上聊天室</h1>
-            <h3
-              id="statusOutput"
-              class="statusOutput"
-              style="height: 50px"
-            ></h3>
-            <textarea
-              id="messagesArea"
-              class="panel message-area"
-              readonly
-              style="height: 350px"
-            ></textarea>
-            <div class="panel input-area">
-              <!--               <input -->
-              <!--                 id="userName" -->
-              <!--                 class="text-field" -->
-              <!--                 type="hidden" -->
-              <!--                 placeholder="User name" -->
-              <%-- value="<%= session.getAttribute("loginMember") %>" --%>
-              <!--               /> -->
-              <input
-                id="userName"
-                class="text-field"
-                type="text"
-                placeholder="使用者名稱"
-              />
-              <input
-                id="message"
-                class="text-field"
-                type="text"
-                placeholder="請填入訊息"
-                onkeydown="if (event.keyCode == 13) sendMessage();"
-              />
-              <input
-                type="submit"
-                id="sendMessage"
-                class="button"
-                value="傳送訊息"
-                onclick="sendMessage();"
-              />
-              <input
-                type="button"
-                id="connect"
-                class="button"
-                value="連線"
-                onclick="connect();"
-              />
-              <input
-                type="button"
-                id="disconnect"
-                class="button"
-                value="斷線"
-                onclick="disconnect();"
-              />
+          <div class="col-12" style="height: 250px;">
+            <div class="talk_con">
+                <div class="conbox" >
+                <h1 style="justify-content: center; align-items: center; margin-left: 40%;">請問如何稱呼您?</h1>
+                <form id="myForm" action="<%=request.getContextPath()%>/main/chat" method="POST" autocomplete="off">
+                    <div class="forminput" align-items="center">
+                    <input id="userName" name="userName" class="text-field" type="text" style="width:30%;margin-left: 30%;margin-top: 8%;" placeholder="請輸入您的稱呼,客服人員即將為您服務" /> 
+                    <button style="width: 150px; background-color: #bbcfe2; border-radius: 5%; border: 0px;" type="submit" id="send" class="contactFormSubmitBtn" value="送出" onclick="sendName();">送出</button>
+                    </div>
+                </form>
             </div>
           </div>
         </div>
@@ -503,81 +443,28 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     <!-- /Sign In Popup -->
 
     <!-- Common scripts -->
-    <script src="/pandora/Cart/html/js/jquery-3.6.0.min.js"></script>
-    <script src="/pandora/Cart/html/js/common_scripts_min.js"></script>
-    <script src="/pandora/Cart/html/js/functions.js"></script>
+    <script src="<%=request.getContextPath()%>/Cart/html/js/jquery-3.6.0.min.js"></script>
+    <script src="<%=request.getContextPath()%>/Cart/html/js/common_scripts_min.js"></script>
+    <script src="<%=request.getContextPath()%>/Cart/html/js/functions.js"></script>
     <script>
-      var MyPoint = "/TogetherWS/james";
-      var host = window.location.host;
-      var path = window.location.pathname;
-      var webCtx = path.substring(0, path.indexOf("/", 1));
-      var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
-      // ws://localhost:8081+/WebSocketChatWeb + /TogetherWS/james
-      var statusOutput = document.getElementById("statusOutput");
-      var webSocket;
-
-      function connect() {
-        // create a websocket
-        webSocket = new WebSocket(endPointURL);
-
-        webSocket.onopen = function (event) {
-          updateStatus("線上聊天室");
-          document.getElementById("sendMessage").disabled = false;
-          document.getElementById("connect").disabled = true;
-          document.getElementById("disconnect").disabled = false;
-        };
-
-        webSocket.onmessage = function (event) {
-          var messagesArea = document.getElementById("messagesArea");
-          var jsonObj = JSON.parse(event.data);
-          var message = jsonObj.userName + ": " + jsonObj.message + "\r\n";
-          messagesArea.value = messagesArea.value + message;
-          messagesArea.scrollTop = messagesArea.scrollHeight;
-        };
-
-        webSocket.onclose = function (event) {
-          updateStatus("WebSocket Disconnected");
-        };
-      }
-
-      var inputUserName = document.getElementById("userName");
-      inputUserName.focus();
-
-      function sendMessage() {
-        var userName = inputUserName.value.trim();
-        if (userName === "") {
-          alert("Input a user name");
-          inputUserName.focus();
-          return;
-        }
-
-        var inputMessage = document.getElementById("message");
-        var message = inputMessage.value.trim();
-
-        if (message === "") {
-          alert("Input a message");
-          inputMessage.focus();
-        } else {
-          var jsonObj = {
-            userName: userName,
-            message: message,
-          };
-          webSocket.send(JSON.stringify(jsonObj));
-          inputMessage.value = "";
-          inputMessage.focus();
-        }
-      }
-
-      function disconnect() {
-        webSocket.close();
-        document.getElementById("sendMessage").disabled = true;
-        document.getElementById("connect").disabled = false;
-        document.getElementById("disconnect").disabled = true;
-      }
-
-      function updateStatus(newStatus) {
-        statusOutput.innerHTML = newStatus;
-      }
+        var inputUserName = document.getElementById("userName");
+	inputUserName.focus();
+	
+	function sendName() {
+		var userName = inputUserName.value.trim();
+		if (userName === "") {
+			alert("請輸入您的稱呼");
+// 			Swal.fire({
+//   				icon: 'error',
+//   				title: 'Oops...',
+//   				text: '請輸入您的稱呼',
+// 			})
+// 			inputUserName.focus();
+			return;
+		} else {
+			document.getElementById("myForm").submit();
+		}
+	}
     </script>
   </body>
 </html>

@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +16,11 @@
     <title>CITY TOURS - City tours and travel site template by Ansonika</title>
 
     <!-- Favicons-->
-    <link rel="shortcut icon" href="/pandora/Cart/html/img/favicon.ico" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="/pandora/Cart/html/img/favicon.ico"
+      type="image/x-icon"
+    />
     <link
       rel="apple-touch-icon"
       type="image/x-icon"
@@ -199,21 +206,30 @@
                   <ul class="dropdown-menu" id="cart_items">
                     <li>
                       <div class="image">
-                        <img src="/pandora/Cart/html/img/thumb_cart_1.jpg" alt="image" />
+                        <img
+                          src="/pandora/Cart/html/img/thumb_cart_1.jpg"
+                          alt="image"
+                        />
                       </div>
                       <strong><a href="#">Louvre museum</a>1x $36.00 </strong>
                       <a href="#" class="action"><i class="icon-trash"></i></a>
                     </li>
                     <li>
                       <div class="image">
-                        <img src="/pandora/Cart/html/img/thumb_cart_2.jpg" alt="image" />
+                        <img
+                          src="/pandora/Cart/html/img/thumb_cart_2.jpg"
+                          alt="image"
+                        />
                       </div>
                       <strong><a href="#">Versailles tour</a>2x $36.00 </strong>
                       <a href="#" class="action"><i class="icon-trash"></i></a>
                     </li>
                     <li>
                       <div class="image">
-                        <img src="/pandora/Cart/html/img/thumb_cart_3.jpg" alt="image" />
+                        <img
+                          src="/pandora/Cart/html/img/thumb_cart_3.jpg"
+                          alt="image"
+                        />
                       </div>
                       <strong><a href="#">Versailles tour</a>1x $36.00 </strong>
                       <a href="#" class="action"><i class="icon-trash"></i></a>
@@ -315,6 +331,19 @@
                 <a href="tel://0800123456" class="phone">0800-123-456</a>
                 <small>星期一 到 星期五 09:00-12:30 / 13:30-17:30</small><br />
                 <small>info@carnival-tw.com</small>
+                <button
+                  type="submit"
+                  style="
+                    border-radius: 5%;
+                    border: 0px;
+                    background-color: #bbcfe2;
+                    padding-left: 20px;
+                    padding-right: 20px;
+                  "
+                  onclick="javascript:location.href='<%=request.getContextPath()%>/front-end/customerService/customerService.jsp'"
+                >
+                  專人線上服務
+                </button>
               </div>
             </div>
             <!--End sticky -->

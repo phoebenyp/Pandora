@@ -384,7 +384,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
               </option>
             </c:forEach> -->
           </select>
-          <select name="" id="second"></select>
+          <select name="" id="second"><option>請選擇</option></select>
         </div>
       </div>
       <div class="row">
@@ -768,7 +768,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
             .replace("[", ",")
             .replace("]", "")
             .split(",");
-          let vo = "<option>請選擇</option>";
+          let vo = "<option value='0'>請選擇</option>";
           // let vo = "";
           for (i = 0; i < scv.length / 2; i++) {
             // console.log(scv[i]);
@@ -810,6 +810,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       $("#first").change(function () {
         var item = $("#first  option:selected").val();
         // alert(aaa);
+        if (item == 0){
+        	$("select#second").html("<option>請選擇</option>");
+        	return;
+        }
         let url = "http://localhost:8080/pandora/PortSelect";
 
         // axios
