@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib prefix="fmt"
 uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -1435,7 +1435,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         //   console.log(1);
         // }
         // var hs;
-        for (let i = 0; i < 14; i++) {
+        for (let i = 0; i < 12; i++) {
           // if (cc[6].time[2].elementValue[0].value === "晴時多雲") {
           //   var hs =
           //     "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/03.svg'>";
@@ -1920,10 +1920,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
             "</div>" +
             "<div>風向:" +
             cc[13].time[i].elementValue[0].value +
-            "</div>" +
-            "<div></div>" +
-            "<div></div>" +
-            "</div>";
+            "</div></div>";
 
           i++;
         }
