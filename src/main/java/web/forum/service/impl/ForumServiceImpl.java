@@ -62,5 +62,10 @@ public class ForumServiceImpl {
 	
 	public List<ForumVO> getAll(){
 		return dao.getAll();		
+	}
+
+	public ForumVO findByPrimaryKey(Integer postId) {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 }

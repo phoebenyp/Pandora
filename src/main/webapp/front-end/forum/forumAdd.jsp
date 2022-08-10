@@ -261,9 +261,7 @@ ForumVO forumVO = (ForumVO) request.getAttribute("forumVO");
         <br>
         <br>
         
-       <form action="<%=request.getContextPath()%>/ForumServlet"
-					method="post" enctype="multipart/form-data">
-					<input type="hidden" name="action" value="insert">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ForumServlet" enctype='multipart/form-data'>
 <!-- 					<input type="hidden" name="merberusing" -->
 <%--                         value="<%=memberVO.getmemberId()%>"> --%>
 
@@ -332,25 +330,13 @@ ForumVO forumVO = (ForumVO) request.getAttribute("forumVO");
 						<div class="card mb-7"></div>
 
 						<div>
-							<input type="hidden" name="action" value="insert">
+<input type="hidden" name="action" value="insert">
+<input type="hidden" name="memberId" value="2"> 
 <input type="submit" value="送出新增"></FORM>
-						</div>
-					</div>
-				</form>
-        <br>
-        <button>取消</button>
-        <button type="submit" class="btn btn-md rounded font-sm hover-up">發文</button>
 
-    
-
-            
-        <br>
-        <button>取消</button>
-        <button>發文</button>
-
-          
-        </div>
-      </div>
+			
+			</div>
+		</div>        
     </main>
     <!-- End main -->
 
@@ -455,9 +441,9 @@ ForumVO forumVO = (ForumVO) request.getAttribute("forumVO");
     <!-- /Sign In Popup -->
 
     <!-- Common scripts -->
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/common_scripts_min.js"></script>
-    <script src="js/functions.js"></script>
+    <script src="<%=request.getContextPath()%>/front-end/forum/js/jquery-3.6.0.min.js"></script>
+    <script src="<%=request.getContextPath()%>/front-end/forum/js/common_scripts_min.js"></script>
+    <script src="<%=request.getContextPath()%>/front-end/forum/js/functions.js"></script>
     
     
 
