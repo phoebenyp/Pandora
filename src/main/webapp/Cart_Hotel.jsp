@@ -2,15 +2,16 @@
 	pageEncoding="UTF-8"%>
 
 <%@ page import="java.util.*"%>
-<%@ page import="web.discount.service.impl.*"%>
-<%@ page import="web.roomType.service.impl.*"%>
+<%@ page import="web.discount.service.impl.DiscountServiceImpl"%>
+<%@ page import="web.roomType.service.impl.RoomTypeServiceImpl"%>
+<%@ page import="web.member.service.impl.MemberServiceImpl"%>
 <%@ page import="web.member.service.impl.*"%>
-<%@ page import="web.packages.service.impl.*"%>
+<%@ page import="web.packages.service.impl.PackagesServiceImpl"%>
 <%@ page import="web.discount.bean.*"%>
 <%@ page import="web.discount.bean.DiscountVO"%>
-<%@ page import="web.room.bean.*"%>
-<%@ page import="web.member.bean.*"%>
-<%@ page import="web.packages.bean.*"%>
+<%@ page import="web.room.bean.RoomTypeVO"%>
+<%@ page import="web.member.bean.MemberVO"%>
+<%@ page import="web.packages.bean.PackagesVO"%>
 <%@ page import="java.text.*"%>
 <%@ page import="java.time.*"%>
 <%@ page import="java.math.*"%>
