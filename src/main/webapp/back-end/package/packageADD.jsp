@@ -355,7 +355,7 @@
                                     新增行程
                                 </h4>
                             </div>
-                            <!-- /.card-header -->
+                     <!-- /.card-header -->
                             <!-- form start -->
                             <div class="container"></div>
 
@@ -366,7 +366,7 @@
                                 <div class="col-8" style="border: 1px solid #ddd;margin: 0; padding: 0;">
 
                                     <input type="text" class="right border" style="width:calc(100%);"
-                                        placeholder="請輸入行程名稱" name="packageName" value="">
+                                        placeholder="請輸入行程名稱" name="packageName">
 
                                 </div>
                             </div>
@@ -374,21 +374,22 @@
                                 <div class="col-4" style="border: 1px solid #ddd;margin: 0; padding: 0;">
                                     郵輪
                                 </div>
+                             
                                 <div class="col-8" style="border: 1px solid #ddd;margin: 0; padding: 0;">
                                     <div class="button dropdown;col-8"
                                         style="border: 1px solid #ddd;margin: 0; padding: 0;">
-                                        
-                                        
-                                        <select name="ship" style="width:calc(100%);">
-                                            <option value="">請選擇郵輪</option>
-                                            <option value="1">1_PANDORA</option>
-                                            <option value="2">2_DisneyWish</option>
-                                            <option value="3">3_Silversea</option>
-                                            <option value="4">4_DREAM</option>
-                                        </select>
+                                         
+                                      
+                                       <select name="ship" style="width:calc(100%);">
+                                       <option value="">請選擇郵輪</option>
+                                         <c:forEach var="shipVO" items="${shipList}">
+                                            <option value="${shipVO.shipNo}">${shipVO.shipNo}.${shipVO.shipName}</option>  
+                                         </c:forEach>                                          
+                                       </select>
+                                    
                                     </div>
                                 </div>
-
+							
                             </div>
 
                             <div class="row" style="border: 1px solid #ddd;margin: 0; padding: 0;">
@@ -398,14 +399,12 @@
                                 <div class="col-8" style="border: 1px solid #ddd;margin: 0; padding: 0;">
                                     <div class="button dropdown;col-8"
                                         style="border: 1px solid #ddd;margin: 0; padding: 0;">
-
-                                        <select class="select" style="width:calc(100%);" id="criuseLines"
-                                            onchange="loveyou(event)" onclick="loveyou(event)">
+										
+                                        <select class="select" style="width:calc(100%);" name="cruiseLine" id="cruiseLineID">
                                             <option value="">請選擇航線</option>
-                                            <option value="1">1_Keelung port-Hualien port</option>
-                                            <option value="2">2_Yokohama port-Miyazaki port</option>
-                                            <option value="3">3_Auckland port-Sydney port</option>
-                                            <option value="4">4_Sydney port-Victoria Harbour</option>
+                                          <c:forEach var="cruiseLineVO" items="${cruiseLineList}">
+                                            <option value="${cruiseLineVO.cruiseLineNo}">${cruiseLineVO.cruiseLineNo}.${cruiseLineVO.cruiseLines}</option>
+                                           </c:forEach>
                                         </select>
 
                                     </div>
@@ -491,15 +490,14 @@
 
                                 <div class="card-header" style="background-color: rgb(112, 150, 189) ;">
                                     <h4 class="card-title" style="color:white">
-                                        航線名稱
+                                        航線編號:
                                     </h4>
                                 </div>
 
                                 <div class="row" style="border: 1px solid #ddd;margin: 0; padding: 0;">
                                     <div class="col-4" style="border: 1px solid #ddd;">
-                                        <img class="img-fluid"
-                                            style="display:block; margin:auto;max-width:100%; min-height: 100%;;"
-                                            src="https://picsum.photos/1296/533?random=2" alt="圖片遺失">
+                                      <img id="img_content" src="<%=request.getContextPath()%>/CruiseLineServlet?action=cruiseLineVOUpdate&cruiseLineNo=1"  alt="CruiseLine Image" style=width:100% />
+                                   
                                     </div>
 
 
@@ -523,17 +521,18 @@
                                                 抵達時間
                                             </div>
                                         </div>
-                                        <c:forEach var="packagesDetailVO" items="${packagesDetailList}"
-                                            varStatus="packageStatus">
-                                            <div class="row" style="border: 1px solid #ddd;margin: 0; padding: 0;">
+<%--                                        <c:forEach var="portNameVO" items="${portNameNoList}" varStatus="cruise"> --%>
+                                             <div class="row" style="border: 1px solid #ddd;margin: 0; padding: 0;">
                                                 <div class="col-2"
                                                     style="border: 1px solid #ddd;text-align:center;margin: 0; padding: 0;min-height:27px ;">
-                                                    第 ${packageStatus.count}個停靠港口
+                                                    第 ${cruiseStatus.count}個停靠港口
                                                 </div>
-                                                <div class="col-4"
+                                                
+                                                <div class="col-4" id="portNameByCriuse"
                                                     style="border: 1px solid #ddd;margin: 0; padding: 0;">
-                                                    ${packagesDetailVO.portName}
+                                                   ${portNameNoList}
                                                 </div>
+                                                
                                                 <div class="col-3"
                                                     style="border: 1px solid #ddd;margin: 0; padding: 0;min-height:25px">
                                                     <input name="startTime" type="datetime-local"
@@ -546,35 +545,16 @@
                                                         style="width:calc(100%);max-height:25px;padding:0">
                                                 </div>
                                             </div>
-                                        </c:forEach>
+<%--                                         </c:forEach> --%>
                                     </div>
 
                                 </div>
                                 </br>
-
-
-
-
-
-
                             </div>
-
-
-
-
-
-
-
                         </div>
-
-
-
                     </div>
-
-
                     <!-- /.card -->
                 </div>
-
             </div>
             <!-- /.row -->
         </div>
@@ -589,7 +569,7 @@
     <!-- End container -->
 
 
-    </main>
+  
     <!-- End main -->
 
     <!--/.col (left) -->
@@ -630,6 +610,49 @@
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="js/adminlte.js"></script>
+    
+ <script>
+    $(function (){
+  	  $("#cruiseLineID").change( function(){
+  		  alert($( this ).val());
+  		  console.log("你媽的")
+  		   var request= $.ajax({
+  			url: "<%=request.getContextPath()%>/PackagesBackEndServlet",
+  		 	method:"POST",											   				
+  		 	data:{"action":"updateOption","cruiseLine":$( this ).val()},
+  		 	dataType:"json",
+  	 		});
+  			request.done(function(data){
+		  	console.log(data)
+		  	
+		  		let portNameNoListAll='';
+		  		data.portNameNoList.forEach(function(portName){
+		  			portNameNoListAll = portNameNoListAll + portName
+	    		});
+		  		
+		  	
+		  	$('.card-title').html("航線編號:"+data.cruiseLinesNoList);	
+		  	$('#portNameByCriuse').html(portNameNoListAll);	
+		  	
+      
+  	 	 	});
+  	  
+    	});
+  		  
+    });	
+
+
+//   		data.destinationDistinct.forEach(function(destination){
+//       			if(data.destinationDistinct.length>1){
+//       				destinationAll =  destinationAll + '<option>'+destination+'</option>'
+//   		    	}else{
+//   		    		destinationAll =  '<option>'+destination+'</option>'
+//   		    	}    				    		
+  		         			    		
+//          	});	
+//       		$('.destinationSelect').html(destinationAll); 
+    
+    </script>
     <script>
         //exporte les données sélectionnées
         var $table = $('#table');

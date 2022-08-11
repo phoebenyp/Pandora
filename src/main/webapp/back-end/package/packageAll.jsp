@@ -396,7 +396,7 @@
                                      
                                     </table>
                                     
-                                     <a href="<%=request.getContextPath()%>/back-end/package/packageADD.jsp" class="nav-link">
+                                     <a href="<%=request.getContextPath()%>/PackagesBackEndServlet?action=packageADD" class="nav-link">
                                         <input type="button" name="packageADD"  value="新增行程" text-align=center style="margin-right: 0%;width:250px;float: right;">
                                     </a>
                                     

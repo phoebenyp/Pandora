@@ -8,12 +8,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import web.cruiseline.bean.PortNameListVO;
 import web.cruiseline.bean.PortsOfCallListVO;
+import web.cruiseline.service.impl.CruiseLineServiceImpl;
+import web.packages.bean.PackagesVO;
 import web.packages.dao.PortsOfCallListDAO2;
 import web.port.bean.PortVO;
 
@@ -136,6 +141,69 @@ public class PortsOfCallListDAOImpl2 implements PortsOfCallListDAO2 {
 		}
 		return map;
 	}
+	
+	public List<PortNameListVO> getPortNameListByMap(Map<String, String[]> map){
+		
+		List<PortNameListVO> list = new ArrayList<PortNameListVO>();
+		PortNameListVO portNameListVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con=ds.getConnection();
+			String finalSQL = " select * from port_name_list where Cruise_Lines_No=? ";
+			pstmt=con.prepareStatement(finalSQL);
+			Set<String> keys = map.keySet();
+			String value = map.get("cruiseLine")[0];
+			
+			System.out.println(value);
+			pstmt.setString(1,value);
+			System.out.println("getPortNameListByMap"+finalSQL);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				
+				portNameListVO = new PortNameListVO();
+				portNameListVO.setPortsOfCallListNo(rs.getInt("Ports_of_Call_List_No"));
+				portNameListVO.setCruiseLinesNo(rs.getInt("Cruise_Lines_No"));
+				portNameListVO.setPortOfCallNo(rs.getInt("Port_of_Call_No"));
+				portNameListVO.setPortName(rs.getString("Port_Name"));
+				portNameListVO.setPortOfCallSequence(rs.getInt("Port_of_Call_Sequence"));
+				list.add(portNameListVO);
+			}
+			
+		}catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+	
+	
+	return list;
+
+}
 
 
 }

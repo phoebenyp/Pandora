@@ -50,8 +50,14 @@ public class PortsOfCallDateDAOImpl implements PortsOfCallDateDAO {
 				portsOfCallDateVO.setPortsOfCallDateNo(rs.getInt("Ports_of_Call_date_No"));
 				portsOfCallDateVO.setPackageNo(rs.getInt("Package_No"));
 				portsOfCallDateVO.setPortOfCallNo(rs.getInt("Port_of_Call_No"));
-				portsOfCallDateVO.setDepartureTime(rs.getTimestamp("Departure_Time").toLocalDateTime());
-				portsOfCallDateVO.setArrivalTime(rs.getTimestamp("Arrival_Time").toLocalDateTime());
+				
+				if(rs.getTimestamp("Departure_Time")!=null) {
+					portsOfCallDateVO.setDepartureTime(rs.getTimestamp("Departure_Time").toLocalDateTime());
+				}
+				if(rs.getTimestamp("Arrival_Time")!=null) {
+					portsOfCallDateVO.setArrivalTime(rs.getTimestamp("Arrival_Time").toLocalDateTime());
+				}
+				
 				
 				list.add(portsOfCallDateVO);
 				

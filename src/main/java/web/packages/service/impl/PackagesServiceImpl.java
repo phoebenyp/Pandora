@@ -17,17 +17,25 @@ public class PackagesServiceImpl implements PackagesService {
 		dao = new PackagesDAOImpl();
 	}
 
-	public List<PackagesVO> getAll(Map<String, String[]> map) {
-		return dao.getAll(map);
-
-	}
+	
 
 	@Override
 	public List<PackagesVO> getALLList() {
 		
 		return dao.getALLList();
 	}
+
+
+
+	@Override
+	public List<PackagesVO> getAll(Map<String, String[]> map) {
+		
+		return dao.getAll(map);
+	}
+
 	
+
+
 
 	
 
