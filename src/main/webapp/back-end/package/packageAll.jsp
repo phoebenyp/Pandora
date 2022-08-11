@@ -1,16 +1,15 @@
-<%@page import="com.mysql.cj.protocol.x.ReusableOutputStream"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
-
-
 
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ROYAL CLASS PANDORA_員工系統</title>
+    <title>ROYAL CLASS PANDORA_行程資料表</title>
 
 
     <!-- Google Font: Source Sans Pro -->
@@ -22,10 +21,11 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Theme style -->
     <link rel="stylesheet" href="css/adminlte.css" />
+
 </head>
 
 <body class="hold-transition sidebar-mini">
-    <!-- 主要開發區塊 -->
+      <!-- 主要開發區塊 -->
     <div class="wrapper">
         <!-- Navbar header區塊-->
         <nav id="navbar-header" class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -93,7 +93,7 @@
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                           <ul class="nav nav-treeview">
+                           	 <ul class="nav nav-treeview">
                                 <li class="nav-item">    
                                     <a href="<%=request.getContextPath()%>/EmpLoginServlet?action=EMPAllList" class="nav-link" >
                                         <i class="far fa-circle nav-icon"></i>
@@ -101,7 +101,7 @@
                                     </a>
                                 </li>
                                  <li class="nav-item">
-                                    <a href="<%=request.getContextPath()%>/PackagesBackEndServlet?action=getAllPackage"  class="nav-link">
+                                    <a href="<%=request.getContextPath()%>/back-end/emp/EMP_Register.jsp" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>新增員工</p>
                                     </a>
@@ -126,7 +126,7 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item menu-open">
                             <a href="#" class="nav-link">
                                 <i class="fa-solid fa-ship"></i>
                                 <p>
@@ -296,22 +296,17 @@
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        <div class="col-sm-6" style="width:100%">
-                            <marquee style="width:1000px;height:40px" direction="left" height="40" scrollamount="10"
-                                behavior="alternate">
-                                <font size="5" face="Mogra">${loginUser.englishFirstName}&nbsp${loginUser.englishLastName} 歡迎回到PANDORA後台系統 </font>
-
-                            </marquee>
-
+                        <div class="col-sm-6">
+                            <h1 class="m-0">PANDORA後台系統 </h1>
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item">
-                                    <a href="#">Home</a>
+                                    <a href="#">行程管理</a>
                                 </li>
                                 <li class="breadcrumb-item active">
-                                    Starter Page
+                                    行程資訊管理
                                 </li>
                             </ol>
                         </div>
@@ -331,13 +326,91 @@
                         <div class="col-md-12">
                             <!-- jquery validation -->
                             <div class="card card-primary">
-
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        行程資訊管理 &ensp; <span style="font-size:12px">-新增/編輯</span>
+                                    </h3>
+                                </div>
                                 <!-- /.card-header -->
                                 <!-- form start -->
-                                <img style="width:50%;display:block; margin:auto;" src="./images/smile.gif">
+                                <div class="container">
+
+
+                                    <table id="table" data-toggle="table" data-search="true" data-filter-control="true"
+                                        data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                        <thead>
+                                            <tr>
+
+                                                <th data-field="Package_No" data-filter-control="input"
+                                                    data-sortable="true">行程編號</th>
+                                                <th data-field="Package_Name" data-filter-control="select"
+                                                    data-sortable="true">行程名稱</th>
+                                                <th data-field="Ship_NO" data-filter-control="select"
+                                                    data-sortable="true">郵輪編號 </th>
+                                                <th data-field="Cruise_Line_No" data-filter-control="select"
+                                                    data-sortable="true">航線編號</th>
+                                                <th data-field="startime" data-filter-control="select"
+                                                    data-sortable="true">啟航日期</th>
+                                                <th data-field="endtime" data-filter-control="select"
+                                                    data-sortable="true">結束日期</th>
+                                                <th data-field="Duration" data-filter-control="select"
+                                                    data-sortable="true">天數</th>
+                                                <th data-field="Registration_Start_Time" data-filter-control="select"
+                                                    data-sortable="true">上架時間</th>
+                                                <th data-field="Registration_Dead_Time" data-filter-control="select"
+                                                    data-sortable="true">下架時間</th>
+
+
+                                           
+                                                <th></th>
+
+
+
+                                            </tr>
+                                        </thead>
+                                     
+                                        <tbody>     
+                                         <c:forEach var="PackageVO" items="${packagesList}">                                                                          
+                                            <tr>
+                                                <td>${PackageVO.packageNo}</td>
+                                                <td>${PackageVO.packageName}</td>
+                                                <td>${PackageVO.shipNo}</td>
+                                                <td>${PackageVO.cruiseLineNo}</td>
+                                                <td>${PackageVO.departureTime.format(dateTimeFormat)}</td>
+                                                <td>${PackageVO.arrivalTime.format(dateTimeFormat)}</td>
+                                                <td>${PackageVO.duration}</td>
+                                                <td>${PackageVO.registrationStartTime}</td>
+                                                <td>${PackageVO.registrationDeadTime}</td>
+                                              
+                                                <td>
+                                                <form method="Post" action="<%=request.getContextPath()%>/EmpLoginServlet">	
+                                                 <input type="submit" value="編輯"  style="width:100%;height:100%;color:#fff;background-color:#007bff;border-color:#fff">
+                                                 <input type="hidden" name="packageNo" value="$PackageVO.packageNo}">
+			    				 				 <input type="hidden" name="action"	value="EMPGetOneForUpdate">
+                                               
+                                               </form>
+                                                </td>
+                                            </tr>          
+                                       </c:forEach>                                                            
+                                        </tbody>
+                                     
+                                    </table>
+                                    
+                                     <a href="<%=request.getContextPath()%>/PackagesBackEndServlet?action=packageADD" class="nav-link">
+                                        <input type="button" name="packageADD"  value="新增行程" text-align=center style="margin-right: 0%;width:250px;float: right;">
+                                    </a>
+                                    
+                                </div>
 
                                 </tfoot>
-                                </table>
+                                <div style="width:100%;text-align:center">
+                                    <input style="display:inline-block;width:150px" type="button"
+                                        onclick="history.go(-1)" value="上一頁"></input>
+                                    <input style="display:inline-block;width:150px" type="button"
+                                        onclick="history.forward()" value="下一頁">
+                                </div>
+
+
                             </div>
 
                         </div>
@@ -381,6 +454,33 @@
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="js/adminlte.js"></script>
+    <script>
+        //exporte les données sélectionnées
+        var $table = $('#table');
+
+
+        var trBoldBlue = $(" table"); $(trBoldBlue).on("click", "tr", function () {
+            $(this).toggleClass("bold-blue");
+        }); 
+    </script>
+
+    <!-- 上下頁 -->
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://github.com/kayalshri/tableExport.jquery.plugin/blob/master/jquery.base64.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>
+    <!-- Latest compiled and minified Locales -->
+    <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

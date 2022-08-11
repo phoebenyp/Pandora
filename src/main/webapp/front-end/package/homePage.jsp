@@ -262,8 +262,8 @@
           <!-- End row -->
           <hr />
          		<button class="btn_1 green" type="submit" name="action" value="listPackagesByCompositeQuery" style=width:200px>查詢行程</button>
-               
-                <button class="btn_1 green" id="clearBtn" style=width:200px>清除</button></br>
+          </form>      
+                <button type="button" class="btn_1 green" id="clearBtn" style=width:200px>清除</button></br>
 				<div id="count"><i class="icon-search"></i>共有${fn:length(packageNoList)}個匹配行程</div>
         </div>
                   
@@ -273,7 +273,7 @@
     </div>
 
   </section>
-  </form>
+ 
   <hr>
   <!-- End hero -->
 
@@ -434,7 +434,7 @@
 		    var request=$.ajax({
 			url: "<%=request.getContextPath()%>/PackagesServlet",
 		 	method:"POST",											   				
-		 	data:{"action":"updateOption","Departure":$( this ).val(),"Destination":$(destinationID).val(),"DepartureTime":$(departureTimeID).val()},
+		 	data:{"action":"updateOption","Departure":$( this ).val(),"Destination":$(destinationID).val(),"DepartureTime":$(departureTimeID).val(),"Duration":$(durationID).val()},
 		 	dataType:"json"
 			  
 		  });
@@ -443,18 +443,14 @@
 		  	console.log(data.packageNoList.length)
 			console.log(data.Duration)
 			console.log(data.departureTimeDistinct)
-// 			let departureAll='<option>請選擇出發地</option>';
-// 	    	data.departureDistinct.forEach(function(departure){
-// 	    	  departureAll =  '<option>'+departure+'</option>'
-// 	    	});
-// 	    	$('.departureSelect').html(departureAll);	
+
 
 			let destinationAll='<option></option>';
     		data.destinationDistinct.forEach(function(destination){
-    			if(destinationAll.length!=0){
+    			if(data.destinationDistinct.length>1){
     				destinationAll =  destinationAll + '<option>'+destination+'</option>'
 		    	}else{
-		    		destinationAll = destinationAll + '<option>'+destination+'</option>'
+		    		destinationAll =  '<option>'+destination+'</option>'
 		    	}    				    		
 		         			    		
        		});												
@@ -462,25 +458,41 @@
 	    		       
 			let departureTimeAll='<option></option>';
     		data.departureTimeDistinct.forEach(function(departureTime){
-    		  departureTimeAll = departureTimeAll + '<option>'+departureTime+'</option>'
+    			if(data.departureTimeDistinct.length>1){
+    				departureTimeAll = departureTimeAll + '<option>'+departureTime+'</option>'
+    			}else  {
+    				departureTimeAll ='<option>'+departureTime+'</option>'
+    			}  			    		 		
        		});
     		$('.departureTimeSelect').html(departureTimeAll); 
     		
     		
-    		let durationAll='<option></option>';    		
-    		data.Duration.forEach(function(duration){
-    			if(duration==5){
-    				durationAll=durationAll+'<option>1~5天</option>'
-    			}else if(duration==9){
-    				durationAll=durationAll+'<option>6~9天</option>'
-    			}else{
-    				durationAll=durationAll+'<option>10天以上</option>'
-    			} 		
-
-    		});    			    		
-    		$('.durationSelect').html(durationAll); 
+       		let durationAll;
+    		let durationShort='';
+    		let durationMedium='';
+    		let durationLong='';   	   	  	   		
+    		    	
+    		if(Number(Math.min(...data.Duration))<=5){
+				durationShort='<option>1~5天</option>'
+			};
+		    if(Number(Math.max(...data.Duration))>10){
+		    	durationLong='<option>10天以上</option>'
+		    };
+		    
+		    data.Duration.forEach(function(duration){
+		    	if(duration<10 && duration>5){
+		    		durationMedium='<option>6~9天</option>'
+		    	}
+		    });	
+		    durationAll =durationShort+durationMedium+durationLong;		       
+		    if(durationAll.length>22){
+		    	durationAll ='<option></option>'+durationShort+durationMedium+durationLong;
+		    }else{
+		    	durationAll =durationShort+durationMedium+durationLong;
+		    }
+			$('.durationSelect').html(durationAll).distinct;
     		
-    		let counts=data.packageNoList.length
+    		let counts=data.size.length
     		var count=document.getElementById("count");
     			count.innerHTML= "共有"+counts+"個匹配行程";
     		
@@ -494,7 +506,7 @@
 		  var request=$.ajax({
 			url: "<%=request.getContextPath()%>/PackagesServlet",
 		 	method:"POST",				  
-		 	data:{"action":"updateOption","Destination":$( this ).val(),"Departure":$(departureID).val(),"DepartureTime":$(departureTimeID).val()},
+		 	data:{"action":"updateOption","Destination":$( this ).val(),"Departure":$(departureID).val(),"DepartureTime":$(departureTimeID).val(),"Duration":$(durationID).val()},
 		 	dataType:"json"
 			  
 		  });
@@ -508,16 +520,16 @@
 			
 			let departureAll='<option></option>';
 	    	data.departureDistinct.forEach(function(departure){
-	    		if(departureAll.length!=0){
-		    		departureAll ='<option>'+departure+'</option>'
+	    		if(data.departureDistinct.length>1){
+	    			departureAll = departureAll+  '<option>'+departure+'</option>'
 		    	}else{
-		    		 departureAll = departureAll+  '<option>'+departure+'</option>'
+		    		departureAll = '<option>'+departure+'</option>'
 		    	}	    	
 	    	 });
 	    	
 	    	$('.departureSelect').html(departureAll);	
 
-// 			let destinationAll='<option>請選擇目的地</option>';
+// 			let destinationAll='<option></option>';
 //     		data.destinationDistinct.forEach(function(destination){
 //     			destinationAll = destinationAll + '<option>'+destination+'</option>'
 //        		});												
@@ -525,25 +537,43 @@
 	    		       
 			let departureTimeAll='<option></option>';
     		data.departureTimeDistinct.forEach(function(departureTime){
-    		  departureTimeAll = departureTimeAll + '<option>'+departureTime+'</option>'
+    			if(data.departureTimeDistinct.length>1){
+    				 departureTimeAll = departureTimeAll + '<option>'+departureTime+'</option>'
+    			}else{
+    				 departureTimeAll = '<option>'+departureTime+'</option>'
+    			}
+    				
+    			 		 
        		});
     		$('.departureTimeSelect').html(departureTimeAll); 
     		
     		
-    		let durationAll='<option></option>';    		
-    		data.Duration.forEach(function(duration){
-    			if(duration==5){
-    				durationAll=durationAll+'<option>1~5天</option>'
-    			}else if(duration==9){
-    				durationAll=durationAll+'<option>6~9天</option>'
-    			}else{
-    				durationAll=durationAll+'<option>10天以上</option>'
-    			} 		
-
-    		});    			    		
-    		$('.durationSelect').html(durationAll); 
-    		
-    		let counts=data.packageNoList.length
+       		let durationAll;
+    		let durationShort='';
+    		let durationMedium='';
+    		let durationLong='';   	   	  	   		
+    		    	
+    		if(Number(Math.min(...data.Duration))<=5){
+				durationShort='<option>1~5天</option>'
+			};
+		    if(Number(Math.max(...data.Duration))>10){
+		    	durationLong='<option>10天以上</option>'
+		    };
+		    
+		    data.Duration.forEach(function(duration){
+		    	if(duration<10 && duration>5){
+		    		durationMedium='<option>6~9天</option>'
+		    	}
+		    });	
+		    durationAll =durationShort+durationMedium+durationLong;		       
+		    if(durationAll.length>22){
+		    	durationAll ='<option></option>'+durationShort+durationMedium+durationLong;
+		    }else{
+		    	durationAll =durationShort+durationMedium+durationLong;
+		    }
+			$('.durationSelect').html(durationAll).distinct;
+			
+			let counts=data.size.length
     		var count=document.getElementById("count");
     			count.innerHTML= "共有"+counts+"個匹配行程";
     		
@@ -552,6 +582,144 @@
 		 
 	  }); // change destination
 	  
+	  
+	  $("#departureTimeID").change(function(){
+		  alert($( this ).val())
+		  var request=$.ajax({
+			url: "<%=request.getContextPath()%>/PackagesServlet",
+		 	method:"POST",				  	
+		 	data:{"action":"updateOption","DepartureTime":$( this ).val(),"Departure":$(departureID).val(),"Destination":$(destinationID).val(),"Duration":$(durationID).val()},
+		 	dataType:"json"
+			  
+		  });
+		  request.done(function(data){
+		  	console.log(data)
+		  	console.log(data.packageNoList.length)
+			console.log(data.Duration)
+			console.log(data.departureTimeDistinct)
+			
+			
+			
+			let departureAll='<option></option>';
+	    	data.departureDistinct.forEach(function(departure){
+	    	if(data.departureDistinct.length>1){
+	    		departureAll = departureAll+  '<option>'+departure+'</option>'
+	    	}else{
+	    		departureAll ='<option>'+departure+'</option>'
+	    	}
+	    		
+		        	
+	    	 });
+	    	
+	    	$('.departureSelect').html(departureAll);	
+
+			let destinationAll='<option></option>';			
+    		data.destinationDistinct.forEach(function(destination){
+    		if(data.destinationDistinct.length>1){
+    			destinationAll = destinationAll +'<option>'+destination+'</option>'
+    		}else{
+    			destinationAll ='<option>'+destination+'</option>'
+    		}
+    		
+		    	       			
+       		});												
+    		$('.destinationSelect').html(destinationAll); 
+	  		      
+    	
+    		let durationAll;
+    		let durationShort='';
+    		let durationMedium='';
+    		let durationLong='';   	   	  	   		
+    		    	
+    		if(Number(Math.min(...data.Duration))<=5){
+				durationShort='<option>1~5天</option>'
+			};
+		    if(Number(Math.max(...data.Duration))>10){
+		    	durationLong='<option>10天以上</option>'
+		    };
+		    
+		    data.Duration.forEach(function(duration){
+		    	if(duration<10 && duration>5){
+		    		durationMedium='<option>6~9天</option>'
+		    	}
+		    });	
+		    durationAll =durationShort+durationMedium+durationLong;		       
+		    if(durationAll.length>22){
+		    	durationAll ='<option></option>'+durationShort+durationMedium+durationLong;
+		    }else{
+		    	durationAll =durationShort+durationMedium+durationLong;
+		    }
+			$('.durationSelect').html(durationAll).distinct;
+    		
+    		let counts=data.size.length
+    		var count=document.getElementById("count");
+    			count.innerHTML= "共有"+counts+"個匹配行程";
+    		
+    	
+		  }); 	//end of  request.done	
+		 
+	  }); // change destination
+	  
+	
+	  $("#durationID").change(function(){
+		  alert($( this ).val())
+		  var request=$.ajax({
+			url: "<%=request.getContextPath()%>/PackagesServlet",
+		 	method:"POST",				  	
+		 	data:{"action":"updateOption","Duration":$( this ).val(),"Departure":$(departureID).val(),"Destination":$(destinationID).val(),"DepartureTime":$(departureTimeID).val()},
+		 	dataType:"json"
+			  
+		  });
+		  request.done(function(data){
+		  	console.log(data)
+		  	console.log(data.packageNoList.length)
+			console.log(data.Duration)
+			console.log(data.departureTimeDistinct)
+			
+			
+			
+			let departureAll='<option></option>';
+	    	data.departureDistinct.forEach(function(departure){
+	    	if(data.departureDistinct.length>1){
+	    		departureAll = departureAll+  '<option>'+departure+'</option>'
+	    	}else{
+	    		departureAll ='<option>'+departure+'</option>'
+	    	}	    				        	
+	    	 });
+	    	
+	    	$('.departureSelect').html(departureAll);	
+
+			let destinationAll='<option></option>';			
+    		data.destinationDistinct.forEach(function(destination){
+    		if(data.destinationDistinct.length>1){
+    			destinationAll = destinationAll +'<option>'+destination+'</option>'
+    		}else{
+    			destinationAll ='<option>'+destination+'</option>'
+    		}    				    	       		
+       		});												
+    		$('.destinationSelect').html(destinationAll); 
+    		
+    		
+    		let departureTimeAll='<option></option>';
+    		data.departureTimeDistinct.forEach(function(departureTime){
+    			if(data.departureTimeDistinct.length>1){
+    				 departureTimeAll = departureTimeAll + '<option>'+departureTime+'</option>'
+    			}else{
+    				 departureTimeAll = '<option>'+departureTime+'</option>'
+    			}   				
+       		});
+    		
+    		$('.departureTimeSelect').html(departureTimeAll); 
+	  		      
+    	    		
+    		let counts=data.size.length
+    		var count=document.getElementById("count");
+    			count.innerHTML= "共有"+counts+"個匹配行程";
+    		
+    	
+		  }); 	//end of  request.done	
+		 
+	  }); // change duration
 	  
 	  
 	  
@@ -597,6 +765,11 @@
 	    		$('#destinationID').html(destinationAll);
 	    		$('#departureTimeID').html(departureTimeAll);
 	    		$('#durationID').html(durationAll);
+	    		$()
+	    		
+	    		let counts=data.size.length
+	    		var count=document.getElementById("count");
+	    			count.innerHTML= "共有"+counts+"個匹配行程";
    			});
     	
     	})

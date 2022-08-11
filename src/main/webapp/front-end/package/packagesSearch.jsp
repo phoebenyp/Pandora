@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import="java.util.*"%>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -177,7 +182,7 @@
     <!-- container -->
   </header>
   <!-- End Header -->
-
+<form action="<%=request.getContextPath()%>/PackagesServlet" method="Post">
   <section id="search_container" style="background: url('https://picsum.photos/1903/800?random=5')">
     <div id="search">
       <ul class="nav nav-tabs">
@@ -198,9 +203,9 @@
               <div class="form-group">
                 <label>出發地</label>
                 <div class="styled-select-common">
-                 <select id="departureID"  name="Departure" >
+                 <select id="departureID"  name="Departure" class="departureSelect"  >
         			<option value=""></option>
-        				 <c:forEach var="departure" items="${departureDistinctB}" > 
+        				 <c:forEach var="departure" items="${departureDistinct}" > 
            		            		
          		    <option value="${departure}" ${departure==param["Departure"]?"selected":""}>
          		             	  ${departure}
@@ -213,9 +218,9 @@
               <div class="form-group">
                 <label>目的地</label>
                 <div class="styled-select-common">
-                 <select id="destinationID" name="Destination" >
+                 <select id="destinationID" name="Destination" class="destinationSelect" >
         			<option value="" ></option>
-        			<c:forEach var="destination" items="${destinationDistinctB}" > 
+        			<c:forEach var="destination" items="${destinationDistinct}" > 
            		            		
          		    <option value="${destination}" ${destination==param["Destination"]?"selected":"" }>         		
          		          		    ${destination}
@@ -230,9 +235,9 @@
                 <div class="styled-select-common">
                 <select name="DepartureTime" id="departureTimeID" class="departureTimeSelect">
         			<option value=""></option>
-        		<c:forEach var="departureTime" items="${departureTimeDistinctB}" > 
+        		<c:forEach var="departureTime" items="${departureTimeDistinct}" > 
            		            		
-         		    <option value="${departureTime}" ${departureTime==param["DepartureTime"]?"selected":"" }}>         		
+         		    <option value="${departureTime}" ${departureTime==param["DepartureTime"]?"selected":"" }>         		
          		          		    ${departureTime}
          		</c:forEach>   
        		</select>
@@ -244,7 +249,7 @@
                 <label>天數</label>
                 <div class="styled-select-common">
                  <select name="Duration" id="durationID" class="durationSelect">
-                    <option value="" selected>${param.Duration}</option>
+                    <option value="" selected></option>
                     <option value="5">1~5天</option>
                     <option value="10">6~9天</option>
                     <option value="20">10天以上</option>
@@ -256,9 +261,11 @@
           <!-- End row -->
           <hr />
           <button class="btn_1 green" type="submit" name="action" value="listPackagesByCompositeQuery" style=width:200px>查詢行程</button>
-                  
-		<button class="btn_1 green" id="clearBtn" style=width:200px>清除</button></br>
-		<i class="icon-search"></i>共有${count}個匹配行程
+        </form>    
+             
+		<button type="button" class="btn_1 green" id="clearBtn" style=width:200px>清除</button></br>
+		<div id="count"><i class="icon-search"></i>共有${count}個匹配行程</div>
+		
         </div>
 
 
@@ -278,6 +285,7 @@
           </p>
         </div>
 
+        <c:forEach var="packageItem" items="${packagesList}" >
         <div class="row">
           <div class="col-lg-12 col-md-6 wow zoomIn" data-wow-delay="0.1s">
             <div class="tour_container">
@@ -285,16 +293,18 @@
                 <a href="single_tour.html">
                   <img src="https://picsum.photos/1296/533?random=1" class="img-fluid" alt="Image" />
                   <div class="short_info">
-                    <i class="icon_set_1_icon-8"></i>行程1<span class="price"><sup>$</sup>56000</span>
+                    <i class="icon_set_1_icon-8"></i>共計:${packageItem.duration} 天 &ensp;&ensp;啟航時間:${packageItem.departureTime} &ensp;&ensp;結束時間:${packageItem.arrivalTime}<span class="price"><sup>
+				
 
+						
                   </div>
                 </a>
               </div>
-              <div class="tour_title" style="width:845px">
+              <div class="tour_title" style="width:1250px">
                 <!--寫個function 觸發onclick事件=>form表單 input(查詢參數)=>送到後端  -->
                 <!--action 對應到謀個servlet -->
-                <h3><strong>行程1</strong>
-                  &ensp;&ensp;航線:A->B
+                <h3><strong>${packageItem.packageName}</strong>
+                  &ensp;&ensp;航線:${portsOfCallListMap.get(packageItem.packageNo)}
                 </h3>
                 <h3 style="display:inline-block;width:300px">
                   <form method="get" id="reservationnow1" action="https://www.google.com/">
@@ -305,114 +315,17 @@
 
                 </h3>
                 <h3 style="display:inline-block;width:300px">
-                  <form method="get" id="learnmore1" action="https://www.google.com/">
-                    <input name="packages" type="hidden" value="1">
-                    <button class="btn btn-primary btn-sm" type="submit" onclick="對應謀個function"
+                   <form action="<%=request.getContextPath()%>/PackagesServlet" method="Post">
+                   	<input type="hidden" name="packageNo" value="${packageItem.packageNo}">
+                    <button class="btn btn-primary btn-sm" type="submit" name="action" value="getOnePackageDetail"
                       style="width:300px;height:30px;">了解航線詳情</button>
                   </form>
                 </h3>
 
               </div>
             </div>
+          </c:forEach>  
             <!-- End col -->
-
-            <div class="col-lg-12 col-md-6 wow zoomIn" data-wow-delay="0.2s">
-              <div class="tour_container">
-                <div class="img_container">
-                  <a href="single_tour.html">
-                    <img src="https://picsum.photos/900/533?random=2" class="img-fluid" alt="Image" />
-                    <div class="badge_save"><strong>7折</strong></div>
-                    <div class="short_info">
-                      <i class="icon_set_1_icon-8"></i>行程2<span class="price"><sup>$</sup>27900</span>
-                    </div>
-                  </a>
-                </div>
-                <div class="tour_title" style="width:845px">
-                  <h3><strong>行程2</strong> &ensp;&ensp;航線:A->C</h3>
-                  <h3 style="display:inline-block;width:300px">
-                    <form method="get" id="reservationnow1" action="https://www.google.com/">
-                      <input name="packages" type="hidden" value="1">
-                      <button class="btn btn-primary btn-sm" type="submit" onclick="對應謀個function"
-                        style="width:300px;height:30px;">立即預定</button>
-                    </form>
-
-                  </h3>
-                  <h3 style="display:inline-block;width:300px">
-                    <form method="get" id="learnmore1" action="https://www.google.com/">
-                      <input name="packages" type="hidden" value="1">
-                      <button class="btn btn-primary btn-sm" type="submit" onclick="對應謀個function"
-                        style="width:300px;height:30px;">了解航線詳情</button>
-                    </form>
-                  </h3>
-
-
-                </div>
-              </div>
-
-            </div>
-            <!-- End col -->
-            <div class="col-lg-12 col-md-6 wow zoomIn" data-wow-delay="0.3s">
-              <div class="tour_container">
-                <!-- <div class="ribbon_3 popular"><span>Popular</span></div> -->
-                <div class="img_container">
-                  <a href="single_tour.html">
-                    <img src="https://picsum.photos/1296/533?random=3" class="img-fluid" alt="Image" />
-                    <div class="short_info">
-                      <i class="icon_set_1_icon-8"></i>行程3<span class="price"><sup>$</sup>48000</span>
-
-                    </div>
-                  </a>
-                </div>
-                <div class="tour_title" style="width:845px">
-                  <!--寫個function 觸發onclick事件=>form表單 input(查詢參數)=>送到後端  -->
-                  <!--action 對應到謀個servlet -->
-                  <h3><strong>行程3</strong> &ensp;&ensp;航線:B->D</h3>
-                  <h3 style="display:inline-block;width:300px">
-                    <form method="get" id="reservationnow1" action="https://www.google.com/">
-                      <input name="packages" type="hidden" value="1">
-                      <button class="btn btn-primary btn-sm" type="submit" onclick="對應謀個function"
-                        style="width:300px;height:30px;">立即預定</button>
-                    </form>
-
-                  </h3>
-                  <h3 style="display:inline-block;width:300px">
-                    <form method="get" id="learnmore1" action="https://www.google.com/">
-                      <input name="packages" type="hidden" value="1">
-                      <button class="btn btn-primary btn-sm" type="submit" onclick="對應謀個function"
-                        style="width:300px;height:30px;">了解航線詳情</button>
-                    </form>
-                  </h3>
-                </div>
-                <!-- End col -->
-
-                <div class="col-lg-12 col-md-6 wow zoomIn" data-wow-delay="0.4s">
-                  <div class="tour_container">
-                    <div class="img_container">
-                      <a href="single_tour.html">
-                        <img src="https://picsum.photos/1296/533?random=" class="img-fluid" alt="Image" />
-                        <div class="short_info">
-                          <i class="icon_set_1_icon-8"></i>行程4<span class="price"><sup>$</sup>36000</span>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="tour_title" style="width:845px">
-                      <h3><strong>行程4</strong> &ensp;&ensp;航線:E->F</h3>
-                      <h3 style="display:inline-block;width:300px">
-                        <form method="get" id="reservationnow1" action="https://www.google.com/">
-                          <input name="packages" type="hidden" value="1">
-                          <button class="btn btn-primary btn-sm" type="submit" onclick="對應謀個function"
-                            style="width:300px;height:30px;">立即預定</button>
-                        </form>
-                      </h3>
-                      <h3 style="display:inline-block;width:300px">
-                        <form method="get" id="learnmore1" action="https://www.google.com/">
-                          <input name="packages" type="hidden" value="1">
-                          <button class="btn btn-primary btn-sm" type="submit" onclick="對應謀個function"
-                            style="width:300px;height:30px;">了解航線詳情</button>
-                        </form>
-                      </h3>
-
-                    </div>
 
                     <!-- End row -->
                     <div class="col-lg-12 col-md-6 wow zoomIn" data-wow-delay="0.4s">
@@ -523,6 +436,306 @@
     <script src="<%=request.getContextPath()%>/front-end/package/js/functions.js"></script>
 
     <!-- Specific scripts -->
+     <script>
+  $(function (){
+	  $("#departureID").change(function(){
+		  alert($( this ).val())
+		    var request=$.ajax({
+			url: "<%=request.getContextPath()%>/PackagesServlet",
+		 	method:"POST",											   				
+		 	data:{"action":"updateOption","Departure":$( this ).val(),"Destination":$(destinationID).val(),"DepartureTime":$(departureTimeID).val(),"Duration":$(durationID).val()},
+		 	dataType:"json"
+			  
+		  });
+		  request.done(function(data){
+		  	console.log(data)
+		  	console.log(data.packageNoList.length)
+			console.log(data.Duration)
+			console.log(data.departureTimeDistinct)
+
+
+			let destinationAll='<option></option>';
+    		data.destinationDistinct.forEach(function(destination){
+    			if(data.destinationDistinct.length>1){
+    				destinationAll =  destinationAll + '<option>'+destination+'</option>'
+		    	}else{
+		    		destinationAll =  '<option>'+destination+'</option>'
+		    	}    				    		
+		         			    		
+       		});												
+    		$('.destinationSelect').html(destinationAll); 
+	    		       
+			let departureTimeAll='<option></option>';
+    		data.departureTimeDistinct.forEach(function(departureTime){
+    			if(data.departureTimeDistinct.length>1){
+    				departureTimeAll = departureTimeAll + '<option>'+departureTime+'</option>'
+    			}else  {
+    				departureTimeAll ='<option>'+departureTime+'</option>'
+    			}  			    		 		
+       		});
+    		$('.departureTimeSelect').html(departureTimeAll); 
+    		
+    		
+       		let durationAll;
+    		let durationShort='';
+    		let durationMedium='';
+    		let durationLong='';   	   	  	   		
+    		    	
+    		if(Number(Math.min(...data.Duration))<=5){
+				durationShort='<option>1~5天</option>'
+			};
+		    if(Number(Math.max(...data.Duration))>10){
+		    	durationLong='<option>10天以上</option>'
+		    };
+		    
+		    data.Duration.forEach(function(duration){
+		    	if(duration<10 && duration>5){
+		    		durationMedium='<option>6~9天</option>'
+		    	}
+		    });	
+		    durationAll =durationShort+durationMedium+durationLong;		       
+		    if(durationAll.length>22){
+		    	durationAll ='<option></option>'+durationShort+durationMedium+durationLong;
+		    }else{
+		    	durationAll =durationShort+durationMedium+durationLong;
+		    }
+			$('.durationSelect').html(durationAll).distinct;
+    		
+    		let counts=data.size.length
+    		var count=document.getElementById("count");
+    			count.innerHTML= "共有"+counts+"個匹配行程";
+    		
+    	
+		  }); 	//end of  request.done	
+		 
+	  }); //change departure event
+	  
+	  $("#destinationID").change(function(){
+		  alert($( this ).val())
+		  var request=$.ajax({
+			url: "<%=request.getContextPath()%>/PackagesServlet",
+		 	method:"POST",				  
+		 	data:{"action":"updateOption","Destination":$( this ).val(),"Departure":$(departureID).val(),"DepartureTime":$(departureTimeID).val(),"Duration":$(durationID).val()},
+		 	dataType:"json"
+			  
+		  });
+		  request.done(function(data){
+		  	console.log(data)
+		  	console.log(data.packageNoList.length)
+			console.log(data.Duration)
+			console.log(data.departureTimeDistinct)
+			
+			
+			
+			let departureAll='<option></option>';
+	    	data.departureDistinct.forEach(function(departure){
+	    		if(data.departureDistinct.length>1){
+	    			departureAll = departureAll+  '<option>'+departure+'</option>'
+		    	}else{
+		    		departureAll = '<option>'+departure+'</option>'
+		    	}	    	
+	    	 });
+	    	
+	    	$('.departureSelect').html(departureAll);	
+
+// 			let destinationAll='<option></option>';
+//     		data.destinationDistinct.forEach(function(destination){
+//     			destinationAll = destinationAll + '<option>'+destination+'</option>'
+//        		});												
+//     		$('.destinationSelect').html(destinationAll); 
+	    		       
+			let departureTimeAll='<option></option>';
+    		data.departureTimeDistinct.forEach(function(departureTime){
+    			if(data.departureTimeDistinct.length>1){
+    				 departureTimeAll = departureTimeAll + '<option>'+departureTime+'</option>'
+    			}else{
+    				 departureTimeAll = '<option>'+departureTime+'</option>'
+    			}
+    				
+    			 		 
+       		});
+    		$('.departureTimeSelect').html(departureTimeAll); 
+    		
+    		
+       		let durationAll;
+    		let durationShort='';
+    		let durationMedium='';
+    		let durationLong='';   	   	  	   		
+    		    	
+    		if(Number(Math.min(...data.Duration))<=5){
+				durationShort='<option>1~5天</option>'
+			};
+		    if(Number(Math.max(...data.Duration))>10){
+		    	durationLong='<option>10天以上</option>'
+		    };
+		    
+		    data.Duration.forEach(function(duration){
+		    	if(duration<10 && duration>5){
+		    		durationMedium='<option>6~9天</option>'
+		    	}
+		    });	
+		    durationAll =durationShort+durationMedium+durationLong;		       
+		    if(durationAll.length>22){
+		    	durationAll ='<option></option>'+durationShort+durationMedium+durationLong;
+		    }else{
+		    	durationAll =durationShort+durationMedium+durationLong;
+		    }
+			$('.durationSelect').html(durationAll).distinct;
+			
+			let counts=data.size.length
+    		var count=document.getElementById("count");
+    			count.innerHTML= "共有"+counts+"個匹配行程";
+    		
+    	
+		  }); 	//end of  request.done	
+		 
+	  }); // change destination
+	  
+	  
+	  $("#departureTimeID").change(function(){
+		  alert($( this ).val())
+		  var request=$.ajax({
+			url: "<%=request.getContextPath()%>/PackagesServlet",
+		 	method:"POST",				  	
+		 	data:{"action":"updateOption","DepartureTime":$( this ).val(),"Departure":$(departureID).val(),"Destination":$(destinationID).val(),"Duration":$(durationID).val()},
+		 	dataType:"json"
+			  
+		  });
+		  request.done(function(data){
+		  	console.log(data)
+		  	console.log(data.packageNoList.length)
+			console.log(data.Duration)
+			console.log(data.departureTimeDistinct)
+			
+			
+			
+			let departureAll='<option></option>';
+	    	data.departureDistinct.forEach(function(departure){
+	    	if(data.departureDistinct.length>1){
+	    		departureAll = departureAll+  '<option>'+departure+'</option>'
+	    	}else{
+	    		departureAll ='<option>'+departure+'</option>'
+	    	}
+	    		
+		        	
+	    	 });
+	    	
+	    	$('.departureSelect').html(departureAll);	
+
+			let destinationAll='<option></option>';			
+    		data.destinationDistinct.forEach(function(destination){
+    		if(data.destinationDistinct.length>1){
+    			destinationAll = destinationAll +'<option>'+destination+'</option>'
+    		}else{
+    			destinationAll ='<option>'+destination+'</option>'
+    		}
+    		
+		    	       			
+       		});												
+    		$('.destinationSelect').html(destinationAll); 
+	  		      
+    	
+    		let durationAll;
+    		let durationShort='';
+    		let durationMedium='';
+    		let durationLong='';   	   	  	   		
+    		    	
+    		if(Number(Math.min(...data.Duration))<=5){
+				durationShort='<option>1~5天</option>'
+			};
+		    if(Number(Math.max(...data.Duration))>10){
+		    	durationLong='<option>10天以上</option>'
+		    };
+		    
+		    data.Duration.forEach(function(duration){
+		    	if(duration<10 && duration>5){
+		    		durationMedium='<option>6~9天</option>'
+		    	}
+		    });	
+		    durationAll =durationShort+durationMedium+durationLong;		       
+		    if(durationAll.length>22){
+		    	durationAll ='<option></option>'+durationShort+durationMedium+durationLong;
+		    }else{
+		    	durationAll =durationShort+durationMedium+durationLong;
+		    }
+			$('.durationSelect').html(durationAll).distinct;
+    		
+    		let counts=data.size.length
+    		var count=document.getElementById("count");
+    			count.innerHTML= "共有"+counts+"個匹配行程";
+    		
+    	
+		  }); 	//end of  request.done	
+		 
+	  }); // change destination
+	  
+	
+	  $("#durationID").change(function(){
+		  alert($( this ).val())
+		  var request=$.ajax({
+			url: "<%=request.getContextPath()%>/PackagesServlet",
+		 	method:"POST",				  	
+		 	data:{"action":"updateOption","Duration":$( this ).val(),"Departure":$(departureID).val(),"Destination":$(destinationID).val(),"DepartureTime":$(departureTimeID).val()},
+		 	dataType:"json"
+			  
+		  });
+		  request.done(function(data){
+		  	console.log(data)
+		  	console.log(data.packageNoList.length)
+			console.log(data.Duration)
+			console.log(data.departureTimeDistinct)
+			
+			
+			
+			let departureAll='<option></option>';
+	    	data.departureDistinct.forEach(function(departure){
+	    	if(data.departureDistinct.length>1){
+	    		departureAll = departureAll+  '<option>'+departure+'</option>'
+	    	}else{
+	    		departureAll ='<option>'+departure+'</option>'
+	    	}	    				        	
+	    	 });
+	    	
+	    	$('.departureSelect').html(departureAll);	
+
+			let destinationAll='<option></option>';			
+    		data.destinationDistinct.forEach(function(destination){
+    		if(data.destinationDistinct.length>1){
+    			destinationAll = destinationAll +'<option>'+destination+'</option>'
+    		}else{
+    			destinationAll ='<option>'+destination+'</option>'
+    		}    				    	       		
+       		});												
+    		$('.destinationSelect').html(destinationAll); 
+    		
+    		
+    		let departureTimeAll='<option></option>';
+    		data.departureTimeDistinct.forEach(function(departureTime){
+    			if(data.departureTimeDistinct.length>1){
+    				 departureTimeAll = departureTimeAll + '<option>'+departureTime+'</option>'
+    			}else{
+    				 departureTimeAll = '<option>'+departureTime+'</option>'
+    			}   				
+       		});
+    		
+    		$('.departureTimeSelect').html(departureTimeAll); 
+	  		      
+    	    		
+    		let counts=data.size.length
+    		var count=document.getElementById("count");
+    			count.innerHTML= "共有"+counts+"個匹配行程";
+    		
+    	
+		  }); 	//end of  request.done	
+		 
+	  }); // change duration
+	  
+	  
+	  
+	  
+  })//function
+  
+  </script>
     <script>
     $(function () {
     	$('#clearBtn').click(function(){
@@ -561,6 +774,11 @@
 	    		$('#destinationID').html(destinationAll);
 	    		$('#departureTimeID').html(departureTimeAll);
 	    		$('#durationID').html(durationAll);
+	    		
+	    		
+	    		let counts=data.size.length
+	    		var count=document.getElementById("count");
+	    			count.innerHTML= "共有"+counts+"個匹配行程";
    			});
     	
     	})

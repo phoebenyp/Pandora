@@ -1,5 +1,6 @@
 package web.util;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -19,7 +20,7 @@ public class packages_CompositeQuery {
 			if (value.equals("1~5天")||value.equals("5")) {
 				aCondition = "Duration" + "<=" + "5";
 			} else if (value.equals("6~9天")||value.equals("10")) {
-				aCondition = "Duration" + ">" + "6" + "&&" + "Duration" + "<" + "10";
+				aCondition = "Duration" + ">" + "5" + "&&" + "Duration" + "<" + "10";
 			}else if (value.equals("10天以上")||value.equals("20")) {
 				aCondition = "Duration" + ">" + "10";
 			}
@@ -45,6 +46,7 @@ public class packages_CompositeQuery {
 		StringBuffer whereCondition = new StringBuffer();
 		int count = 0;
 		for (String key : keys) {
+			System.out.println(key + "====" + Arrays.toString(map.get(key)));
 			String value = map.get(key)[0];
 			if (value != null && value.trim().length() != 0 && !"action".equals(key)) {
 				count++;

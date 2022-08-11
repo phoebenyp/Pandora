@@ -8,6 +8,8 @@ import web.packages.bean.PackagesVO;
 public interface PackagesDAO {
 
 	List<PackagesVO> getAll(Map<String, String[]> map);
+
+	List<PackagesVO> getALLList();
 	
 
 	
