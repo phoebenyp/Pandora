@@ -11,6 +11,6 @@ public interface PackagesDAO {
 
 	List<PackagesVO> getALLList();
 	
-
+	PackagesVO findByPrimaryKey(Integer packageId);
 	
 }

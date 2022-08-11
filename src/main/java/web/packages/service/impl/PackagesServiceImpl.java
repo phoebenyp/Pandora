@@ -33,7 +33,10 @@ public class PackagesServiceImpl implements PackagesService {
 		return dao.getAll(map);
 	}
 
-	
+	@Override
+	public PackagesVO getOnePackage(Integer packageId) {
+		return dao.findByPrimaryKey(packageId);
+	}
 
 
 

@@ -18,4 +18,6 @@ public interface MemberService {
 	MemberVO updateMember(MemberVO memberVO);
 	
 	boolean isExistEmail(String memberEmail);
+	
+	void insertMember(MemberVO memberVO);
 }

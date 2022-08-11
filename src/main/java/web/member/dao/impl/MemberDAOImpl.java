@@ -35,7 +35,7 @@ public class MemberDAOImpl implements MemberDAO {
 	private static final String GET_ALL_STMT = "SELECT * FROM Member order by Member_ID";
 	private static final String GET_ONE_STMT = "SELECT * FROM Member";
 	
-//	private static final String DELETE = "DELETE FROM Pandora where Member_ID = ?";
+	private static final String DELETE = "DELETE FROM Pandora where Member_ID = ?";
 //	
 	private static final String UPDATE                = "UPDATE Member set Member_Picture_ID=?,Chinese_Name=?,English_First_Name=?,English_Last_Name=?,"
 			+ "Member_Address=?,"
@@ -300,7 +300,9 @@ public class MemberDAOImpl implements MemberDAO {
 				memberVO.setAccumulatedConsumption(rs.getInt("Accumulated_Consumption"));
 				memberVO.setLastUpdateDate(rs.getTimestamp("Last_Update_Date").toLocalDateTime());
 				memberVO.setMemberPassword(rs.getString("Member_Password"));
+				if (rs.getDate("Registration_Time") != null) {
 				memberVO.setRegistrationTime(rs.getTimestamp("Registration_Time").toLocalDateTime());
+				}
 			}
 
 			// Handle any driver errors
@@ -375,43 +377,43 @@ public class MemberDAOImpl implements MemberDAO {
 		return null;
 	}
 
-//	@Override
-//	public void delete(Integer memberId) {
-//
-//		Connection con = null;
-//		PreparedStatement pstmt = null;
-//
-//		try {
-//
-//			con = ds.getConnection();
-//			pstmt = con.prepareStatement(DELETE);
-//
-//			pstmt.setInt(1, memberId);
-//
-//			pstmt.executeUpdate();
-//
-//			// Handle any driver errors
-//		} catch (SQLException se) {
-//			throw new RuntimeException("A database error occured. " + se.getMessage());
-//			// Clean up JDBC resources
-//		} finally {
-//			if (pstmt != null) {
-//				try {
-//					pstmt.close();
-//				} catch (SQLException se) {
-//					se.printStackTrace(System.err);
-//				}
-//			}
-//			if (con != null) {
-//				try {
-//					con.close();
-//				} catch (Exception e) {
-//					e.printStackTrace(System.err);
-//				}
-//			}
-//		}
-//
-//	}
+	@Override
+	public void delete(Integer memberId) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(DELETE);
+
+			pstmt.setInt(1, memberId);
+
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}
 
 	@Override
 	public boolean isExistEmail(String memberEmail) {
