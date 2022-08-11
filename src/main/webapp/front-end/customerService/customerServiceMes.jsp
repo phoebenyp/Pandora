@@ -114,35 +114,29 @@
         font: 15px verdana, Times New Roman, arial, helvetica, sans-serif,
           Microsoft JhengHei;
       }
-      .talk_show.ul{
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.talk_show.ul .talk_show.li{
-/*   display:inline-block; */
-  clear: both;
-  padding: 20px;
-  border-radius: 30px;
-  margin-bottom: 2px;
-  font-family: Helvetica, Arial, sans-serif;
-}
-.friend{
-	margin: 10px 0 0 -35px  ;
-    background: #0181cc;
-    border-radius: 10px;
-    color: #fff;
-    padding: 5px;
-    max-width: 200px;
-    white-space: pre-wrap;
-    text-align: left;
-    list-style:none;
-}
-.me{
-   	margin: 10px;
-    text-align: right;
-    list-style:none;
-    }
+.friend {
+        background: #eee;
+        float: left;
+      }
+
+      .me {
+        float: right;
+        background: #0084ff;
+        color: #fff;
+      }
+
+      .friend + .me {
+        border-bottom-right-radius: 5px;
+      }
+
+      .me + .me {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+
+      .me:last-of-type {
+        border-bottom-right-radius: 30px;
+      }
     </style>
   </head>
 
@@ -341,9 +335,7 @@
         data-opacity-mask="rgba(0, 0, 0, 0.6)"
       >
         <div class="animated fadeInDown">
-          <!-- <h1>歡迎使用線上客服系統,請問該如何稱呼您?</h1> -->
           <h1>線上客服系統</h1>
-          <!-- <p>Cursus neque cursus curae ante scelerisque vehicula</p> -->
         </div>
       </div>
     </section>
@@ -541,6 +533,7 @@
                 } else if ("history" === jsonObj.type) {
                     messagesArea.innerHTML = '';
                     var ul = document.createElement('ul');
+                    ul.style = "list-style: none; margin: 0; padding: 0;";
                     ul.id = "area";
                     messagesArea.appendChild(ul);
                     var messages = JSON.parse(jsonObj.message);
@@ -548,6 +541,8 @@
                         var historyData = JSON.parse(messages[i]);
                         var showMsg = historyData.message;
                         var li = document.createElement('li');
+                        li.style =
+                            "display: inline-block;clear: both;padding: 20px;border-radius: 30px;margin-bottom: 2px;font-family: Helvetica, Arial, sans-serif;";
                         historyData.sender === self ? li.className += 'me' : li.className += 'friend';
                         li.innerHTML = showMsg;
                         ul.appendChild(li);
@@ -555,6 +550,8 @@
                     messagesArea.scrollTop = messagesArea.scrollHeight;
                 } else if ("chat" === jsonObj.type) {
                     var li = document.createElement('li');
+                    li.style =
+                        "display: inline-block;clear: both;padding: 20px;border-radius: 30px;margin-bottom: 2px;font-family: Helvetica, Arial, sans-serif;";
                     jsonObj.sender === self ? li.className += 'me' : li.className += 'friend';
                     li.innerHTML = jsonObj.message;
                     console.log(li);
@@ -576,9 +573,11 @@
             var friend = statusOutput.textContent;
             var message = inputMessage.value.trim();
             if (friend === "" ||  true != /manager/i.test(friend)) {
+            	//記住改中文
     			alert("非服務時間,請致電");
             
             } else if (message === "") {
+            	//記住改中文
                 alert("請輸入訊息");
                 inputMessage.focus();
             } else {
@@ -606,7 +605,6 @@
         }
     function addListener() {
             var container = document.getElementById("row");
-    // 		container.click();
             container.addEventListener("click", function(e) {
                 var friend = e.srcElement.textContent;
                 updateFriendName(friend);

@@ -450,6 +450,7 @@ pageEncoding="UTF-8"%>
         function sendName() {
           var userName = inputUserName.value.trim();
           if (userName === "") {
+        	  //記住改中文
             alert("Input a user name");
             inputUserName.focus();
             return;

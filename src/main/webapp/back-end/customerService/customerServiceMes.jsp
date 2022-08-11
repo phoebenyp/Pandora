@@ -112,19 +112,6 @@ pageEncoding="UTF-8"%>
       .me:last-of-type {
         border-bottom-right-radius: 30px;
       }
-      /*       .textc.ul { */
-      /*         list-style: none; */
-      /*         margin: 0; */
-      /*         padding: 0; */
-      /*       } */
-      /*      .textc.ul .textc.li{ */
-      /*         display: inline-block; */
-      /*         clear: both; */
-      /*         padding: 20px; */
-      /*         border-radius: 30px; */
-      /*         margin-bottom: 2px; */
-      /*         font-family: Helvetica, Arial, sans-serif; */
-      /*       } */
     </style>
   </head>
 
@@ -588,9 +575,11 @@ pageEncoding="UTF-8"%>
         var friend = statusOutput.textContent;
         var message = inputMessage.value.trim();
         if (message === "") {
+        	//記住改中文
           alert("input message");
           inputMessage.focus();
         } else if (friend === "") {
+        	//記住改中文
           alert("select target");
         } else {
           var jsonObj = {
