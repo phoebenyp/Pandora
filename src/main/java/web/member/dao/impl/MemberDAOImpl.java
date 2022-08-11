@@ -33,7 +33,7 @@ public class MemberDAOImpl implements MemberDAO {
 			+ "Gender,Member_Birthday,Member_ID_No,Member_PhoneNumber,Member_Address,Member_Email,Member_Passport_No,accumulated_Consumption,last_Update_Date,Member_Password,registration_Time)"
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT * FROM Member order by Member_ID";
-	private static final String GET_ONE_STMT = "SELECT * FROM Member";
+	private static final String GET_ONE_STMT = "SELECT * FROM Member WHERE Member_ID = ?";
 	
 	private static final String DELETE = "DELETE FROM Pandora where Member_ID = ?";
 //	
@@ -284,8 +284,8 @@ public class MemberDAOImpl implements MemberDAO {
 
 			while (rs.next()) {
 				memberVO = new MemberVO();
-				memberVO.setMemberId(rs.getInt("Member_Id"));
-				memberVO.setMemberPictureId(rs.getBytes("Member_Picture_Id"));
+				memberVO.setMemberId(rs.getInt("Member_ID"));
+				memberVO.setMemberPictureId(rs.getBytes("Member_Picture_ID"));
 				memberVO.setDiscountNo(rs.getInt("Discount_No"));
 				memberVO.setChineseName(rs.getString("Chinese_Name"));
 				memberVO.setMemberEnglishFirstName(rs.getString("English_First_Name"));

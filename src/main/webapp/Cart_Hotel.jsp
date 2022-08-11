@@ -5,7 +5,6 @@
 <%@ page import="web.discount.service.impl.DiscountServiceImpl"%>
 <%@ page import="web.roomType.service.impl.RoomTypeServiceImpl"%>
 <%@ page import="web.member.service.impl.MemberServiceImpl"%>
-<%@ page import="web.member.service.impl.*"%>
 <%@ page import="web.packages.service.impl.PackagesServiceImpl"%>
 <%@ page import="web.discount.bean.*"%>
 <%@ page import="web.discount.bean.DiscountVO"%>
