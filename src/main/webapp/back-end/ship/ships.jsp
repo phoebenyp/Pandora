@@ -133,7 +133,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     >郵輪狀態</th>
                                                 <th data-field="shipUpdate" data-filter-control="select"
                                                     >更新狀態</th>
-                                                <th data-field="shipDelete" data-filter-control="select">刪除</th>
+<!--                                                 <th data-field="shipDelete" data-filter-control="select">刪除</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -156,13 +156,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             style="width:100%;height:100%;">更新</button>
                                                     </form>
                                                 </td>
-                                                <td class="data10">
-                                                    <form method="post"  action="<%=request.getContextPath()%>/ShipServlet">
-                                                        <input name="shipNo" type="hidden" value="${shipTotalVO.shipNo}">
-                                                        <input name="action" type="hidden" value="delete">
-                                                        <button class="btn btn-primary btn-sm update mr-4" type="submit" style="width:100%;height:100%;">刪除</button>
-                                                    </form>
-                                                </td>
+<!--                                                 <td class="data10"> -->
+<%--                                                     <form method="post"  action="<%=request.getContextPath()%>/ShipServlet"> --%>
+<%--                                                         <input name="shipNo" type="hidden" value="${shipTotalVO.shipNo}"> --%>
+<!--                                                         <input name="action" type="hidden" value="delete"> -->
+<!--                                                         <button class="btn btn-primary btn-sm update mr-4" type="submit" style="width:100%;height:100%;">刪除</button> -->
+<!--                                                     </form> -->
+<!--                                                 </td> -->
                                             </tr>
                                         </c:forEach>
                                         </tbody>

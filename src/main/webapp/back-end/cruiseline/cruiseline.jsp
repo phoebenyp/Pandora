@@ -120,8 +120,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     >最後編輯時間</th>
                                                 <th data-field="update" data-filter-control="select"
                                                     >修改</th>
-                                                    <th data-field="delete" data-filter-control="select"
-                                                    >刪除</th>
+<!--                                                     <th data-field="delete" data-filter-control="select" -->
+<!--                                                     >刪除</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -140,15 +140,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                                                            style="width:100%;height:100%;">修改</button>
 	                                                    </form>
 	                                                </td>
-	                                                <td>
-	                                                    <form method="post"  action="<%=request.getContextPath()%>/CruiseLineServlet">
-	                                                        <input name="action" type="hidden" value="deleteCruiseNo">
-	                                                        <input name="cruiseLineNo" type="hidden" value="${cruiseLineVO.cruiseLineNo }">
-	                                                        <button class="btn btn-primary btn-sm" type="submit"
-	                                                            onclick="對應謀個function"
-	                                                            style="width:100%;height:100%;">刪除</button>
-	                                                    </form>
-	                                                </td>
+<!-- 	                                                <td> -->
+<%-- 	                                                    <form method="post"  action="<%=request.getContextPath()%>/CruiseLineServlet"> --%>
+<!-- 	                                                        <input name="action" type="hidden" value="deleteCruiseNo"> -->
+<%-- 	                                                        <input name="cruiseLineNo" type="hidden" value="${cruiseLineVO.cruiseLineNo }"> --%>
+<!-- 	                                                        <button class="btn btn-primary btn-sm" type="submit" -->
+<!-- 	                                                            onclick="對應謀個function" -->
+<!-- 	                                                            style="width:100%;height:100%;">刪除</button> -->
+<!-- 	                                                    </form> -->
+<!-- 	                                                </td> -->
 	                                            </tr>
                                             </c:forEach>
                                         </tbody>
