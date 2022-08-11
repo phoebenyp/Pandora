@@ -7,6 +7,7 @@
 <%@ page import="web.member.service.impl.*"%>
 <%@ page import="web.packages.service.impl.*"%>
 <%@ page import="web.discount.bean.*"%>
+<%@ page import="web.discount.bean.DiscountVO"%>
 <%@ page import="web.room.bean.*"%>
 <%@ page import="web.member.bean.*"%>
 <%@ page import="web.packages.bean.*"%>
