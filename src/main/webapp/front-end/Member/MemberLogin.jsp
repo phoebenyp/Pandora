@@ -67,15 +67,15 @@
     </style>
   </head>
 <body>
-	<div id="preloader">
-      <div class="sk-spinner sk-spinner-wave">
-        <div class="sk-rect1"></div>
-        <div class="sk-rect2"></div>
-        <div class="sk-rect3"></div>
-        <div class="sk-rect4"></div>
-        <div class="sk-rect5"></div>
-      </div>
-    </div>
+<!-- 	<div id="preloader"> -->
+<!--       <div class="sk-spinner sk-spinner-wave"> -->
+<!--         <div class="sk-rect1"></div> -->
+<!--         <div class="sk-rect2"></div> -->
+<!--         <div class="sk-rect3"></div> -->
+<!--         <div class="sk-rect4"></div> -->
+<!--         <div class="sk-rect5"></div> -->
+<!--       </div> -->
+<!--     </div> -->
     <!-- End Preload 載入畫面-->
 
     <div class="layer"></div>
@@ -245,7 +245,7 @@
                   </p>
                   
                   <button  name="action" value="MemberLogin" type="submit" class="btn_full">登入</button>
-                  <a href="register.html " class="btn_full_outline">註冊</a>
+                  <a href="<%=request.getContextPath()%>/front-end/Member/MemberRegister.jsp" class="btn_full_outline">註冊</a>
                 </form>
               </div>
             </div>

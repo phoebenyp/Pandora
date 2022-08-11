@@ -10,7 +10,9 @@ public interface MemberDAO{
 	
 	void update(MemberVO memberVO);
 	
-	void delete(Integer memeberId);
+	void updateWithOutPicture(MemberVO memberVO);
+	
+//	void delete(Integer memeberId);
 	
 	MemberVO findByPrimaryKey(Integer memberId);
 	
@@ -18,7 +20,6 @@ public interface MemberDAO{
 	
 	MemberVO selectByEmailAndPassword(MemberVO memberVO);
 	
-	void updateWithOutPicture(MemberVO memberVO);
-    
+	
 	boolean isExistEmail(String memberEmail);
 }

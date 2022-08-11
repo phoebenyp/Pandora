@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,14 +71,23 @@
           <div class="col-6">
             <ul id="top_links">
               <li>
-              	
-                <font>${loginMember.memberEnglishLastName}&nbsp${loginMember.memberEnglishFirstName}</font>  
-                
+              	<c:if test="${loginMember != null}">
+                	<font>${loginMember.memberEnglishLastName}&nbsp${loginMember.memberEnglishFirstName}</font>  
+                </c:if>
               </li>
               <li>
-              	<a href="<%=request.getContextPath()%>/MemberLoginServlet?action=MemberSignOut">
-              		登出<i class="icon-logout-1" id="logout"></i>
-              	</a>
+              <c:choose>
+              	<c:when test="${loginMember != null}">
+	              	<a href="<%=request.getContextPath()%>/MemberLoginServlet?action=MemberSignOut">
+	              		登出<i class="icon-logout-1" id="logout"></i>
+	              	</a>
+              	</c:when>
+              	<c:otherwise>
+              		<a href="<%=request.getContextPath()%>/MemberLoginServlet?action=MemberLogin">
+	              		登入<i class="icon-logout-1" id="logout"></i>
+	              	</a>
+              	</c:otherwise>
+              </c:choose>
               </li>
               <li><a href="wishlist.html" id="wishlist_link">聯絡我們</a></li>
             </ul>
@@ -129,10 +139,10 @@
                 <a href="javascript:void(0);" class="show-submenu">會員中心<i class="icon-down-open-mini"></i></a>
                 <ul>
                   <li>
-                  	<a href="<%=request.getContextPath()%>/MemberLoginServlet?action=GetOneMember" class="nav-link" >會員資訊</a>
+                  	<a href="<%=request.getContextPath()%>/front-end/Member/Member_Info.jsp" class="nav-link" >會員資訊</a>
                   </li>
                   <li>
-                    <a href="all_restaurants_grid.html">會員資料修改</a>
+                    <a href="<%=request.getContextPath()%>/front-end/Member/Member_InfoAlter.jsp">會員資料修改</a>
                   </li>
                   <li>
                     <a href="all_restaurants_grid_masonry.html">密碼更改</a>

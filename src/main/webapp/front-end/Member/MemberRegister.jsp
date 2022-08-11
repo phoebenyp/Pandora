@@ -1,5 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="web.member.bean.*"%>
+<%@page import="web.member.bean.MemberVO"%>
+<%
+	MemberVO memberVO = (MemberVO) request.getAttribute("memberVO");
+	
+
+%>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -45,12 +54,12 @@
     />
 
     <!-- COMMON CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/vendors.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/front-end/Member/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/front-end/Member/css/style.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/front-end/Member/css/vendors.css" rel="stylesheet" />
 
     <!-- CUSTOM CSS -->
-    <link href="css/custom.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/front-end/Member/css/custom.css" rel="stylesheet" />
     <style>
       #sexOption {
         margin-right: 5px;
@@ -83,15 +92,15 @@
     </style>
   </head>
   <body>
-    <div id="preloader">
-      <div class="sk-spinner sk-spinner-wave">
-        <div class="sk-rect1"></div>
-        <div class="sk-rect2"></div>
-        <div class="sk-rect3"></div>
-        <div class="sk-rect4"></div>
-        <div class="sk-rect5"></div>
-      </div>
-    </div>
+<!--     <div id="preloader"> -->
+<!--       <div class="sk-spinner sk-spinner-wave"> -->
+<!--         <div class="sk-rect1"></div> -->
+<!--         <div class="sk-rect2"></div> -->
+<!--         <div class="sk-rect3"></div> -->
+<!--         <div class="sk-rect4"></div> -->
+<!--         <div class="sk-rect5"></div> -->
+<!--       </div> -->
+<!--     </div> -->
     <!-- End Preload -->
 
     <div class="layer"></div>
@@ -140,7 +149,7 @@
           <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>選單</span></a>
           <div class="main-menu">
             <div id="header_menu">
-              <img src="./img/logo.png" width="160" height="34" alt="City tours" />
+              <img src="<%=request.getContextPath()%>/front-end/Member/img/logo.png" width="160" height="34" alt="City tours" />
             </div>
             <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
             <ul>
@@ -196,21 +205,21 @@
                 <ul class="dropdown-menu" id="cart_items">
                   <li>
                     <div class="image">
-                      <img src="img/thumb_cart_1.jpg" alt="image" />
+                      <img src="<%=request.getContextPath()%>/front-end/Member/img/thumb_cart_1.jpg" alt="image" />
                     </div>
                     <strong><a href="#">Louvre museum</a>1x $36.00 </strong>
                     <a href="#" class="action"><i class="icon-trash"></i></a>
                   </li>
                   <li>
                     <div class="image">
-                      <img src="img/thumb_cart_2.jpg" alt="image" />
+                      <img src="<%=request.getContextPath()%>/front-end/Member/img/thumb_cart_2.jpg" alt="image" />
                     </div>
                     <strong><a href="#">Versailles tour</a>2x $36.00 </strong>
                     <a href="#" class="action"><i class="icon-trash"></i></a>
                   </li>
                   <li>
                     <div class="image">
-                      <img src="img/thumb_cart_3.jpg" alt="image" />
+                      <img src="<%=request.getContextPath()%>/front-end/Member/img/thumb_cart_3.jpg" alt="image" />
                     </div>
                     <strong><a href="#">Versailles tour</a>1x $36.00 </strong>
                     <a href="#" class="action"><i class="icon-trash"></i></a>
@@ -233,14 +242,15 @@
   <!-- End Header -->
 
     <main>
-      <section id="hero" class="login">
+      <section id="hero" class="login" style="background: url('https://picsum.photos/1903/800?random=5')"
+      >
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-5 col-md-6 col-sm-8">
               <div id="login">
                 <div class="text-center">
                   <img
-                    src="img/logo_sticky_2x.png"
+                    src="<%=request.getContextPath()%>/front-end/Member/img/logo_sticky_2x.png"
                     alt="Image"
                     width="160"
                     height="34"
@@ -248,12 +258,12 @@
                   <h3>註冊會員</h3>
                 </div>
                 <hr />
-                <form action="<%=request.getContextPath()%>/MemberLoginServlet" method="Post">
+                <form action="<%=request.getContextPath()%>/MemberLoginServlet" method="Post" enctype="multipart/form-data" >
                   <div class="row">
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>中文姓名*</label>
-                        <input type="text" class="form-control" name="chineseName" value="${memberVO.chineseName}" />
+                        <input type="text" class="form-control" name="chineseName" value="<%=(memberVO==null)? "王凱文" : memberVO.getChineseName()%>">
                         <font class="text-danger">${errorMsgsMap["chineseName"]}</font>
                       </div>
                     </div>
@@ -261,7 +271,7 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>出生日期＊</label>
-                        <input class="date-pick form-control" type="date" name="memberBirthday" value="${memberVO.memberBirthday}"/>
+                        <input class="date-pick form-control" type="date" name="memberBirthday" value="<%=(memberVO==null)? "2020-01-01" : memberVO.getMemberBirthday()%>">
                         <font class="text-danger">${errorMsgsMap["memberBirthday"]}</font>
                       </div>
                     </div>
@@ -269,28 +279,28 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>護照英文名字*</label>
-                        <input type="text" class="form-control" name="memberEnglishFirstName" value="${memberVO.memberEnglishFirstName}" />
+                        <input type="text" class="form-control" name="memberEnglishFirstName" value="<%=(memberVO==null)? "Kevin" : memberVO.getMemberEnglishFirstName()%>">
                         <font class="text-danger">${errorMsgsMap["memberEnglishFirstName"]}</font>
                       </div>
                     </div>
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>護照英文姓氏*</label>
-                        <input type="text" class="form-control" name="memberEnglishLastName" value="${memberVO.memberEnglishLastName}" />
+                        <input type="text" class="form-control" name="memberEnglishLastName" value="<%=(memberVO==null)? "Wang" : memberVO.getMemberEnglishLastName()%>">
                         <font class="text-danger">${errorMsgsMap["memberEnglishLastName"]}</font>
                       </div>
                     </div>
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>護照號碼*</label>
-                        <input type="text" class="form-control" name="memberPassportNo" value="${memberVO.memberPassportNo}" />
+                        <input type="text" class="form-control" name="memberPassportNo" value="<%=(memberVO==null)? "555553782" : memberVO.getMemberPassportNo()%>">
                         <font class="text-danger">${errorMsgsMap["memberPassportNo"]}</font>
                       </div>
                     </div>
                     <div class="col-sm-6">
                       <div class="form-group">
-                        <label>身分證字號*</label>
-                        <input type="text" class="form-control" name="memberIdNo" value="${memberVO.memberIdNo}" />
+                        <label>身分證字號</label>
+                        <input type="text" class="form-control" name="memberIdNo" value="<%=(memberVO==null)? "A122438597" : memberVO.getMemberIdNo()%>">
                         <font class="text-danger">${errorMsgsMap["memberIdNo"]}</font>
                       </div>
                     </div>
@@ -298,8 +308,8 @@
                   <div class="row">
                     <div class="col-sm-6">
                       <div class="form-group">
-                        <label>聯絡電話</label>
-                        <input type="text" class="form-control" name="memberPhoneNumber" value="${memberVO.memberPhoneNumber}" />
+                        <label>手機號碼</label>
+                        <input type="text" class="form-control" name="memberPhoneNumber" value="<%=(memberVO==null)? "0937586251" : memberVO.getMemberPhoneNumber()%>">
                         <font class="text-danger">${errorMsgsMap["memberPhoneNumber"]}</font>
                       </div>
                     </div>
@@ -307,35 +317,41 @@
                       <div class="form-group">
                         <label>性別</label>
                         <br />
-                        <input type="radio" name="gender" value="Male" id="sexOption"/>男
+                        <input type="radio" name="gender" value="Male" id="sexOption" checked="checked">男
                         <input type="radio" name="gender" value="Female" id="sexOption" />女
                         <font class="text-danger">${errorMsgsMap["gender"]}</font>
                       </div>
                     </div>
                   </div>
 
-                  <div id="twzipcode" class="form-row">
-                    <div class="form-group col-2">
-                      <label>地址</label>
-                      <div class="address" data-role="county" data-style="form-control" data-name="county" data-value=""></div>
-                    </div>
-                    <div class="form-group col-2">
-                      <div class="address" data-role="district" data-style="form-control" data-name="district" data-value=""></div>
-                    </div>
-                    <div class="form-group col-2">
-                      <div data-role="zipcode" data-style="form-control" data-name="zipcode" data-value=""></div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control" name="memberAddress" value="${memberVO.memberAddress}"placeholder="居住地址" />
+<!--                   <div id="twzipcode" class="form-row"> -->
+<!--                     <div class="form-group col-2"> -->
+<!--                       <label>地址</label> -->
+<!--                       <div class="address" data-role="county" data-style="form-control" data-name="county" data-value=""></div> -->
+<!--                     </div> -->
+<!--                     <div class="form-group col-2"> -->
+<!--                       <div class="address" data-role="district" data-style="form-control" data-name="district" data-value=""></div> -->
+<!--                     </div> -->
+<!--                     <div class="form-group col-2"> -->
+<!--                       <div data-role="zipcode" data-style="form-control" data-name="zipcode" data-value=""></div> -->
+<!--                     </div> -->
+<!--                   </div> -->
+                  <div class="form-group">新北市中和區建康路180號
+                    <input type="text" class="form-control" name="memberAddress" value="<%=(memberVO==null)? "台北市中正區八德路一段1號" : memberVO.getMemberAddress()%>" placeholder="居住地址" />
                     <font class="text-danger">${errorMsgsMap["memberAddress"]}</font>
                   </div>
                   <div class="row">
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>電子信箱＊</label>
-                        <input type="email" id="Email" class="form-control" name="memberEmail" value="${memberVO.memberEmail}" />
+                        <input type="email" id="Email" class="form-control" name="memberEmail" value="<%=(memberVO==null)? "kevinwang111@gmail.com" : memberVO.getMemberEmail()%>">
                         <font class="text-danger">${errorMsgsMap["memberEmail"]}</font>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>上傳照片＊</label>
+                        <input type="file" name="memberPictureId" />
                       </div>
                     </div>
                   </div>
@@ -343,52 +359,45 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>設定密碼＊</label>
-                        <input
-                          type="password"
-                          id="set_password"
-                          name="set_password"
-                          class="form-control"
-                        />
+                        <input type="password" id="set_password" name="memberPassword" class="form-control" value="${memberVO.memberPassword}"/>
                       </div>
                     </div>
                     <div class="col-sm-6">
                       <div class="form-group">
-                        <label>確認密碼＊</label>
+                        <label>確認密碼＊</label><font class="text-danger">${errorMsgsMap["PwErr"]}</font>
                         <input
-                          type="password"
-                          id="confirm_password_2"
-                          name="confirm_password_2"
-                          class="form-control"
-                        />
+                          type="password" id="confirm_password_2" name="memberPasswordRp" class="form-control"/>
                       </div>
                     </div>
                   </div>
-                  <div class="row d-flex align-items-end">
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <label>驗證碼＊</label>
-                        <input
-                          type="text"
-                          id="set_password"
-                          name="set_password"
-                          class="form-control"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <img
-                          class="verifyImg"
-                          src="./img/verifyImg.jpg"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                  </div>
+<!--                   <div class="row d-flex align-items-end"> -->
+<!--                     <div class="col-sm-6"> -->
+<!--                       <div class="form-group"> -->
+<!--                         <label>驗證碼＊</label> -->
+<!--                         <input -->
+<!--                           type="text" -->
+<!--                           id="set_password" -->
+<!--                           name="set_password" -->
+<!--                           class="form-control" -->
+<!--                         /> -->
+<!--                       </div> -->
+<!--                     </div> -->
+<!--                     <div class="col-sm-6"> -->
+<!--                       <div class="form-group"> -->
+<!--                         <img -->
+<!--                           class="verifyImg" -->
+<!--                           src="./img/verifyImg.jpg" -->
+<!--                           alt="" -->
+<!--                         /> -->
+<!--                       </div> -->
+<!--                     </div> -->
+<!--                   </div> -->
                   <div class="row d-flex justify-content-center">
                     <div class="col-sm-6">
+                    
                       <div class="form-group">
-                        <button class="btn_full col-sm-6">確認註冊</button>
+                        <button class="btn_full col-sm-6" type="submit" name="action" value="MemberAdd">確認註冊</button>
+<%--                         <div>${errorMsgs}</div> --%>
                       </div>
                     </div>
                   </div>
@@ -417,97 +426,16 @@
     </footer>
     <!-- End footer -->
 
-    <div id="toTop"></div>
-    <!-- Back to top button -->
-
-    <!-- Search Menu -->
-    <div class="search-overlay-menu">
-      <span class="search-overlay-close"
-        ><i class="icon_set_1_icon-77"></i
-      ></span>
-      <form role="search" id="searchform" method="get">
-        <input value="" name="q" type="text" placeholder="Search..." />
-        <button type="submit"><i class="icon_set_1_icon-78"></i></button>
-      </form>
-    </div>
-    <!-- End Search Menu -->
-
-    <!-- Sign In Popup -->
-    <div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
-      <div class="small-dialog-header">
-        <h3>Sign In</h3>
-      </div>
-      <form>
-        <div class="sign-in-wrapper">
-          <a href="#0" class="social_bt facebook">Login with Facebook</a>
-          <a href="#0" class="social_bt google">Login with Google</a>
-          <div class="divider"><span>Or</span></div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" class="form-control" name="email" id="email" />
-            <i class="icon_mail_alt"></i>
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              class="form-control"
-              name="password"
-              id="password"
-              value=""
-            />
-            <i class="icon_lock_alt"></i>
-          </div>
-          <div class="clearfix add_bottom_15">
-            <div class="checkboxes float-start">
-              <label class="container_check"
-                >Remember me
-                <input type="checkbox" />
-                <span class="checkmark"></span>
-              </label>
-            </div>
-            <div class="float-end">
-              <a id="forgot" href="javascript:void(0);">Forgot Password?</a>
-            </div>
-          </div>
-          <div class="text-center">
-            <input type="submit" value="Log In" class="btn_login" />
-          </div>
-          <div class="text-center">
-            Don’t have an account? <a href="javascript:void(0);">Sign up</a>
-          </div>
-          <div id="forgot_pw">
-            <div class="form-group">
-              <label>Please confirm login email below</label>
-              <input
-                type="email"
-                class="form-control"
-                name="email_forgot"
-                id="email_forgot"
-              />
-              <i class="icon_mail_alt"></i>
-            </div>
-            <p>
-              You will receive an email containing a link allowing you to reset
-              your password to a new preferred one.
-            </p>
-            <div class="text-center">
-              <input type="submit" value="Reset Password" class="btn_1" />
-            </div>
-          </div>
-        </div>
-      </form>
-      <!--form -->
-    </div>
-    <!-- /Sign In Popup -->
+    
+    
 
     <!-- Common scripts -->
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/common_scripts_min.js"></script>
-    <script src="js/functions.js"></script>
+    <script src="<%=request.getContextPath()%>/front-end/Member/js/jquery-3.6.0.min.js"></script>
+    <script src="<%=request.getContextPath()%>/front-end/Member/js/common_scripts_min.js"></script>
+    <script src="<%=request.getContextPath()%>/front-end/Member/js/functions.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
     <!-- Specific scripts -->
-    <script src="js/pw_strenght.js"></script>
+    <script src="<%=request.getContextPath()%>/front-end/Member/js/pw_strenght.js"></script>
     <script>
       function myFunction() {
         var input = $("#datePicker").val();
