@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="web.member.bean.DiscountVO"%>
+<%@ page import="web.member.bean.MemberVO"%>
+<%
+DiscountVO discountVO=new DiscountVO();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,12 +50,12 @@
     />
 
     <!-- COMMON CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/vendors.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/front-end/Member/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/front-end/Member/css/style.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/front-end/Member/css/vendors.css" rel="stylesheet" />
 
     <!-- CUSTOM CSS -->
-    <link href="css/custom.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/front-end/Member/css/custom.css" rel="stylesheet" />
     <style>
       .col-xl-4 col-lg-5 col-md-6 col-sm-8 {
         border: 1px solid red;
@@ -122,15 +127,15 @@
     </style>
   </head>
 <body>
-    <div id="preloader">
-      <div class="sk-spinner sk-spinner-wave">
-        <div class="sk-rect1"></div>
-        <div class="sk-rect2"></div>
-        <div class="sk-rect3"></div>
-        <div class="sk-rect4"></div>
-        <div class="sk-rect5"></div>
-      </div>
-    </div>
+<!--     <div id="preloader"> -->
+<!--       <div class="sk-spinner sk-spinner-wave"> -->
+<!--         <div class="sk-rect1"></div> -->
+<!--         <div class="sk-rect2"></div> -->
+<!--         <div class="sk-rect3"></div> -->
+<!--         <div class="sk-rect4"></div> -->
+<!--         <div class="sk-rect5"></div> -->
+<!--       </div> -->
+<!--     </div> -->
     <!-- End Preload 載入畫面-->
 
     <div class="layer"></div>
@@ -328,7 +333,7 @@
                   <!-- 登入白框上方LOGO -->
                 </div>
                 <hr />
-                <form action="<%=request.getContextPath()%>/MemberLoginServlet" method="Post" name="MBlogin">
+                <form action="<%=request.getContextPath()%>/MemberLoginServlet" method="Post">
                   <div class="memberAll">
                     <div class="memberGroup">
                       <div class="memberInfoLeft">
@@ -408,6 +413,7 @@
                       </div>
                       <div class="memberInfoRight">
                         <div class="memberInfoRightText">${loginMember.discountNo}</div>
+<%--                         <div>${loginMember.discountVO.memberLevel}</div>  --%>
                       </div>
                     </div>
                     <div class="memberGroup">
@@ -536,8 +542,8 @@
     <!-- /Sign In Popup -->
 
     <!-- Common scripts -->
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/common_scripts_min.js"></script>
-    <script src="js/functions.js"></script>
+    <script src="<%=request.getContextPath()%>/front-end/Member/js/jquery-3.6.0.min.js"></script>
+    <script src="<%=request.getContextPath()%>/front-end/Member/js/common_scripts_min.js"></script>
+    <script src="<%=request.getContextPath()%>/front-end/Member/js/functions.js"></script>
   </body>
 </html>

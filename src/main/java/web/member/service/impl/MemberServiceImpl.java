@@ -1,5 +1,6 @@
 package web.member.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import web.emp.bean.EmpVO;
@@ -31,6 +32,20 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
+	public MemberVO addMember(MemberVO memberVO) {
+
+		memberVO.setDiscountNo(1);
+		memberVO.setAccumulatedConsumption(0);
+		memberVO.setLastUpdateDate(LocalDateTime.now());
+		memberVO.setRegistrationTime(LocalDateTime.now());
+		
+		
+		dao.insert(memberVO);
+
+		return memberVO;
+	}
+	
+	@Override
 	public MemberVO updateMember(MemberVO memberVO) {
 		if (memberVO.getMemberPictureId() != null && memberVO.getMemberPictureId().length != 0) {
 			dao.update(memberVO);
@@ -38,8 +53,15 @@ public class MemberServiceImpl implements MemberService{
 			dao.updateWithOutPicture(memberVO);
 		}
 		
-		
-
 		return memberVO;
 	}
+	
+	@Override
+	public boolean isExistEmail(String memberEmail) {
+		
+		boolean result = dao.isExistEmail(memberEmail);
+		
+		return 	result;
+	}
+	
 }

@@ -2,6 +2,7 @@ package web.member.bean;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 public class MemberVO implements java.io.Serializable{
 	/**
@@ -17,7 +18,7 @@ public class MemberVO implements java.io.Serializable{
 	private String gender;
 	private LocalDate memberBirthday;
 	private String memberIdNo;
-	private Integer memberPhoneNumber;
+	private String memberPhoneNumber;
 	private String memberAddress;
 	private String memberEmail;
 	private String memberPassportNo;
@@ -26,6 +27,18 @@ public class MemberVO implements java.io.Serializable{
 	private String memberPassword;
 	private LocalDateTime registrationTime;
 	
+	@Override
+	public String toString() {
+		return "MemberVO [memberId=" + memberId + ", memberPictureId=" + Arrays.toString(memberPictureId)
+				+ ", discountNo=" + discountNo + ", chineseName=" + chineseName + ", memberEnglishFirstName="
+				+ memberEnglishFirstName + ", memberEnglishLastName=" + memberEnglishLastName + ", gender=" + gender
+				+ ", memberBirthday=" + memberBirthday + ", memberIdNo=" + memberIdNo + ", memberPhoneNumber="
+				+ memberPhoneNumber + ", memberAddress=" + memberAddress + ", memberEmail=" + memberEmail
+				+ ", memberPassportNo=" + memberPassportNo + ", accumulatedConsumption=" + accumulatedConsumption
+				+ ", lastUpdateDate=" + lastUpdateDate + ", memberPassword=" + memberPassword + ", registrationTime="
+				+ registrationTime + "]";
+	}
+
 	public MemberVO() {
 		
 	}
@@ -93,10 +106,10 @@ public class MemberVO implements java.io.Serializable{
 		this.memberIdNo = memberIdNo;
 	}
 	
-	public Integer getMemberPhoneNumber() {
+	public String getMemberPhoneNumber() {
 		return memberPhoneNumber;
 	}
-	public void setMemberPhoneNumber(Integer MemberPhoneNumber) {
+	public void setMemberPhoneNumber(String MemberPhoneNumber) {
 		this.memberPhoneNumber = MemberPhoneNumber;
 	}
 	
@@ -151,7 +164,7 @@ public class MemberVO implements java.io.Serializable{
 
 	public MemberVO(Integer memberId, byte[] memberPictureId, Integer discountNo, String chineseName,
 			String memberEnglishFirstName, String memberEnglishLastName, String gender, LocalDate memberBirthday,
-			String memberIdNo, Integer memberPhoneNumber, String memberAddress, String memberEmail,
+			String memberIdNo, String memberPhoneNumber, String memberAddress, String memberEmail,
 			String memberPassportNo, Integer accumulatedConsumption, LocalDateTime lastUpdateDate,
 			String memberPassword, LocalDateTime registrationTime) {
 		super();

@@ -2,6 +2,7 @@ package web.member.service;
 
 import java.util.List;
 
+
 import web.member.bean.MemberVO;
 
 public interface MemberService {
@@ -12,5 +13,9 @@ public interface MemberService {
 	
 	MemberVO getOneMember(Integer memberId) ;
 	
+	MemberVO addMember(MemberVO memberVO);
+	
 	MemberVO updateMember(MemberVO memberVO);
+	
+	boolean isExistEmail(String memberEmail);
 }
