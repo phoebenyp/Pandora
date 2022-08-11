@@ -23,4 +23,8 @@ public interface MemberDAO {
 	boolean isExistEmail(String memberEmail);
 
 	void delete(Integer memberId);
+	
+	void updateWithOutPictureSe(MemberVO memberVO);
+	
+	void updateSe(MemberVO memberVO);
 }

@@ -63,8 +63,17 @@ public class MemberServiceImpl implements MemberService{
 		
 		return 	result;
 	}
-	@Override
 	public void insertMember(MemberVO memberVO) {
 		dao.insert(memberVO);
+	}
+	@Override
+	public MemberVO updateMemberSe(MemberVO memberVO) {
+		if (memberVO.getMemberPictureId() != null && memberVO.getMemberPictureId().length != 0) {
+			dao.updateSe(memberVO);
+		} else {
+			dao.updateWithOutPictureSe(memberVO);
+		}
+		
+		return memberVO;
 	}
 }

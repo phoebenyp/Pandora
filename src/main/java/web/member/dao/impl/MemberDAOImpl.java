@@ -50,9 +50,117 @@ public class MemberDAOImpl implements MemberDAO {
 //	private static final String UPDATE                = "UPDATE Member set Member_ID=?,Member_Picture_ID=?,Chinese_Name=?,English_First_Name=?,English_Last_Name=?,"
 //			+ "Gender=?,Member_Birthday=?,Member_ID_No=?,Member_PhoneNumber=?,Member_Address=?,Member_Email=?,Member_Passport_No=?,Accumulated=?,"
 //			+ "Last_Update_Date=?,Member_Password=?,Registration_Time=? where Member_ID = ?";
+	private static final String UPDATESE                = "UPDATE Member set Member_ID=?,Member_Picture_ID=?,Discount_No=?,Chinese_Name=?,English_First_Name=?,English_Last_Name=?,"
+			+ "Gender=?,Member_Birthday=?,Member_ID_No=?,Member_PhoneNumber=?,Member_Address=?,Member_Email=?,Member_Passport_No=?,Accumulated=?,"
+			+ "Last_Update_Date=?,Member_Password=?,Registration_Time=? where Employee_ID = ?";
+	
+	private static final String UPDATE_WithOutPictureSE = "UPDATE Member set Member_ID=?                    ,Discount_No=?,Chinese_Name=?,English_First_Name=?,English_Last_Name=?,"
+			+ "Gender=?,Member_Birthday=?,Member_ID_No=?,Member_PhoneNumber=?,Member_Address=?,Member_Email=?,Member_Passport_No=?,Accumulated=?,"
+			+ "Last_Update_Date=?,Member_Password=?,Registration_Time=? where Employee_ID = ?";
+	@Override
+	public void updateSe(MemberVO memberVO) {
 
-	
-	
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATESE);
+
+			pstmt.setInt(1, memberVO.getMemberId());
+			pstmt.setBytes(2, memberVO.getMemberPictureId());
+			pstmt.setInt(3, memberVO.getDiscountNo());
+			pstmt.setString(4, memberVO.getChineseName());
+			pstmt.setString(5, memberVO.getMemberEnglishFirstName());
+			pstmt.setString(6, memberVO.getMemberEnglishLastName());
+			pstmt.setString(7, memberVO.getGender());
+			pstmt.setDate(8, Date.valueOf(memberVO.getMemberBirthday()));
+			pstmt.setString(9, memberVO.getMemberIdNo());
+			pstmt.setString(10, memberVO.getMemberPhoneNumber());
+			pstmt.setString(11, memberVO.getMemberAddress());
+			pstmt.setString(12, memberVO.getMemberEmail());
+			pstmt.setString(13, memberVO.getMemberPassportNo());
+			pstmt.setInt(14, memberVO.getAccumulatedConsumption());
+			pstmt.setTimestamp(15, Timestamp.valueOf(memberVO.getLastUpdateDate()));
+			pstmt.setString(16, memberVO.getMemberPassword());
+			pstmt.setTimestamp(17, memberVO.getRegistrationTime() != null ? Timestamp.valueOf(memberVO.getRegistrationTime()) : null);
+			pstmt.setInt(18, memberVO.getMemberId());
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}
+	@Override
+	public void updateWithOutPictureSe(MemberVO memberVO) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_WithOutPictureSE);
+			pstmt.setInt(1, memberVO.getMemberId());
+			pstmt.setInt(2, memberVO.getDiscountNo());
+			pstmt.setString(3, memberVO.getChineseName());
+			pstmt.setString(4, memberVO.getMemberEnglishFirstName());
+			pstmt.setString(5, memberVO.getMemberEnglishLastName());
+			pstmt.setString(6, memberVO.getGender());
+			pstmt.setDate(7, Date.valueOf(memberVO.getMemberBirthday()));
+			pstmt.setString(8, memberVO.getMemberIdNo());
+			pstmt.setString(9, memberVO.getMemberPhoneNumber());
+			pstmt.setString(10, memberVO.getMemberAddress());
+			pstmt.setString(11, memberVO.getMemberEmail());
+			pstmt.setString(12, memberVO.getMemberPassportNo());
+			pstmt.setInt(13, memberVO.getAccumulatedConsumption());
+			pstmt.setTimestamp(14, Timestamp.valueOf(memberVO.getLastUpdateDate()));
+			pstmt.setString(15, memberVO.getMemberPassword());
+			pstmt.setTimestamp(16, memberVO.getRegistrationTime() != null ? Timestamp.valueOf(memberVO.getRegistrationTime()) : null);
+			pstmt.setInt(17, memberVO.getMemberId());
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}
 	
 	
 	

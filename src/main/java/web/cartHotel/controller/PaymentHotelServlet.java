@@ -163,7 +163,7 @@ public class PaymentHotelServlet extends HttpServlet {
 		loginMemberInfo.setMemberBirthday(LocalDate.parse(mainOrdererInfoMap.get("birthday")));
 		loginMemberInfo.setLastUpdateDate(LocalDateTime.now());
 		
-		memSvc.updateMember(loginMemberInfo);
+		memSvc.updateMemberSe(loginMemberInfo);
 	}
 	
 	private void addNewMember(List<Map<String, String>> peerPeoleInfoMapList) {
