@@ -16,7 +16,6 @@ import web.cruiseline.bean.PortNameListVO;
 import web.cruiseline.dao.PortNameListDAO;
 
 public class PortNameListDAOImpl implements PortNameListDAO {
-	
 	private static DataSource ds = null;
 	static {
 		try {
@@ -41,18 +40,14 @@ public class PortNameListDAOImpl implements PortNameListDAO {
 	public List<PortNameListVO> getAll(Integer portsOfCallListNo) {
 		List<PortNameListVO> list = new ArrayList<PortNameListVO>();
 		PortNameListVO portNameListVO = null;
-
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
 		try {
-
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(SELECT_ALL);
 			pstmt.setInt(1, portsOfCallListNo);
 			rs = pstmt.executeQuery();
-
 			while (rs.next()) {
 				portNameListVO = new PortNameListVO();
 				portNameListVO.setPortsOfCallListNo(rs.getInt("Ports_of_Call_List_No"));
@@ -62,7 +57,6 @@ public class PortNameListDAOImpl implements PortNameListDAO {
 				portNameListVO.setPortOfCallSequence(rs.getInt("Port_of_Call_Sequence"));
 				list.add(portNameListVO);
 			}
-
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 		} finally {
@@ -90,23 +84,18 @@ public class PortNameListDAOImpl implements PortNameListDAO {
 		}
 		return list;
 	}
-	
 	@Override
 	public PortNameListVO selectOne(Integer portsOfCallListNo,Integer portOfCallSequence) {
 		PortNameListVO portNameListVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
 		try {
-
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(SELECT_ONE);
 			pstmt.setInt(1, portsOfCallListNo);
 			pstmt.setInt(2, portOfCallSequence);
-			
 			rs = pstmt.executeQuery();
-
 			while (rs.next()) {
 				portNameListVO = new PortNameListVO();
 				portNameListVO.setPortsOfCallListNo(rs.getInt("Ports_of_Call_List_No"));
@@ -115,7 +104,6 @@ public class PortNameListDAOImpl implements PortNameListDAO {
 				portNameListVO.setPortName(rs.getString("Port_Name"));
 				portNameListVO.setPortOfCallSequence(rs.getInt("Port_of_Call_Sequence"));
 			}
-
 			// Handle any driver errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -145,22 +133,17 @@ public class PortNameListDAOImpl implements PortNameListDAO {
 		}
 		return portNameListVO;
 	}
-	
 	@Override
 	public PortNameListVO selectLast(Integer portsOfCallListNo) {
 		PortNameListVO portNameListVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
 		try {
-
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(SELECT_LAST);
 			pstmt.setInt(1, portsOfCallListNo);
-			
 			rs = pstmt.executeQuery();
-
 			while (rs.next()) {
 				portNameListVO = new PortNameListVO();
 				portNameListVO.setPortsOfCallListNo(rs.getInt("Ports_of_Call_List_No"));
@@ -169,7 +152,6 @@ public class PortNameListDAOImpl implements PortNameListDAO {
 				portNameListVO.setPortName(rs.getString("Port_Name"));
 				portNameListVO.setPortOfCallSequence(rs.getInt("Port_of_Call_Sequence"));
 			}
-
 			// Handle any driver errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -199,22 +181,17 @@ public class PortNameListDAOImpl implements PortNameListDAO {
 		}
 		return portNameListVO;
 	}
-	
 	@Override
 	public PortNameListVO selectLastSecond(Integer portsOfCallListNo) {
 		PortNameListVO portNameListVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
 		try {
-
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(SELECT_LAST_SECOND);
 			pstmt.setInt(1, portsOfCallListNo);
-			
 			rs = pstmt.executeQuery();
-
 			while (rs.next()) {
 				portNameListVO = new PortNameListVO();
 				portNameListVO.setPortsOfCallListNo(rs.getInt("Ports_of_Call_List_No"));
@@ -223,7 +200,6 @@ public class PortNameListDAOImpl implements PortNameListDAO {
 				portNameListVO.setPortName(rs.getString("Port_Name"));
 				portNameListVO.setPortOfCallSequence(rs.getInt("Port_of_Call_Sequence"));
 			}
-
 			// Handle any driver errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -253,22 +229,17 @@ public class PortNameListDAOImpl implements PortNameListDAO {
 		}
 		return portNameListVO;
 	}
-	
 	@Override
 	public PortNameListVO selectFirst(Integer portsOfCallListNo) {
 		PortNameListVO portNameListVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
 		try {
-
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(SELECT_FIRST);
 			pstmt.setInt(1, portsOfCallListNo);
-			
 			rs = pstmt.executeQuery();
-
 			while (rs.next()) {
 				portNameListVO = new PortNameListVO();
 				portNameListVO.setPortsOfCallListNo(rs.getInt("Ports_of_Call_List_No"));
@@ -277,7 +248,6 @@ public class PortNameListDAOImpl implements PortNameListDAO {
 				portNameListVO.setPortName(rs.getString("Port_Name"));
 				portNameListVO.setPortOfCallSequence(rs.getInt("Port_of_Call_Sequence"));
 			}
-
 			// Handle any driver errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -307,22 +277,17 @@ public class PortNameListDAOImpl implements PortNameListDAO {
 		}
 		return portNameListVO;
 	}
-	
 	@Override
 	public PortNameListVO selectPNL(Integer portsOfCallListNo) {
 		PortNameListVO portNameListVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
 		try {
-
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(SELECT_PNL);
 			pstmt.setInt(1, portsOfCallListNo);
-			
 			rs = pstmt.executeQuery();
-
 			while (rs.next()) {
 				portNameListVO = new PortNameListVO();
 				portNameListVO.setPortsOfCallListNo(rs.getInt("Ports_of_Call_List_No"));
@@ -331,7 +296,6 @@ public class PortNameListDAOImpl implements PortNameListDAO {
 				portNameListVO.setPortName(rs.getString("Port_Name"));
 				portNameListVO.setPortOfCallSequence(rs.getInt("Port_of_Call_Sequence"));
 			}
-
 			// Handle any driver errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());

@@ -33,26 +33,19 @@ public class RoomTotalDAOImpl implements RoomTotalDAO {
 			+ " FROM Room_Total ORDER BY RTTC_No DESC LIMIT 1";
 	private static final String SELECT_SHIP_ALL ="SELECT  RTTC_No,Ship_No,Room_Type_No,Room_Type,Max_Count_of_Room_Type"
 			+ " FROM Room_Total WHERE Ship_No = ? ORDER BY RTTC_No ,Ship_No ASC";
-	
 	//指定其中的遊輪下的房型
 	@Override
 	public RoomTotalVO selectOnly(Integer shipNo,Integer roomTypeNo) {
-
 		RoomTotalVO roomTotalVO = new RoomTotalVO();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
 		try {
-
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(SELECT_ONLY);
-			
 			pstmt.setInt(1, shipNo);
 			pstmt.setInt(2, roomTypeNo);
-
 			rs = pstmt.executeQuery();
-
 			while (rs.next()) {
 				roomTotalVO = new RoomTotalVO();
 				roomTotalVO.setrTTCNo(rs.getInt("RTTC_No"));
@@ -60,9 +53,7 @@ public class RoomTotalDAOImpl implements RoomTotalDAO {
 				roomTotalVO.setRoomTypeNo(rs.getInt("Room_Type_No"));
 				roomTotalVO.setRoomType(rs.getString("Room_Type"));
 				roomTotalVO.setMaxCountOfRoomType(rs.getInt("Max_Count_of_Room_Type"));
-				
 			}
-
 			// Handle any driver errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
@@ -93,23 +84,17 @@ public class RoomTotalDAOImpl implements RoomTotalDAO {
 		}
 		return roomTotalVO;
 	}
-	
 	//選擇最新新增房型數量資料
 	@Override
 	public RoomTotalVO selectLast() {
-
 		RoomTotalVO roomTotalVO = new RoomTotalVO();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
 		try {
-
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(SELECT_RTTC_LAST);
-
 			rs = pstmt.executeQuery();
-
 			while (rs.next()) {
 				roomTotalVO = new RoomTotalVO();
 				roomTotalVO.setrTTCNo(rs.getInt("RTTC_No"));
@@ -117,9 +102,7 @@ public class RoomTotalDAOImpl implements RoomTotalDAO {
 				roomTotalVO.setRoomTypeNo(rs.getInt("Room_Type_No"));
 				roomTotalVO.setRoomType(rs.getString("Room_Type"));
 				roomTotalVO.setMaxCountOfRoomType(rs.getInt("Max_Count_of_Room_Type"));
-				
 			}
-
 			// Handle any driver errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
@@ -150,24 +133,19 @@ public class RoomTotalDAOImpl implements RoomTotalDAO {
 		}
 		return roomTotalVO;
 	}
-	
 	//列出所有房型數量資料
 	@Override
 	public List<RoomTotalVO> getShipAll(Integer shipNo) {
 		List<RoomTotalVO> list = new ArrayList<RoomTotalVO>();
 		RoomTotalVO roomTotalVO = null;
-
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
 		try {
-
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(SELECT_SHIP_ALL);
 			pstmt.setInt(1, shipNo);
 			rs = pstmt.executeQuery();
-
 			while (rs.next()) {
 				roomTotalVO = new RoomTotalVO();
 				roomTotalVO.setrTTCNo(rs.getInt("RTTC_No"));
@@ -175,14 +153,8 @@ public class RoomTotalDAOImpl implements RoomTotalDAO {
 				roomTotalVO.setRoomTypeNo(rs.getInt("Room_Type_No"));
 				roomTotalVO.setRoomType(rs.getString("Room_Type"));
 				roomTotalVO.setMaxCountOfRoomType(rs.getInt("Max_Count_of_Room_Type"));
-//				pstmt.setInt(1, roomTotalVO.getrTTCNo());
-//				pstmt.setInt(2, roomTotalVO.getShipNo());
-//				pstmt.setInt(3, roomTotalVO.getRoomTypeNo());
-//				pstmt.setString(4, roomTotalVO.getRoomType());
-//				pstmt.setInt(5, roomTotalVO.getMaxCountOfRoomType());
 				list.add(roomTotalVO);
 			}
-
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 		} finally {
@@ -210,23 +182,18 @@ public class RoomTotalDAOImpl implements RoomTotalDAO {
 		}
 		return list;
 	}
-	
 	//搜尋指定郵輪房型資料
 	@Override
 	public RoomTotalVO getRTTC(Integer rTTCNo) {
 		RoomTotalVO roomTotalVO = null;
-
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
 		try {
-
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(SELECT_RTTC);
 			pstmt.setInt(1, rTTCNo);
 			rs = pstmt.executeQuery();
-
 			while (rs.next()) {
 				roomTotalVO = new RoomTotalVO();
 				roomTotalVO.setrTTCNo(rs.getInt("RTTC_No"));
@@ -234,9 +201,7 @@ public class RoomTotalDAOImpl implements RoomTotalDAO {
 				roomTotalVO.setRoomTypeNo(rs.getInt("Room_Type_No"));
 				roomTotalVO.setRoomType(rs.getString("Room_Type"));
 				roomTotalVO.setMaxCountOfRoomType(rs.getInt("Max_Count_of_Room_Type"));
-				
 			}
-
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 		} finally {
@@ -264,6 +229,4 @@ public class RoomTotalDAOImpl implements RoomTotalDAO {
 		}
 		return roomTotalVO;
 	}
-	
-	
 }
