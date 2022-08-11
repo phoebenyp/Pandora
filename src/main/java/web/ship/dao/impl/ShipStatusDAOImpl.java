@@ -26,32 +26,24 @@ public class ShipStatusDAOImpl implements ShipStatusDAO {
 		}
 	}
 	private static final String SELECT_ALL ="SELECT Ship_Status_No,Ship_Status FROM Ship_Status";
-	
-	
 	@Override
 	public List<ShipStatusVO> getAll() {//列出所有郵輪狀態資料
 		List<ShipStatusVO> list = new ArrayList<ShipStatusVO>();
 		ShipStatusVO shipStatusVO = null;
-
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
 		try {
-
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(SELECT_ALL);
 			rs = pstmt.executeQuery();
-
 			while (rs.next()) {
-				// empVO 也稱為 Domain objects
 				shipStatusVO = new ShipStatusVO();
 				shipStatusVO.setShipStatusNo(rs.getInt("Ship_Status_No"));;
 				shipStatusVO.setShipStatus(rs.getString("Ship_Status"));;
 				list.add(shipStatusVO);
 				// Store the row in the list
 			}
-
 			// Handle any driver errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());

@@ -1,25 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-
-<%
-
-
-%>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ROYAL CLASS PANDORA_後台系統</title>
-
-
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
@@ -34,7 +25,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             width: 1024px;
             padding: 2em;
         }
-
         .bold-blue {
             font-weight: bold;
             color: #0277BD;
@@ -47,7 +37,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         }
     </style>
 </head>
-
 <body class="hold-transition sidebar-mini">
     <!-- 主要開發區塊 -->
     <div class="wrapper">
@@ -58,14 +47,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-
             </ul>
-
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-
                 </div>
                 <li class="nav-item">
                     <a class="nav-link" data-widget="login-out" href="#" role="button">
@@ -104,7 +89,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
-
             <!-- Main content -->
             <div class="content">
                 <div class="container-fluid">
@@ -116,13 +100,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="card-header">
                                     <h3 class="card-title">
                                         航線管理
-
                                     </h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <!-- form start -->
                                 <div class="container">
-
                                     <div class="row">
                                        <form method="post"  action="<%=request.getContextPath()%>/CruiseLineServlet" enctype='multipart/form-data'>
                                         <div class="col-6">
@@ -142,14 +124,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                         </form>
                                     </div>
-                                    
                                     </div>
-
-                                
-
-
                             </div>
-
                         </div>
                         <!-- /.card -->
                     </div>
@@ -170,12 +146,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="float-right d-none d-sm-inline">
             Tibame_TGA102 第五組
         </div>
-        <!-- Default to the left -->
-        <!-- <strong
-                    >Copyright &copy; 2014-2021
-                    <a href="https://adminlte.io">AdminLTE.io</a>.</strong
-                >
-                All rights reserved. -->
     </footer>
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -194,20 +164,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script>
         //exporte les données sélectionnées
         var $table = $('#table');
-
-
         var trBoldBlue = $(" table"); $(trBoldBlue).on("click", "tr", function () {
             $(this).toggleClass("bold-blue");
         }); </script>
-
     <!-- 上下頁 -->
-
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://github.com/kayalshri/tableExport.jquery.plugin/blob/master/jquery.base64.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
-
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>
     <!-- Latest compiled and minified Locales -->
@@ -228,10 +192,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
            step: 1,            //step: 60 (這是timepicker的預設間隔60分鐘)
 	       format: 'Y-m-d',
 	       value: new Date(),
-           //disabledDates:    ['2022/06/08','2022/06/09','2022/06/10'], // 去除特定不含
-           //startDate:	        '2022/07/10',  // 起始日
-           //minDate:           '-1970-01-01', // 去除今日(不含)之前
-           //maxDate:           '+1970-01-01'  // 去除今日(不含)之後
         });
         </script>
         <script>
@@ -240,22 +200,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 console.log(preview_el);
                 var p_file_el = document.getElementById("p_file");
                 console.log(p_file_el);
-  
               //讀取預覽圖
           var preview_img = function (file) {
             // file是資料位置
             // 用來讀取檔案
             var reader = new FileReader();
-  
             // 讀取檔案
             reader.readAsDataURL(file);
             reader.addEventListener("load", function (){
                 console.log(reader.result);
-  
               let img_str =
                 //設定檔案數據
                 '<img src="' + reader.result + '" class="preview_img">';
-  
               //新增檔案數據
               preview_el.innerHTML = img_str;
             });
@@ -270,5 +226,4 @@ scratch. This page gets rid of all links and provides the needed markup only.
             });
           </script>
 </body>
-
 </html>

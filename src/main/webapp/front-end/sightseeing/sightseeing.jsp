@@ -37,33 +37,25 @@
       sizes="144x144"
       href="<%=request.getContextPath()%>/Cart/html/img/apple-touch-icon-144x144-precomposed.png"
     />
-
     <!-- GOOGLE WEB FONT -->
     <link
       href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Montserrat:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-
     <!-- COMMON CSS -->
     <link href="<%=request.getContextPath()%>/Cart/html/css/bootstrap.min.css" rel="stylesheet" />
     <link href="<%=request.getContextPath()%>/front-end/sightseeing/css/style.css" rel="stylesheet" />
     <link href="<%=request.getContextPath()%>/front-end/sightseeing/css/vendors.css" rel="stylesheet" />
-
     <!-- CUSTOM CSS -->
     <link href="<%=request.getContextPath()%>/front-end/sightseeing/css/custom.css" rel="stylesheet" />
     <style>
       #map {
         border-bottom: none;
         height: 550px;
-        /* width: 100%;
-              position: absolute;
-              top: 0;
-              left: 0; */
       }
       .like_title ul {
         height: 50px;
         width: 80%;
-        /* border: 1px solid red; */
         background-color: #bbcfe2;
         position: relative;
       }
@@ -71,7 +63,6 @@
         font-size: 20px;
         font-family: "Montserrat", Arial, sans-serif;
         justify-content: center;
-        /* align-items: center; */
         display: flex;
         margin: 0;
         position: absolute;
@@ -80,7 +71,6 @@
       .like_content ul {
         height: 400px;
         width: 100%;
-        /* border: 1px solid red; */
         background-color: #fff;
       }
       .mpa_list {
@@ -101,10 +91,8 @@
       </div>
     </div>
     <!-- End Preload -->
-
     <div class="layer"></div>
     <!-- Mobile menu overlay mask -->
-
     <!-- Header Plain:  add the id plain to header and change logo.png to logo_sticky.png ======================= -->
     <header id="plain">
       <div id="top_line">
@@ -127,7 +115,6 @@
         <!-- End container-->
       </div>
       <!-- End top line-->
-
       <div class="container">
         <div class="row">
           <div class="col-4">
@@ -189,9 +176,7 @@
                     style="width: 100px"
                     >旅遊資訊</a
                   >
-
                   <!-- End row -->
-
                   <!-- End menu-wrapper -->
                 </li>
                 <li class="submenu">
@@ -296,49 +281,6 @@
           <div class="mpa_list">
             <ul></ul>
           </div>
-          <!-- <div id="map_filter">
-            <ul>
-              <li>
-                <a href="javascript:toggleMarkers('Historic');"
-                  ><i class="icon_set_1_icon-44"></i
-                  ><span>Historic Buildings</span></a
-                >
-              </li>
-              <li>
-                <a href="javascript:toggleMarkers('Sightseeing');"
-                  ><i class="icon_set_1_icon-3"></i
-                  ><span>City sightseeing</span></a
-                >
-              </li>
-              <li>
-                <a href="javascript:toggleMarkers('Museums');"
-                  ><i class="icon_set_1_icon-4"></i><span>Museum</span></a
-                >
-              </li>
-              <li>
-                <a href="javascript:toggleMarkers('Skyline');"
-                  ><i class="icon_set_1_icon-28"></i
-                  ><span>Skyline tours</span></a
-                >
-              </li>
-              <li>
-                <a href="javascript:toggleMarkers('Eat_drink');"
-                  ><i class="icon_set_1_icon-14"></i><span>Eat & Drink</span></a
-                >
-              </li>
-              <li>
-                <a href="javascript:toggleMarkers('Walking');"
-                  ><i class="icon_set_1_icon-37"></i
-                  ><span>Walking tours</span></a
-                >
-              </li>
-              <li>
-                <a href="javascript:toggleMarkers('Churches');"
-                  ><i class="icon_set_1_icon-43"></i><span>Churces</span></a
-                >
-              </li>
-            </ul>
-          </div> -->
         </div>
       </div>
       <div class="row wearherTitle"></div>
@@ -394,7 +336,6 @@
       </form>
     </div>
     <!-- End Search Menu -->
-
     <!-- Sign In Popup -->
     <div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
       <div class="small-dialog-header">
@@ -463,9 +404,7 @@
       <!--form -->
     </div>
     <!-- /Sign In Popup -->
-
     <footer class="revealed"></footer>
-
     <!-- Common scripts -->
     <script src="<%=request.getContextPath()%>/Cart/html/js/jquery-3.6.0.min.js"></script>
     <script src="<%=request.getContextPath()%>/Cart/html/js/common_scripts_min.js"></script>

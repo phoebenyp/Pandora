@@ -7,11 +7,9 @@
 <%@ page import="web.ship.bean.ShipStatusVO"%>
 <%
 	ShipsVO shipsVO = (ShipsVO) request.getAttribute("shipsVO");
-	
 	ShipStatusDAOImpl stSVC =new ShipStatusDAOImpl();
 	List<ShipStatusVO> list = stSVC.getAll();
 	pageContext.setAttribute("list",list);
-
 %>
 <!DOCTYPE html>
 <!--
@@ -19,13 +17,10 @@ This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html lang="zh">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ROYAL CLASS PANDORA_後台系統</title>
-
-
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
@@ -40,7 +35,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             width: 100%;
             padding: 2em;
         }
-
         .bold-blue {
             font-weight: bold;
             color: #0277BD;
@@ -74,14 +68,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-
             </ul>
-
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-
                 </div>
                 <li class="nav-item">
                     <a class="nav-link" data-widget="login-out" href="#" role="button">
@@ -146,8 +136,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                                 <thead>
                                                     <tr>
-
-                                                    
                                                         <th data-field="Job_Levels" data-filter-control="select"
                                                             >郵輪名稱</th>
                                                         <th data-field="Englis_Last_Name" data-filter-control="select"
@@ -156,7 +144,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <th data-field="Englis_First_Name" data-filter-control="select"
                                                             >
                                                             最後維護時間</th>
-                                                        
                                                         <th data-field="2" data-filter-control="select"
                                                             >樓層</th>
                                                         <th data-field="33" data-filter-control="select"
@@ -165,12 +152,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-
-                                                        
                                                         <td><input type="text" name="shipname" value="<%=(shipsVO==null)? "Pandora" : shipsVO.getShipName()%>"></td>
                                                         <td><input id="start_date" type="text" name="shipstart" value="<%=(shipsVO==null)? "2020-07-18" : shipsVO.getStarStatus() %>"></td>
                                                         <td><input id="end_date" type="text" name="shipmain" value="<%=(shipsVO==null)? "2020-07-18" : shipsVO.getLastmaintenanceTime() %>"></td>
-                                                        
                                                         <td><input type="text" name="shipfloor" value="<%=(shipsVO==null)? "15" : shipsVO.getFloorOfShip()%>"></td>
                                                         <td>
 															<select name="shipstatusNo">
@@ -204,12 +188,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="float-right d-none d-sm-inline">
             Tibame_TGA102 第五組
         </div>
-        <!-- Default to the left -->
-        <!-- <strong
-                    >Copyright &copy; 2014-2021
-                    <a href="https://adminlte.io">AdminLTE.io</a>.</strong
-                >
-                All rights reserved. -->
     </footer>
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -228,20 +206,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script>
         //exporte les données sélectionnées
         var $table = $('#table');
-
-
         var trBoldBlue = $(" table"); $(trBoldBlue).on("click", "tr", function () {
             $(this).toggleClass("bold-blue");
         }); </script>
-
     <!-- 上下頁 -->
-
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://github.com/kayalshri/tableExport.jquery.plugin/blob/master/jquery.base64.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
-
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>
     <!-- Latest compiled and minified Locales -->
@@ -265,7 +237,6 @@ $(function(){
 	  },
 	  timepicker:false
 	 });
-	 
 	 $('#end_date').datetimepicker({
 	  format:'Y-m-d',
 	  onShow:function(){
@@ -278,5 +249,4 @@ $(function(){
 });
 </script>
 </body>
-
 </html>

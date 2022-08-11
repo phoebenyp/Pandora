@@ -3,15 +3,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="web.cruiseline.dao.impl.CruiseLineDAOImpl" %>
 <%@ page import="web.cruiseline.bean.CruiseLineVO" %>
-
-
 <% 
 	CruiseLineDAOImpl cruiseLineSVC=new CruiseLineDAOImpl();
 	List<CruiseLineVO> list = cruiseLineSVC.getAll();
 	pageContext.setAttribute("list",list);
-
-
-
 %>
 <%@ page import="java.util.*"%>
 <!DOCTYPE html>
@@ -20,13 +15,10 @@ This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html lang="zh">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ROYAL CLASS PANDORA_後台系統</title>
-
-
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
@@ -41,14 +33,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             width: 1024px;
             padding: 2em;
         }
-
         .bold-blue {
             font-weight: bold;
             color: #0277BD;
         }
     </style>
 </head>
-
 <body class="hold-transition sidebar-mini">
     <!-- 主要開發區塊 -->
     <div class="wrapper">
@@ -59,14 +49,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-
             </ul>
-
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-
                 </div>
                 <li class="nav-item">
                     <a class="nav-link" data-widget="login-out" href="#" role="button">
@@ -105,7 +91,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
-
             <!-- Main content -->
             <div class="content">
                 <div class="container-fluid">
@@ -117,19 +102,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="card-header">
                                     <h3 class="card-title">
                                         航線管理
-
                                     </h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <!-- form start -->
                                 <div class="container">
-
                                     <div class="row">
                                        <table class=" col-md-12" id="table" data-toggle="table" data-search="false" data-filter-control="true"
                                         data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                         <thead>
                                             <tr>
-
                                                 <th data-field="cruiseNumber" data-filter-control="input"
                                                     >航線編號</th>
                                                 <th data-field="cruiseName" data-filter-control="select"
@@ -140,17 +122,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     >修改</th>
                                                     <th data-field="delete" data-filter-control="select"
                                                     >刪除</th>
-
-
-
                                             </tr>
                                         </thead>
                                         <tbody>
 <%@ include file="page1.file" %>
                                         	<c:forEach var="cruiseLineVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-                                        	
 	                                            <tr>
-	
 	                                                <td name="cruiseLineNo">${cruiseLineVO.cruiseLineNo }</td>
 	                                                <td name="cruiseLines">${cruiseLineVO.cruiseLines }</td>
 	                                                <td name="time">${cruiseLineVO.time }</td>
@@ -172,8 +149,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                                                            style="width:100%;height:100%;">刪除</button>
 	                                                    </form>
 	                                                </td>
-	
-	
 	                                            </tr>
                                             </c:forEach>
                                         </tbody>
@@ -186,16 +161,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </form>
                                     <%@ include file="page2.file" %>
                                     </div>
-<%--                                 <div style="width:100%;text-align:center"> --%>
-<%--                                     <input style="display:inline-block;width:150px" type="button" --%>
-<%--                                         onclick="history.go(-1)" value="上一頁"></input> --%>
-<%--                                     <input style="display:inline-block;width:150px" type="button" --%>
-<%--                                         onclick="history.forward()" value="下一頁"> --%>
-<%--                                 </div> --%>
-
-
                             </div>
-
                         </div>
                         <!-- /.card -->
                     </div>
@@ -216,12 +182,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="float-right d-none d-sm-inline">
             Tibame_TGA102 第五組
         </div>
-        <!-- Default to the left -->
-        <!-- <strong
-                    >Copyright &copy; 2014-2021
-                    <a href="https://adminlte.io">AdminLTE.io</a>.</strong
-                >
-                All rights reserved. -->
     </footer>
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -240,19 +200,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script>
         //exporte les données sélectionnées
         var $table = $('#table');
-
-
         var trBoldBlue = $(" table"); $(trBoldBlue).on("click", "tr", function () {
             $(this).toggleClass("bold-blue");
         }); </script>
-
     <!-- 上下頁 -->
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://github.com/kayalshri/tableExport.jquery.plugin/blob/master/jquery.base64.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
-
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>
     <!-- Latest compiled and minified Locales -->
@@ -263,5 +218,4 @@ scratch. This page gets rid of all links and provides the needed markup only.
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
 </body>
-
 </html>

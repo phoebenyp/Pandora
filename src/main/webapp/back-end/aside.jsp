@@ -79,7 +79,7 @@
           </ul>
         </li>
 
-        <li class="nav-item menu-open">
+        <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="fa-solid fa-ship"></i>
             <p>行程管理<i class="right fas fa-angle-left"></i></p>

@@ -32,17 +32,13 @@ public class ShipTotalDAOImpl implements ShipTotalDAO {
 	public List<ShipTotalVO> getAll() {//列出所有房型數量資料
 		List<ShipTotalVO> list = new ArrayList<ShipTotalVO>();
 		ShipTotalVO shipTotalVO = null;
-
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
 		try {
-
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
-
 			while (rs.next()) {
 				shipTotalVO = new ShipTotalVO();
 				shipTotalVO.setShipNo(rs.getInt("Ship_No"));
@@ -55,7 +51,6 @@ public class ShipTotalDAOImpl implements ShipTotalDAO {
 				shipTotalVO.setShipStatus(rs.getString("Ship_Status"));
 				list.add(shipTotalVO);
 			}
-
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 		} finally {

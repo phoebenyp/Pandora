@@ -15,7 +15,6 @@
 	RoomTotalDAOImpl rtSVC =new RoomTotalDAOImpl();
 	List<RoomTotalVO> listRT = rtSVC.getShipAll(shipsVO.getShipNo());
 	pageContext.setAttribute("listRT",listRT);
-
 %>
 <!DOCTYPE html>
 <!--
@@ -23,13 +22,10 @@ This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html lang="zh">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ROYAL CLASS PANDORA_後台系統</title>
-
-
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
@@ -44,31 +40,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
             width: 100%;
             padding: 2em;
         }
-
         .bold-blue {
             font-weight: bold;
             color: #0277BD;
         }
         #preview {
             border: 1px solid lightgray;
-            /* display: inline-block; */
-            /* width: 100px; */
-            /* min-height: 150px; */
-            /* position: relative; */
         }
         #preview span.text {
-            /* position: absolute; */
-            /* display: inline-block; */
-            /* left: 50%; */
-            /* top: 50%; */
-            /* transform: translate(-50%, -50%); */
-            /* z-index: -1; */
             color: lightgray;
         }
         
     </style>
 </head>
-
 <body class="hold-transition sidebar-mini">
     <!-- 主要開發區塊 -->
     <div class="wrapper">
@@ -79,14 +63,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-
             </ul>
-
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-
                 </div>
                 <li class="nav-item">
                     <a class="nav-link" data-widget="login-out" href="#" role="button">
@@ -154,7 +134,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                                            data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
 	                                            <thead>
 	                                                <tr>
-	
 	                                                    <th data-field="shipNo" data-filter-control="input"
 	                                                    >郵輪編號</th>
 	                                                <th data-field="shipName" data-filter-control="select"
@@ -173,7 +152,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                                            </thead>
 	                                            <tbody>
 	                                                <tr>
-	
 	                                                    <td > <input type="hidden" name="shipNo" value="<%=shipsVO.getShipNo() %>"><%=shipsVO.getShipNo() %> </td>
 	                                                    <td><input name="shipname" type="text" value="<%=shipsVO.getShipName()%>"></td>
 	                                                    <td > <input id="start_date"  name="shipstart" type="hidden" value="<%=shipsVO.getStarStatus() %>"><%=shipsVO.getStarStatus() %></td>
@@ -197,7 +175,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                                          		</FORM>
                                           		</div>
                                           		<div class="col-6" style="display: flex; justify-content: flex-end;">
-    
 	                                                <FORM METHOD="post" action="<%=request.getContextPath()%>/ShipServlet" >
 	                                                    <input name="shipNo" type="hidden" value="${shipsVO.shipNo }">
 	                                                    <input type="hidden" name="action" value="insertRTTCBefore">
@@ -227,7 +204,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		                                                style="width:100%;height:100%;">更新</button>
 		                                        </form>
 		                                    </div>
-		                                        
 		                                    <div class="col-md-2">
 		                                            <FORM METHOD="post" action="<%=request.getContextPath()%>/ShipServlet" >
 			                                            <input name="rTTCNo" type="hidden" value="${rTVO.rTTCNo }">
@@ -237,35 +213,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			                                                style="width:100%;height:100%;" value="">刪除</button>
 		                                        	</form>
 		                                    </div>
-										
 										</c:forEach>
-<!-- 	                                    <label class="col-md-2" > -->
-<!-- 	                                        Standard Room -->
-<!-- 	                                    </label> -->
-<!-- 	                                    <div class="col-md-2"> -->
-<!-- 	                                        <label>房型數量</label> -->
-<!-- 	                                    </div> -->
-<!-- 	                                    <div class="col-md-2 mr-4"> -->
-<!-- 	                                        <label>34</label> -->
-<!-- 	                                    </div> -->
-<!-- 	                                    <div class="col-md-2"> -->
-<!-- 	                                        <form method="post"  action=""> -->
-<!-- 	                                            <input name="update" type="hidden" value="更新"> -->
-<!-- 	                                            <button class="btn btn-primary btn-sm update" type="button" -->
-<!-- 	                                                style="width:100%;height:100%;">更新</button> -->
-<!-- 	                                        </form> -->
-<!-- 	                                    </div> -->
-	                                        
-<!-- 	                                    <div class="col-md-2"> -->
-<!-- 	                                            <form method="post"  action=""> -->
-<!-- 	                                            <input name="delete" type="hidden" value=""> -->
-<!-- 	                                            <button class="btn btn-primary btn-sm update" type="button" -->
-<!-- 	                                                style="width:100%;height:100%;" value="">刪除</button> -->
-<!-- 	                                        </form> -->
-<!-- 	                                    </div> -->
-	                                       
 	                                </div>
-                                
                             </div>
                         </div>
                     </div>
@@ -281,12 +230,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="float-right d-none d-sm-inline">
             Tibame_TGA102 第五組
         </div>
-        <!-- Default to the left -->
-        <!-- <strong
-                    >Copyright &copy; 2014-2021
-                    <a href="https://adminlte.io">AdminLTE.io</a>.</strong
-                >
-                All rights reserved. -->
     </footer>
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -305,20 +248,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script>
         //exporte les données sélectionnées
         var $table = $('#table');
-
-
         var trBoldBlue = $(" table"); $(trBoldBlue).on("click", "tr", function () {
             $(this).toggleClass("bold-blue");
         }); </script>
-
     <!-- 上下頁 -->
-
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://github.com/kayalshri/tableExport.jquery.plugin/blob/master/jquery.base64.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
-
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>
     <!-- Latest compiled and minified Locales -->
@@ -355,5 +292,4 @@ $(function(){
 });
 </script>
 </body>
-
 </html>

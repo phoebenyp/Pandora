@@ -13,11 +13,9 @@ import web.cruiseline.dao.impl.PortNameListDAOImpl;
 import web.cruiseline.dao.impl.PortsOfCallListDAOImpl;
 
 public class CruiseLineServiceImpl {
-	
 	private CruiseLineDAO daoCruiseLine = new CruiseLineDAOImpl();
 	private PortNameListDAO daoPortNameList = new PortNameListDAOImpl();
 	private PortsOfCallListDAOImpl daoPortsOfCallList= new PortsOfCallListDAOImpl();
-	
 	public void selectCNLAll(Integer cruiseLineNo) {
 		daoPortNameList.selectPNL(cruiseLineNo);
 	}
@@ -34,7 +32,6 @@ public class CruiseLineServiceImpl {
 		List<PortNameListVO> result = dao.getAll(portsOfCallListNo);
 		return result;
 	}
-	
 	public PortNameListVO selectPortNameListOne(Integer portsOfCallListNo,Integer portOfCallSequence) {
 		return daoPortNameList.selectOne(portsOfCallListNo, portOfCallSequence);
 	}
@@ -50,31 +47,24 @@ public class CruiseLineServiceImpl {
 	public PortNameListVO selectPortNameListPNL(Integer portsOfCallListNo) {
 		return daoPortNameList.selectPNL(portsOfCallListNo);
 	}
-	
 	public PortsOfCallListVO insertPCL(Integer cruiseLinesNo,Integer portOfCallNo,Integer portOfCallSequence) {
 		PortsOfCallListVO portsOfCallListVO = new PortsOfCallListVO();
-		
 		portsOfCallListVO.setCruiseLinesNo(cruiseLinesNo);
 		portsOfCallListVO.setPortOfCallNo(portOfCallNo);
 		portsOfCallListVO.setPortOfCallSequence(portOfCallSequence);
-		
 		daoPortsOfCallList.insert(portsOfCallListVO);
 		return portsOfCallListVO;
 	}
 	
 	public PortsOfCallListVO updatePCL(Integer cruiseLinesNo,Integer portOfCallNo,Integer portOfCallSequence,Integer portsOfCallListNo) {
 		PortsOfCallListVO portsOfCallListVO = new PortsOfCallListVO();
-		
 		portsOfCallListVO.setCruiseLinesNo(cruiseLinesNo);
 		portsOfCallListVO.setPortOfCallNo(portOfCallNo);
 		portsOfCallListVO.setPortOfCallSequence(portOfCallSequence);
 		portsOfCallListVO.setPortsOfCallListNo(portsOfCallListNo);
-		
 		daoPortsOfCallList.update(portsOfCallListVO);
-		
 		return portsOfCallListVO;
 	}
-	
 	public void deletePCL(Integer portsOfCallListNo) {
 		daoPortsOfCallList.delete(portsOfCallListNo); 
 	}
@@ -85,7 +75,6 @@ public class CruiseLineServiceImpl {
 			cruiseLineVO.setCruiseLinePicture(cruiseLinePicture);
 			cruiseLineVO.setTime(time);
 			cruiseLineVO.setCruiseLineNo(cruiseLineNo);
-//			System.out.println("null");
 			daoCruiseLine.update(cruiseLineVO);
 			return cruiseLineVO;
 		}else{
@@ -93,7 +82,6 @@ public class CruiseLineServiceImpl {
 			cruiseLineVO.setCruiseLines(cruiseLines);
 			cruiseLineVO.setTime(time);
 			cruiseLineVO.setCruiseLineNo(cruiseLineNo);
-//			System.out.println("have");
 			daoCruiseLine.updateUNPic(cruiseLineVO);
 			return cruiseLineVO;
 		}
@@ -103,15 +91,11 @@ public class CruiseLineServiceImpl {
 		String cruiseLinesS = daoPortNameList.selectLastSecond(cruiseLineNo).getPortName();
 		String cruiseLinesT = daoPortNameList.selectLast(cruiseLineNo).getPortName();
 		String cruiseLinesA = cruiseLinesF+"-"+cruiseLinesS+"-"+cruiseLinesT;
-		
 		CruiseLineVO cruiseLineVO =new CruiseLineVO();
 		cruiseLineVO.setCruiseLineNo(cruiseLineNo);
 		cruiseLineVO.setCruiseLines(cruiseLinesA);
-		
 		daoCruiseLine.updateCLName(cruiseLineVO);
-		
 		return cruiseLineVO;
-		
 	}
 	public CruiseLineVO insertCL(byte[] cruiseLinePicture,LocalDate time) {
 		CruiseLineVO cruiseLineVO =new CruiseLineVO();
@@ -119,9 +103,7 @@ public class CruiseLineServiceImpl {
 		cruiseLineVO.setCruiseLinePicture(cruiseLinePicture);
 		cruiseLineVO.setTime(time);
 		daoCruiseLine.insert(cruiseLineVO);
-		
 		return cruiseLineVO;
-		
 	}
 	public void cruiseLineLast() {
 		Integer cLLastInteger = daoCruiseLine.selectLast().getCruiseLineNo();
@@ -134,6 +116,5 @@ public class CruiseLineServiceImpl {
 	public void deleteCruiseLineNo(Integer cruiseLineNo) {
 		daoPortsOfCallList.deleteAll(cruiseLineNo);
 		daoCruiseLine.delete(cruiseLineNo);
-		
 	}
 }

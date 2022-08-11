@@ -24,25 +24,18 @@ public class SightseeingMarkDAOImpl {
 			e.printStackTrace();
 		}
 	}
-	
 	private String GET_PIC = "SELECT Sightseeing_Mark_No,Port_of_Call_No,Sightseeing_Mark_Picture FROM Pandora.Sightseeing_Mark WHERE Port_of_Call_No = ?;";
-
-	
 	public List<SightseeingMarkVO> getPic(Integer portOfCallNo) {
 		List<SightseeingMarkVO> list = new ArrayList<SightseeingMarkVO>();
 		SightseeingMarkVO sightseeingMarkVO = null;
-
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
 		try {
-
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_PIC);
 			pstmt.setInt(1, portOfCallNo);
 			rs = pstmt.executeQuery();
-
 			while (rs.next()) {
 				sightseeingMarkVO = new SightseeingMarkVO();
 				sightseeingMarkVO.setSightseeingMarkNo(rs.getInt("Sightseeing_Mark_No"));
@@ -50,7 +43,6 @@ public class SightseeingMarkDAOImpl {
 				sightseeingMarkVO.setSightseeingMarkPicture(rs.getString("Sightseeing_Mark_Picture"));
 				list.add(sightseeingMarkVO);
 			}
-
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 		} finally {

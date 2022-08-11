@@ -28,32 +28,24 @@ public class LaLoPicServlet extends HttpServlet {
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json;charset=UTF-8");
-
 		BufferedReader read = request.getReader();
 		String json = read.readLine();
 		// 不建議使用
 		Map<Object, String> map = gs.fromJson(json, new TypeToken<Map<String, String>>() {
 		}.getType());
 		Integer portNo= Integer.valueOf(map.get("port"));
-//		System.out.println(portNo);
 		PortServiceImpl svc= new PortServiceImpl();
 		BigDecimal la=(BigDecimal)(svc.getPortOne(portNo).getSightseeingLatitude());
 		BigDecimal lo=(BigDecimal)(svc.getPortOne(portNo).getSightseeingLongitude());
 		SightseeingMarkServiceImpl sMsvc=new SightseeingMarkServiceImpl();
 		List<SightseeingMarkVO> getPic=sMsvc.getPic(portNo);
 		List<String> sightseeingMarkPicture= getPic.stream().map(vo -> vo.getSightseeingMarkPicture()).collect(Collectors.toList());
-		
-		
 		response.getWriter().print(la);
 		response.getWriter().print(" ");
 		response.getWriter().print(lo);
-//		response.getWriter().print(" ");
-//		response.getWriter().print(sightseeingMarkPicture);
 		for(String str:sightseeingMarkPicture) {
-//			System.out.println(str);
 			response.getWriter().print(" ");
 			response.getWriter().print(str);
 		}
 	}
-
 }

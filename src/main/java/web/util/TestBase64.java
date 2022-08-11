@@ -16,21 +16,16 @@ public class TestBase64 {
 	public static final String URL = "jdbc:mysql://localhost:3306/Pandora?serverTimezone=Asia/Taipei";
 	public static final String USER = "root";
 	public static final String PASSWORD = "password";
-	
-	
 	private static final String SQL = "UPDATE Sightseeing_Mark SET Sightseeing_Mark_Picture = ? "
 			+ "WHERE Sightseeing_Mark_No = ? ";
 	public static void main(String[] args) {
 		String base64_prefix="data:image/png;base64,";
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		
-		
 		try {
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection(URL, USER, PASSWORD);
 			pstmt = con.prepareStatement(SQL);
-			
 			// 1. setBlob (JDBC 4.0 / JDK 6)
 			pstmt.setString(1, base64_prefix+LocalImgToBase64("src/main/webapp/images/sightseeing1.png"));
 			pstmt.setInt(2, 1);
@@ -80,7 +75,6 @@ public class TestBase64 {
 					System.out.println(se);
 				}
 			}
-
 			if (con != null) {
 				try {
 					con.close();
@@ -90,7 +84,6 @@ public class TestBase64 {
 			}
 		}
 	}
-	
 	 /**
      * 將本地圖片轉成 base64 字串
      * @param filePath 本地檔案的位置
@@ -120,17 +113,4 @@ public class TestBase64 {
         }
         return null;
     } 
-//    public String local_change(String file){
-//        //字首
-//        String base64_prefix="data:image/png;base64,";
-//        //base64字串/Pandora/src/main/webapp/images/cruiseline1.jpg
-//        String base64_str = LocalImgToBase64(file);
-//        //圖片完整的編碼
-//        String base64_file=base64_prefix+base64_str;
-//        //列印
-//        System.out.println("本地圖片base完整字串:"+"\n"+base64_file);
-//        return base64_file;
-//    }
-    
-
 }

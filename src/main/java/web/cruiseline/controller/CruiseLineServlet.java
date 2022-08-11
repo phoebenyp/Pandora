@@ -34,13 +34,10 @@ public class CruiseLineServlet extends HttpServlet {
 			ServletOutputStream out;
 			out = response.getOutputStream();
 			Integer cruiseLineNo = Integer.valueOf(request.getParameter("cruiseLineNo"));
-//			System.out.println(cruiseLineNo);
 			CruiseLineServiceImpl clsSvc = new CruiseLineServiceImpl();
 			CruiseLineVO cruiseLineVO = clsSvc.selectCruiseNo(cruiseLineNo);
-//			byte[] img64 = Base64.encode(new String(cruiseLineVO.getCruiseLinePicture()));
 			out.write(cruiseLineVO.getCruiseLinePicture());
 		}
-
 		if ("usesrImage".equals(action)) {
 			response.setContentType("image/jpeg");
 			ServletOutputStream out;
@@ -51,61 +48,37 @@ public class CruiseLineServlet extends HttpServlet {
 		}
 		doPost(request, response);
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
-		
 		if ("selectCruiseNo".equals(action)) { // 來自ships.jsp的請求
-
 			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
 			request.setAttribute("errorMsgs", errorMsgs);
-			
 				/***************************1.接收請求參數****************************************/
 				Integer cruiseLineNo = Integer.valueOf(request.getParameter("cruiseLineNo"));
-//				System.out.println(request.getParameter("shipNo"));
-				
 				/***************************2.開始查詢資料****************************************/
 				CruiseLineServiceImpl cruiseLineSvc = new CruiseLineServiceImpl();
 				//抽出單艘船的資料
 				CruiseLineVO cruiseLineVO = cruiseLineSvc.selectCruiseNo(cruiseLineNo);
-//				System.out.println(shipsVO);
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				request.setAttribute("cruiseLineVO", cruiseLineVO);    
 				String url = "/back-end/cruiseline/cruiselineUpdate.jsp";
 				RequestDispatcher successView = request.getRequestDispatcher(url);// 成功轉交 shipUpdate.jsp
 				successView.forward(request, response);
 		}
-		
 		if ("updatePCLBefore".equals(action)) { // 來自update_emp_input.jsp的請求
-			
 			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
 			request.setAttribute("errorMsgs", errorMsgs);
-			
-		
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				Integer portsOfCallListNo = Integer.valueOf(request.getParameter("portsOfCallListNo"));
 				Integer cruiseLineNo = Integer.valueOf(request.getParameter("cruiseLineNo"));
-//				System.out.println(portsOfCallListNo);
 				String cruiseLines =request.getParameter("cruiseLines");
-
-
-				// Send the use back to the form, if there were errors
-				
 				/***************************2.開始修改資料*****************************************/
 				CruiseLineServiceImpl clSvc = new CruiseLineServiceImpl();
 				PortNameListVO portNameListVO = new PortNameListVO();
 				portNameListVO = clSvc.selectPortNameListPNL(portsOfCallListNo);
-				
 				//抽出單艘船的資料
-//				CruiseLineVO cruiseLineVO = clSvc.selectCruiseNo(cruiseLinesNo);
-				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/				
-				
 				request.setAttribute("portNameListVO", portNameListVO);
 				request.setAttribute("cruiseLines", cruiseLines);
 				request.setAttribute("cruiseLineNo", cruiseLineNo);
@@ -114,25 +87,13 @@ public class CruiseLineServlet extends HttpServlet {
 				successView.forward(request, response);
 		}
 		if ("updatePCL".equals(action)) { // 來自update_emp_input.jsp的請求
-			
 			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
 			request.setAttribute("errorMsgs", errorMsgs);
-			
-		
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				Integer portsOfCallListNo = Integer.valueOf(request.getParameter("portsOfCallListNo").trim());
-//				System.out.println("portsOfCallListNo="+portsOfCallListNo);
 				Integer cruiseLinesNo = Integer.valueOf(request.getParameter("cruiseLinesNo").trim());
-//				System.out.println(cruiseLinesNo);
 				Integer portOfCallNo = Integer.valueOf(request.getParameter("portOfCallNo").trim());
-//				System.out.println(portOfCallNo);
 				Integer portOfCallSequence = Integer.valueOf(request.getParameter("portOfCallSequence").trim());
-//				System.out.println(portOfCallSequence);
-
-				// Send the use back to the form, if there were errors
-				
 				/***************************2.開始修改資料*****************************************/
 				CruiseLineServiceImpl clSvc = new CruiseLineServiceImpl();
 				PortsOfCallListVO portsOfCallListVO = clSvc.updatePCL(cruiseLinesNo, portOfCallNo, portOfCallSequence, portsOfCallListNo);
@@ -141,44 +102,27 @@ public class CruiseLineServlet extends HttpServlet {
 				cruiseLineVO.setCruiseLines(lastname);
 				clSvc.selectCNLAll(cruiseLinesNo);
 				//抽出單艘船的資料
-//				CruiseLineVO cruiseLineVO = clSvc.selectCruiseNo(cruiseLinesNo);
-				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/				
-				
 				request.setAttribute("cruiseLineVO", cruiseLineVO);
                 String url = "/back-end/cruiseline/cruiselineUpdate.jsp";
 				RequestDispatcher successView = request.getRequestDispatcher(url);   // 修改成功後,轉交回送出修改的來源網頁
 				successView.forward(request, response);
 		}
 			if ("insertPCL".equals(action)) { // 來自update_emp_input.jsp的請求
-			
 			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
 			request.setAttribute("errorMsgs", errorMsgs);
-			
-		
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				Integer portOfCallNo = Integer.valueOf(request.getParameter("portOfCallNo").trim());
-//				System.out.println("portOfCallNo="+portOfCallNo);
 				Integer cruiseLineNo = Integer.valueOf(request.getParameter("cruiseLineNo").trim());
-//				System.out.println(cruiseLineNo);
-				
-
-				// Send the use back to the form, if there were errors
-				
 				/***************************2.開始修改資料*****************************************/
 				CruiseLineServiceImpl clSvc = new CruiseLineServiceImpl();
 				CruiseLineVO cruiseLineVO = clSvc.selectCruiseNo(cruiseLineNo);
 				//抽出單艘船的資料
-//				CruiseLineVO cruiseLineVO = clSvc.selectCruiseNo(cruiseLinesNo);
 				Integer portOfCallSequence = clSvc.selectPortNameListLast(cruiseLineNo).getPortOfCallSequence() + 1;
-//				System.out.println(portOfCallSequence);
 				PortsOfCallListVO portsOfCallListVO = clSvc.insertPCL(cruiseLineNo, portOfCallNo, portOfCallSequence);
 				String lastname = clSvc.updateCLNames(portsOfCallListVO.getCruiseLinesNo()).getCruiseLines();
 				cruiseLineVO.setCruiseLines(lastname);
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/				
-				
 				request.setAttribute("cruiseLineVO", cruiseLineVO);
                 String url = "/back-end/cruiseline/cruiselineUpdate.jsp";
 				RequestDispatcher successView = request.getRequestDispatcher(url);   // 修改成功後,轉交回送出修改的來源網頁
@@ -186,12 +130,8 @@ public class CruiseLineServlet extends HttpServlet {
 		}
 		
 			if ("deletePCL".equals(action)) { // 來自listAllEmp.jsp
-
 				List<String> errorMsgs = new LinkedList<String>();
-				// Store this set in the request scope, in case we need to
-				// send the ErrorPage view.
 				request.setAttribute("errorMsgs", errorMsgs);
-		
 					/***************************1.接收請求參數***************************************/
 					Integer portsOfCallListNo = Integer.valueOf(request.getParameter("portsOfCallListNo"));
 					Integer cruiseLineNo = Integer.valueOf(request.getParameter("cruiseLineNo"));
@@ -213,28 +153,16 @@ public class CruiseLineServlet extends HttpServlet {
 				response.setContentType("image/jpeg");
 				List<String> errorMsgs = new LinkedList<String>();
 				request.setAttribute("errorMsgs", errorMsgs);
-
-
 				Integer cruiseLineNo = Integer.valueOf(request.getParameter("cruiseLineNo"));
 				String cruiseLines = request.getParameter("cruiseLines");
-				
 				Part fileEmpPictureId = request.getPart("cruiselinePic"); // Retrieves <input type="file" name="empPictureId">
 				byte[] cruiselinePic = fileEmpPictureId.getInputStream().readAllBytes();
-
-
 				LocalDate time = LocalDate.now();
-//				try {
-//					time = java.sql.Date.valueOf(request.getParameter("time").trim()).toLocalDate();
-//				} catch (IllegalArgumentException e) {
-//					time = new java.sql.Date(System.currentTimeMillis()).toLocalDate();
-//					errorMsgs.add("請輸入日期!");
-//				}
 				CruiseLineVO cruiseLineVO = new CruiseLineVO();
 				cruiseLineVO.setCruiseLineNo(cruiseLineNo);
 				cruiseLineVO.setCruiseLines(cruiseLines);
 				cruiseLineVO.setCruiseLinePicture(cruiselinePic);
 				cruiseLineVO.setTime(time);
-//				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					request.setAttribute("cruiseLineVO", cruiseLineVO); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = request.getRequestDispatcher("/back-end/cruiseline/cruiselineUpdate.jsp");
@@ -248,18 +176,11 @@ public class CruiseLineServlet extends HttpServlet {
 				String url = "/back-end/cruiseline/cruiseline.jsp";
 				RequestDispatcher successView = request.getRequestDispatcher(url);// 編輯成功重載 EMP_GetOneEdiotrByManger.jsp
 				successView.forward(request, response);
-
 			}
 			if ("cruiselineInsert".equals(action)) { // 來自update_emp_input.jsp的請求
-				
 				List<String> errorMsgs = new LinkedList<String>();
-				// Store this set in the request scope, in case we need to
-				// send the ErrorPage view.
 				request.setAttribute("errorMsgs", errorMsgs);
-				
-			
 					/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-					
 					Part fileEmpPictureId = request.getPart("cruiselinePic"); // Retrieves <input type="file" name="empPictureId">
 					byte[] cruiselinePic = fileEmpPictureId.getInputStream().readAllBytes();
 					LocalDate time = null;
@@ -269,8 +190,6 @@ public class CruiseLineServlet extends HttpServlet {
 						time = new java.sql.Date(System.currentTimeMillis()).toLocalDate();
 						errorMsgs.add("請輸入日期!");
 					}
-					// Send the use back to the form, if there were errors
-					
 					/***************************2.開始修改資料*****************************************/
 					CruiseLineServiceImpl clSvc = new CruiseLineServiceImpl();
 					clSvc.insertCL(cruiselinePic, time);
@@ -291,7 +210,6 @@ public class CruiseLineServlet extends HttpServlet {
 					/***************************2.開始刪除資料***************************************/
 					CruiseLineServiceImpl clSvc = new CruiseLineServiceImpl();
 					clSvc.deleteCruiseLineNo(cruiseLineNo);
-					
 					/***************************3.刪除完成,準備轉交(Send the Success view)***********/
 					//要跳回到shipUpdate.jsp需經過一個頁面，再傳入action=getOne_For_Update_Ship
 					//資料庫取出的shipNo參數,存入req
@@ -300,5 +218,4 @@ public class CruiseLineServlet extends HttpServlet {
 					successView.forward(request, response);
 			}
 	}
-
 }

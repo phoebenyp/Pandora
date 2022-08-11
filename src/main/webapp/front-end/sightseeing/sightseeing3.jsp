@@ -13,7 +13,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     />
     <meta name="author" content="Ansonika" />
     <title>CITY TOURS - City tours and travel site template by Ansonika</title>
-
     <!-- Favicons-->
     <link
       rel="shortcut icon"
@@ -43,13 +42,11 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       sizes="144x144"
       href="<%=request.getContextPath()%>/Cart/html/css/img/apple-touch-icon-144x144-precomposed.png"
     />
-
     <!-- GOOGLE WEB FONT -->
     <link
       href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Montserrat:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-
     <!-- COMMON CSS -->
     <link
       href="<%=request.getContextPath()%>/Cart/html/css/bootstrap.min.css"
@@ -63,7 +60,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       href="<%=request.getContextPath()%>/front-end/sightseeing/css/vendors.css"
       rel="stylesheet"
     />
-
     <!-- CUSTOM CSS -->
     <link
       href="<%=request.getContextPath()%>/front-end/sightseeing/css/custom.css"
@@ -73,15 +69,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       #map {
         border-bottom: none;
         height: 550px;
-        /* width: 100%;
-              position: absolute;
-              top: 0;
-              left: 0; */
       }
       .like_title ul {
         height: 50px;
         width: 80%;
-        /* border: 1px solid red; */
         background-color: #bbcfe2;
         position: relative;
       }
@@ -89,7 +80,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         font-size: 20px;
         font-family: "Montserrat", Arial, sans-serif;
         justify-content: center;
-        /* align-items: center; */
         display: flex;
         margin: 0;
         position: absolute;
@@ -98,7 +88,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       .like_content ul {
         height: 400px;
         width: 100%;
-        /* border: 1px solid red; */
         background-color: #fff;
       }
       .mpa_list {
@@ -117,7 +106,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         padding: 16px;
         border-radius: 5px;
       }
-
       .popup-wrap {
         width: 100%;
         height: 100%;
@@ -128,7 +116,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         content: "";
         background: rgba(0, 0, 0, 0.85);
       }
-
       .popup-box {
         width: 50%;
         padding: 50px 75px;
@@ -145,12 +132,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         font-size: 32px;
         color: #1a1a1a;
       }
-
       h3 {
         font-size: 24px;
         color: #888;
       }
-
       .close-btn {
         width: 50px;
         height: 50px;
@@ -166,19 +151,16 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         line-height: 40px;
         font-size: 32px;
       }
-
       .transform-in,
       .transform-out {
         display: block;
         -webkit-transition: all ease 0.5s;
         transition: all ease 0.5s;
       }
-
       .transform-in {
         -webkit-transform: translate(-50%, -50%) scale(1);
         transform: translate(-50%, -50%) scale(1);
       }
-
       .transform-out {
         -webkit-transform: translate(-50%, -50%) scale(0.5);
         transform: translate(-50%, -50%) scale(0.5);
@@ -196,10 +178,8 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       </div>
     </div>
     <!-- End Preload -->
-
     <div class="layer"></div>
     <!-- Mobile menu overlay mask -->
-
     <!-- Header Plain:  add the id plain to header and change logo.png to logo_sticky.png ======================= -->
     <header id="plain">
       <div id="top_line">
@@ -222,7 +202,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         <!-- End container-->
       </div>
       <!-- End top line-->
-
       <div class="container">
         <div class="row">
           <div class="col-4">
@@ -284,9 +263,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                     style="width: 100px"
                     >旅遊資訊</a
                   >
-
                   <!-- End row -->
-
                   <!-- End menu-wrapper -->
                 </li>
                 <li class="submenu">
@@ -397,53 +374,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
               id="maplist"
               style="list-style: none; overflow-y: auto; height: 100%"
             >
-              <!-- 測驗組 -->
-
-              <!-- <li style="list-style: none" class="port18">
-                <img
-                  src="<%=request.getContextPath()%>/images/map1.png"
-                  style="width: 70%"
-                  alt=""
-                />
-
-                <select id="change1">
-                  <option value="0">請選擇</option>
-                  <option value="1">餐廳</option>
-                  <option value="2">景點</option>
-                  <option value="3">活動</option>
-                  <option value="4">回復</option>
-                </select>
-              </li>
-              <li style="list-style: none" class="port19">
-                <img
-                  src="<%=request.getContextPath()%>/images/sightseeing4.png"
-                  style="width: 70%"
-                  alt=""
-                />
-                <select id="change2">
-                  <option value="0">請選擇</option>
-                  <option value="1">餐廳</option>
-                  <option value="2">景點</option>
-                  <option value="3">活動</option>
-                  <option value="4">回復</option>
-                </select>
-              </li>
-              <li style="list-style: none" class="port20">
-                <img
-                  src="<%=request.getContextPath()%>/images/sightseeing3.png"
-                  style="width: 70%"
-                  alt=""
-                />
-                <select id="change3">
-                  <option value="0">請選擇</option>
-                  <option value="1">餐廳</option>
-                  <option value="2">景點</option>
-                  <option value="3">活動</option>
-                  <option value="4">回復</option>
-                </select>
-              </li> -->
-
-              <!-- 測驗組 -->
             </ul>
           </div>
         </div>
@@ -501,7 +431,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       </form>
     </div>
     <!-- End Search Menu -->
-
     <!-- Sign In Popup -->
     <div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
       <div class="small-dialog-header">
@@ -570,18 +499,14 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       <!--form -->
     </div>
     <!-- /Sign In Popup -->
-
     <footer class="revealed"></footer>
-
     <!-- Common scripts -->
     <script src="<%=request.getContextPath()%>/Cart/html/js/jquery-3.6.0.min.js"></script>
     <script src="<%=request.getContextPath()%>/Cart/html/js/common_scripts_min.js"></script>
     <script src="<%=request.getContextPath()%>/Cart/html/js/functions.js"></script>
     <!-- Map -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaLnCT5X3SOIuBBlEMSlXuFLIh4qLyXxQ&libraries=places"></script>
-
     <script src="<%=request.getContextPath()%>/front-end/sightseeing/js/map_full_page.js"></script>
-
     <script src="<%=request.getContextPath()%>/Cart/html/js/infobox.js"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
@@ -618,8 +543,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       });
       $(".rest").change("#change1  option:selected", function () {
         var item = $("#change1  option:selected").val();
-        // console.log(item);
-        // console.log(this.find("#change1"));
         if (item == 1) {
           var af = $(this).find("#change1").closest("li").clone();
           $(".rest").append(af);
@@ -643,8 +566,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       });
       $(".mark").change("#change1  option:selected", function () {
         var item = $("#change1  option:selected").val();
-        // console.log(item);
-        // console.log(this.find("#change1"));
         if (item == 1) {
           var af = $(this).find("#change1").closest("li").clone();
           $(".rest").append(af);
@@ -668,8 +589,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       });
       $(".act").change("#change1  option:selected", function () {
         var item = $("#change1  option:selected").val();
-        // console.log(item);
-        // console.log(this.find("#change1"));
         if (item == 1) {
           var af = $(this).find("#change1").closest("li").clone();
           $(".rest").append(af);
@@ -693,8 +612,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       });
       $("#maplist").change("#change1  option:selected", function () {
         var item = $("#change1  option:selected").val();
-        // console.log(item);
-        // console.log(this.find("#change1"));
         if (item == 1) {
           var af = $(this).find("#change1").closest("li").clone();
           $(".rest").append(af);
@@ -1779,24 +1696,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         }
       });
       //#change10
-      // $.ajax({
-      //   url: "http://localhost:8080/pandora/SightseeingServlet", // 資料請求的網址
-      //   type: "POST", // GET | POST | PUT | DELETE | PATCH
-      //   // data: 物件資料,             // 將物件資料(不用雙引號) 傳送到指定的 url
-      //   dataType: "json", // 預期會接收到回傳資料的格式： json | xml | html
-      //   success: function (data) {
-      //     // request 成功取得回應後執行
-      //     console.log(data);
-      //   },
-      // });
       var first = document.querySelector("#first");
-
       axios
         .post("http://localhost:8080/pandora/SightseeingServlet")
         .then((response) => {
-          // console.log(response);
-          // console.log(response.data);
-
           scv = response.data
             .replace("[", "")
             .replace("]", "")
@@ -1804,58 +1707,16 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
             .replace("]", "")
             .split(",");
           let vo = "<option>請選擇</option>";
-          // let vo = "";
           for (i = 0; i < scv.length / 2; i++) {
-            // console.log(scv[i]);
             let j = scv.length / 2;
-            // if ((i = 0)) {
-            //   vo +=
-            //     "<option value='" +
-            //     scv[j + i] +
-            //     "' selected='selected'>" +
-            //     scv[i] +
-            //     "</option>";
-            // } else {
             vo += "<option value='" + scv[j + i] + "'>" + scv[i] + "</option>";
-            // }
-            // console.log(vo);
           }
           $("select#first").html(vo);
         });
-      // console.log(scv);
-      // console.log(scv[0]);
-      // console.log(scv.length);
-
-      // for (i = scv.length / 2; i < scv.length; i++) {
-      // console.log(scv[i]);
-      // }
-      //   scv.forEach((element) => console.log(element));
-      // });
-      // fetch("SightseeingServlet", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({
-      //     // cruiseLineNo: cruiseLineNo.value,
-      //     // cruiseLines: cruiseLines.value,
-      //   }),
-      // }).then((resp) => resp.json());
-      // if ($("#first option:selected").val() != null) {
-      // console.log($("#first option:selected").val());
-      // }
       $("#first").change(function () {
         var item = $("#first  option:selected").val();
-        // alert(aaa);
         let url = "http://localhost:8080/pandora/PortSelect";
-
-        // axios
-        //   .post(url, { item })
-        //   .then((res) => {
-        //     console.log(res);
-        //   })
-        //   .catch((err) => {});
         axios.post(url, { item }).then((response) => {
-          // console.log(response.data);
-          // console.log(response.data);
           scv = response.data
             .replace("[", "")
             .replace("]", "")
@@ -1863,9 +1724,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
             .replace("]", "")
             .split(",");
           let vo = "<option>請選擇</option>";
-          // let vo = "";
           for (i = 0; i < scv.length / 2; i++) {
-            // console.log(scv[i]);
             let j = scv.length / 2;
             vo +=
               "<option value='" +
@@ -1877,53 +1736,43 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
           $("select#second").html(vo);
         });
       });
-      // $("#first").trigger("change");
       $("#second").change(function () {
         var port = $("#second  option:selected").val();
-        // console.log(port);
         //天氣
         switch (port) {
           case "1":
-            // console.log(port);
             axios
               .get(
                 "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-051?Authorization=CWB-7B427A7B-6E43-41EE-9DCA-8CE82754A1E7&limit=1&offset=4&format=JSON&elementName=&sort=time"
               )
               .then((response) => {
-                // data = json.loads(response.text);
                 weather(response);
               });
             break;
           case "2":
-            // console.log(port);
             axios
               .get(
                 "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-075?Authorization=CWB-7B427A7B-6E43-41EE-9DCA-8CE82754A1E7&limit=1&offset=28&format=JSON&elementName=&sort=time"
               )
               .then((response) => {
-                // data = json.loads(response.text);
                 weather(response);
               });
             break;
           case "3":
-            // console.log(port);
             axios
               .get(
                 "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-067?Authorization=CWB-7B427A7B-6E43-41EE-9DCA-8CE82754A1E7&limit=1&offset=24&format=JSON&elementName=&sort=time"
               )
               .then((response) => {
-                // data = json.loads(response.text);
                 weather(response);
               });
             break;
           case "4":
-            // console.log(port);
             axios
               .get(
                 "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-043?Authorization=CWB-7B427A7B-6E43-41EE-9DCA-8CE82754A1E7&limit=1&offset=2&format=JSON&elementName=&sort=time"
               )
               .then((response) => {
-                // data = json.loads(response.text);
                 weather(response);
               });
             break;
@@ -1931,15 +1780,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         //天氣
         let url = "http://localhost:8080/pandora/LaLoPicServlet";
         axios.post(url, { port }).then((response) => {
-          // console.log(response.data);
           var lalo = response.data.split(" ");
-          // console.log(parseFloat(lalo[0]) + " ," + parseFloat(lalo[1]));
-          //           console.log(parseFloat(lalo[0]), parseFloat(lalo[1]));
-          // console.log(parseFloat(lalo[0]), parseFloat(lalo[1]));
-          // console.log(lalo[2][0], lalo[2][1], lalo[2][2]);
-          // console.log(lalo[2]);
-          // console.log(lalo[3]);
-          // console.log(lalo[4]);
           let sss = "";
           for (i = 2; i < lalo.length; i++) {
             sss +=
@@ -1962,7 +1803,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
           //加入位置
           var mapOptions = {
             zoom: 16,
-            //             center: new google.maps.LatLng(24.288734,120.508477),
             center: new google.maps.LatLng(
               parseFloat(lalo[0]),
               parseFloat(lalo[1])
@@ -2258,21 +2098,8 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       });
       function weather(response) {
         let cc = response.data.records.locations[0].location[0].weatherElement;
-        // console.log(cc);
-        // console.log(cc[1].time[14].elementValue[0].value);
-        // console.log(cc[9]);
-        // console.log(cc[6].time[4].startTime.split(" "));
-        // console.log(cc[6].time[2].elementValue[0].value);
         let sc = "";
-        // if (cc[6].time[2].elementValue[0].value === "晴時多雲") {
-        //   console.log(1);
-        // }
-        // var hs;
         for (let i = 0; i < 12; i++) {
-          // if (cc[6].time[2].elementValue[0].value === "晴時多雲") {
-          //   var hs =
-          //     "<img src='	https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/03.svg'>";
-          // }
           switch (cc[6].time[2].elementValue[0].value) {
             case "晴天":
               var hs =
@@ -2757,7 +2584,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
             "<div></div>" +
             "<div></div>" +
             "</div>";
-
           i++;
         }
         $(".wearherTitle").html(sc);

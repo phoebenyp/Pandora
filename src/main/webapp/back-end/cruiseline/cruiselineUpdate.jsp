@@ -8,32 +8,24 @@
 <%@	page import="web.cruiseline.bean.PortNameListVO" %>
 <%@ page import="web.port.dao.impl.PortDAOImpl" %>
 <%@ page import="web.port.bean.PortVO" %>
-
 <%
 	CruiseLineVO cruiseLineVO =(CruiseLineVO) request.getAttribute("cruiseLineVO");
-	
 	Integer cruiseLineNo = cruiseLineVO.getCruiseLineNo();
-	
 	PortNameListDAOImpl pnlSVC =new PortNameListDAOImpl();
 	List<PortNameListVO> pNLlist =pnlSVC.getAll(cruiseLineNo);
 	Integer count = 0;
 	pageContext.setAttribute("pNLlist",pNLlist);
 	pageContext.setAttribute("count", count);
-	
 	PortDAOImpl pSVC = new PortDAOImpl();
 	List<PortVO> plist = pSVC.getAll();
 	pageContext.setAttribute("plist", plist);
-
 %>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ROYAL CLASS PANDORA_後台系統</title>
-
-
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
@@ -48,7 +40,6 @@
             width: 1024px;
             padding: 2em;
         }
-
         .bold-blue {
             font-weight: bold;
             color: #0277BD;
@@ -61,7 +52,6 @@
         }
     </style>
 </head>
-
 <body class="hold-transition sidebar-mini">
     <!-- 主要開發區塊 -->
     <div class="wrapper">
@@ -72,14 +62,10 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-
             </ul>
-
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-
                 </div>
                 <li class="nav-item">
                     <a class="nav-link" data-widget="login-out" href="#" role="button">
@@ -138,13 +124,11 @@
                                 <div class="card-header">
                                     <h3 class="card-title">
                                         航線管理
-
                                     </h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <!-- form start -->
                                 <div class="container">
-
                                     <div class="row">
                                     	<form method="post"  action="<%=request.getContextPath()%>/CruiseLineServlet" enctype='multipart/form-data'>
                                        <div class="col-md-3">航線編號</div>
@@ -160,7 +144,6 @@
                                                <img id="img_content" src="<%=request.getContextPath()%>/CruiseLineServlet?action=cruiseLineVOUpdate&cruiseLineNo=${cruiseLineVO.cruiseLineNo}"  name="action" class="img-circle elevation-2 col-12" alt="CruiseLine Image" style=width:100% />
                                            </div>
                                        </div>
-                                       
                                        <div class="col-md-4">
                                        		<input type="hidden" name="action" value="updateCL">
                                             <input type="submit" name="EMPregister" value="編輯航線" text-align=center
@@ -188,7 +171,6 @@
                                         data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                         <thead>
                                             <tr>
-
                                                 <th data-field="Employee_ID" data-filter-control="input"
                                                     >行程</th>
                                                 <th data-field="Job_Levels" data-filter-control="select"
@@ -197,28 +179,13 @@
                                                     >變更</th>
                                                     <th data-field="delete" data-filter-control="select"
                                                     >去除</th>
-                                                
-
-
-
                                             </tr>
                                         </thead>
                                         <tbody>
-<%--                                         <%! int count=0; %> --%>
                                         	<c:forEach items="${pNLlist }" var="pNLVO">
-                                        	
-                                        	
                                             <tr>
-										
                                                 <td>停靠點<%=count+=1%></td>
                                                 <td>${pNLVO.portName}</td>
-<!-- 												<td> -->
-<!-- 													<select name="portOfCallNo" style="width:250px;"> -->
-<%-- 			                                            <c:forEach items="${plist}"	 var="pVO"> --%>
-<%-- 			                                            	<option value="${pVO.portOfCallNo }" ${(pNLVO.portOfCallNo==pVO.portOfCallNo)?'selected':'' }>${pVO.portName }</option> --%>
-<%-- 			                                            </c:forEach> --%>
-<!-- 		                                            </select> -->
-<!-- 		                                        </td> -->
                                                 <td>
                                                 	<form method="post"  action="<%=request.getContextPath()%>/CruiseLineServlet">
                                                 	<input name="portsOfCallListNo" type="hidden" value="${pNLVO.portsOfCallListNo}">
@@ -244,15 +211,8 @@
                                         </table>
                                        </div>
                                     </div>
-                                    
-                                    
                                     </div>
-
-                                
-
-
                             </div>
-
                         </div>
                         <!-- /.card -->
                     </div>
@@ -273,12 +233,6 @@
         <div class="float-right d-none d-sm-inline">
             Tibame_TGA102 第五組
         </div>
-        <!-- Default to the left -->
-        <!-- <strong
-                    >Copyright &copy; 2014-2021
-                    <a href="https://adminlte.io">AdminLTE.io</a>.</strong
-                >
-                All rights reserved. -->
     </footer>
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -297,20 +251,14 @@
     <script>
         //exporte les données sélectionnées
         var $table = $('#table');
-
-
         var trBoldBlue = $(" table"); $(trBoldBlue).on("click", "tr", function () {
             $(this).toggleClass("bold-blue");
         }); </script>
-
     <!-- 上下頁 -->
-
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://github.com/kayalshri/tableExport.jquery.plugin/blob/master/jquery.base64.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
-
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>
     <!-- Latest compiled and minified Locales -->
@@ -331,35 +279,26 @@
            step: 1,            //step: 60 (這是timepicker的預設間隔60分鐘)
 	       format: 'Y-m-d',
 	       value: new Date(),
-           //disabledDates:    ['2022/06/08','2022/06/09','2022/06/10'], // 去除特定不含
-           //startDate:	        '2022/07/10',  // 起始日
-           //minDate:           '-1970-01-01', // 去除今日(不含)之前
-           //maxDate:           '+1970-01-01'  // 去除今日(不含)之後
         });
         </script>
         <script>
           window.addEventListener("load", function (e) {
-        
               var preview_el = document.getElementById("preview");
               console.log(preview_el);
               var p_file_el = document.getElementById("p_file");
               console.log(p_file_el);
-
             //讀取預覽圖
         var preview_img = function (file) {
           // file是資料位置
           // 用來讀取檔案
           var reader = new FileReader();
-
           // 讀取檔案
           reader.readAsDataURL(file);
           reader.addEventListener("load", function (){
               console.log(reader.result);
-
             let img_str =
               //設定檔案數據
               '<img src="' + reader.result + '" class="preview_img">';
-
             //新增檔案數據
             preview_el.innerHTML = img_str;
           });
@@ -371,12 +310,8 @@
             preview_el.innerHTML = '<span class="text">預覽圖</span>';
           }
         });
-        
-        
-        
         var photo = document.getElementById('photo');
         var img = document.getElementById('img_content');
-        
         function readURL(input){
         	if(input.files && input.files[0]){
         	    var reader = new FileReader();
@@ -386,10 +321,7 @@
         	    reader.readAsDataURL(input.files[0]);
         	  }
         }
-        
           });
-          
         </script>
 </body>
-
 </html>

@@ -7,7 +7,6 @@
 <%@ page import="web.room.dao.impl.RoomTypeDAOImpl" %>
 <%
 	Integer shipNo =(Integer)request.getAttribute("shipNo");
-
 	RoomTypeTotalCountVO roomTypeTotalCountVO = (RoomTypeTotalCountVO) request.getAttribute("roomTypeTotalCountVO");
 	RoomTypeDAOImpl rtdSVC = new RoomTypeDAOImpl();
 	List<RoomTypeVO> list =rtdSVC.getAll();
@@ -19,13 +18,10 @@ This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ROYAL CLASS PANDORA_後台系統</title>
-
-
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
@@ -40,25 +36,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             width: 100%;
             padding: 2em;
         }
-
         .bold-blue {
             font-weight: bold;
             color: #0277BD;
         }
         .preview {
             border: 1px solid lightgray;
-            /* display: inline-block; */
-            /* width: 100px; */
-            /* min-height: 150px; */
-            /* position: relative; */
         }
         .preview span.text {
-            /* position: absolute; */
-            /* display: inline-block; */
-            /* left: 50%; */
-            /* top: 50%; */
-            /* transform: translate(-50%, -50%); */
-            /* z-index: -1; */
             color: lightgray;
         }
         .insertRTTC{
@@ -71,7 +56,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         }
     </style>
 </head>
-
 <body class="hold-transition sidebar-mini">
     <!-- 主要開發區塊 -->
     <div class="wrapper">
@@ -82,14 +66,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-
             </ul>
-
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-
                 </div>
                 <li class="nav-item">
                     <a class="nav-link" data-widget="login-out" href="#" role="button">
@@ -147,7 +127,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         房型數量新增
                                     </h3>
                                 </div>
-                                
                                 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ShipServlet" >
                                     <div class="container">
                                         <div class="col-md-12">
@@ -155,8 +134,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                                 <thead>
                                                     <tr>
-
-                                                    
                                                         <th data-field="shipNo" data-filter-control="select"
                                                             >郵輪編號</th>
                                                         <th data-field="roomTypeNo" data-filter-control="select"
@@ -165,47 +142,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <th data-field="maxCountOfRoomType" data-filter-control="select"
                                                             >
                                                             房間數量</th>
-                                                        
-                                                        
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-
-                                                        
                                                         <td>${shipNo }<input type="hidden" name="shipNo" value="${shipNo }"></td>
-                                                        
-                                                        
                                                         <td>
                                                         	<select name="roomTypeNo">
 		                                                        <c:forEach var="roomTypeVO" items="${list}">
 																	<option value="${roomTypeVO.roomTypeNo}" ${(roomTypeTotalCountVO.roomTypeNo==roomTypeVO.roomTypeNo)?'selected':'' } >${roomTypeVO.roomType}
 																</c:forEach>
 	                                                        </select>
-<!--                                                         	<select> -->
-<!--                                                                 <option>航行中</option> -->
-<!--                                                                 <option>roomTypeTotalCountVO</option> -->
-<!--                                                                 <option>維護中</option> -->
-<!--                                                                 <option>停航</option> -->
-<!--                                                                 <option>閒置中</option> -->
-<!--                                                             </select> -->
                                                         </td>
                                                         <td><input type="text" name="maxCountOfRoomType" value="<%=(roomTypeTotalCountVO==null)? "15" : roomTypeTotalCountVO.getMaxCountOfRoomType()%>"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                               
-                                                
                                                 <input type="hidden" name="action" value="insertRTTC">
                                                 <input  class="col-12" class="offset-8" type="submit" name="updateS" value="新增成功" text-align=center
                                                 style="margin-right:0%;width:250px; display:inline-block ;">
                                                 </FORM>
                                         </div>
-                                        
                                     </div>
-                                </FORM>
                             </div>
-                                    
                         </div>
                     </div>
                 </div>
@@ -220,12 +179,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="float-right d-none d-sm-inline">
             Tibame_TGA102 第五組
         </div>
-        <!-- Default to the left -->
-        <!-- <strong
-                    >Copyright &copy; 2014-2021
-                    <a href="https://adminlte.io">AdminLTE.io</a>.</strong
-                >
-                All rights reserved. -->
     </footer>
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -244,20 +197,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script>
         //exporte les données sélectionnées
         var $table = $('#table');
-
-
         var trBoldBlue = $(" table"); $(trBoldBlue).on("click", "tr", function () {
             $(this).toggleClass("bold-blue");
         }); </script>
-
     <!-- 上下頁 -->
-
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://github.com/kayalshri/tableExport.jquery.plugin/blob/master/jquery.base64.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
-
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>
     <!-- Latest compiled and minified Locales -->
@@ -268,5 +215,4 @@ scratch. This page gets rid of all links and provides the needed markup only.
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
 </body>
-
 </html>
