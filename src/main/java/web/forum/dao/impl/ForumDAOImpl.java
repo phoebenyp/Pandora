@@ -30,15 +30,17 @@ public class ForumDAOImpl implements ForumDAO {
 	}
 
 	private static final String INSERT_STMT = 
-			"INSERT INTO Forum (Member_ID,Post_Title,Post_Content,Post_Time,Clicks,Status) VALUES (?, ?, ?, ?, ?, ?)";
+			"INSERT INTO Forum (Member_ID,Post_Title,Post_Content,Post_Time,Clicks,Status,Post_Pic) VALUES (?, ?, ?, ?, ?, ? ,?)";
 		private static final String GET_ALL_STMT = 
 			"SELECT * FROM forum";
 		private static final String GET_ONE_STMT = 
-			"SELECT Post_Id,Member_ID,Post_Title,Post_Content,Post_Time,Clicks,Status FROM forum where Post_Id = ?";
+			"SELECT Post_Id,Member_ID,Post_Title,Post_Content,Post_Time,Clicks,Status,Post_Pic FROM forum where Post_Id = ?";
 		private static final String DELETE = 
 			"DELETE FROM forum where Post_Id = ?";
 		private static final String UPDATE = 
-			"UPDATE forum setMember_ID=?, Post_Title=?, Post_Content=?, Post_Time=?, Clicks=?, Status=? where Post_Id = ?";
+			"UPDATE forum set Member_ID = ?, Post_Title = ?, Post_Content = ?, Post_Time = ?, Clicks = ?, Status = ? ,Post_Pic = ? where Post_Id = ?";
+		private static final String UPDATE_WithOutPicture = 
+			"UPDATE forum set Member_ID=?, Post_Title=?, Post_Content=?, Post_Time=?, Clicks=?, Status=?           where Post_Id = ?";
 
 	
 	
@@ -59,6 +61,7 @@ public class ForumDAOImpl implements ForumDAO {
 			pstmt.setTimestamp(4, forumVO.getPostTime() != null ? Timestamp.valueOf(forumVO.getPostTime()) : null);
 			pstmt.setInt(5, forumVO.getClicks());
 			pstmt.setString(6, forumVO.getStatus());
+			pstmt.setBytes(7, forumVO.getPostPic());
 
 			pstmt.executeUpdate();
 
@@ -105,6 +108,8 @@ public class ForumDAOImpl implements ForumDAO {
 			pstmt.setTimestamp(4, forumVO.getPostTime() != null ? Timestamp.valueOf(forumVO.getPostTime()) : null);
 			pstmt.setInt(5, forumVO.getClicks());
 			pstmt.setString(6, forumVO.getStatus());
+			pstmt.setBytes(7, forumVO.getPostPic());
+			pstmt.setInt(8,forumVO.getPostId());
 
 			pstmt.executeUpdate();
 
@@ -132,6 +137,54 @@ public class ForumDAOImpl implements ForumDAO {
 
 
 	}
+	
+	@Override
+	public void updateWithOutPicture(ForumVO forumVO) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_WithOutPicture);
+			pstmt.setInt(1, forumVO.getMemberId());
+			pstmt.setString(2, forumVO.getPostTitle());
+			pstmt.setString(3, forumVO.getPostContent());
+			pstmt.setTimestamp(4, forumVO.getPostTime() != null ? Timestamp.valueOf(forumVO.getPostTime()) : null);
+			pstmt.setInt(5, forumVO.getClicks());
+			pstmt.setString(6, forumVO.getStatus());
+			pstmt.setInt(7,forumVO.getPostId());
+			pstmt.setBytes(8, forumVO.getPostPic());
+			
+
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+
+	}
+	
 
 	@Override
 	public void delete(Integer postId) {
@@ -199,6 +252,7 @@ public class ForumDAOImpl implements ForumDAO {
 				forumVO.setPostTime(rs.getTimestamp("Post_Time").toLocalDateTime());
 				forumVO.setClicks(rs.getInt("Clicks"));
 				forumVO.setStatus(rs.getString("Status"));
+				forumVO.setPostPic(rs.getBytes("Post_Pic"));
 			}
 
 			// Handle any driver errors
@@ -258,6 +312,7 @@ public class ForumDAOImpl implements ForumDAO {
 				forumVO.setPostTime(rs.getTimestamp("Post_Time").toLocalDateTime());
 				forumVO.setClicks(rs.getInt("Clicks"));
 				forumVO.setStatus(rs.getString("Status"));
+				forumVO.setPostPic(rs.getBytes("Post_Pic"));
 				list.add(forumVO); // Store the row in the list
 			}
 

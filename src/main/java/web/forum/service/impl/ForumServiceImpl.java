@@ -18,7 +18,7 @@ public class ForumServiceImpl {
 		
 	}
 	
-	public ForumVO addForum(Integer postId, Integer memberId, String postTitle, String postContent, LocalDateTime postTime, Integer clicks, String status) {
+	public ForumVO addForum(Integer postId, Integer memberId, String postTitle, String postContent, LocalDateTime postTime, Integer clicks, String status, byte[] postPic) {
 		
 		ForumVO forumVO = new ForumVO();
 		
@@ -29,7 +29,25 @@ public class ForumServiceImpl {
 		forumVO.setPostTime(postTime);
 		forumVO.setClicks(clicks);
 		forumVO.setStatus(status);
+		forumVO.setPostPic(postPic);
 		dao.insert(forumVO);
+		
+		return forumVO;		
+	}
+	
+	public ForumVO updateForum( Integer memberId, String postTitle, String postContent, LocalDateTime postTime, Integer clicks, String status, byte[] postPic,Integer postId) {
+		
+		ForumVO forumVO = new ForumVO();
+		
+		forumVO.setMemberId(memberId);
+		forumVO.setPostTitle(postTitle);
+		forumVO.setPostContent(postContent);
+		forumVO.setPostTime(postTime);
+		forumVO.setClicks(clicks);
+		forumVO.setStatus(status);
+		forumVO.setPostPic(postPic);
+		forumVO.setPostId(postId);
+		dao.update(forumVO);
 		
 		return forumVO;		
 	}
@@ -44,5 +62,10 @@ public class ForumServiceImpl {
 	
 	public List<ForumVO> getAll(){
 		return dao.getAll();		
+	}
+
+	public ForumVO findByPrimaryKey(Integer postId) {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 }

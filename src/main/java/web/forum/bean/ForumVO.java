@@ -1,6 +1,7 @@
 package web.forum.bean;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 public class ForumVO implements java.io.Serializable {
 
@@ -11,6 +12,16 @@ public class ForumVO implements java.io.Serializable {
 	private LocalDateTime postTime;
 	private Integer clicks;
 	private String status;
+	private byte[] postPic;
+
+	
+
+	@Override
+	public String toString() {
+		return "ForumVO [postId=" + postId + ", memberId=" + memberId + ", postTitle=" + postTitle + ", postContent="
+				+ postContent + ", postTime=" + postTime + ", clicks=" + clicks + ", status=" + status + ", postPic="
+				+ Arrays.toString(postPic) + "]";
+	}
 
 	public ForumVO() {
 
@@ -71,9 +82,19 @@ public class ForumVO implements java.io.Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	
+
+	public byte[] getPostPic() {
+		return postPic;
+	}
+
+	public void setPostPic(byte[] postPic) {
+		this.postPic = postPic;
+	}
 
 	public ForumVO(Integer postId, Integer memberId, String postTitle, String postContent, LocalDateTime postTime,
-			Integer clicks, String status) {
+			Integer clicks, String status ,byte[] postPic) {
 		super();
 		this.postId = postId;
 		this.memberId = memberId;
@@ -82,6 +103,7 @@ public class ForumVO implements java.io.Serializable {
 		this.postTime = postTime;
 		this.clicks = clicks;
 		this.status = status;
+		this.postPic = postPic;
 	}
 
 }
