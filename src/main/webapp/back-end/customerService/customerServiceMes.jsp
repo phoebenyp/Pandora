@@ -27,7 +27,7 @@ pageEncoding="UTF-8"%>
     <!-- Theme style -->
     <link
       rel="stylesheet"
-      href="<%=request.getContextPath()%>/css/adminlte.css"
+      href="<%=request.getContextPath()%>/back-end/customerService/css/adminlte.css"
     />
     <style>
       .container {
@@ -462,11 +462,11 @@ pageEncoding="UTF-8"%>
       <!-- /.content-wrapper -->
     </div>
     <!-- jQuery -->
-    <script src="<%=request.getContextPath()%>/plugins/jquery/jquery.min.js"></script>
+    <script src="<%=request.getContextPath()%>/back-end/customerService/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="<%=request.getContextPath()%>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<%=request.getContextPath()%>/back-end/customerService/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="<%=request.getContextPath()%>/js/adminlte.js"></script>
+    <script src="<%=request.getContextPath()%>/back-end/customerService/js/adminlte.js"></script>
     <script>
       //exporte les données sélectionnées
       var $table = $("#table");
@@ -502,6 +502,7 @@ pageEncoding="UTF-8"%>
       integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
       crossorigin="anonymous"
     ></script>
+    <script src="<%=request.getContextPath() %>/front-end/chatroom/js/moment.min.js"></script>
     <script>
       var MyPoint = "/FriendWS/${userName}";
       var host = window.location.host;
@@ -586,7 +587,7 @@ pageEncoding="UTF-8"%>
             type: "chat",
             sender: self,
             receiver: friend,
-            message: message,
+            message: message + " " + moment(new Date()).format("YYYY-MM-DD hh:mm:ss"),
           };
           webSocket.send(JSON.stringify(jsonObj));
           inputMessage.value = "";
@@ -622,7 +623,7 @@ pageEncoding="UTF-8"%>
             type: "history",
             sender: self,
             receiver: friend,
-            message: "",
+            message: ""+ moment(new Date()).format("YYYY-MM-DD hh:mm:ss"),
           };
           webSocket.send(JSON.stringify(jsonObj));
         });
