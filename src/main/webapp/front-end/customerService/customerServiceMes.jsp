@@ -379,14 +379,14 @@
                       type="button"
                       id="connect"
                       class="button"
-                      value="連結"
+                      value="連線"
                       onclick="connect();"
                     />
                     <input
                       type="button"
                       id="disconnect"
                       class="button"
-                      value="斷網"
+                      value="離線"
                       onclick="disconnect();"
                     />
                   </div>
