@@ -404,7 +404,7 @@ pageEncoding="UTF-8"%>
                     id="message"
                     class="text-field"
                     type="text"
-                    placeholder="Message"
+                    placeholder="請輸入訊息..."
                     onkeydown="if (event.keyCode == 13) sendMessage();"
                   />
                   <input
@@ -425,7 +425,7 @@ pageEncoding="UTF-8"%>
                     type="button"
                     id="disconnect"
                     class="button"
-                    value="斷網"
+                    value="離線"
                     onclick="disconnect();"
                   />
                 </div>
@@ -576,12 +576,12 @@ pageEncoding="UTF-8"%>
         var friend = statusOutput.textContent;
         var message = inputMessage.value.trim();
         if (message === "") {
-        	//記住改中文
-          alert("input message");
+        	
+          alert("請輸入訊息");
           inputMessage.focus();
         } else if (friend === "") {
         	//記住改中文
-          alert("select target");
+          alert("請選擇對話視窗");
         } else {
           var jsonObj = {
             type: "chat",
