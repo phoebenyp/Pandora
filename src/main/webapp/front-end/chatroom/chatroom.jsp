@@ -15,7 +15,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       content="Citytours - Premium site template for city tours agencies, transfers and tickets."
     />
     <meta name="author" content="Ansonika" />
-    <title>CITY TOURS - City tours and travel site template by Ansonika</title>
+    <title>ROYAL CLASS PANDORA</title>
 
     <!-- Favicons-->
     <link
@@ -547,7 +547,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       function sendMessage() {
         var userName = inputUserName.value.trim();
         if (userName === "") {
-          alert("Input a user name");
+          alert("請輸入名稱");
           inputUserName.focus();
           return;
         }

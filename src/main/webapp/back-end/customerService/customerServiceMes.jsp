@@ -580,7 +580,7 @@ pageEncoding="UTF-8"%>
           alert("請輸入訊息");
           inputMessage.focus();
         } else if (friend === "") {
-        	//記住改中文
+        	
           alert("請選擇對話視窗");
         } else {
           var jsonObj = {

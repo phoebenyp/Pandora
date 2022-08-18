@@ -12,7 +12,7 @@
       content="Citytours - Premium site template for city tours agencies, transfers and tickets."
     />
     <meta name="author" content="Ansonika" />
-    <title>CITY TOURS - City tours and travel site template by Ansonika</title>
+    <title>ROYAL CLASS PANDORA</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="<%=request.getContextPath()%>/front-end/customerService/img/favicon.ico" type="image/x-icon" />
